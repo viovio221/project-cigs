@@ -36,7 +36,7 @@
             </div>
 
             <div class="column-2 image">
-              <img src="{{ asset('images/logo.png') }}" alt="">
+              <img src="{{ asset('images/209408166-biker-man-riding-motorcycle-removebg-preview.png') }}" alt="">
             </div>
           </div>
         </div>
