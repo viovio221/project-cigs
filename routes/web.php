@@ -74,4 +74,10 @@ Route::get('/commentpost', function () {
 });
 
 // message
-Route::resource('message', MessageController::class);
+Route::get('/dashboard/message/create', [MessageController::class, 'create'])->name('message.create');
+Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
+Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
+Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
+Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
+Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
+Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
