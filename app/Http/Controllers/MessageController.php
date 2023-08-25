@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class MessageController extends Controller
 {
     public function index()
     {
         $messages = Message::all();
-        return view('message.index', compact('messages'));
+        return view('dashboard.data_crud', compact('messages'));
     }
-
     public function create()
     {
         $user = User::query()->whereDoesntHave('messages')->get();
-        return view('message.create', ['users' => $user]); // Menggunakan 'users' sebagai key
+        return view('dashboard.message.create', ['users' => $user]); // Menggunakan 'users' sebagai key
     }
 
     public function store(Request $request)
@@ -31,13 +32,13 @@ class MessageController extends Controller
 
         Message::create($validated);
 
-        return redirect()->route('message.index')->with('berhasil', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->nama Berhasil ditambahkan!");
     }
 
     public function edit(Message $message)
     {
         $user = User::all();
-        return view('message.edit', compact('message', 'user'));
+        return view('dashboard.message.edit', compact('message', 'user'));
     }
 
     public function update(Request $request, Message $message )
@@ -51,13 +52,13 @@ class MessageController extends Controller
 
         Message::create($validated);
 
-        return redirect()->route('message.index')->with('berhasil', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->nama Berhasil ditambahkan!");
     }
 
     public function destroy(Message $message)
     {
         $message->delete();
 
-        return redirect()->route('message.index')->with('berhasil', "$message->judul Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$message->judul Berhasil dihapus!");
     }
 }
