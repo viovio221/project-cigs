@@ -11,12 +11,12 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('events.index', compact('events'));
+        return view('dashboard/data_crud', compact('events'));
     }
 
     public function create()
     {
-        return view('events.create');
+        return view('dashboard.events.create');
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class EventController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil ditambahkan.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil ditambahkan.');
     }
 
     // public function store(Request $request)
@@ -71,7 +71,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::findOrFail($id);
-        return view('events.edit', compact('event'));
+        return view('dashboard.events.edit', compact('event'));
     }
 
 
@@ -97,7 +97,7 @@ public function update(Request $request, $id)
 
     $event->update($validatedData);
 
-    return redirect()->route('events.index')->with('success', 'Event berhasil diperbarui.');
+    return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil diperbarui.');
 }
 
     public function destroy($id)
@@ -105,6 +105,6 @@ public function update(Request $request, $id)
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil dihapus.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil dihapus.');
     }
 }
