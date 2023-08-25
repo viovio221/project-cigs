@@ -14,7 +14,7 @@
 			<img src="{{ asset('images/209408166-biker-man-riding-motorcycle-removebg-preview.png') }}" alt="">
 		</div>
 		<div class="login-content">
-			<form action="sesi/index">
+			<form action="login/index">
 				<img src="{{ asset('images/orangeprofile1.png') }}" alt="">
 				<h2 class="title">Welcome</h2>
            		<div class="input-div one">
@@ -38,9 +38,9 @@
                 <br>
             	<input type="submit" class="btn btn-warning" value="Login">
 
-                <form action="sesi/register">
+                <form action="login/register">
                     <div class="mb-3 d-grid">
-                            <button name="submit" type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                 </form>
             </form>
