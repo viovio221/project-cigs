@@ -22,7 +22,7 @@
     <!--
   - google font link
 -->
-    
+
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -34,7 +34,7 @@
     <title>Events</title>
 </head>
 
-<body class="dark">
+<body>
 
  <!-- SIDEBAR -->
  <section id="sidebar">

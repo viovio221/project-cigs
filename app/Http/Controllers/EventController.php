@@ -11,12 +11,12 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('events.index', compact('events'));
+        return view('dashboard/data_crud', compact('events'));
     }
 
     public function create()
     {
-        return view('events.create');
+        return view('dashboard.events.create');
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class EventController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil ditambahkan.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil ditambahkan.');
     }
 
     // public function store(Request $request)
@@ -65,46 +65,46 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::findOrFail($id);
-        return view('events.show', compact('event'));
+        return view('dashboard.events.show', compact('event'));
     }
 
     public function edit($id)
     {
         $event = Event::findOrFail($id);
-        return view('events.edit', compact('event'));
+        return view('dashboard.events.edit', compact('event'));
     }
 
 
-public function update(Request $request, $id)
-{
-    $validatedData = $request->validate([
-        'name' => 'required',
-        'date' => 'required',
-        'location' => 'required',
-        'description' => 'required',
-        'image' => 'image', // Update image validation rule
-    ]);
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'date' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'image' => 'image|mimes:png,jpg,jpeg', 
+        ]);
 
-    $event = Event::findOrFail($id);
+        $event = Event::findOrFail($id);
 
-    if ($request->hasFile('image')) {
-        $newImagePath = $request->file('image')->store('event_images', 'local');
-        $validatedData['image'] = $newImagePath;
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete('event_images/' . $event->image);
 
-        // Delete the old image if needed
-        Storage::disk('local')->delete($event->image);
+            $newImagePath = $request->file('image')->store('public/event_images');
+            $validatedData['image'] = basename($newImagePath);
+        }
+
+        $event->update($validatedData);
+
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil diperbarui.');
     }
 
-    $event->update($validatedData);
-
-    return redirect()->route('events.index')->with('success', 'Event berhasil diperbarui.');
-}
 
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil dihapus.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil dihapus.');
     }
 }

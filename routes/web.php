@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
@@ -22,9 +23,8 @@ use App\Http\Controllers\MessageController;
 
 
 
-Route::get('/sesi', [SessionController::class, 'index'])->name('login');
-
-Route::get('/sesi/register', [SessionController::class, 'register']);
+route::resource('login', LoginController::class);
+route::resource('register', RegisterController::class);
 
 
 Route::get('/', function () {
