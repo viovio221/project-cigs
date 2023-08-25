@@ -20,7 +20,7 @@
         <nav>
           <div class="container">
             <div class="logo">
-              <img src="logo.png" height="250" width="500">
+              <img src="images/logo.png" height="250" width="500">
             </div>
           </div>
         </nav>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="column-2 image">
-              <img src="{{ asset('logo.png') }}" alt="">
+              <img src="{{ asset('images/logo.png') }}" alt="">
             </div>
           </div>
         </div>
@@ -69,8 +69,8 @@
             </div>
 
             <div class="column-2 image">
-              <img src="209408166-biker-man-riding-motorcycle-removebg-preview.png" class="points" alt="" />
-              <img src="209408166-biker-man-riding-motorcycle-removebg-preview.png  " class="z-index" alt="" />
+              <img src="images/209408166-biker-man-riding-motorcycle-removebg-preview.png" class="points" alt="" />
+              <img src="images/209408166-biker-man-riding-motorcycle-removebg-preview.png  " class="z-index" alt="" />
             </div>
           </div>
         </div>
