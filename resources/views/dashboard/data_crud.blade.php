@@ -179,6 +179,7 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
 
                 <div class="table-data">
                     <div class="order">
@@ -237,6 +238,67 @@
                                 @endif
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                    <div class="table-data">
+                        <div class="order">
+                            <div class="head">
+                                <h3><a href="{{ route('message.create') }}" class="btn btn-outline-primary">Tambah
+                                        Message</a></h3>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <i class='bx bx-search'></i>
+                                <i class='bx bx-filter'></i>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">User</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (isset($keanggotaan))
+                                        @foreach ($messages as $mg)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $mg->name }}</td>
+                                                <td>{{ $mg->users ? $mg->users->name : 'Event Not Found' }}</td>
+                                                <td>{{ $mg->message }}</td>
+                                                <td>{{ $mg->created_at }}</td>
+                                                <td class="side-menu top">
+                                                    <a href="{{ route('message.show', $message->id) }}"
+                                                        style="color: green"><i class='bx bx-info-circle'></i></a>
+                                                    <a href="{{ route('message.edit', ['event' => $event->id]) }}"
+                                                        method="post" style="color: orange"><i
+                                                            class='bx bx-edit'></i></a>
+                                                    <form action="{{ route('message.destroy', $event->id) }}"
+                                                        method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            style="background: none; border: none; color:red"><i
+                                                                class='bx bx-trash'></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
         </main>
         <!-- MAIN -->
