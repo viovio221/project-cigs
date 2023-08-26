@@ -14,8 +14,8 @@ class EventController extends Controller
     {
         $events = Event::all();
         $messages = Message::all();
-        $comment_post = CommentPost::all();
-        return view('dashboard/data_crud', compact('events', 'messages'));
+        $comment_posts = CommentPost::all();
+        return view('dashboard/data_crud', compact('events', 'messages', 'comment_posts '));
     }
 
     public function create()

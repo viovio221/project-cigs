@@ -60,9 +60,13 @@
                     <div class="inputfield">
                         <label for="district">District</label>
                         <input type="text" name="district" id="district" class="input">
-                    </div>                    <div class="inputfield">
+                    </div>
+                    <div class="inputfield">
                         <label for="postal_code">Postal Code</label>
                         <input type="text" name="postal_code" id="postal_code" class="input">
+                        @error('postal_code')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="inputfield">
                         <input type="submit" value="Register" class="btn">

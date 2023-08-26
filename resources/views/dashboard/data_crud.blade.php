@@ -118,10 +118,6 @@
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="btn-download">
-                    <i class='bx bxs-cloud-download'></i>
-                    <span class="text">Unduh PDF</span>
-                </a>
             </div>
             <div class="table-data">
                 <div class="order">
@@ -210,7 +206,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (isset($keanggotaan))
+                                @if (isset($messages))
                                     @foreach ($messages as $mg)
                                         <tr>
                                             <th scope="row">{{ $loop->iteration }}</th>
@@ -219,12 +215,12 @@
                                             <td>{{ $mg->message }}</td>
                                             <td>{{ $mg->created_at }}</td>
                                             <td class="side-menu top">
-                                                <a href="{{ route('message.show', $message->id) }}"
+                                                <a href="{{ route('message.show', $mg->id) }}"
                                                     style="color: green"><i class='bx bx-info-circle'></i></a>
-                                                <a href="{{ route('message.edit', ['event' => $event->id]) }}"
+                                                <a href="{{ route('message.edit', ['message' => $mg->id]) }}"
                                                     method="post" style="color: orange"><i
                                                         class='bx bx-edit'></i></a>
-                                                <form action="{{ route('message.destroy', $event->id) }}"
+                                                <form action="{{ route('message.destroy', $mg->id) }}"
                                                     method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
@@ -241,70 +237,64 @@
                     </div>
                 </div>
 
-                    <div class="table-data">
-                        <div class="order">
-                            <div class="head">
-                                <h3><a href="{{ route('message.create') }}" class="btn btn-outline-primary">Tambah
-                                        Message</a></h3>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                <i class='bx bx-search'></i>
-                                <i class='bx bx-filter'></i>
-                            </div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">User</th>
-                                        <th scope="col">Message</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (isset($keanggotaan))
-                                        @foreach ($messages as $mg)
-                                            <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $mg->name }}</td>
-                                                <td>{{ $mg->users ? $mg->users->name : 'Event Not Found' }}</td>
-                                                <td>{{ $mg->message }}</td>
-                                                <td>{{ $mg->created_at }}</td>
-                                                <td class="side-menu top">
-                                                    <a href="{{ route('message.show', $message->id) }}"
-                                                        style="color: green"><i class='bx bx-info-circle'></i></a>
-                                                    <a href="{{ route('message.edit', ['event' => $event->id]) }}"
-                                                        method="post" style="color: orange"><i
-                                                            class='bx bx-edit'></i></a>
-                                                    <form action="{{ route('message.destroy', $event->id) }}"
-                                                        method="POST" style="display: inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            style="background: none; border: none; color:red"><i
-                                                                class='bx bx-trash'></i></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                <div class="table-data">
+                    <div class="order">
+                        <div class="head">
+                            <h3><a href="{{ route('comment_posts.create') }}" class="btn btn-outline-primary">Tambah
+                                    Comment Posts</a></h3>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
                                         @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <i class='bx bx-search'></i>
+                            <i class='bx bx-filter'></i>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Event</th>
+                                    <th scope="col">Content</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($comment_posts))
+                                @foreach ($comment_posts as $cp)                            <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $cp->event ? $cp->event->name : 'Event Not Found' }}</td>
+                                    <td>{{ $cp->content}}</td>
+                                        <td class="side-menu top">
+                                            <a href="{{ route('comment_posts.show', $cp->id) }}" style="color: green"><i
+                                                    class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('comment_posts.edit', $cp->id) }}" method="post"
+                                                style="color: orange"><i class='bx bx-edit'></i></a>
+                                            <form action="{{ route('comment_posts.destroy', $cp->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                     @endif
                                 </tbody>
-                            </table>
-                        </div>
+                        </table>
                     </div>
-        </main>
-        <!-- MAIN -->
-    </section>
-    <!-- CONTENT -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-</body>
+                </div>
+            </main>
+            <!-- MAIN -->
+        </section>
+        <!-- CONTENT -->
+        <script src="{{ asset('js/dashboard.js') }}"></script>
+    </body>
 
-</html>
+    </html>
