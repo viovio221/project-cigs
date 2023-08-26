@@ -38,12 +38,6 @@
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Riwayat Aktivitas</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Berita Terbaru</span>
                     {{-- admin --}}
@@ -113,17 +107,13 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="#">Beranda</a>
+                            <a class="active" href="/">Landing Page</a>
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="btn-download">
-                    <i class='bx bxs-cloud-download'></i>
-                    <span class="text">Unduh PDF</span>
-                </a>
             </div>
 
-            <ul class="box-info">
+            <ul class="box-info" style="align-content: center">
                 <li>
                     <i class='bx bxs-calendar-check'></i>
                     <span class="text">
@@ -136,13 +126,6 @@
                     <span class="text">
                         <h3>2834</h3>
                         <p>Anggota Klub</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-dollar-circle'></i>
-                    <span class="text">
-                        <h3>Rp.100.000</h3>
-                        <p>Total Donasi</p>
                     </span>
                 </li>
             </ul>
@@ -196,35 +179,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="todo">
-                    <div class="head">
-                        <h3>Daftar Tugas</h3>
-                        <i class='bx bx-plus'></i>
-                        <i class='bx bx-filter'></i>
-                    </div>
-                    <ul class="todo-list">
-                        <li class="completed">
-                            <p>Daftar Tugas</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <p>Daftar Tugas</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <p>Daftar Tugas</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <p>Daftar Tugas</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <p>Daftar Tugas</p>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </main>
