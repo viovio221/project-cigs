@@ -13,8 +13,10 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::all();
+        dd($messages);
         return view('dashboard.data_crud', compact('messages'));
     }
+
     public function create()
     {
         $user = User::query()->whereDoesntHave('messages')->get();
@@ -41,24 +43,24 @@ class MessageController extends Controller
         return view('dashboard.message.edit', compact('message', 'user'));
     }
 
-    public function update(Request $request, Message $message )
+    public function update(Request $request, Message $message)
     {
         $validated = $request->validate([
             'name' => 'required',
             'user_id' => 'required',
             'message' => 'required',
-
         ]);
 
-        Message::create($validated);
+        $message->update($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->name Berhasil diperbarui!");
     }
 
     public function destroy(Message $message)
     {
         $message->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$message->judul Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$message->name Berhasil dihapus!");
     }
+
 }
