@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Message;
+use App\Models\CommentPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +13,9 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::all();
-        return view('dashboard/data_crud', compact('events'));
+        $messages = Message::all();
+        $comment_post = CommentPost::all();
+        return view('dashboard/data_crud', compact('events', 'messages'));
     }
 
     public function create()
@@ -82,7 +86,7 @@ class EventController extends Controller
             'date' => 'required',
             'location' => 'required',
             'description' => 'required',
-            'image' => 'image|mimes:png,jpg,jpeg', 
+            'image' => 'image|mimes:png,jpg,jpeg',
         ]);
 
         $event = Event::findOrFail($id);
