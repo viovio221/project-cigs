@@ -44,7 +44,7 @@
     </a>
     <ul class="side-menu top">
         <li>
-            <a href="#">
+            <a href="/dashboard">
                 <i class='bx bxs-dashboard' ></i>
                 <span class="text">Dasbor</span>
             </a>
@@ -53,12 +53,6 @@
             <a href="/dashboard/event">
                 <i class='bx bxs-shopping-bag-alt' ></i>
                 <span class="text">Acara</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-doughnut-chart' ></i>
-                <span class="text">Riwayat Aktivitas</span>
             </a>
         </li>
         <li>
@@ -103,7 +97,6 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu' ></i>
-        <a href="#" class="nav-link">Status : Anggota</a>
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Cari...">
@@ -181,9 +174,6 @@
 
                                         </div>
                                     </div>
-                                    <p class="price">
-                                        Rp 25.000
-                                    </p>
                                     <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                             Acara!</a></button>
                                 </div>
@@ -235,9 +225,6 @@
                                             <ion-icon name="star"></ion-icon>
                                         </div>
                                     </div>
-                                    <p class="price">
-                                        Rp 10.000
-                                    </p>
                                     <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                             Acara!</a></a></button>
                                 </div>
@@ -289,9 +276,6 @@
                                             <ion-icon name="star"></ion-icon>
                                         </div>
                                     </div>
-                                    <p class="price">
-                                        Rp 15.000
-                                    </p>
                                     <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                             Acara!</a></button>
                                 </div>
@@ -343,9 +327,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp 16.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
@@ -398,9 +379,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp 43.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
@@ -451,9 +429,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp.31.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
@@ -504,9 +479,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp 16.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
@@ -558,9 +530,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp 5.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
@@ -611,9 +580,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp 23.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
@@ -665,9 +631,6 @@
                                     <ion-icon name="star"></ion-icon>
                                 </div>
                             </div>
-                            <p class="price">
-                                Rp 10.000
-                            </p>
                             <button class="btn btn-secondary"><a href="" style="color: white;">Daftar
                                     Acara!</a></button>
                         </div>
