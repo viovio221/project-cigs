@@ -31,13 +31,10 @@
         </div>
 
         <nav class="navbar">
-            <a href="#home">beranda</a>
             <a href="{{ route('dashboard.event') }}">Ride Adventure</a>
-            <a href="#members">member benefits</a>
             <a href="{{ route('sejarah') }}">profil</a>
             <a href="/login">Login</a>
             <a href="/login/register">Register</a>
-            <a href="#others">lainya</a>
         </nav>
 
         {{-- <form action="" class="login-form">
@@ -75,8 +72,7 @@
             </h1>
 
             <div class="btn-group"  data-aos="zoom-in">
-                <button class="btn btn-primary"><a href="" style="color: #FFF;">Pelajari Lebih
-                        Lanjut</a></button>
+              
                 <button class="btn btn-secondary"  data-aos="zoom-in"><a href="https://goo.gl/maps/GhRswbtz19c7jGoV6"
                         style="color: #FFF;">Jelajahi Sekarang!</a></button>
             </div>
@@ -96,14 +92,6 @@
             <div class="inputBox">
                 <span>Tujuan Riding</span>
                 <input type="text" placeholder="cari tempat">
-            </div>
-            <div class="inputBox">
-                <span>Waktu Mulai</span>
-                <input type="date">
-            </div>
-            <div class="inputBox">
-                <span>Waktu Kembali</span>
-                <input type="date">
             </div>
             <input type="submit" value="Daftar Sekarang" class="btn">
         </form>
@@ -154,38 +142,7 @@
     </section>
     {{-- end --}}
 
-    {{-- benefits --}}
-    <section class="benefits" id="members">
-        <h1 class="heading">Member <span>Benefits</span></h1>
-        <div class="box-container">
-            <div class="box" data-aos="zoom-in">
-                <span>01</span>
-                <i class="fas fa-bullhorn"></i>
-                <h3>Komunitas Online</h3>
-                <p>Terhubunglah dengan para pengendara motor yang bersemangat dan berbagi cinta pada petualangan di
-                    jalan raya. Bergabunglah dalam komunitas online kami dan temukan teman-teman sejati di seluruh
-                    penjuru.</p>
-            </div>
 
-            <div class="box" data-aos="zoom-in">
-                <span>02</span>
-                <i class="fas fa-hiking"></i>
-                <h3>Akses Acara VIP</h3>
-                <p>Nikmati pengalaman istimewa sebagai anggota kami dengan akses eksklusif ke acara-acara motor terbaik.
-                    Dari perjalanan seru hingga pertemuan inspiratif, Anda akan menjadi bagian dari momen-momen tak
-                    terlupakan.</p>
-            </div>
-            <div class="box" data-aos="zoom-in">
-                <span>03</span>
-                <i class="fas fa-globe"></i>
-                <h3>Diskusi Tematik</h3>
-                <p>Dive into the world of meaningful conversations. Sertai diskusi-diskusi tematik kami yang mencakup
-                    segala hal dari teknik mengendarai hingga cerita perjalanan epik. Temukan wawasan baru dan buka
-                    pintu menuju pengetahuan yang lebih dalam.</p>
-            </div>
-        </div>
-    </section>
-    {{-- end setting --}}
 
     {{-- review --}}
     <section class="review" id="review">
@@ -330,17 +287,6 @@
                 <a href=""><i class="fas fa-map-marker-alt"></i>Bogor</a>
                 <a href=""><i class="fas fa-map-marker-alt"></i>Pangandaran</a>
             </div>
-            <div class="box">
-                <h3>Link Tersedia</h3>
-                <a href="#"><i class="fas fa-chevron-right"></i>Beranda</a>
-                <a href="#"><i class="fas fa-chevron-right"></i>Ride Adventures</a>
-                <a href="#"><i class="fas fa-chevron-right"></i>Member Benefits</a>
-                <a href="{{ route('sejarah') }}"><i class="fas fa-chevron-right"></i>Profil</a>
-                <a href="/login" class="navbar-link"><i class="fas fa-chevron-right"></i>Login</a>
-                <a href="/login/register" class="navbar-link"><i class="fas fa-chevron-right"></i>Register</a>
-                <a href="#"><i class="fas fa-chevron-right"></i>Lainnya</a>
-            </div>
-
             <div class="box">
                 <h3>Ikuti Kami</h3>
                 <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 838 2627 2207</a>
