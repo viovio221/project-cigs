@@ -18,7 +18,7 @@ class CommentPostController extends Controller
     {
         $event = Event::query()->whereDoesntHave('comment_posts')->get();
 
-        return view('commentpost.create', ['event' => $event]);
+        return view('dashboard.commentpost.create', ['event' => $event]);
     }
 
     public function store(Request $request)
@@ -31,12 +31,12 @@ class CommentPostController extends Controller
 
         CommentPost::create($validated);
 
-        return redirect()->route('comment_posts.index')->with('berhasil', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->nama Berhasil ditambahkan!");
     }
     public function edit(CommentPost $comment_post)
     {
         $event = Event::all();
-        return view('commentpost.edit', compact('comment_post', 'event'));
+        return view('dashboard.commentpost.edit', compact('comment_post', 'event'));
     }
 
     public function update(Request $request, CommentPost $comment_post )
@@ -49,13 +49,13 @@ class CommentPostController extends Controller
 
         $comment_post->update($validated);
 
-        return redirect()->route('comment_posts.index')->with('berhasil', "$request->judul Berhasil diubah!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->judul Berhasil diubah!");
     }
 
     public function destroy(CommentPost $comment_post)
     {
         $comment_post->delete();
 
-        return redirect()->route('comment_posts.index')->with('berhasil', "$comment_post->judul Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$comment_post->judul Berhasil dihapus!");
     }
 }

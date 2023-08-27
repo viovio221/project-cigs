@@ -138,12 +138,12 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Nama</th>
-                                <th>Tanggal Event</th>
-                                <th>Lokasi Event</th>
-                                <th>Deskripsi</th>
-                                <th>Gambar</th>
-                                <th>Aksi</th>
+                                <th>Name Event</th>
+                                <th>Date Event</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
