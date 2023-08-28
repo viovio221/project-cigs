@@ -10,6 +10,7 @@ use App\Models\Message;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,5 @@ Route::delete('/dashboard/message/{message}', [MessageController::class, 'destro
 Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
 
 
+
+Route::resource('users', UserController::class);
