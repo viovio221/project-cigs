@@ -10,6 +10,7 @@ use App\Models\Message;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
