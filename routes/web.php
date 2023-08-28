@@ -84,3 +84,5 @@ Route::delete('/dashboard/message/{message}', [MessageController::class, 'destro
 Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
 
 
+
+Route::resource('users', UserController::class);
