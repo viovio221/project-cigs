@@ -13,10 +13,16 @@ class LoginController extends Controller
         $this->middleware('guest:web', ['except' => 'logout']);
     }
 
-    public function login()
+    public function index()
     {
-        return view('login');
+        return view('login.index');
     }
+
+    public function show()
+    {
+        return view('login.register');
+    }
+
 
     public function handleLogin(Request $request)
     {
