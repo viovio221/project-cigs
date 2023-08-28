@@ -694,10 +694,16 @@ transform: scale(1.2);
 .blogs .box-container .box .content .icons a:hover{
     color: var(--orange);
 }
-.blogs .box-container .box .content .icons a i{
+.blogs .box-container .box .content .logo a{
     padding-right: .5rem;
     color: var(--orange);
 }
+.logo img {
+    width: 250px;
+    height: 80px;
+    color: var(--text-color-1);
+}
+
 
 /* footer */
 .footer{
