@@ -38,12 +38,6 @@
             </li>
             <li>
                 <a href="#">
-                    <i class='bx bxs-doughnut-chart'></i>
-                    <span class="text">Riwayat Aktivitas</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">Berita Terbaru</span>
                     {{-- admin --}}
@@ -114,7 +108,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="#">Beranda</a>
+                            <a class="active" href="/">Landing Page</a>
                         </li>
                     </ul>
                 </div>
