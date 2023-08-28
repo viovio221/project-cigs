@@ -18,7 +18,9 @@
 
     {{-- header section mulai --}}
     <header class="header">
-        <a href="#" class="logo"><i class="fa-solid fa-motorcycle"></i></i> Wayang Riders</a>
+        <a href="#" class="logo">
+            <img src="{{ asset('images/wayangriders_logo.png') }}" alt="Logo">
+        </a>
         <form action="" class="search-form">
             <input type="search" name="" placeholder="cari di sini..." id="searchBox">
             <label for="searchBox"><i class="fas fa-search"></i></label>
