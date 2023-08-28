@@ -282,10 +282,11 @@
         <div class="box-container">
             <div class="box">
                 <h3>Our Communities</h3>
-                <a href=""><i class="fas fa-map-marker-alt"></i>Bandung</a>
-                <a href=""><i class="fas fa-map-marker-alt"></i>Cimahi</a>
-                <a href=""><i class="fas fa-map-marker-alt"></i>Bogor</a>
-                <a href=""><i class="fas fa-map-marker-alt"></i>Pangandaran</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Bandung"><i class="fas fa-map-marker-alt"></i>Bandung</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Cimahi"><i class="fas fa-map-marker-alt"></i>Cimahi</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Bogor"><i class="fas fa-map-marker-alt"></i>Bogor</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Pangandaran"><i class="fas fa-map-marker-alt"></i>Pangandaran</a>
+
             </div>
             <div class="box">
                 <h3>Ikuti Kami</h3>
