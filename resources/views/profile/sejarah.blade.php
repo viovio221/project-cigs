@@ -19,19 +19,18 @@
       <header id="header">
         <nav>
           <div class="container">
-            <div class="logo">
-              <img src="images/logo.png" height="250" width="500">
-            </div>
+            {{-- <div class="logo">
+              <img src="{{ asset('images/logo_wr.png') }}" height="250" width="500">
+            </div> --}}
           </div>
         </nav>
-
+        <br>
         <div class="header-content">
           <div class="container grid-2">
             <div class="column-1">
-              <h1 class="header-title">Wayang Riders</h1>
               <p class="text">
-                Welcome to the profile page Wayang Riders <br>
-                here contains the history of biodata and its structure
+                Welcome to the profile page Wayang Riders! <br>
+               Together, we're more than just a community; we're a family that shares the spirit of adventure, experiences, and journeys. With the motto "Ride Together, Thrive Together," we build strong bonds and achieve remarkable feats. Embrace the freedom and adventure with us on uncharted roads and unforgettable moments. Every ride is fueled by camaraderie and a collective spirit, for we believe that togetherness is the key to our success. Let's keep this fiery spirit alive, navigating life's twists and turns with enthusiasm and unity. Wayang Riders invites you to experience the thrill of freedom behind every twist of the throttle, leaving your mark on both the asphalt and hearts, and celebrating every accomplishment together. Join Wayang Riders today and become part of an inspiring journey of friendship and growth. Let's ride side by side, evolve together, and savor every moment of this exhilarating journey! Thank you for choosing Wayang Riders. Come, let's ride and thrive together! Welcome to our community!
               </p>
             </div>
 
@@ -48,7 +47,7 @@
             <h3 class="title" data-title="What That's">Wayang Riders</h3>
           </div>
 
-          <div class="section-body grid-2">
+          <div class="section-body">
             <div class="column-1">
               <h3 class="title-sm">History</h3>
               <p class="text">
@@ -97,27 +96,6 @@
             <div class="record-circle">
               <h2 class="number" data-num="235">1000+ </h2>
               <h4 class="sub-title">members</h4>
-            </div>
-          </div>
-
-          <div class="wrap">
-            <div class="record-circle active">
-              <h2 class="number" data-num="174">50+</h2>
-              <h4 class="sub-title">Friends</h4>
-            </div>
-          </div>
-
-          <div class="wrap">
-            <div class="record-circle">
-              <h2 class="number" data-num="892">20+</h2>
-              <h4 class="sub-title">Achievements</h4>
-            </div>
-          </div>
-
-          <div class="wrap">
-            <div class="record-circle">
-              <h2 class="number" data-num="368">10</h2>
-              <h4 class="sub-title">The event is carried out</h4>
             </div>
           </div>
         </div>

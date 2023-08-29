@@ -17,7 +17,7 @@
                 <div class="form">
                     <div class="inputfield">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" id="name" class="input">
+                        <input type="text" name="name" id="name" class="input" placeholder="Enter your full name">
                     </div>
                     <div class="inputfield">
                         <label>Gender</label>
@@ -35,19 +35,19 @@
                     </div>
                     <div class="inputfield">
                         <label for="phone_number">Phone Number</label>
-                        <input type="text" name="phone_number" id="phone_number" class="input">
+                        <input type="number" name="phone_number" id="phone_number" class="input" placeholder="Enter your phone number">
                     </div>
                     <div class="inputfield">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="input">
+                        <input type="email" name="email" id="email" class="input" placeholder="Example : youremail@gmail.com">
                     </div>
                     <div class="inputfield">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="input">
+                        <input type="password" name="password" id="password" class="input" placeholder="Enter your password">
                     </div>
                     <div class="inputfield">
                         <label for="address">Address</label>
-                        <textarea name="address" id="address" class="textarea"></textarea>
+                        <textarea name="address" id="address" class="textarea" placeholder="Enter your complete address" ></textarea>
                     </div>
                     <div class="inputfield">
                         <label for="province">Province</label>
@@ -55,20 +55,20 @@
                     </div>
                     <div class="inputfield">
                         <label for="city">City</label>
-                        <input type="text" name="city" id="city" class="input">
+                        <input type="text" name="city" id="city" class="input" placeholder="Enter your city">
                     </div>
                     <div class="inputfield">
                         <label for="district">District</label>
-                        <input type="text" name="district" id="district" class="input">
+                        <input type="text" name="district" id="district" class="input" placeholder="Enter your district">
                     </div>
                     <div class="inputfield">
                         <label for="postal_code">Postal Code</label>
-                        <input type="text" name="postal_code" id="postal_code" class="input">
+                        <input type="number" name="postal_code" id="postal_code" class="input" placeholder="Enter your postal code">
                     </div>
                     <div class="inputfield">
                         <input type="submit" value="Register" class="btn">
-                        <a href="{{ route('login.index') }}">have an account?</a>
                     </div>
+                    <p class="register">have an account? <a data-toggle="tab" href="{{ route('login.index') }}" class="login">Login</a></p>
                 </div>
             </div>
         </form>

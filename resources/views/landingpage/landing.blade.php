@@ -19,7 +19,7 @@
     {{-- header section mulai --}}
     <header class="header">
         <a href="#" class="logo">
-            <img src="{{ asset('images/wayangriders_logo.png') }}" alt="Logo">
+            <img src="{{ asset('images/logo_wr.png') }}" alt="Logo">
         </a>
         <form action="" class="search-form">
             <input type="search" name="" placeholder="cari di sini..." id="searchBox">
