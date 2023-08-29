@@ -78,7 +78,6 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <a href="#" class="nav-link">Status : Anggota</a>
             <form action="#">
                 <div class="form-input">
                     <input type="search" placeholder="Cari...">
