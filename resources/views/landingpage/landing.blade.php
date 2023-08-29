@@ -290,7 +290,7 @@
             </div>
             <div class="box">
                 <h3>Ikuti Kami</h3>
-                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 838 2627 2207</a>
+                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 89687792980/a>
                 <a href="#" style="text-transform: none;"><i
                         class="fa-brands fa-instagram"></i>wayangriders_id</a>
                 <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>wayang
