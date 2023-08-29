@@ -817,6 +817,10 @@ transform: scale(1.2);
         font-size: 50%;
     }
 }
+.logo img {
+    max-width: 120px;
+    height: 60px;
+}
 .contact form .inputBox input{
     width: 100%;
 }
