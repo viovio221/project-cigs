@@ -196,7 +196,7 @@
                                 @foreach ($messages as $mg)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $mg->users ? $mg->users->name : 'Event Not Found' }}</td>
+                                        <td>{{ $mg->user->name }}</td>
                                         <td>{{ $mg->message }}</td>
                                         <td>{{ $mg->created_at }}</td>
                                         <td class="side-menu top">
