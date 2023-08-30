@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Message;
 use App\Models\CommentPost;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +16,8 @@ class EventController extends Controller
         $events = Event::all();
         $messages = Message::all();
         $comment_posts = CommentPost::all();
-        return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts'));
+        $news = News::all(); 
+        return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news'));
     }
 
 
