@@ -46,7 +46,7 @@
             <li>
                 <a href="#">
                     <i class='bx bxs-group'></i>
-                    <span class="text">Member Data</span>
+                    <span class="text">Members Data</span>
                 </a>
             </li>
             <li class="active">

@@ -12,7 +12,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Dasbor Admin</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
@@ -27,26 +27,26 @@
             <li class="active">
                 <a href="#">
                     <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dasbor</span>
+                    <span class="text">Dashboard</span>
                 </a>
             </li>
             <li>
                 <a href="/dashboard/event">
                     <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Acara</span>
+                    <span class="text">Events</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bxs-message-dots'></i>
-                    <span class="text">Berita Terbaru</span>
+                    <span class="text">News</span>
                     {{-- admin --}}
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bxs-group'></i>
-                    <span class="text">Data Anggota</span>
+                    <span class="text">Members Data</span>
                 </a>
             </li>
             <li>
@@ -57,15 +57,9 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
-                    <i class='bx bxs-cog'></i>
-                    <span class="text">Pengaturan</span>
-                </a>
-            </li>
-            <li>
                 <a href="#" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Keluar</span>
+                    <span class="text">Logout</span>
                 </a>
             </li>
         </ul>
@@ -99,10 +93,10 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Dasbor Admin</h1>
+                    <h1>Admin Dashboard</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dasbor</a>
+                            <a href="#">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
@@ -117,29 +111,30 @@
                     <i class='bx bxs-calendar-check'></i>
                     <span class="text">
                         <h3>1020</h3>
-                        <p>Permintaan Baru</p>
+                        <p>New Request</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
                         <h3>2834</h3>
-                        <p>Anggota Klub</p>
+                        <p>Member Club</p>
                     </span>
                 </li>
             </ul>
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>Data Event Terbaru</h3>
+                        <h3>New Event's Data</h3>
                         <i class='bx bx-search'></i>
                         <i class='bx bx-filter'></i>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>Nama Anggota</th>
-                                <th>Tanggal Event</th>
+                                <th>Image</th>
+                                <th>Members Name</th>
+                                <th>Event Date</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
