@@ -20,7 +20,7 @@
             @method('PUT') <!-- Add this line to indicate the PUT request -->
             <!-- Form fields and submit button -->
             <div class="mb-3">
-                <label for="name" class="form-label">Nama:</label>
+                <label for="name" class="form-label">Name</label>
                 <input type="text" name="name" class="form-control  @error('name') is-invalid @enderror"
                     value="{{ $event->name }}" required>
                 @error('name')
@@ -34,17 +34,17 @@
                 <input type="number" name="users_id" class="form-control" value="{{ $event->users_id }}" required>
             </div> --}}
             <div class="mb-3">
-                <label for="date" class="form-label">Tanggal:</label>
+                <label for="date" class="form-label">Date</label>
                 <input type="date" name="date" class="form-control  @error('date') is-invalid @enderror"
                     value="{{ $event->date }}" required>
             </div>
             <div class="mb-3">
-                <label for="location" class="form-label">Lokasi:</label>
+                <label for="location" class="form-label">Location</label>
                 <input type="text" name="location" class="form-control  @error('location') is-invalid @enderror"
                     value="{{ $event->location }}" required>
             </div>
             <div class="form-group">
-                <label class="font-weight-bold">Deskripsi</label>
+                <label class="font-weight-bold">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5">{{ $event->description }}</textarea>
 
                 <!-- error message untuk description -->
@@ -55,7 +55,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Gambar:</label>
+                <label for="image" class="form-label">Image</label>
                 <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
                 @error('image')
                     <div class="alert alert-danger mt-2">
@@ -63,8 +63,12 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label class="form-label">Current Image</label>
+                <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events Image" width="100">
+            </div>
 
-            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
