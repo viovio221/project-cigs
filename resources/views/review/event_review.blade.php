@@ -19,7 +19,9 @@
             <div class="contact-info">
                 <h3 class="title">Welcome to Wayang Riders Event's Review</h3>
                 <p class="text">
-                    After participating in the event, we'll guide you to the review page. Here, you can share your experience and provide feedback about the event you've attended. Thank you for your participation in our motorcycle community!
+                    After participating in the event, we'll guide you to the review page. Here, you can share your
+                    experience and provide feedback about the event you've attended. Thank you for your participation in
+                    our motorcycle community!
                 </p>
 
                 <div class="social-media">
@@ -57,6 +59,11 @@
                         <input type="text" name="name" class="input" />
                         <label for="">Username</label>
                         <span>Username</span>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" name="name" class="input" />
+                        <label for="">Nama Event</label>
+                        <span>Nama Event</span>
                     </div>
                     <div class="input-container textarea">
                         <textarea name="description" class="input"></textarea>
