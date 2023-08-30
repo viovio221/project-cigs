@@ -12,13 +12,6 @@
     <form action="{{ route('message.update', $message->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="form-group">
-            <label class="form-label">Name</label>
-            <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $message->name) }}">
-            @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
         <div class="mb-3">
             <label class="form-label">User</label>
             <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
