@@ -26,7 +26,6 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required',
             'user_id' => 'required',
             'message' => 'required',
 
@@ -46,7 +45,6 @@ class MessageController extends Controller
     public function update(Request $request, Message $message)
     {
         $validated = $request->validate([
-            'name' => 'required',
             'user_id' => 'required',
             'message' => 'required',
         ]);

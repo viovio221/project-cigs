@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -11,8 +12,6 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\NewsController;
-use App\Models\News;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,20 +88,4 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 
 
 Route::resource('users', UserController::class);
-
-//event review
-Route::get('/review/event-review', function () {
-    return view('review.event_review');
-});
-
-
-//news
-// message
-Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('news.create');
-Route::post('/dashboard/news', [NewsController::class, 'store'])->name('news.store');
-Route::get('/dashboard/news/{news}', [NewsController::class, 'show'])->name('news.show');
-Route::get('/dashboard/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
-Route::put('/dashboard/news/{news}', [NewsController::class, 'update'])->name('news.update');
-Route::delete('/dashboard/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
-Route::view('/dashboard/news', 'dashboard.news')->name('dashboard.news');
-
+Route::resource('news', NewsController::class);
