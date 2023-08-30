@@ -185,7 +185,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Name</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Message</th>
                                 <th scope="col">Date</th>
@@ -197,7 +196,6 @@
                                 @foreach ($messages as $mg)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $mg->name }}</td>
                                         <td>{{ $mg->users ? $mg->users->name : 'Event Not Found' }}</td>
                                         <td>{{ $mg->message }}</td>
                                         <td>{{ $mg->created_at }}</td>

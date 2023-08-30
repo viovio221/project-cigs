@@ -141,33 +141,33 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="{{ asset('images/devani.jpg') }}">
-                                    <p>Devani</p>
+                                    <img src="">
                                 </td>
+                                <td>Devani</td>
                                 <td>01-10-2021</td>
                                 <td><span class="status completed">Selesai</span></td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="{{ asset('images/devani.jpg') }}">
-                                    <p>Devani</p>
+                                    <img src="">
                                 </td>
+                                <td>Arsya</td>
                                 <td>01-10-2021</td>
                                 <td><span class="status pending">Tertunda</span></td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="{{ asset('images/devani.jpg') }}">
-                                    <p>Devani</p>
+                                    <img src="">
                                 </td>
+                                <td>Arsyi</td>
                                 <td>01-10-2021</td>
                                 <td><span class="status pending">Tertunda</span></td>
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="{{ asset('images/devani.jpg') }}">
-                                    <p>Devani</p>
+                                    <img src="">
                                 </td>
+                                <td>Arso</td>
                                 <td>01-10-2021</td>
                                 <td><span class="status process">Proses</span></td>
                             </tr>
