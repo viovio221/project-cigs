@@ -52,13 +52,13 @@
         <li  class="active">
             <a href="/dashboard/event">
                 <i class='bx bxs-shopping-bag-alt' ></i>
-                <span class="text">Acara</span>
+                <span class="text">Events</span>
             </a>
         </li>
         <li>
             <a href="#">
                 <i class='bx bxs-message-dots' ></i>
-                <span class="text">Berita Terbaru</span>
+                <span class="text">News</span>
                 {{-- admin --}}
             </a>
         </li>
@@ -77,15 +77,9 @@
     </ul>
     <ul class="side-menu">
         <li>
-            <a href="#">
-                <i class='bx bxs-cog' ></i>
-                <span class="text">Pengaturan</span>
-            </a>
-        </li>
-        <li>
             <a href="#" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>
-                <span class="text">Keluar</span>
+                <span class="text">Logout</span>
             </a>
         </li>
     </ul>
