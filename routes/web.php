@@ -87,3 +87,7 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 
 
 Route::resource('users', UserController::class);
+
+Route::get('/review/event-review', function () {
+    return view('review.event_review');
+});
