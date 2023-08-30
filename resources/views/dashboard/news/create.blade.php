@@ -15,14 +15,14 @@
           <label class="form-label">Title</label>
           <input name="title" type="text" class="form-control @error('title') is-invalid @enderror">
           @error('title')
-            <div class="invalid-feedback">{{ $news }}</div>
+            <div class="invalid-feedback">{{ $message }}</div>
         @enderror
         </div>
         <div class="form-group">
             <label class="form-label">Description</label>
             <input name="description" type="text" class="form-control @error('description') is-invalid @enderror">
             @error('description')
-              <div class="invalid-feedback">{{ $news }}</div>
+              <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
           <div class="mb-3">
@@ -30,7 +30,7 @@
             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror">
             @error('image')
                 <div class="alert alert-danger mt-2">
-                    {{ $news }}
+                    {{ $message }}
                 </div>
             @enderror
         </div>
