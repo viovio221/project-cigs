@@ -16,7 +16,7 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('news.create');
+        return view('dashboard.news.create');
     }
 
     public function store(Request $request)
@@ -24,8 +24,8 @@ class NewsController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' =>'required|image|mimes:png,jpg,jpeg', // Add image validation rule
-        ]);
+            'image' =>'required|image',
+                ]);
         $image = $request->file('image');
         $image->storeAs('public/new_images', $image->hashName());
 
@@ -35,12 +35,12 @@ class NewsController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('news.index')->with('success', 'Event berhasil ditambahkan.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil ditambahkan.');
     }
     public function edit($id)
     {
         $news = News::findOrFail($id);
-        return view('news.edit', compact('news'));
+        return view('dashboard.news.edit', compact('news'));
     }
 
 
@@ -49,7 +49,7 @@ class NewsController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'image|mimes:png,jpg,jpeg',
+            'image' => 'image',
         ]);
 
         $news = News::findOrFail($id);
@@ -63,7 +63,7 @@ class NewsController extends Controller
 
         $news->update($validatedData);
 
-        return redirect()->route('news.index')->with('success', 'News berhasil diperbarui.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'News berhasil diperbarui.');
     }
 
 
@@ -71,6 +71,6 @@ class NewsController extends Controller
     {
         $news->delete();
 
-        return redirect()->route('news.index')->with('berhasil', "$news->title Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('berhasil', "$news->title Berhasil dihapus!");
     }
 }
