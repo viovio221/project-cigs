@@ -11,6 +11,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NewsController;
+use App\Models\News;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +90,11 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 
 Route::resource('users', UserController::class);
 
+//event review
 Route::get('/review/event-review', function () {
     return view('review.event_review');
 });
+
+
+//news
+Route::resource('news', NewsController::class);
