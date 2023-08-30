@@ -13,6 +13,13 @@
         @csrf
         @method('PUT')
 
+        <div class="form-group">
+            <label class="form-label">Username</label>
+            <input name="username" type="text" class="form-control @error('username') is-invalid @enderror">
+            @error('username')
+              <div class="invalid-feedback">{{ $message }}</div>
+          @enderror
+          </div>
         <div class="mb-3">
             <label class="form-label">Event Name</label>
             <select name="event_id" class="form-control @error('event_id') is-invalid @enderror">

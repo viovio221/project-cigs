@@ -11,7 +11,7 @@ class CommentPostController extends Controller
     public function index()
     {
         $comment_post = CommentPost::all();
-        return view('commentpost.index', ['comment_postlist' => $comment_post]);
+        return view('dashboard.data_crud', ['comment_postlist' => $comment_post]);
     }
 
     public function create()
@@ -24,6 +24,7 @@ class CommentPostController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'username' => 'required',
             'event_id' => 'required',
             'content' => 'required|string',
 
@@ -42,6 +43,7 @@ class CommentPostController extends Controller
     public function update(Request $request, CommentPost $comment_post )
     {
         $validated = $request->validate([
+            'username' => 'required',
             'event_id' => 'required',
             'content' => 'required|string',
 
