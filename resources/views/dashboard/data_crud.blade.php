@@ -244,6 +244,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
+                                <th scope="col">Username</th>
                                 <th scope="col">Event</th>
                                 <th scope="col">Content</th>
                                 <th scope="col">Action</th>
@@ -254,6 +255,7 @@
                                 @foreach ($comment_posts as $cp)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $cp->username }}</td>
                                         <td>{{ $cp->event ? $cp->event->name : 'Event Not Found' }}</td>
                                         <td>{{ $cp->content }}</td>
                                         <td class="side-menu top">
