@@ -12,7 +12,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Dasbor Admin</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
