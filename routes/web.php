@@ -38,7 +38,6 @@ Route::get('/', function () {
 Route::post('/submit-message', function (Request $request) {
     $message = new Message();
 
-    $message->name = $request->input('name');
     $message->message = $request->input('message');
     $message->user_id = $request->input('user_id');
 
