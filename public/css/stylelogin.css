@@ -32,6 +32,28 @@ body{
 	align-items: center;
 }
 
+.login-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-content form {
+    width: 100%;
+    text-align: center;
+}
+
+.login-content .d-grid {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+}
+
+
 .login-content{
 	display: flex;
 	justify-content: flex-start;
