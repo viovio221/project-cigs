@@ -12,7 +12,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Admin Dashboard</title>
+    <title>Data CRUD</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/dashboard/news">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">News</span>
                     {{-- admin --}}
