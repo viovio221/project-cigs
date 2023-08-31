@@ -6,6 +6,8 @@
     <title>Registration Form</title>
     <link rel="stylesheet" href="/css/register_style.css">
 </head>
+<!-- ... (bagian atas halaman HTML) ... -->
+
 <body>
     <div class="body-card">
         <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
@@ -20,55 +22,25 @@
                         <input type="text" name="name" id="name" class="input" placeholder="Enter your full name">
                     </div>
                     <div class="inputfield">
-                        <label>Gender</label>
-                        <div class="custom_select">
-                            <select name="gender">
-                                <option value="">Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="inputfield">
-                        <label for="date_birth">Date Of Birth</label>
-                        <input type="date" name="date_birth" id="date_birth" class="input">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="input" placeholder="Example: youremail@gmail.com">
                     </div>
                     <div class="inputfield">
                         <label for="phone_number">Phone Number</label>
                         <input type="number" name="phone_number" id="phone_number" class="input" placeholder="Enter your phone number">
                     </div>
                     <div class="inputfield">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="input" placeholder="Example : youremail@gmail.com">
-                    </div>
-                    <div class="inputfield">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" class="input" placeholder="Enter your password">
                     </div>
                     <div class="inputfield">
-                        <label for="address">Address</label>
-                        <textarea name="address" id="address" class="textarea" placeholder="Enter your complete address" ></textarea>
-                    </div>
-                    <div class="inputfield">
-                        <label for="province">Province</label>
-                        <input type="text" name="province" id="province" class="input">
-                    </div>
-                    <div class="inputfield">
-                        <label for="city">City</label>
-                        <input type="text" name="city" id="city" class="input" placeholder="Enter your city">
-                    </div>
-                    <div class="inputfield">
-                        <label for="district">District</label>
-                        <input type="text" name="district" id="district" class="input" placeholder="Enter your district">
-                    </div>
-                    <div class="inputfield">
-                        <label for="postal_code">Postal Code</label>
-                        <input type="number" name="postal_code" id="postal_code" class="input" placeholder="Enter your postal code">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="input" placeholder="Confirm your password">
                     </div>
                     <div class="inputfield">
                         <input type="submit" value="Register" class="btn">
                     </div>
-                    <p class="register">have an account? <a data-toggle="tab" href="{{ route('login.index') }}" class="login">Login</a></p>
+                    <p class="register">Already have an account? <a href="{{ route('login.index') }}" class="login">Login</a></p>
                 </div>
             </div>
         </form>
