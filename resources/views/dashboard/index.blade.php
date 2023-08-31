@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/dashboard/news">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">News</span>
                     {{-- admin --}}
