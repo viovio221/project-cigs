@@ -88,3 +88,5 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 
 Route::resource('users', UserController::class);
 Route::resource('news', NewsController::class);
+
+Route::view('/dashboard/news', 'dashboard.news')->name('dashboard.news');
