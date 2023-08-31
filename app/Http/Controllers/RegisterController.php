@@ -29,34 +29,21 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            // 'role' => 'required|in:admin,member,non-member',
-            'gender' => 'required|in:Male,Female',
-            'date_birth' => 'required|date',
-            'phone_number' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'address' => 'required',
-            'province' => 'required',
-            'city' => 'required',
-            'district' => 'required',
-            'postal_code' => 'required',
+            'phone_number' => 'required',
+            'password' => 'required|min:6|confirmed', // Add validation for password confirmation
         ]);
+
         $user = new User([
             'name' => $request->name,
-            // 'role' => $request->role,
-            'gender' => $request->gender,
-            'date_birth' => $request->date_birth,
-            'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Hash password sebelum disimpan
-            'address' => $request->address,
-            'province' => $request->province,
-            'city' => $request->city,
-            'district' => $request->district,
-            'postal_code' => $request->postal_code,
+            'phone_number' => $request->phone_number,
+            'password' => Hash::make($request->password),
         ]);
+
         $user->save();
-        return redirect()->route('login.index')->with('success', 'Data added successfully.');
+
+        return redirect()->route('login.index')->with('success', 'Registration successful. Please login.');
     }
 
     /**
