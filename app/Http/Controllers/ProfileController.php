@@ -85,7 +85,7 @@ class ProfileController extends Controller
         $profiles = Profile ::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete('profile_images/' . $event->image);
+            Storage::disk('public')->delete('profile_images/' . $profiles->image);
 
             $newImagePath = $request->file('image')->store('public/profile_images');
             $validatedData['image'] = basename($newImagePath);
@@ -93,7 +93,7 @@ class ProfileController extends Controller
 
         $profiles->update($validatedData);
 
-        return redirect()->route('profiles.index')->with('success', 'Event berhasil diperbarui.');
+        return redirect()->route('profiles.index')->with('success', 'profile berhasil diperbarui.');
     }
 
 
