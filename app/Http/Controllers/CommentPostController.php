@@ -32,7 +32,7 @@ class CommentPostController extends Controller
 
         CommentPost::create($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$request->nama Berhasil ditambahkan!");
     }
     public function edit(CommentPost $comment_post)
     {
@@ -51,13 +51,13 @@ class CommentPostController extends Controller
 
         $comment_post->update($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->judul Berhasil diubah!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$request->judul Berhasil diubah!");
     }
 
     public function destroy(CommentPost $comment_post)
     {
         $comment_post->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$comment_post->judul Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$comment_post->judul Berhasil dihapus!");
     }
 }
