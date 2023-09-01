@@ -13,14 +13,14 @@ class ProfileController extends Controller
     {
         $profiles = Profile::all();
 
-        return view('profile.index', compact('profiles'));
+        return view('profiles.index', compact('profiles'));
 
     }
 
     public function create()
     {
         $profiles =Profile::all();
-        return view('profile.create', ['profile' => $profiles]);
+        return view('profiles.create', ['profile' => $profiles]);
     }
     public function store(Request $request)
     {
@@ -38,24 +38,24 @@ class ProfileController extends Controller
 
         $file_name = $request->file('image');
         if ($file_name == "") {
-            Setting::create($request->except(['_token', '_method']));
-            return to_route('setting.index')->with(['info' => $request->name . " Berhasil Ditambahkan"]);
+            Profile::create($request->except(['_token', '_method']));
+            return to_route('profiles.index')->with(['info' => $request->name . " Berhasil Ditambahkan"]);
         } else {
             $file_name->storeAs('public/image', $file_name->hashName());
-            $validated['image'] = Storage::url('public/image');
+            $validated['image'] = Storage::url('public/profile_images');
 
             $file_name = $request->file('image')->store();
             $validated['image'] = $file_name;
-            Setting::create($validated);
-            return to_route('setting.index')->with(['info' => $request->name . " Berhasil Ditambahkan"]);
+            Profile::create($validated);
+            return to_route('profiles.index')->with(['info' => $request->name . " Berhasil Ditambahkan"]);
         }
     }
 
     public function show($id)
     {
-        $setting = Setting::findOrFail($id);
+        $profiles = Profile::findOrFail($id);
 
-        return view('setting.show', compact('setting'));
+        return view('profiles.show', compact('profiles'));
     }
 
 
@@ -64,41 +64,36 @@ class ProfileController extends Controller
      */
     public function edit(string $id)
     {
-        // $setting = Setting::all();
+
         $profiles = Profile::findOrFail($id);
 
-        return view('profile.edit', compact('profiles'));
+        return view('profiles.edit', compact('profiles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profile $id) {
-
-        $validated = $request->validate([
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
             'history' => 'required',
             'community_bio' => 'required',
             'image' => 'nullable|image',
             'community_structure' => 'required',
-        ], [
-            'history.required' => "Nama Perlu Diisi",
-            'community_bio.required' => "Alamat Perlu Diisi",
-            'image.image' => "image harus berupa Image",
-            'community_structure.required' => "Kontak Perlu Diisi",
         ]);
 
-        $image = $request->file('image');
+        $profiles = Profile ::findOrFail($id);
 
-        if ($image === null) {
-            $id->update($request->except(['_token', '_method']));
-        } else {
-            Storage::disk('local')->delete('public/profile_images'.$id->image);
-            $imagePath = $image->storeAs('public/profile_images', $image->hashName());
-            $validated['image'] = $image->hashName();
-            $id->update($validated);
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete('profile_images/' . $event->image);
+
+            $newImagePath = $request->file('image')->store('public/profile_images');
+            $validatedData['image'] = basename($newImagePath);
         }
 
-        return redirect()->route('setting.index')->with(['info' => $request->name . " Berhasil Di Update"]);
+        $profiles->update($validatedData);
+
+        return redirect()->route('profiles.index')->with('success', 'Event berhasil diperbarui.');
     }
 
 

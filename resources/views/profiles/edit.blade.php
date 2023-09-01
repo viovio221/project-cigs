@@ -47,11 +47,15 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label class="form-label">Current Image</label>
+                <img src="{{ asset('storage/profile_images/' . $profiles->image) }}" alt="Profiles Image" width="100">
+            </div>
+
             {{-- <div class="mb-3">
                 <label class="form-label">Current Image</label>
                 <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events Image" width="100">
             </div> --}}
-
             <div class="form-group">
                 <label class="font-weight-bold">Community Structure</label>
                 <textarea class="form-control @error('community_structure') is-invalid @enderror" name="community_structure" rows="5">{{ $profiles->community_structure }}</textarea>

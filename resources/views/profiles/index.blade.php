@@ -15,7 +15,7 @@
                 <table class="table" style="background-color: #fa9b1e">
                     <thead>
                         <th>No</th>
-                        <th>History</th>s
+                        <th>History</th>
                         <th>Community Bio</th>
                         <th>Image</th>
                         <th>Community Structure</th>
@@ -27,13 +27,13 @@
                                 <th>{{ $no+1}}</th>
                                 <td>{{$pf->history}}</td>
                                 <td>{{$pf->community_bio}}</td>
-                                <td><img style="max-width:200px;max-height:200px;" src="{{ url('public/images/'.$pf->image) }}"></td>
+                                <td><img style="max-width:200px;max-height:200px;" src="{{ url('public/profile_images/'.$pf->image) }}"></td>
                                 <td>{{$pf->community_structure}}</td>
                                 <td>
                                     @csrf
                                     @method('DELETE')
                                     {{-- <a href="{{ route('setting.show', $pf->id) }}" class="btn btn-warning btn-sm">Read</a> --}}
-                                    <a href="{{ url('profile/'.$pf->id.'/show') }}" class="btn btn-warning btn-sm">Read</a>
+                                    {{-- <a href="{{ url('profile/'.$pf->id.'/show') }}" class="btn btn-warning btn-sm">Read</a> --}}
                                     <a href="{{ route('profiles.edit', $pf->id) }}" class="btn btn-success btn-sm">Edit</a>
                                 </td>
                             </tr>
