@@ -1,22 +1,26 @@
 <?php
 
-use App\Http\Controllers\ForgotController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SessionController;
-use Illuminate\Http\Request;
 use App\Models\Message;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\CommentPostController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\UserController;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Profile;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Password;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\ForgotController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CommentPostController;
+
+
 
 
 
@@ -64,10 +68,10 @@ Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 // ends
 
 // sejarah
-Route::get('/profile/sejarah', function () {
-    return view('profile.sejarah');
+Route::get('/profiles/sejarah', function () {
+    $profiles = Profile::all();
+    return view('profiles.sejarah', compact('profiles'));
 })->name('sejarah');
-
 
 
 Route::resource('comment_posts', CommentPostController::class);
@@ -156,3 +160,9 @@ Route::resource('profiles', ProfileController::class);
 //forgot
 // route::resource('forgot', ForgotController::class);
 // route::resource('newpass', ForgotController::class);
+
+//logout
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
