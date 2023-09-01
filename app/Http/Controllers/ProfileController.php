@@ -67,7 +67,7 @@ class ProfileController extends Controller
         // $setting = Setting::all();
         $profiles = Profile::findOrFail($id);
 
-        return view('profile.edit', compact('profile'));
+        return view('profile.edit', compact('profiles'));
     }
 
     /**
