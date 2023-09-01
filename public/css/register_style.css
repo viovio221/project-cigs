@@ -7,8 +7,8 @@
   font-family: 'Montserrat', sans-serif;
 }
 body{
-  background: #fec107;
-  padding: 0 10px;
+  background: orange;
+  padding: 150px;
 }
 .wrapper{
   max-width: 500px;
@@ -162,7 +162,7 @@ body{
    padding: 8px 10px;
   font-size: 15px;
   border: 0px;
-  background:  #fec107;
+  background:  orange;
   color: #fff;
   cursor: pointer;
   border-radius: 3px;
@@ -189,3 +189,24 @@ body{
     flex-direction: row;
   }
 }
+
+
+/* Gaya untuk kotak input password dan ikon Show Password */
+.password-container {
+    position: relative;
+    width: 550px;
+  }
+
+  .input[type="password"] {
+    padding-right: 20px; /* Ruang agar ikon tidak tumpang tindih dengan teks input */
+  }
+
+  .password-toggle {
+    color: orange;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
