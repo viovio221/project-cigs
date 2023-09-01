@@ -27,7 +27,10 @@
                                 <th>{{ $no+1}}</th>
                                 <td>{{$pf->history}}</td>
                                 <td>{{$pf->community_bio}}</td>
-                                <td><img style="max-width:200px;max-height:200px;" src="{{ url('public/profile_images/'.$pf->image) }}"></td>
+                                <td>
+                                    <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
+                                        alt="profiles" width="100">
+                                </td>
                                 <td>{{$pf->community_structure}}</td>
                                 <td>
                                     @csrf
