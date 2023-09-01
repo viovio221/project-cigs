@@ -71,6 +71,6 @@ class NewsController extends Controller
     {
         $news->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$news->title Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$news->title Berhasil dihapus!");
     }
 }

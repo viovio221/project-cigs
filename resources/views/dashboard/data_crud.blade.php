@@ -64,6 +64,32 @@
                 </a>
             </li>
         </ul>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButton = document.querySelector('.logout');
+
+            // Tambahkan event click ke elemen logout
+            logoutButton.addEventListener('click', function(e) {
+                e.preventDefault(); // Mencegah tindakan logout asli
+
+                // Tampilkan pesan konfirmasi SweetAlert2
+                Swal.fire({
+                    title: 'Are you sure to logout?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ffa500',
+                    cancelButtonColor: '#DB504A',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '{{ route("logout") }}';
+                    }
+                });
+            });
+        });
+        </script>
     </section>
     <!-- SIDEBAR -->
 
@@ -340,6 +366,7 @@
         </main>
         <!-- MAIN -->
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
