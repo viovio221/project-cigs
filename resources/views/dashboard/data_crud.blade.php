@@ -342,6 +342,7 @@
     </section>
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>
