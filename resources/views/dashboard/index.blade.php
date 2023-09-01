@@ -57,7 +57,7 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
+                <a href="{{ route('logout') }}" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
                     <span class="text">Logout</span>
                 </a>
@@ -180,6 +180,7 @@
     </section>
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>
