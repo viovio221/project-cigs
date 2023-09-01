@@ -33,7 +33,7 @@ class MessageController extends Controller
 
         Message::create($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$request->nama Berhasil ditambahkan!");
     }
 
     public function edit(Message $message)
@@ -51,14 +51,14 @@ class MessageController extends Controller
 
         $message->update($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$request->name Berhasil diperbarui!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$request->name Berhasil diperbarui!");
     }
 
     public function destroy(Message $message)
     {
         $message->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('berhasil', "$message->name Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$message->name Berhasil dihapus!");
     }
 
 }
