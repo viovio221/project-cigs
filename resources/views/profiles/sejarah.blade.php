@@ -29,13 +29,17 @@
           <div class="container grid-2">
             <div class="column-1">
               <p class="text">
-                Welcome to the profile page Wayang Riders! <br>
-               Together, we're more than just a community; we're a family that shares the spirit of adventure, experiences, and journeys. With the motto "Ride Together, Thrive Together," we build strong bonds and achieve remarkable feats. Embrace the freedom and adventure with us on uncharted roads and unforgettable moments. Every ride is fueled by camaraderie and a collective spirit, for we believe that togetherness is the key to our success. Let's keep this fiery spirit alive, navigating life's twists and turns with enthusiasm and unity. Wayang Riders invites you to experience the thrill of freedom behind every twist of the throttle, leaving your mark on both the asphalt and hearts, and celebrating every accomplishment together. Join Wayang Riders today and become part of an inspiring journey of friendship and growth. Let's ride side by side, evolve together, and savor every moment of this exhilarating journey! Thank you for choosing Wayang Riders. Come, let's ride and thrive together! Welcome to our community!
+                @foreach ( $profiles as $item )
+                {{$item->community_bio}}
+            @endforeach
               </p>
             </div>
 
             <div class="column-2 image">
-              <img src="{{ asset('images/209408166-biker-man-riding-motorcycle-removebg-preview.png') }}" alt="">
+              {{-- <img src="{{ asset('images/209408166-biker-man-riding-motorcycle-removebg-preview.png') }}" alt=""> --}}
+              @foreach ( $profiles as $item )
+              {{$item->image}}
+          @endforeach
             </div>
           </div>
         </div>
@@ -51,18 +55,9 @@
             <div class="column-1">
               <h3 class="title-sm">History</h3>
               <p class="text">
-                Wayang Riders was founded on February 12, 1999, located in one of the areas in
-                West Java, namely the city of Cimahi whose founder is Irfan Santika, Gugum Gumilar who
-                now serves as General Chairperson of the Wayang Riders and class of 1999.
-                Wayang Riders started around 2002-2010, in early February 1999 Wayang Riders was continued with
-                Generation Yudi Ardhana.
-                One of the activities they often do is travel, and often hold events as a hobby
-                some members who like to hang out, started to want to raise the name of their hangout.
-                It was with this activity that the name Wayang Rider became known in Cimahi City and began to thrive from year to year. If you compare it, it turns out that the Wayang Riders are like a "VIRUS" which spreads quickly, in almost several areas of Cimahi City and several areas there are children of the Wayang Riders.
-                The Wayang Riders are famous for their motorbike children who almost every week hold gatherings together, either in their respective areas or get-togethers that are usually held at the place where the name Wayang Riders first appeared.
-                The Wayang Riders started to get excited and agreed to wear the “Orange – White” colored flag which has its own philosophy. The Orange color reflects kinship that cannot be measured by anything, while the White color itself means coloring, in other words, the bonds of kinship are formed even tighter.
-                due to the different characteristics of the members but having the same goal of becoming the Wayang Riders Big Family.
-                Around 2003 there was friction between the elite Wayang Riders, this resulted in a split, from this split several names emerged and the Wayang Riders themselves split into 2 groups, some continued to use the "Orange-White" flag and some wore the "Orange" flag. . -White flag. “Red – White – Black”.
+                @foreach ( $profiles as $item )
+                    {{$item->history}}
+                @endforeach
               </p>
 
             </div>
