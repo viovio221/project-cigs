@@ -16,6 +16,8 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\Controllers\ProfileController;
+
 
 
 
@@ -148,6 +150,8 @@ Route::post('/reset-password', function(Request $request){
         : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
+// profile
+Route::resource('profiles', ProfileController::class);
 
 //forgot
 // route::resource('forgot', ForgotController::class);
