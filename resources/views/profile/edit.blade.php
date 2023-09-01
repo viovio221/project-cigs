@@ -15,14 +15,14 @@
 
     <div class="container mt-5">
         <h1>Edit Event</h1>
-        <form action="{{ route('profile.update', ['profile' => $profile->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('profiles.update', ['profile' => $profiles->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') <!-- Add this line to indicate the PUT request -->
             <!-- Form fields and submit button -->
             <div class="mb-3">
                 <label for="name" class="form-label">History</label>
                 <input type="text" name="history" class="form-control  @error('history') is-invalid @enderror"
-                    value="{{ $profile->history }}" required>
+                    value="{{ $profiles->history }}" required>
                 @error('history')
                     <div class="alert alert-danger mt-2">
                         {{ $message }}
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label class="font-weight-bold">Community</label>
-                <textarea class="form-control @error('community_bio') is-invalid @enderror" name="community_bio" rows="5">{{ $event->community_bio }}</textarea>
+                <textarea class="form-control @error('community_bio') is-invalid @enderror" name="community_bio" rows="5">{{ $profiles->community_bio }}</textarea>
                 @error('community_bio')
                     <div class="alert alert-danger mt-2">
                         {{ $message }}
@@ -54,7 +54,7 @@
 
             <div class="form-group">
                 <label class="font-weight-bold">Community Structure</label>
-                <textarea class="form-control @error('community_structure') is-invalid @enderror" name="community_structure" rows="5">{{ $event->community_structure }}</textarea>
+                <textarea class="form-control @error('community_structure') is-invalid @enderror" name="community_structure" rows="5">{{ $profiles->community_structure }}</textarea>
                 @error('community_structure')
                     <div class="alert alert-danger mt-2">
                         {{ $message }}
