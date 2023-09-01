@@ -37,8 +37,10 @@
 
             <div class="column-2 image">
               {{-- <img src="{{ asset('images/209408166-biker-man-riding-motorcycle-removebg-preview.png') }}" alt=""> --}}
-              @foreach ( $profiles as $item )
-              {{$item->image}}
+              @foreach ($profiles as $item)
+              <td>
+                  <img src="{{ asset('storage/profile_images/' . $item->image) }}" alt="profiles" width="100">
+              </td>
           @endforeach
             </div>
           </div>
@@ -63,8 +65,11 @@
             </div>
 
             <div class="column-2 image">
-              <img src="images/209408166-biker-man-riding-motorcycle-removebg-preview.png" class="points" alt="" />
+             <img src="images/209408166-biker-man-riding-motorcycle-removebg-preview.png" class="points" alt="" />
               <img src="images/209408166-biker-man-riding-motorcycle-removebg-preview.png  " class="z-index" alt="" />
+              {{-- @foreach ( $profiles as $item )
+              {{$item->image}}
+          @endforeach --}}
             </div>
           </div>
         </div>
