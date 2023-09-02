@@ -19,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CommentPostController;
+use App\Http\Controllers\EditProfileController;
 
 
 
@@ -166,3 +167,7 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+
+//edit profile
+route::resource('editprofile', EditProfileController::class);
