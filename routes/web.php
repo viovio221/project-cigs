@@ -171,3 +171,8 @@ Route::get('/logout', function () {
 
 //edit profile
 route::resource('editprofile', EditProfileController::class);
+
+//description
+Route::get('/dashboard/eventdesc1', function () {
+    return view('dashboard.eventdesc1');
+});
