@@ -105,8 +105,6 @@
         </div>
 
     </section>
-    <!-- Custom JS link -->
-    <script src="{{ asset('js/eventdesc.js') }}"></script>
     <!-- Ionicon link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
