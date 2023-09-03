@@ -98,7 +98,7 @@ html::-webkit-scrollbar-thumb{
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: var(--orange1);
+  background: var(--orange);
 }
 
 ::-webkit-scrollbar-thumb:hover { background: var(--ultramarine-blue); }
@@ -129,7 +129,7 @@ html::-webkit-scrollbar-thumb{
 }
 
 .btn-primary,
-.btn-secondary .square { background: var(--orange1); }
+.btn-secondary .square { background: var(--orange); }
 
 .btn .square {
   position: absolute;
@@ -149,7 +149,7 @@ html::-webkit-scrollbar-thumb{
 }
 
 .btn-primary .square,
-.btn-secondary { background: var(--orange); }
+.btn-secondary { background: var(--orange1); }
 
 
 
@@ -207,7 +207,9 @@ html::-webkit-scrollbar-thumb{
   overflow: hidden;
 }
 
-.blog-banner-box { overflow: hidden; }
+.blog-banner-box { overflow: hidden;
+    border-radius: 15px;
+}
 
 .blog-banner-box img {
   width:  100%;
