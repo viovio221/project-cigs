@@ -191,7 +191,7 @@
 
                                         </div>
                                     </div>
-                                    <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
+                                    <button class="btn btn-secondary"><a href="/dashboard/eventdesc1" style="color: white;">Lihat Deskripsi</a></button>
                                 </div>
                             </div>
                         </li>
