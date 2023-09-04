@@ -37,29 +37,33 @@
 
                 <div class="center-image">
                     <div class="blog-banner-box">
-                        <img src="{{ asset('images/event1.png') }}" alt="blog banner">
+                        @foreach ($events as $item)
+                        <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events Image" width="100">
+                        @endforeach
                     </div>
                 </div>
 
                 <div class="blog-content">
 
                     <h3 class="blog-title">
-                        <a href="#">CRUISER CONVOY: MELINTASI KOTA DALAM GAYANYA SENDIRI</a>
+                        <a href="#">
+                            @foreach ($events as $item)
+                            {!! $item->name !!}
+                        @endforeach
+                    </a>
                     </h3>
                     <div class="blog-text">
-                        <p>"CRUISER CONVOY: MELINTASI KOTA DALAM GAYANYA SENDIRI" adalah perayaan khusus bagi para
-                            penggemar motor cruiser yang ingin merayakan gaya hidup berkendara mereka dengan cara yang
-                            istimewa. Acara ini adalah wadah bagi komunitas motor cruiser untuk berkumpul, berbagi
-                            pengalaman, dan menjalin persahabatan dalam lingkungan yang hangat dan mendukung. Pastikan
-                            untuk mematuhi aturan lalu lintas dan peraturan keselamatan selama konvoi motor. Acara ini
-                            ditujukan untuk bersenang-senang dan merayakan gaya berkendara cruiser tanpa melanggar hukum
-                            atau membahayakan diri sendiri dan orang lain di jalan.</p>
+                        @foreach ($events as $item)
+                            {!! $item->description !!}
+                        @endforeach
                     </div>
                     <div class="wrapper">
 
                         <div class="blog-publish-date">
                             <i class='bx bx-calendar'></i>
-                            <a href="#">05 November, 2022</a>
+                            <a href="#">  @foreach ($events as $item)
+                                {!! $item->date !!}
+                            @endforeach</a>
                         </div>
 
                         <button class="btn btn-primary">
