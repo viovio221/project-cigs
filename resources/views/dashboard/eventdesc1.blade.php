@@ -56,6 +56,10 @@
                         @foreach ($events as $item)
                             {!! $item->description !!}
                         @endforeach
+
+                        <p>Lokasi : @foreach ($events as $item)
+                            {!! $item->location !!}
+                        @endforeach</p>
                     </div>
                     <div class="wrapper">
 
