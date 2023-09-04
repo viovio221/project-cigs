@@ -38,7 +38,8 @@
                 <div class="center-image">
                     <div class="blog-banner-box">
                         @foreach ($events as $item)
-                        <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events Image" width="100">
+                            <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events Image"
+                                width="100">
                         @endforeach
                     </div>
                 </div>
@@ -48,9 +49,9 @@
                     <h3 class="blog-title">
                         <a href="#">
                             @foreach ($events as $item)
-                            {!! $item->name !!}
-                        @endforeach
-                    </a>
+                                {!! $item->name !!}
+                            @endforeach
+                        </a>
                     </h3>
                     <div class="blog-text">
                         @foreach ($events as $item)
@@ -58,46 +59,66 @@
                         @endforeach
 
                         <p>Lokasi : @foreach ($events as $item)
-                            {!! $item->location !!}
-                        @endforeach</p>
+                                {!! $item->location !!}
+                            @endforeach
+                        </p>
                     </div>
                     <div class="wrapper">
 
                         <div class="blog-publish-date">
                             <i class='bx bx-calendar'></i>
-                            <a href="#">  @foreach ($events as $item)
-                                {!! $item->date !!}
-                            @endforeach</a>
+                            <a href="#">
+                                @foreach ($events as $item)
+                                    {!! $item->date !!}
+                                @endforeach
+                            </a>
                         </div>
 
-                        <button class="btn btn-primary">
-                            <p class="btn-text"><a href="#" style="color: white ;">Daftar Acara</a></p>
-                            <span class="square"></span>
-                        </button>
+                        <!-- ... -->
+                       <!-- ... -->
+<button class="btn btn-primary" id="registerButton">
+    <p class="btn-text"><a href="#" style="color: white;">Daftar Acara</a></p>
+    <span class="square"></span>
+</button>
 
-                        <script>
-                            document.addEventListener('DOMContentLoaded', function() {
-                                const registerButton = document.querySelector('.btn.btn-primary');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const registerButton = document.getElementById('registerButton');
 
-                                registerButton.addEventListener('click', function() {
-                                    Swal.fire({
-                                        title: 'Are you interested to joining this event?',
-                                        showCancelButton: true,
-                                        confirmButtonColor: '#ffa500',
-                                        cancelButtonColor: '#DB504A',
-                                        confirmButtonText: 'Register',
-                                        cancelButtonText: 'Cancel',
-                                        icon: 'question',
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            //
-                                            Swal.fire('Thank you!', 'You have registered for this event.', 'success');
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
+        registerButton.addEventListener('click', function() {
+            @auth
+                const username = '{{ auth()->users()->name }}';
+            @else
+                const username = 'Pengguna Tidak Terdaftar';
+            @endauth
 
+            const eventName =
+                '@foreach ($events as $item){!! $item->name !!}@endforeach';
+            const eventDate =
+                '@foreach ($events as $item){!! $item->date !!}@endforeach';
+
+            Swal.fire({
+                title: 'Are you interested in joining this event?',
+                showCancelButton: true,
+                confirmButtonColor: '#ffa500',
+                cancelButtonColor: '#DB504A',
+                confirmButtonText: 'Register',
+                cancelButtonText: 'Cancel',
+                icon: 'question',
+                html: `
+                    <p>Nama Pengguna: <strong>${username}</strong></p>
+                    <p>Judul Acara: <strong>${eventName}</strong></p>
+                    <p>Tanggal Acara: <strong>${eventDate}</strong></p>
+                `
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Thank you!', 'You have registered for this event.', 'success');
+                }
+            });
+        });
+    });
+</script>
+<!-- ... -->
 
                         <div class="blog-comment">
                             <i class='bx bx-comment-dots'></i>
