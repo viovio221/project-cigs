@@ -20,10 +20,8 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
-
-
-
-
+use App\Models\Event;
+use App\Http\Controllers\EventDataController;
 
 
 /*
@@ -176,3 +174,13 @@ route::resource('editprofile', EditProfileController::class);
 Route::get('/dashboard/eventdesc1', function () {
     return view('dashboard.eventdesc1');
 });
+
+
+//eventdesc
+Route::get('/dashboard/eventdesc1', function () {
+    $events = Event::all();
+    return view('dashboard.eventdesc1', compact('events'));
+})->name('eventdesc1');
+
+
+// Route::post('/register-event', [EventDataController::class, 'registerEvent'])->name('event_data.registerEvent');
