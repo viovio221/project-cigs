@@ -22,8 +22,7 @@ use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
 use App\Models\Event;
 use App\Http\Controllers\EventDataController;
-
-
+use Database\Seeders\EventsSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -189,4 +188,17 @@ Route::get('/dashboard/eventdesc1', function () {
 })->name('eventdesc1');
 
 
-// Route::post('/register-event', [EventDataController::class, 'registerEvent'])->name('event_data.registerEvent');
+//events
+Route::get('/dashboard/event', function () {
+    $events = Event::all();
+    return view('dashboard.event', compact('events'));
+})->name('event');
+
+
+//edit profile
+Route::get('editprofile', [EditProfileController::class, 'index'])->name('editprofile.show');
+Route::get('editprofile/create', [EditProfileController::class, 'create'])->name('editprofile.create');
+Route::post('editprofile', [EditProfileController::class, 'store'])->name('editprofile.store');
+Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])->name('editprofile.edit');
+Route::put('editprofile/{editprofile}', [EditProfileController::class, 'update'])->name('editprofile.update');
+Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
