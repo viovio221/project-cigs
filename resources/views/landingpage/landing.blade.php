@@ -36,7 +36,7 @@
             <a href="{{ route('dashboard.event') }}">Ride Adventure</a>
             <a href="{{ route('sejarah') }}">profil</a>
             <a href="/login">Login</a>
-            <a href="login/register">Register</a>
+            <a href="/register">Register</a>
 
         </nav>
 
