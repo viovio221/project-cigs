@@ -148,16 +148,22 @@
                         <li>
                             <div class="package-card" data-aos="fade-up">
                                 <figure class="card-banner">
-                                    <img src="{{ asset('images/event2.png') }}" alt="Events 1" loading="lazy">
+                                    @foreach ($events as $item)
+                                    <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1" loading="lazy">
+                                @endforeach
                                 </figure>
                                 <div class="card-content" data-aos="fade-up">
-                                    <h3 class="h3 card-title">Cruiser Convoy: Melintasi Kota dalam Gayanya Sendiri</h3>
+                                    <h3 class="h3 card-title"> @foreach ($events as $item)
+                                        {!! $item->name !!}
+                                    @endforeach</h3>
                                     <p class="card-text">
-                                        Jl.
-                                    </p>
+                                        Lokasi : @foreach ($events as $item)
+                                        {!! $item->location !!}
+                                    @endforeach                                    </p>
                                     <p class="card-text">
-                                        <input type="date" class="date">
-                                    </p>
+                                        @foreach ($events as $item)
+                                        {!! $item->date !!}
+                                    @endforeach                                    </p>
                                     <ul class="card-meta-list">
                                         <li class="card-meta-item">
                                             <div class="meta-box">
