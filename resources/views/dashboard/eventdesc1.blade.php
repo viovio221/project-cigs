@@ -87,7 +87,7 @@
 
         registerButton.addEventListener('click', function() {
             @auth
-                const username = '{{ auth()->users()->name }}';
+                const username = '{{ auth()->user()->name }}';
             @else
                 const username = 'Pengguna Tidak Terdaftar';
             @endauth

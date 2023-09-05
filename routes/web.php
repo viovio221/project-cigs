@@ -24,6 +24,7 @@ use App\Models\Event;
 use App\Http\Controllers\EventDataController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +37,13 @@ use App\Http\Controllers\EventDataController;
 */
 
 
+Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.handleLogin');
 
-route::resource('login', LoginController::class);
 route::resource('register', RegisterController::class);
+Route::get('/register', [LoginController::class, 'show'])->name('login.show');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('login.register');
 
 
 Route::get('/', function () {
@@ -78,7 +83,8 @@ Route::resource('comment_posts', CommentPostController::class);
 // dahsboard
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-});
+})->name('dashboard.index')->middleware('auth');
+
 Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
 
 // comment post
