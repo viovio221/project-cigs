@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('login.index');
+        return view('login.register');
     }
     public function create()
     {
@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
-            'password' => 'required|min:6|confirmed', // Add validation for password confirmation
+            'password' => 'required|min:6|confirmed', 
         ]);
 
         $user = new User([
@@ -49,10 +49,11 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return view('login.index');
     }
+
 
     /**
      * Show the form for editing the specified resource.
