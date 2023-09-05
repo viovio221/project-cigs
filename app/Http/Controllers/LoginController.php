@@ -10,7 +10,7 @@ class LoginController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest:web', ['except' => 'logout']);
+        $this->middleware('guest:web', ['except' => ['logout', 'show']]);
     }
 
     public function index()
@@ -18,34 +18,29 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function show()
-    {
-        return view('login.register');
-    }
-
 
     public function handleLogin(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         $credentials = $request->only('email', 'password');
+
         if (Auth::guard('web')->attempt($credentials)) {
-            $request->session()->regenerate();
-            if (Auth::user()->role=='admin') {
-            return to_route('dashboard.index');
-        } else if (Auth::user()->role=='member') {
-            return to_route('dashboard.index');
+            return redirect()->route('dashboard.index');
+        } else {
+            return back()->withErrors(['email' => 'The username and password entered do not match'])->withInput();
         }
     }
-        return back()->withErrors([
-            'email' => 'Kredentials yang diinputkan tidak cocok',
-        ]);
-    }
+
 
     public function logout()
     {
         Auth::guard('web')->logout();
 
-        return redirect()->route('login.index'); // Ubah to_route menjadi redirect()->route
+        return redirect()->route('login.index'); 
     }
 
 }
