@@ -102,5 +102,8 @@
         toggle.addEventListener('click', togglePassword, false);
         toggle.addEventListener('keyup', checkInput, false);
     </script>
+        @include('sweetalert::alert')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>
