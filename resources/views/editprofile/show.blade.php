@@ -19,9 +19,11 @@
                 <li><i style="font-size:24px" class="fa"></i>
                     <i style="font-size:24px" class="fa"></i>
                     <i style="font-size:24px" class="fa"></i></li>
-                    <div class="mb-3 d-grid">
-                        <button type="submit" class="button btn-secondary">Back</button>
-                    </div
+                    <form action="{{ route('dashboard.data_crud') }}">
+                        <div class="mb-3 d-grid">
+                            <button type="submit" class="button btn-secondary">Back</button>
+                        </div>
+                    </form>
             </ul>
         </div>
         <div class="About">
@@ -44,9 +46,11 @@
                 <h3>Phone Number :</h3>
                 <li></li>
             </ul>
-            <div class="mb-3 d-grid">
-                <button type="submit" class="btn btn-primary">Edit Profile</button>
-            </div>
+            <form action="{{ route('editprofile.create') }}">
+                <div class="mb-3 d-grid">
+                    <button type="submit" class="btn btn-primary">Edit Profile</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
