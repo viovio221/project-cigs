@@ -211,3 +211,11 @@ Route::get('/dashboard', function () {
         Alert::error('You don\'t have access to the dashboard page', 'Please log in first')->persistent('Close');
         return redirect('/login');    }
 })->name('dashboard');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('editprofile/upload-document', [EditProfileController::class])->name('editprofile.uploadDocumentForm');
+
+    // Rute untuk mengunggah dokumen
+    Route::post('editprofile/upload-document',[EditProfileController::class])->name('editprofile.uploadDocument');
+});
