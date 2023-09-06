@@ -26,10 +26,12 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required',
+            'user_id' => 'required|integer',
             'message' => 'required',
-
         ]);
+
+        // Menggunakan (int) untuk mengonversi 'user_id' menjadi integer
+        $validated['user_id'] = (int)$validated['user_id'];
 
         Message::create($validated);
 

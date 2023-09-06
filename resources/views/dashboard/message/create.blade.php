@@ -8,30 +8,22 @@
   </head>
   <body>
 <div class="container mt-5">
-    <form action="{{ route("message.store")}}" method="post">
+    <form action="{{ route("message.store") }}" method="post">
         @csrf
-        @method('post')
-        <div class="mb-3">
-            <label class="form-label">User</label>
-            <select name="user_id" class="form-control @error('user_id') is-invalid @enderror">
-                <option value="">Pilih</option>
-                @foreach ($users as $us)
-                <option @if(old('user_id') == $us->id) selected @endif value="{{ $us->id }}">{{ $us->name }}</option>
-                @endforeach
-            </select>
-            @error('user_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <div class="form-group">
+            <label class="form-label">User ID</label>
+            <input name="user_id" type="number" class="form-control" value="{{ auth()->user()->id }}" readonly>
         </div>
+
         <div class="form-group">
             <label class="form-label">Message</label>
             <input name="message" type="text" class="form-control @error('message') is-invalid @enderror">
             @error('message')
-              <div class="invalid-feedback">{{ $message }}</div>
-          @enderror
-          </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
