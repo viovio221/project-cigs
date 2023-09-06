@@ -202,3 +202,8 @@ Route::post('editprofile', [EditProfileController::class, 'store'])->name('editp
 Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])->name('editprofile.edit');
 Route::put('editprofile/{editprofile}', [EditProfileController::class, 'update'])->name('editprofile.update');
 Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
+
+//midleware
+Route::middleware(['customRedirect'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
