@@ -1,15 +1,18 @@
 <?php
 
+use App\Models\Event;
 use App\Models\Message;
 use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Database\Seeders\EventsSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Auth\Events\PasswordReset;
@@ -18,11 +21,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\EventDataController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
-use App\Models\Event;
-use App\Http\Controllers\EventDataController;
-use Database\Seeders\EventsSeeder;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,9 +81,9 @@ Route::get('/profiles/sejarah', function () {
 Route::resource('comment_posts', CommentPostController::class);
 
 // dahsboard
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard.index')->middleware('auth');
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index');
+// })->name('dashboard.index')->middleware('auth');
 
 Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
 
@@ -203,7 +204,10 @@ Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])-
 Route::put('editprofile/{editprofile}', [EditProfileController::class, 'update'])->name('editprofile.update');
 Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
 
-//midleware
-Route::middleware(['customRedirect'])->get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function () {
+    if (auth()->check()) {
+        return view('dashboard.index'); // Hanya jika pengguna telah login
+    } else {
+        Alert::error('You don\'t have access to the dashboard page', 'Please log in first')->persistent('Close');
+        return redirect('/login');    }
 })->name('dashboard');

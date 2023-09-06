@@ -29,7 +29,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('web')->attempt($credentials)) {
-            return redirect()->route('dashboard.index');
+            return redirect()->route('dashboard');
         } else {
             return back()->withErrors(['email' => 'The username and password entered do not match'])->withInput();
         }
@@ -40,7 +40,7 @@ class LoginController extends Controller
     {
         Auth::guard('web')->logout();
 
-        return redirect()->route('login.index'); 
+        return redirect()->route('login.index');
     }
 
 }
