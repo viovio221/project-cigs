@@ -13,11 +13,15 @@
         @method('post')
         <div class="form-group">
             <label class="form-label">Username</label>
-            <input name="username" type="text" class="form-control @error('username') is-invalid @enderror">
+            <input name="username" type="text" class="form-control @error('username') is-invalid @enderror" value="{{ auth()->user()->name }}" readonly>
             @error('username')
               <div class="invalid-feedback">{{ $message }}</div>
           @enderror
           </div>
+          {{-- <div class="inputfield">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" class="input" placeholder="Enter your full name" value="{{ auth()->user()->name }}" readonly>
+        </div> --}}
         <div class="mb-3">
             <label class="form-label">Event Name</label>
             <select name="event_id" class="form-control @error('event_id') is-invalid @enderror">
