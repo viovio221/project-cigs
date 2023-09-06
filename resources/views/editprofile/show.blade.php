@@ -32,19 +32,19 @@
             </ul>
             <ul>
                 <h3>Full Name :</h3>
-                <li></li>
+                <li>{{ auth()->user()->name }}</li>
             </ul>
             <ul>
                 <h3>Status :</h3>
-                <li></li>
+                <li>{{ auth()->user()->role }}</li>
             </ul>
             <ul>
                 <h3>Email :</h3>
-                <li></li>
+                <li>{{ auth()->user()->email }}</li>
             </ul>
             <ul>
                 <h3>Phone Number :</h3>
-                <li></li>
+                <li>{{ auth()->user()->phone_number }}</li>
             </ul>
             <form action="{{ route('editprofile.create') }}">
                 <div class="mb-3 d-grid">
