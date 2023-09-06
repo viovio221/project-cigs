@@ -194,7 +194,7 @@ body{
 /* Gaya untuk kotak input password dan ikon Show Password */
 .password-container {
     position: relative;
-    width: 550px;
+    width: 450px;
   }
 
   .input[type="password"] {
