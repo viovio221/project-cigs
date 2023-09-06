@@ -19,16 +19,18 @@
                 <div class="form">
                     <div class="inputfield">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" id="name" class="input" placeholder="Enter your full name">
+                        <input type="text" name="name" id="name" class="input" placeholder="Enter your full name" value="{{ auth()->user()->name }}" readonly>
                     </div>
                     <div class="inputfield">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="input" placeholder="Example: youremail@gmail.com">
+                        <input type="email" name="email" id="email" class="input" placeholder="Example: youremail@gmail.com" value="{{ auth()->user()->email }}" readonly>
                     </div>
                     <div class="inputfield">
                         <label for="phone_number">Phone Number</label>
-                        <input type="number" name="phone_number" id="phone_number" class="input" placeholder="Enter your phone number">
+                        <input type="number" name="phone_number" id="phone_number" class="input" placeholder="Enter your phone number" value="{{ auth()->user()->phone_number }}" readonly>
                     </div>
+
+
                     <div class="inputfield">
                         <label for="address">Address</label>
                         <textarea id="address" name="address" rows="5" cols="60">
@@ -51,10 +53,22 @@
                         <label for="postalcode">postalcode</label>
                         <input type="Number" name="postalcode" id="postalcode" class="input" placeholder="Enter your postalcode">
                     </div>
-                    <div class="inputfield">
-                        <label for="image">Image</label>
-                        <input type="File" name="image" id="image" class="input" placeholder="Enter your image">
-                    </div>
+                    <form action="{{ route('editprofile.uploadDocument') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="inputfield">
+                            <label for="tipe">Document Type</label>
+                            <select name="tipe" id="tipe" class="input" required>
+                                <option value="KTP">KTP</option>
+                                <option value="SIM">SIM</option>
+                                <option value="STNK">STNK</option>
+                            </select>
+                        </div>
+                        <div class="inputfield">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" id="image" class="input" accept="image/*" required>
+                        </div>
+                    </form>
+
                     <div class="inputfield">
                         <input type="submit" value="Edit" class="btn">
                     </div>
