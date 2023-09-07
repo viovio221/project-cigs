@@ -204,21 +204,13 @@ Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])-
 Route::put('editprofile/{editprofile}', [EditProfileController::class, 'update'])->name('editprofile.update');
 Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
 
-Route::get('/dashboard', function () {
-    if (auth()->check()) {
-        return view('dashboard.index'); // Hanya jika pengguna telah login
-    } else {
-        Alert::error('You don\'t have access to the dashboard page', 'Please log in first')->persistent('Close');
-        return redirect('/login');    }
-})->name('dashboard');
 
 
 Route::middleware(['auth'])->group(function () {
     Route::get('editprofile/upload-document', [EditProfileController::class])->name('editprofile.uploadDocumentForm');
-
-    // Rute untuk mengunggah dokumen
     Route::post('editprofile/upload-document',[EditProfileController::class])->name('editprofile.uploadDocument');
 });
 
 
 Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register');
+Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
