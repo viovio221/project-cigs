@@ -18,9 +18,12 @@ class EventData extends Model
         'status',
     ];
 
-    // Metode untuk menyimpan data pendaftaran acara
     public static function createEventData($eventData)
     {
         return static::create($eventData);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

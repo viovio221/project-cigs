@@ -65,27 +65,27 @@
         </ul>
 
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutButton = document.querySelector('.logout');
+            document.addEventListener('DOMContentLoaded', function() {
+                const logoutButton = document.querySelector('.logout');
 
-            logoutButton.addEventListener('click', function(e) {
-                e.preventDefault();
+                logoutButton.addEventListener('click', function(e) {
+                    e.preventDefault();
 
-                Swal.fire({
-                    title: 'Are you sure to logout?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#ffa500',
-                    cancelButtonColor: '#DB504A',
-                    confirmButtonText: 'Yes, logout'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '{{ route("logout") }}';
-                    }
+                    Swal.fire({
+                        title: 'Are you sure to logout?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ffa500',
+                        cancelButtonColor: '#DB504A',
+                        confirmButtonText: 'Yes, logout'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '{{ route('logout') }}';
+                        }
+                    });
                 });
             });
-        });
         </script>
 
     </section>
@@ -152,47 +152,52 @@
                 <div class="order">
                     <div class="head">
                         <h3>New Event's Data</h3>
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Members Name</th>
-                                <th>Event Date</th>
-                                <th>Event Name</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Devani</td>
-                                <td>01-10-2021</td>
-                                <td></td>
-                                <td><span class="status completed">Selesai</span></td>
-                            </tr>
-                            <tr>
-                                <td>Arsya</td>
-                                <td>01-10-2021</td>
-                                <td></td>
-                                <td><span class="status pending">Tertunda</span></td>
-                            </tr>
-                            <tr>
-                                <td>Arsyi</td>
-                                <td>01-10-2021</td>
-                                <td></td>
-                                <td><span class="status pending">Tertunda</span></td>
-                            </tr>
-                            <tr>
-                                <td>Arso</td>
-                                <td>01-10-2021</td>
-                                <td></td>
-                                <td><span class="status process">Proses</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-data">
+                        <div class="order">
+                            <i class='bx bx-search'></i>
+                            <i class='bx bx-filter'></i>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Members Name</th>
+                                    <th>Event Date</th>
+                                    <th>Event Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($eventData))
+                                    @foreach ($eventData as $data)
+                                        <tr>
+                                            <td>{{ $data->user->name}}</td>
+                                            <td>{{ $data->event_date }}</td>
+                                            <td>{{ $data->event_name }}</td>
+                                            <td ><span class="status pending">{{ $data->status }}</span></td>
+                                            <td class="side-menu top">
+                                                <a href="" style="color: green"><i
+                                                        class='bx bx-info-circle'></i></a>
+                                                <a href=""
+                                                    style="color: orange"><i class='bx bx-edit'></i></a>
+                                                <form action=""
+                                                 {{-- method="POST --}}
+                                                    style="display: inline-block;">
+                                                    {{-- @csrf
+                                                    @method('DELETE') --}}
+                                                    <button type="submit"
+                                                        style="background: none; border: none; color:red"><i
+                                                            class='bx bx-trash'></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
         </main>
         <!-- MAIN -->
     </section>
