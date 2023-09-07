@@ -219,3 +219,6 @@ Route::middleware(['auth'])->group(function () {
     // Rute untuk mengunggah dokumen
     Route::post('editprofile/upload-document',[EditProfileController::class])->name('editprofile.uploadDocument');
 });
+
+
+Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register');
