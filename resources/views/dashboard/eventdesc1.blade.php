@@ -75,50 +75,70 @@
                         </div>
 
                         <!-- ... -->
-                       <!-- ... -->
-<button class="btn btn-primary" id="registerButton">
-    <p class="btn-text"><a href="#" style="color: white;">Daftar Acara</a></p>
-    <span class="square"></span>
-</button>
+                        @foreach ($events as $event)
+                            <button class="btn btn-primary" data-event-id="{{ $event->id }}"
+                                data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
+                                <p class="btn-text"><a href="#" style="color: white;">Daftar Acara</a></p>
+                                <span class="square"></span>
+                            </button>
+                        @endforeach
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const registerButton = document.getElementById('registerButton');
 
-        registerButton.addEventListener('click', function() {
-            @auth
-                const username = '{{ auth()->user()->name }}';
-            @else
-                const username = 'Pengguna Tidak Terdaftar';
-            @endauth
 
-            const eventName =
-                '@foreach ($events as $item){!! $item->name !!}@endforeach';
-            const eventDate =
-                '@foreach ($events as $item){!! $item->date !!}@endforeach';
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const registerButtons = document.querySelectorAll('.btn.btn-primary');
 
-            Swal.fire({
-                title: 'Are you interested in joining this event?',
-                showCancelButton: true,
-                confirmButtonColor: '#ffa500',
-                cancelButtonColor: '#DB504A',
-                confirmButtonText: 'Register',
-                cancelButtonText: 'Cancel',
-                icon: 'question',
-                html: `
-                    <p>Nama Pengguna: <strong>${username}</strong></p>
-                    <p>Judul Acara: <strong>${eventName}</strong></p>
-                    <p>Tanggal Acara: <strong>${eventDate}</strong></p>
-                `
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire('Thank you!', 'You have registered for this event.', 'success');
-                }
-            });
-        });
-    });
-</script>
-<!-- ... -->
+                                registerButtons.forEach(registerButton => {
+                                        registerButton.addEventListener('click', function() {
+                                                @auth
+                                                const userId = '{{ auth()->user()->id }}';
+                                            @else
+                                                const userId = null;
+                                            @endauth
+
+                                            const eventId = registerButton.getAttribute('data-event-id');
+                                            const eventName = registerButton.getAttribute('data-event-name');
+                                            const eventDate = registerButton.getAttribute('data-event-date');
+
+                                            Swal.fire({
+                                                title: 'Are you interested in joining this event?',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#ffa500',
+                                                cancelButtonColor: '#DB504A',
+                                                confirmButtonText: 'Register',
+                                                cancelButtonText: 'Cancel',
+                                                icon: 'question',
+                                                html: `
+                                    <p>Nama Pengguna: <strong>{{ auth()->user()->name }}</strong></p>
+                                    <p>Judul Acara: <strong>${eventName}</strong></p>
+                                    <p>Tanggal Acara: <strong>${eventDate}</strong></p>
+                                `
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    axios.post('{{ route('event.register') }}', {
+                                                        user_id: userId,
+                                                        event_id: eventId,
+                                                        eventName: eventName,
+                                                        eventDate: eventDate,
+                                                    }).then((response) => {
+                                                        Swal.fire('Thank you!',
+                                                            'You have registered for this event.', 'success');
+                                                    }).catch((error) => {
+                                                        Swal.fire('Error',
+                                                            'An error occurred while registering for the event.',
+                                                            'error');
+                                                    });
+                                                }
+                                            });
+                                        });
+                                });
+                            });
+                        </script>
+
+
+
+                        <!-- ... -->
 
                         <div class="blog-comment">
                             <i class='bx bx-comment-dots'></i>
@@ -146,6 +166,7 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     @include('sweetalert::alert')
 </body>
 
