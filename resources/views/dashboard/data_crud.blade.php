@@ -66,29 +66,29 @@
         </ul>
 
         <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutButton = document.querySelector('.logout');
+            document.addEventListener('DOMContentLoaded', function() {
+                const logoutButton = document.querySelector('.logout');
 
-            // Tambahkan event click ke elemen logout
-            logoutButton.addEventListener('click', function(e) {
-                e.preventDefault(); // Mencegah tindakan logout asli
+                // Tambahkan event click ke elemen logout
+                logoutButton.addEventListener('click', function(e) {
+                    e.preventDefault(); // Mencegah tindakan logout asli
 
-                // Tampilkan pesan konfirmasi SweetAlert2
-                Swal.fire({
-                    title: 'Are you sure to logout?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#ffa500',
-                    cancelButtonColor: '#DB504A',
-                    confirmButtonText: 'Yes, logout'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '{{ route("logout") }}';
-                    }
+                    // Tampilkan pesan konfirmasi SweetAlert2
+                    Swal.fire({
+                        title: 'Are you sure to logout?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ffa500',
+                        cancelButtonColor: '#DB504A',
+                        confirmButtonText: 'Yes, logout'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '{{ route('logout') }}';
+                        }
+                    });
                 });
             });
-        });
         </script>
     </section>
     <!-- SIDEBAR -->
@@ -228,7 +228,7 @@
                                         <td></td>
                                         <th>{{ $loop->iteration }}</th>
                                         <td>{{ $mg->user->name }}</td>
-                                        <td class="description">{{ $mg->message }}</td>
+                                        <td class="message">{{ $mg->message }}</td>
                                         <td>{{ $mg->created_at }}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('message.show', $mg->id) }}" style="color: green"><i
@@ -277,6 +277,7 @@
                                 <th scope="col">Username</th>
                                 <th scope="col">Event</th>
                                 <th scope="col">Content</th>
+                                <td>Rating</td>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -285,10 +286,18 @@
                                 @foreach ($comment_posts as $cp)
                                     <tr>
                                         <td></td>
-                                        <th >{{ $loop->iteration }}</th>
+                                        <th>{{ $loop->iteration }}</th>
                                         <td>{{ $cp->username }}</td>
-                                        <td class="event">{{ $cp->event ? $cp->event->name : 'Event Not Found' }}</td>
+                                        <td class="event">{{ $cp->event ? $cp->event->name : 'Event Not Found' }}
+                                        </td>
                                         <td class="description">{{ $cp->content }}</td>
+                                        <td>
+                                            <i class='bx bx-star'></i>
+                                            <i class='bx bx-star'></i>
+                                            <i class='bx bx-star'></i>
+                                            <i class='bx bx-star'></i>
+                                            <i class='bx bx-star'></i>
+                                        </td>
                                         <td class="side-menu top">
                                             <a href="{{ route('comment_posts.show', $cp->id) }}"
                                                 style="color: green"><i class='bx bx-info-circle'></i></a>
@@ -311,64 +320,64 @@
                 </div>
             </div>
 
-                    {{-- crud news atau berita terbaru --}}
-                    <div class="table-data">
-                        <div class="order">
-                            <div class="head">
-                                <h3><a href="{{ route('news.create') }}" class="btn btn-outline-primary">Add News</a>
-                                </h3>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                <i class='bx bx-search'></i>
-                                <i class='bx bx-filter'></i>
+            {{-- crud news atau berita terbaru --}}
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3><a href="{{ route('news.create') }}" class="btn btn-outline-primary">Add News</a>
+                        </h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                            <table>
-                                <thead>
+                        @endif
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($news))
+                                @foreach ($news as $nw)
                                     <tr>
                                         <td></td>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Image</th>
-                                        <th>Action</th>
+                                        <td>{{ $nw->title }}</td>
+                                        <td class="description">{!! $nw->description !!}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news"
+                                                width="100">
+                                        </td>
+                                        <td class="side-menu top">
+                                            <a href="{{ route('news.show', $nw->id) }}" style="color: green"><i
+                                                    class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
+                                                style="color: orange"><i class='bx bx-edit'></i></a>
+                                            <form action="{{ route('news.destroy', $nw->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @if (isset($news))
-                                    @foreach ($news as $nw)
-                                        <tr>
-                                            <td></td>
-                                            <td>{{ $nw->title }}</td>
-                                            <td class="description">{!! $nw->description !!}</td>
-                                            <td>
-                                                <img src="{{ asset('storage/new_images/' . $nw->image) }}"
-                                                    alt="news" width="100">
-                                            </td>
-                                            <td class="side-menu top">
-                                                <a href="{{ route('news.show', $nw->id) }}" style="color: green"><i
-                                                        class='bx bx-info-circle'></i></a>
-                                                <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
-                                                    style="color: orange"><i class='bx bx-edit'></i></a>
-                                                <form action="{{ route('news.destroy', $nw->id) }}" method="POST"
-                                                    style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        style="background: none; border: none; color:red"><i
-                                                            class='bx bx-trash'></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
