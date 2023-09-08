@@ -107,6 +107,8 @@ Route::resource('users', UserController::class);
 Route::resource('news', NewsController::class);
 
 Route::view('/dashboard/news', 'dashboard.news')->name('dashboard.news');
+Route::view('/dashboard/membersdata', 'dashboard.membersdata')->name('dashboard.membersdata');
+
 
 //event review
 Route::get('/review/event-review', function () {
