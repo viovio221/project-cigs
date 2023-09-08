@@ -627,3 +627,15 @@ body {
 		min-width: 420px;
 	}
 }
+.description {
+    max-width: 200px; /* Sesuaikan lebar maksimum sesuai kebutuhan Anda */
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+}
+.event{
+        max-width: 150px; /* Sesuaikan lebar maksimum sesuai kebutuhan Anda */
+        word-wrap: break-word;
+        white-space: normal;
+
+}
