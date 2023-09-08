@@ -639,3 +639,9 @@ body {
         white-space: normal;
 
 }
+.message{
+    max-width: 150px; /* Sesuaikan lebar maksimum sesuai kebutuhan Anda */
+    word-wrap: break-word;
+    white-space: normal;
+
+}
