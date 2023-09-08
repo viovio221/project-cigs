@@ -35,54 +35,56 @@
 </head>
 
 <body>
+    <body>
 
- <!-- SIDEBAR -->
- <section id="sidebar">
-    <a href="#" class="brand">
-        <i class="fa-solid fa-motorcycle"></i>
-        <span class="text">Wayang Riders</span>
-    </a>
-    <ul class="side-menu top">
-        <li>
-            <a href="/dashboard">
-                <i class='bx bxs-dashboard' ></i>
-                <span class="text">Dasbor</span>
-            </a>
-        </li>
-        <li  class="active">
-            <a href="/dashboard/event">
-                <i class='bx bxs-shopping-bag-alt' ></i>
-                <span class="text">Events</span>
-            </a>
-        </li>
-        <li>
-            <a href="/dashboard/news">
-                <i class='bx bxs-message-dots' ></i>
-                <span class="text">News</span>
-                {{-- admin --}}
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bxs-group' ></i>
-                <span class="text">Data Anggota</span>
-            </a>
-        </li>
-        <li>
-            <a href="/dashboard/data_crud">
-                <i class='bx bxs-group' ></i>
-                <span class="text">CRUD Riders</span>
-            </a>
-        </li>
-    </ul>
-    <ul class="side-menu">
-        <li>
-            <a href="#" class="logout">
-                <i class='bx bxs-log-out-circle' ></i>
-                <span class="text">Logout</span>
-            </a>
-        </li>
-    </ul>
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+           <a href="#" class="brand">
+               <i class="fa-solid fa-motorcycle"></i>
+               <span class="text">Wayang Riders</span>
+           </a>
+           <ul class="side-menu top">
+               <li>
+                   <a href="/dashboard">
+                       <i class='bx bxs-dashboard' ></i>
+                       <span class="text">Dashboard</span>
+                   </a>
+               </li>
+               <li class="active">
+                   <a href="/dashboard/event">
+                       <i class='bx bxs-shopping-bag-alt' ></i>
+                       <span class="text">Events</span>
+                   </a>
+               </li>
+               <li>
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots' ></i>
+                    <span class="text">News</span>
+                    {{-- admin --}}
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard/membersdata">
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">Member Data</span>
+                </a>
+            </li>
+            <li>
+                <a href="/dashboard/data_crud">
+                    <i class='bx bxs-group' ></i>
+                    <span class="text">CRUD Riders</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bxs-log-out-circle' ></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logoutButton = document.querySelector('.logout');
@@ -138,12 +140,7 @@
                 <div class="container">
                     <h2 class="h2 section-title" data-aos="fade-up">Exciting Events Adventures</h2>
                     <p class="section-text" data-aos="fade-up">
-                        Kami dengan bangga mengundang Anda untuk menjelajahi serangkaian acara menarik yang telah kami
-                        siapkan. Dari petualangan melintasi jalan-jalan yang epik hingga pertemuan berkualitas dengan
-                        sesama penggemar motor, kami memiliki segala sesuatu yang Anda cari. Bersiaplah untuk merasakan
-                        sensasi kebebasan di balik setiap tikungan dan merayakan semangat komunitas bersama kami. Mari
-                        bersama-sama menciptakan kenangan tak terlupakan dalam setiap acara yang kami selenggarakan.
-                        Jangan lewatkan kesempatan ini untuk menjadi bagian dari perjalanan motor yang luar biasa! </p>
+                        We proudly invite you to explore a series of exciting events we have prepared. From epic road adventures to quality gatherings with fellow motor enthusiasts, we have everything you're looking for. Get ready to feel the thrill of freedom around every corner and celebrate the spirit of community with us. Let's create unforgettable memories together at every event we organize. Don't miss this opportunity to be part of an extraordinary motorbike journey!</p>
                     <ul class="package-list" data-aos="fade-up">
                         <li>
                             <div class="package-card" data-aos="fade-up">

@@ -12,7 +12,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>News</title>
+    <title>Members Data</title>
 </head>
 
 <body>
@@ -36,15 +36,15 @@
                     <span class="text">Events</span>
                 </a>
             </li>
-            <li class="active">
-                <a href="">
+            <li>
+                <a href="/dashboard/news">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">News</span>
                     {{-- admin --}}
                 </a>
             </li>
-            <li>
-                <a href="/dashboard/membersdata">
+            <li class="active">
+                <a href="#">
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
                 </a>
@@ -93,7 +93,7 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>News</h1>
+                    <h1>Members Data</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard">Dashboard</a>

@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/dashboard/membersdata">
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
                 </a>
@@ -152,6 +152,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <td></td>
                                 <th>Name Event</th>
                                 <th>Date Event</th>
                                 <th>Location</th>
@@ -163,10 +164,11 @@
                         <tbody>
                             @foreach ($events as $event)
                                 <tr>
-                                    <td>{{ $event->name }}</td>
+                                    <td></td>
+                                    <td class="event">{{ $event->name }}</td>
                                     <td>{{ $event->date }}</td>
                                     <td>{{ $event->location }}</td>
-                                    <td>{!! $event->description !!}</td>
+                                    <td class="description">{!! $event->description !!}</td>
                                     <td>
                                         <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Event"
                                             width="100">
@@ -211,6 +213,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <td></td>
                                 <th scope="col">No</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Message</th>
@@ -222,9 +225,10 @@
                             @if (isset($messages))
                                 @foreach ($messages as $mg)
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td></td>
+                                        <th>{{ $loop->iteration }}</th>
                                         <td>{{ $mg->user->name }}</td>
-                                        <td>{{ $mg->message }}</td>
+                                        <td class="description">{{ $mg->message }}</td>
                                         <td>{{ $mg->created_at }}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('message.show', $mg->id) }}" style="color: green"><i
@@ -268,6 +272,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <td></td>
                                 <th scope="col">No</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Event</th>
@@ -279,10 +284,11 @@
                             @if (isset($comment_posts))
                                 @foreach ($comment_posts as $cp)
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td></td>
+                                        <th >{{ $loop->iteration }}</th>
                                         <td>{{ $cp->username }}</td>
-                                        <td>{{ $cp->event ? $cp->event->name : 'Event Not Found' }}</td>
-                                        <td>{{ $cp->content }}</td>
+                                        <td class="event">{{ $cp->event ? $cp->event->name : 'Event Not Found' }}</td>
+                                        <td class="description">{{ $cp->content }}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('comment_posts.show', $cp->id) }}"
                                                 style="color: green"><i class='bx bx-info-circle'></i></a>
@@ -326,6 +332,7 @@
                             <table>
                                 <thead>
                                     <tr>
+                                        <td></td>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Image</th>
@@ -336,8 +343,9 @@
                                     @if (isset($news))
                                     @foreach ($news as $nw)
                                         <tr>
+                                            <td></td>
                                             <td>{{ $nw->title }}</td>
-                                            <td>{!! $nw->description !!}</td>
+                                            <td class="description">{!! $nw->description !!}</td>
                                             <td>
                                                 <img src="{{ asset('storage/new_images/' . $nw->image) }}"
                                                     alt="news" width="100">
