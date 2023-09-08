@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/dashboard/membersdata">
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
                 </a>
