@@ -216,3 +216,4 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register');
 Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::delete('/dashboard/event/{id}', [EventDataController::class, 'destroy'])->name('event.destroy')->middleware('auth');

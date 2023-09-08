@@ -143,8 +143,8 @@
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
-                        <h3>2834</h3>
-                        <p>Member Club</p>
+                        <h3>{{ $memberCount }}</h3>
+                        <p>Non Member Club</p>
                     </span>
                 </li>
             </ul>
@@ -172,20 +172,18 @@
                                 @if (isset($eventData))
                                     @foreach ($eventData as $data)
                                         <tr>
-                                            <td>{{ $data->user->name}}</td>
+                                            <td>{{ $data->user->name }}</td>
                                             <td>{{ $data->event_date }}</td>
                                             <td>{{ $data->event_name }}</td>
-                                            <td ><span class="status pending">{{ $data->status }}</span></td>
+                                            <td><span class="status pending">{{ $data->status }}</span></td>
                                             <td class="side-menu top">
                                                 <a href="" style="color: green"><i
                                                         class='bx bx-info-circle'></i></a>
-                                                <a href=""
-                                                    style="color: orange"><i class='bx bx-edit'></i></a>
-                                                <form action=""
-                                                 {{-- method="POST --}}
+                                                <a href="" style="color: orange"><i class='bx bx-edit'></i></a>
+                                                <form action="{{ route('event.destroy', $data->id) }}" method="POST"
                                                     style="display: inline-block;">
-                                                    {{-- @csrf
-                                                    @method('DELETE') --}}
+                                                    @csrf
+                                                    @method('DELETE')
                                                     <button type="submit"
                                                         style="background: none; border: none; color:red"><i
                                                             class='bx bx-trash'></i></button>
