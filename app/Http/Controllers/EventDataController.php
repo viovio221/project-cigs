@@ -14,9 +14,11 @@ class EventDataController extends Controller
 {
     public function index()
     {
+        $memberCount = User::where('role', 'non-member')->count();
+
         if (auth()->check()) {
             $eventData = EventData::all();
-            return view('dashboard.index', compact('eventData'));
+            return view('dashboard.index', compact('eventData', 'memberCount'));
         } else {
             Alert::error('You dont have access to the dashboard page', 'Please log in first')->persistent('Close');
             return redirect('/login');
@@ -45,7 +47,6 @@ class EventDataController extends Controller
             return response()->json(['message' => 'Gagal mendaftar acara'], 500); // 500 adalah kode status kesalahan server
         }
     }
-   // app/Http/Controllers/EventDataController.php
 
 public function edit($id)
 {
@@ -56,10 +57,14 @@ public function edit($id)
 
 public function destroy($id)
 {
-    $eventData = EventData::findOrFail($id);
+    $eventData = EventData::find($id);
+
+    if (!$eventData) {
+        return redirect()->route('dashboard')->with('error', 'Event data not found.');
+    }
     $eventData->delete();
 
-    return redirect()->route('dashboard.index')
-        ->with('success', 'Event Data berhasil dihapus.');
+    return redirect()->route('dashboard')->with('success', 'Event data deleted successfully.');
 }
+
 }
