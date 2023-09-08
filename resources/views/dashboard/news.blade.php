@@ -105,6 +105,70 @@
                     </ul>
                 </div>
             </div>
+            <br>
+
+            <ul class="box-info1" style="align-content: center">
+                <li>
+                    <img src="{{ asset('images/motor2.jpg') }}"><br>
+                    <span class="text1">
+                        <h3>Test Test Test Test</h3>
+                        <br>
+                        <p>eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            <br>
+                            <br>
+                        <button class="btn1 btn-primary">Read More</button></p>
+                    </span>
+                </li>
+                <br>
+                <li>
+                    <img src="{{ asset('images/motor2.jpg') }}"><br>
+                    <span class="text">
+                        <h3>Test Test Test Test</h3>
+                        <br>
+                        <p>eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            <br>
+                            <br>
+                            <button class="btn1 btn-primary">Read More</button></p>
+                    </span>
+                </li>
+                <br>
+                <li>
+                    <img src="{{ asset('images/motor2.jpg') }}"><br>
+                    <span class="text">
+                        <h3>Test Test Test Test</h3>
+                        <br>
+                        <p>eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            irure dolor in reprehenderit in voluptate velit esse cillum
+                            dolore eu fugi""at nulla pariatur. Excepteur sint occaecat cupidatat non
+                            <br>
+                            <br>
+                            <button class="btn1 btn-primary">Read More</button></p>
+                    </span>
+                </li>
+            </ul>
+
 
         </main>
         <!-- MAIN -->
