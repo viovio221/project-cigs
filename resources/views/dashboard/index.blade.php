@@ -108,7 +108,7 @@
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show') }}" class="profile">
+            <a href="" class="profile">
                 <img src="{{ asset('images/devani.jpg') }}">
             </a>
 
