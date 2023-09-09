@@ -610,8 +610,27 @@ body {
 	}
 }
 
-
-
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    ul.box-info1 li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    ul.box-info1 img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    .btn1 {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
 
 
 
@@ -677,3 +696,16 @@ body {
     white-space: normal;
 
 }
+
+
+ul.box-info1 li .text1 h3,
+    ul.box-info1 li .text h3,
+    ul.box-info1 li .text1 p,
+    ul.box-info1 li .text p {
+        text-align: justify;
+    }
+    ul.box-info1 img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
