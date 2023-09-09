@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
-            'password' => 'required|min:6|confirmed', 
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $user = new User([
@@ -43,7 +43,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        return redirect()->route('login.index')->with('success', 'Registration successful. Please login.');
+        return redirect('/login')->with('success', 'Pendaftaran berhasil! Silakan login.');
     }
 
     /**
