@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Message;
 use App\Models\Profile;
@@ -162,7 +163,7 @@ Route::post('/reset-password', function(Request $request){
 })->middleware('guest')->name('password.update');
 
 // profile
-Route::resource('profiles', ProfileController::class);
+// Route::resource('profiles', ProfileController::class);
 
 //forgot
 // route::resource('forgot', ForgotController::class);
@@ -217,3 +218,17 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register');
 Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::delete('/dashboard/event/{id}', [EventDataController::class, 'destroy'])->name('event.destroy')->middleware('auth');
+
+
+// profiles count
+Route::get('/profiles/sejarah', function () {
+    $profiles = Profile::all();
+    $dataCount = User::where('role', 'member')->count();
+
+    return view('profiles.sejarah', compact('profiles', 'dataCount'));
+})->name('sejarah');
+
+
+Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+Route::put('/dashboard/profiles/{profiles}', [ProfileController::class, 'update'])->name('profiles.update');
+Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
