@@ -13,6 +13,16 @@
     --sonic-silver: hsl(0, 0%, 47%);
     --cultured: hsl(228, 26%, 96%);
     --white: hsl(0, 0%, 100%);
+	--light: #F9F9F9;
+	--light-orange:#FFD700;
+	--grey: #eee;
+	--dark-grey: #AAAAAA;
+	--dark: #342E37;
+	--red: #DB504A;
+	--yellow: #FFCE26;
+	--light-yellow: #FFF2C6;
+	--light-orange: #FFE0D3;
+    --green : #2ea82e;
 
     /**
      * typography
@@ -46,7 +56,16 @@
 
   }
 
+  body.dark {
+	--light: #0C0C1E;
+	--grey: #060714;
+	--dark: #FBFBFB;
+}
 
+body {
+	background: var(--grey);
+	overflow-x: hidden;
+}
 
 *, *::before, *::after {
   margin:  0;
@@ -70,6 +89,7 @@ button {
   cursor: pointer;
 }
 
+
 html {
     font-family: var(--ff-poppins);
     scroll-behavior: smooth;
@@ -77,6 +97,8 @@ html {
     overflow-x: hidden;
     scroll-padding-top: 7rem;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+
   }
   html::-webkit-scrollbar{
     width:.8rem;
@@ -183,32 +205,44 @@ html::-webkit-scrollbar-thumb{
   #BLOG
 \*-----------------------------------*/
 
-.blog { padding: var(--py) var(--px) 100px; }
+.blog { padding: var(--py) var(--px) 100px;
+padding-top: 0;
+}
 
 .blog .section-subtitle {
   text-align: center;
   margin: 15px;
+  color: var(--dark);
+
 }
 
 .blog .section-title {
   text-align: center;
   margin-bottom: 60px;
+  color: var(--dark);
+
 }
 
 .blog-grid {
   display: grid;
   grid-template-columns: 1fr;
+  color: var(--light);
+  background: var(--light);
 }
 
 .blog-card {
-  background: var(--white);
   border-radius: 8px;
   box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.1);
-  overflow: hidden;
+  color: var(--light);
+  background: var(--light);
+
 }
 
 .blog-banner-box { overflow: hidden;
     border-radius: 15px;
+    color: var(--light);
+    background: var(--light);
+
 }
 
 .blog-banner-box img {
@@ -216,13 +250,21 @@ html::-webkit-scrollbar-thumb{
   height: 100%;
   object-fit: cover;
   transition: var(--default-transition);
+  color: var(--dark);
+
 }
+
 
 .blog-card:hover .blog-banner-box img { transform: scale(1.1); }
 
 .blog-content {
   padding: 30px;
   padding-bottom: 20px;
+  color: var(--dark);
+  background: var(--light);
+  border-radius: 50px;
+
+
 }
 
 .blog-title {
@@ -243,6 +285,7 @@ html::-webkit-scrollbar-thumb{
     border-bottom: 1px solid var(--light-gray);
     margin-bottom: 15px;
     text-align: justify;
+
   }
 
 .blog-card:hover .blog-title a { color: var(--orange1); }
@@ -253,6 +296,7 @@ html::-webkit-scrollbar-thumb{
   justify-content: space-between;
   align-items:     center;
   gap: 5px;
+  color: var(--dark);
 }
 
 .blog-content .wrapper::before {
