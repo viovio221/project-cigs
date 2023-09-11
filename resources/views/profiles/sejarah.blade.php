@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-
+      </section>
 
       <section class="blog section">
         <div class="container">
