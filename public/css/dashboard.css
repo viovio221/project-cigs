@@ -579,7 +579,7 @@ body {
         .table-data td {
             display: block;
             width: 100%;
-            text-align: left;
+            text-align: justify;
             box-sizing: border-box;
             border: none;
             padding: 8px;
@@ -679,19 +679,39 @@ body {
 	}
 }
 .description {
-    max-width: 200px; /* Sesuaikan lebar maksimum sesuai kebutuhan Anda */
+    max-width: 200px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+}
+.community {
+    margin-left: 50px;
+    max-width:220px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+}
+.communitystructure{
+    max-width: 220px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+}
+.history {
+    margin-right: 50px;
+    max-width:220px;
     word-wrap: break-word;
     white-space: normal;
     text-align: justify;
 }
 .event{
-        max-width: 150px; /* Sesuaikan lebar maksimum sesuai kebutuhan Anda */
+        max-width: 220px;
         word-wrap: break-word;
         white-space: normal;
 
 }
 .message{
-    max-width: 150px; /* Sesuaikan lebar maksimum sesuai kebutuhan Anda */
+    max-width: 220px;
     word-wrap: break-word;
     white-space: normal;
 
