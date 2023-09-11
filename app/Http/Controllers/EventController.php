@@ -8,6 +8,7 @@ use App\Models\CommentPost;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Profile;
 
 class EventController extends Controller
 {
@@ -16,8 +17,10 @@ class EventController extends Controller
         $events = Event::all();
         $messages = Message::all();
         $comment_posts = CommentPost::all();
-        $news = News::all(); 
-        return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news'));
+        $news = News::all();
+        $profiles = Profile::all();
+
+        return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news', 'profiles'));
     }
 
 

@@ -162,32 +162,35 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($events as $event)
-                                <tr>
-                                    <td></td>
-                                    <td class="event">{{ $event->name }}</td>
-                                    <td>{{ $event->date }}</td>
-                                    <td>{{ $event->location }}</td>
-                                    <td class="description">{!! $event->description !!}</td>
-                                    <td>
-                                        <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Event"
-                                            width="100">
-                                    </td>
-                                    <td class="side-menu top">
-                                        <a href="{{ route('events.show', $event->id) }}" style="color: green"><i
-                                                class='bx bx-info-circle'></i></a>
-                                        <a href="{{ route('events.edit', ['event' => $event->id]) }}" method="post"
-                                            style="color: orange"><i class='bx bx-edit'></i></a>
-                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST"
-                                            style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="background: none; border: none; color:red"><i
-                                                    class='bx bx-trash'></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @if (isset($events))
+                                @foreach ($events as $event)
+                                    <tr>
+                                        <td></td>
+                                        <td class="event">{{ $event->name }}</td>
+                                        <td>{{ $event->date }}</td>
+                                        <td>{{ $event->location }}</td>
+                                        <td class="description">{!! $event->description !!}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/event_images/' . $event->image) }}"
+                                                alt="Event" width="100">
+                                        </td>
+                                        <td class="side-menu top">
+                                            <a href="{{ route('events.show', $event->id) }}" style="color: green"><i
+                                                    class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('events.edit', ['event' => $event->id]) }}"
+                                                method="post" style="color: orange"><i class='bx bx-edit'></i></a>
+                                            <form action="{{ route('events.destroy', $event->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -379,6 +382,67 @@
                         </tbody>
                     </table>
 
+                </div>
+            </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3><a href="#" class="btn btn-outline-primary">Setting</a>
+                        </h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>History</th>
+                                <th>Image</th>
+                                <th>Community Bio</th>
+                                <th>Community Structure</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($profiles))
+                                @foreach ($profiles as $no => $pf)
+                                    <tr>
+                                        <th>{{ $no + 1 }}</th>
+                                        <td class="history">{{ $pf->history }}</td>
+                                        <td>
+                                            <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
+                                                alt="profiles" width="100">
+                                        </td>
+                                        <td class="history">{{ $pf->community_bio }}</td>
+
+                                        <td class="communitystructure">{{ $pf->community_structure }}</td>
+                                        <td>
+                                            <a href="{{ route('profiles.edit', $pf->id) }} " style="color: orange"><i
+                                                    class='bx bx-edit'></i></a>
+                                            <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
