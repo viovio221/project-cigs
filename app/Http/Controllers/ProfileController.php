@@ -11,9 +11,18 @@ class ProfileController extends Controller
 {
     public function index()
     {
+
         $profiles = Profile::all();
 
         return view('profiles.index', compact('profiles'));
+
+
+        $profiles = Profile::all();
+
+        return view('dashboard.data_crud', compact('profiles'));
+
+        $dataCount = User::where('role', 'member')->count();
+
 
     }
 
@@ -93,7 +102,7 @@ class ProfileController extends Controller
 
         $profiles->update($validatedData);
 
-        return redirect()->route('profiles.index')->with('success', 'profile berhasil diperbarui.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'profile berhasil diperbarui.');
     }
 
 
