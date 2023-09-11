@@ -95,7 +95,7 @@
             <div class="wrap">
                 <div class="record-circle">
                     <h2 class="number" data-num="{{ $dataCount }}"> {{ $dataCount }} </h2>
-                    <h4 class="sub-title">members</h4>
+                    <h4 class="sub-title">MEMBERS</h4>
                 </div>
             </div>
         </div>
