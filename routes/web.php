@@ -72,13 +72,6 @@ Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 
 // ends
 
-// sejarah
-Route::get('/profiles/sejarah', function () {
-    $profiles = Profile::all();
-    return view('profiles.sejarah', compact('profiles'));
-})->name('sejarah');
-
-
 Route::resource('comment_posts', CommentPostController::class);
 
 // dahsboard
