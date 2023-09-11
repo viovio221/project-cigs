@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,9 +13,9 @@ class ProfileController extends Controller
     public function index()
     {
         $profiles = Profile::all();
+        $dataCount = User::where('role', 'member')->count();
 
-        return view('profiles.index', compact('profiles'));
-
+        return view('dashboard.data_crud', compact('profiles'));
     }
 
     public function create()
@@ -93,7 +94,7 @@ class ProfileController extends Controller
 
         $profiles->update($validatedData);
 
-        return redirect()->route('profiles.index')->with('success', 'profile berhasil diperbarui.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'profile berhasil diperbarui.');
     }
 
 
