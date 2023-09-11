@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
         $profiles = Profile::all();
         $dataCount = User::where('role', 'member')->count();
-        return view('dashboard.data_crud', compact('profiles', 'dataCount'));
+        return view('profile.sejarah', compact('profiles', 'dataCount'));
     }
 
     public function create()
