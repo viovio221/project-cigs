@@ -92,12 +92,12 @@
         </div>
 
         <div class="container">
-          <div class="wrap">
-            <div class="record-circle">
-              <h2 class="number" data-num="235">1000+ </h2>
-              <h4 class="sub-title">members</h4>
+            <div class="wrap">
+                <div class="record-circle">
+                    <h2 class="number" data-num="{{ $dataCount }}"> {{ $dataCount }} </h2>
+                    <h4 class="sub-title">members</h4>
+                </div>
             </div>
-          </div>
         </div>
       </section>
 
