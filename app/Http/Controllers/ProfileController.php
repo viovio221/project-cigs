@@ -12,16 +12,10 @@ class ProfileController extends Controller
     public function index()
     {
 
-        $profiles = Profile::all();
-
-        return view('profiles.index', compact('profiles'));
-
 
         $profiles = Profile::all();
-
-        return view('dashboard.data_crud', compact('profiles'));
-
         $dataCount = User::where('role', 'member')->count();
+        return view('dashboard.data_crud', compact('profiles'));
 
 
     }
