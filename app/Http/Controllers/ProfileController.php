@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,10 +12,14 @@ class ProfileController extends Controller
 {
     public function index()
     {
+
         $profiles = Profile::all();
 
         return view('dashboard.data_crud', compact('profiles'));
 
+        $dataCount = User::where('role', 'member')->count();
+
+        return view('profiles.sejarah', ['dataCount' => $dataCount]);
     }
 
     public function create()
