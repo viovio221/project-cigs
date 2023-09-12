@@ -15,7 +15,7 @@
 
     <div class="container mt-5">
         <h1>Edit Event</h1>
-        <form action="{{ route('profiles.update', ['profile' => $profiles->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('profiles.update', ['profiles' => $profiles->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT') <!-- Add this line to indicate the PUT request -->
             <!-- Form fields and submit button -->
