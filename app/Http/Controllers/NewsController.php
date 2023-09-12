@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Storage;
 class NewsController extends Controller
 {
     public function index()
-    {
-        $news = News::all();
-        return view('news.index', ['newslist' => $news]);
-    }
+{
+
+    $news = News::all();
+
+    return view('news.index', [ 'newslist' => $news]);
+}
 
     public function create()
     {
