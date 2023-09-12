@@ -134,6 +134,7 @@
             <br>
 
             <ul class="box-info1" style="align-content: center">
+                @if (isset($news))
         @foreach($news as $item)
         <li>
             <td>
@@ -147,6 +148,7 @@
             </span>
         </li>
         @endforeach
+        @endif
     </ul>
 
         </main>
