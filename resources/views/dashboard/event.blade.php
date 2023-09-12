@@ -128,9 +128,10 @@
             <i class='bx bxs-bell' ></i>
             <span class="num">8</span>
         </a>
-        <a href="#" class="profile">
+        <a href="{{ route('editprofile.show')}}" class="profile">
             <img src="{{ asset('images/devani.jpg') }}">
         </a>
+
     </nav>
     <!-- NAVBAR -->
 
