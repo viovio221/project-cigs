@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('username');
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->string('content');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
