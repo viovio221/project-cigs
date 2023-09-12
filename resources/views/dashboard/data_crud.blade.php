@@ -258,7 +258,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="{{ route('comment_posts.create') }}" class="btn btn-outline-primary">Add
+                        <h3><a href="#" class="btn btn-outline-primary">Add
                                 Comment Posts</a></h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -295,12 +295,19 @@
                                         </td>
                                         <td class="description">{{ $cp->content }}</td>
                                         <td>
-                                            <i class='bx bx-star'></i>
-                                            <i class='bx bx-star'></i>
-                                            <i class='bx bx-star'></i>
-                                            <i class='bx bx-star'></i>
-                                            <i class='bx bx-star'></i>
+                                            @php
+                                                $rating = $cp->rating;
+                                                $maxRating = 5; 
+                                            @endphp
+                                            @for ($i = 1; $i <= $maxRating; $i++)
+                                                @if ($i <= $rating)
+                                                    <i class='bx bxs-star'></i> <!-- Tampilkan bintang yang menyala -->
+                                                @else
+                                                    <i class='bx bx-star'></i> <!-- Tampilkan bintang yang tidak menyala -->
+                                                @endif
+                                            @endfor
                                         </td>
+
                                         <td class="side-menu top">
                                             <a href="{{ route('comment_posts.show', $cp->id) }}"
                                                 style="color: green"><i class='bx bx-info-circle'></i></a>
