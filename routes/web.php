@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\News;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Message;
@@ -99,15 +100,19 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 
 Route::resource('users', UserController::class);
 Route::resource('news', NewsController::class);
+Route::get('/dashboard/news', function () {
+    $latestNews = News::orderBy('created_at', 'desc', 'image')->first();
+    $news = News::all();
+
+    return view('dashboard.news', compact('latestNews', 'news'));
+})->name('news');
 
 Route::view('/dashboard/news', 'dashboard.news')->name('dashboard.news');
 Route::view('/dashboard/membersdata', 'dashboard.membersdata')->name('dashboard.membersdata');
 
 
-//event review
-Route::get('/review/event-review', function () {
-    return view('review.event_review');
-});
+Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
+Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
 
 // forgot password
 Route::get('/forgot-password', function(){
@@ -225,3 +230,4 @@ Route::get('/profiles/sejarah', function () {
 Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
 Route::put('/dashboard/profiles/{profiles}', [ProfileController::class, 'update'])->name('profiles.update');
 Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
+

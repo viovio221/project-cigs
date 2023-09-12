@@ -14,26 +14,44 @@ class CommentPostController extends Controller
         return view('dashboard.data_crud', ['comment_postlist' => $comment_post]);
     }
 
-    public function create()
+    public function review()
     {
         $event = Event::query()->whereDoesntHave('comment_posts')->get();
 
-        return view('dashboard.commentpost.create', ['event' => $event]);
+        return view('dashboard.review.event_review', ['event' => $event]);
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'username' => 'required',
-            'event_id' => 'required',
-            'content' => 'required|string',
+{
+    $validated = $request->validate([
+        'username' => 'required',
+        'event_id' => 'required|exists:events,id',
+        'content' => 'required|string',
+        'rating' => 'required|integer',
+    ], [
+        'username.required' => 'Username wajib diisi.',
+        'event_id.required' => 'Event ID wajib diisi.',
+        'event_id.exists' => 'Event ID tidak valid.',
+        'content.required' => 'Content wajib diisi.',
+        'content.string' => 'Content harus berupa teks.',
+        'rating.required' => 'Rating wajib diisi.',
+        'rating.integer' => 'Rating harus berupa angka.',
+    ]);
 
-        ]);
 
-        CommentPost::create($validated);
+    // Buat objek CommentPost dan isi kolom-kolomnya dengan data yang divalidasi
+    $commentPost = new CommentPost;
+    $commentPost->username = $validated['username'];
+    $commentPost->event_id = $validated['event_id'];
+    $commentPost->content = $validated['content'];
+    $commentPost->rating = $validated['rating'];
+    $commentPost->save(); // Simpan data ke dalam database
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$request->nama Berhasil ditambahkan!");
-    }
+    return redirect()->route('dashboard.data_crud')->with('success', "$validated[username] Berhasil ditambahkan!");
+}
+
+
+
     public function edit(CommentPost $comment_post)
     {
         $event = Event::all();
@@ -46,14 +64,13 @@ class CommentPostController extends Controller
             'username' => 'required',
             'event_id' => 'required',
             'content' => 'required|string',
-
+            'rating' => 'required|integer',
         ]);
 
         $comment_post->update($validated);
 
         return redirect()->route('dashboard.data_crud')->with('success', "$request->judul Berhasil diubah!");
     }
-
     public function destroy(CommentPost $comment_post)
     {
         $comment_post->delete();
