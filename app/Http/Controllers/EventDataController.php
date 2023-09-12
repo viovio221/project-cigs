@@ -14,11 +14,12 @@ class EventDataController extends Controller
 {
     public function index()
     {
+        $nonMemberCount = User::where('role', 'member')->count();
         $memberCount = User::where('role', 'non-member')->count();
 
         if (auth()->check()) {
             $eventData = EventData::all();
-            return view('dashboard.index', compact('eventData', 'memberCount'));
+            return view('dashboard.index', compact('eventData', 'memberCount', 'nonMemberCount'));
         } else {
             Alert::error('You dont have access to the dashboard page', 'Please log in first')->persistent('Close');
             return redirect('/login');
