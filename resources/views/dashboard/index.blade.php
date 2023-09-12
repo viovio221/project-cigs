@@ -134,17 +134,17 @@
 
             <ul class="box-info" style="align-content: center">
                 <li>
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-                        <h3>1020</h3>
-                        <p>New Request</p>
-                    </span>
-                </li>
-                <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
                         <h3>{{ $memberCount }}</h3>
-                        <p>Non Member Club</p>
+                        <p>Member Club</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bxs-calendar-check'></i>
+                    <span class="text">
+                        <h3>{{ $nonMemberCount }}</h3>
+                        <p>New Request</p>
                     </span>
                 </li>
             </ul>
