@@ -13,7 +13,7 @@ class NewsController extends Controller
 
     $news = News::all();
 
-    return view('news.index', [ 'newslist' => $news]);
+    return view('news.index', [ 'news' => $news]);
 }
 
     public function create()
