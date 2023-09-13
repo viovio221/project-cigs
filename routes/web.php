@@ -229,3 +229,9 @@ Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'ed
 Route::put('/dashboard/profiles/{profiles}', [ProfileController::class, 'update'])->name('profiles.update');
 Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
 
+//events
+Route::get('/', function () {
+
+    $news = News::all();
+    return view('landingpage.landing', compact('news'));
+})->name('news');
