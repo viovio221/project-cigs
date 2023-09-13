@@ -179,7 +179,6 @@
                                             <td class="side-menu top">
                                                 <a href="" style="color: green"><i
                                                         class='bx bx-info-circle'></i></a>
-                                                <a href="" style="color: orange"><i class='bx bx-edit'></i></a>
                                                 <form action="{{ route('event.destroy', $data->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf
