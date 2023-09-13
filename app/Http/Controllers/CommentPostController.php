@@ -51,10 +51,15 @@ class CommentPostController extends Controller
 }
 
 
+public function show($id)
+{
+    $comment_post  = CommentPost::findOrFail($id);
+    return view('dashboard.commentpost.show', compact('comment_post'));
+}
 
     public function edit(CommentPost $comment_post)
     {
-        $event = Event::all();
+        $event = CommentPost::all();
         return view('dashboard.commentpost.edit', compact('comment_post', 'event'));
     }
 
