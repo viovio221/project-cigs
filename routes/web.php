@@ -101,13 +101,11 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 Route::resource('users', UserController::class);
 Route::resource('news', NewsController::class);
 Route::get('/dashboard/news', function () {
-    $latestNews = News::orderBy('created_at', 'desc', 'image')->first();
     $news = News::all();
 
-    return view('dashboard.news', compact('latestNews', 'news'));
+    return view('dashboard.news', compact('news'));
 })->name('news');
 
-Route::view('/dashboard/news', 'dashboard.news')->name('dashboard.news');
 Route::view('/dashboard/membersdata', 'dashboard.membersdata')->name('dashboard.membersdata');
 
 
