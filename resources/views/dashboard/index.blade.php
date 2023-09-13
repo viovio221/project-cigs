@@ -177,8 +177,6 @@
                                             <td>{{ $data->event_name }}</td>
                                             <td><span class="status pending">{{ $data->status }}</span></td>
                                             <td class="side-menu top">
-                                                <a href="" style="color: green"><i
-                                                        class='bx bx-info-circle'></i></a>
                                                 <form action="{{ route('event.destroy', $data->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf
