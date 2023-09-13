@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;700&display=swap');
+
+
+.container {
+    max-width:1200px;
+    padding: 20px;
+    background: #F57500;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.title, .description, .image, .submit, .edit-title, .choose-file {
+    font-family: Inter;
+    font-weight: 100;
+    word-wrap: break-word;
+    padding: 10px 0;
+    text-align: left; 
+    color: white;
+}
+.title-news{
+    word-wrap: break-word;
+    padding: 10px 0;
+    font-family: Inter;
+    color: white;
+    font-size: 25px;
+}
+.title, .edit-title {
+    font-size: 20px;
+}
+
+.edit-title {
+    font-size: 20px;
+}
+
+.description, .image, .choose-file {
+    font-size: 20px;
+}
+
+.box {
+    position: relative;
+    background: #EBEBEB;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.box1, .box2, .box3, .box4, .box5 {
+    width: 100%;
+    text-align: left;
+}
+
+.image {
+    margin-top: 20px;
+}
+
+img {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%;
+}
+.btn {
+    background-color: white;
+    color: #F57500;
+}
+.form-group{
+    border-radius: 70px;
+    max-width: 1500px;
+}
