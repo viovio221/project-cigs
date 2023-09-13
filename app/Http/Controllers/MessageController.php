@@ -43,6 +43,11 @@ class MessageController extends Controller
         $user = User::all();
         return view('dashboard.message.edit', compact('message', 'user'));
     }
+    public function show($id)
+    {
+        $mg  = Message::findOrFail($id);
+        return view('dashboard.message.show', compact('mg'));
+    }
 
     public function update(Request $request, Message $message)
     {
