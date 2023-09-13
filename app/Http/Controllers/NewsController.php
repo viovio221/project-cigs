@@ -39,6 +39,11 @@ class NewsController extends Controller
 
         return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil ditambahkan.');
     }
+    public function show($id)
+{
+    $nw  = News::findOrFail($id);
+    return view('dashboard.news.show', compact('nw'));
+}
     public function edit($id)
     {
         $news = News::findOrFail($id);
