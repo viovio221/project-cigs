@@ -110,7 +110,7 @@
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show')}}" class="profile">
+            <a href="{{ route('editprofile.show') }}" class="profile">
                 <img src="{{ asset('images/devani.jpg') }}">
             </a>
 
@@ -297,13 +297,14 @@
                                         <td>
                                             @php
                                                 $rating = $cp->rating;
-                                                $maxRating = 5; 
+                                                $maxRating = 5;
                                             @endphp
                                             @for ($i = 1; $i <= $maxRating; $i++)
                                                 @if ($i <= $rating)
                                                     <i class='bx bxs-star'></i> <!-- Tampilkan bintang yang menyala -->
                                                 @else
-                                                    <i class='bx bx-star'></i> <!-- Tampilkan bintang yang tidak menyala -->
+                                                    <i class='bx bx-star'></i>
+                                                    <!-- Tampilkan bintang yang tidak menyala -->
                                                 @endif
                                             @endfor
                                         </td>
@@ -355,6 +356,7 @@
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Image</th>
+                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -369,6 +371,7 @@
                                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news"
                                                 width="100">
                                         </td>
+                                        <td>{{ $nw->created_at }}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('news.show', $nw->id) }}" style="color: green"><i
                                                     class='bx bx-info-circle'></i></a>
