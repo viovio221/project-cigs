@@ -28,7 +28,10 @@
         <div class="icon">
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-moon" id="theme-btn"></div>
-            <div class="fas fa-user" id="login-btn"></div>
+            <a href="{{ route('sejarah') }}">
+                <div class="fas fa-user" id="login-btn"></div>
+            </a>
+
             <div class="fas fa-bars" id="menu-btn"></div>
         </div>
 
@@ -90,15 +93,6 @@
     </section>
     {{-- end beranda --}}
 
-    <section class="form-container" data-aos="zoom-in">
-        <form action="">
-            <div class="inputBox">
-                <span>Tujuan Riding</span>
-                <input type="text" placeholder="cari tempat">
-            </div>
-            <input type="submit" value="Daftar Sekarang" class="btn">
-        </form>
-    </section>
 
     {{-- packages --}}
     <section class="packages" id="kegiatan">
