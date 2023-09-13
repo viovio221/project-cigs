@@ -218,59 +218,31 @@
     </section>
     {{-- ends --}}
 
-    {{-- blogs --}}
-    <section class="blogs" id="others">
-        <h1 class="heading"><span>Berita</span> Terbaru</h1>
-        <div class="box-container" data-aos="fade-up">
+   {{-- blogs --}}
+   <section class="blogs" id="others">
+    <h1 class="heading"><span>Berita</span> Terbaru</h1>
+    <div class="box-container" data-aos="fade-up">
 
+        @foreach ($news as $nw)
             <div class="box" data-aos="zoom">
                 <div class="image">
-                    <img src="{{ asset('images/info.png') }}" alt="">
+                    <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="Events" loading="lazy">
                 </div>
                 <div class="content">
-                    <h3>Berkendara dengan Semangat: Wayang Riders Mengajak Para Pengendara Motor untuk Merayakan
-                        Persaudaraan</h3>
+                    <h3>{!! $nw->title !!}</h3>
                     <a href="#" class="btn">Pelajari Selengkapnya</a>
                     <div class="icons">
                         <a href="#"><i class="fas fa-user"></i> by admin</a>
-                        <a href="#"><i class="fas fa-calendar"></i> 1 Januari 2020</a>
+                        <a href="#"><i class="fas fa-calendar"></i> {{ $nw->created_at }}</a>
                     </div>
                 </div>
-            </div> <!-- Tutup box kedua -->
+            </div>
+        @endforeach
 
-            <div class="box" data-aos="zoom">
-                <div class="image">
-                    <img src="{{ asset('images/info.png') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3>Wayang Riders Resmi Diluncurkan: Komunitas Motor Baru yang Menginspirasi Semangat Persaudaraan
-                    </h3>
-                    <a href="#" class="btn">Pelajari Selengkapnya</a>
-                    <div class="icons">
-                        <a href="#"><i class="fas fa-user"></i> by admin</a>
-                        <a href="#"><i class="fas fa-calendar"></i> 1 Januari 2020</a>
-                    </div>
-                </div>
-            </div> <!-- Tutup box ketiga -->
-            <div class="box" data-aos="zoom">
-                <div class="image">
-                    <img src="{{ asset('images/info.png') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3>Wayang Riders: Merayakan Semangat Petualangan dan Persaudaraan dalam Komunitas Motor Terbaru
-                    </h3>
-                    <a href="#" class="btn">Pelajari Selengkapnya</a>
-                    <div class="icons">
-                        <a href="#"><i class="fas fa-user"></i> by admin</a>
-                        <a href="#"><i class="fas fa-calendar"></i> 1 Januari 2020</a>
-                    </div>
-                </div>
-            </div> <!-- Tutup box ketiga -->
-        </div>
-    </section>
+    </div>
+</section>
 
-    {{-- ends --}}
-
+{{-- ends --}}
     {{-- footer --}}
     <section class="footer">
         <div class="box-container">
