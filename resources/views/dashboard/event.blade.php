@@ -142,512 +142,63 @@
                     <h2 class="h2 section-title" data-aos="fade-up">Exciting Events Adventures</h2>
                     <p class="section-text" data-aos="fade-up">
                         We proudly invite you to explore a series of exciting events we have prepared. From epic road adventures to quality gatherings with fellow motor enthusiasts, we have everything you're looking for. Get ready to feel the thrill of freedom around every corner and celebrate the spirit of community with us. Let's create unforgettable memories together at every event we organize. Don't miss this opportunity to be part of an extraordinary motorbike journey!</p>
-                    <ul class="package-list" data-aos="fade-up">
-                        <li>
-                            <div class="package-card" data-aos="fade-up">
-                                <figure class="card-banner">
-                                    @foreach ($events as $item)
-                                    <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1" loading="lazy">
-                                @endforeach
-                                </figure>
-                                <div class="card-content" data-aos="fade-up">
-                                    <h3 class="h3 card-title"> @foreach ($events as $item)
-                                        {!! $item->name !!}
-                                    @endforeach</h3>
-                                    <p class="card-text">
-                                        Lokasi : @foreach ($events as $item)
-                                        {!! $item->location !!}
-                                    @endforeach                                    </p>
-                                    <p class="card-text">
-                                        @foreach ($events as $item)
-                                        {!! $item->date !!}
-                                    @endforeach                                    </p>
-                                    <ul class="card-meta-list">
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="time"></ion-icon>
-                                                <p class="text">46396</p>
+                        <ul class="package-list" data-aos="fade-up">
+                            @foreach ($events as $item)
+                            <li>
+                                <div class="package-card" data-aos="fade-up">
+                                    <figure class="card-banner">
+                                        <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1" loading="lazy">
+                                    </figure>
+                                    <div class="card-content" data-aos="fade-up">
+                                        <h3 class="h3 card-title">{!! $item->name !!}</h3>
+                                        <p class="card-text">
+                                            {{-- Lokasi : {!! $item->location !!} --}}
+                                        </p>
+                                        <p class="card-text">
+                                            {{-- {!! $item->date !!} --}}
+                                        </p>
+                                        <ul class="card-meta-list">
+                                            <li class="card-meta-item">
+                                                <div class="meta-box">
+                                                    <ion-icon name="time"></ion-icon>
+                                                    <p class="text">{{ $item->date }}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li class="card-meta-list">
+                                                <div class="meta-box">
+                                                    <ion-icon name="people"></ion-icon>
+                                                    <p class="text">{{ $item->location }}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li class="card-meta-list">
+                                                <div class="meta-box">
+                                                    <ion-icon name="location"></ion-icon>
+                                                    <p class="text">{{ $item->location }}</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-price">
+                                        <div class="wrapper">
+                                            <p class="reviews">(11 Ulasan)</p>
+                                            <div class="card-rating">
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
+                                                <ion-icon name="star"></ion-icon>
                                             </div>
-                                        </li>
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="people"></ion-icon>
-                                                <p class="text">Pangandaran</p>
-                                            </div>
-                                        </li>
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="location"></ion-icon>
-                                                <p class="text">Indonesia</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-price">
-                                    <div class="wrapper">
-                                        <p class="reviews">(11 Ulasan)</p>
-                                        <div class="card-rating">
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-
                                         </div>
+                                        <button class="btn btn-secondary"><a href="/dashboard/eventdesc1" style="color: white;">Lihat Deskripsi</a></button>
                                     </div>
-                                    <button class="btn btn-secondary"><a href="/dashboard/eventdesc1" style="color: white;">Lihat Deskripsi</a></button>
                                 </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="package-card" data-aos="fade-up">
-                                <figure class="card-banner">
-                                    <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                                </figure>
-                                <div class="card-content" data-aos="fade-up">
-                                    <h3 class="h3 card-title">Off-Road Exploration: Menggali Petualangan di Medan
-                                        Terjal</h3>
-                                    <p class="card-text">
-                                        Jl.
-                                    </p>
-                                    <p class="card-text">
-                                        <input type="date" class="date">
-                                    </p>
-                                    <ul class="card-meta-list">
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="time"></ion-icon>
-                                                <p class="text">46396</p>
-                                            </div>
-                                        </li>
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="people"></ion-icon>
-                                                <p class="text">Pangandaran</p>
-                                            </div>
-                                        </li>
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="location"></ion-icon>
-                                                <p class="text">Indonesia</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-price">
-                                    <div class="wrapper">
-                                        <p class="reviews">(1.010 Ulasan)</p>
-                                        <div class="card-rating">
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></a></button>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="package-card" data-aos="fade-up">
-                                <figure class="card-banner">
-                                    <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                                </figure>
-                                <div class="card-content" data-aos="fade-up">
-                                    <h3 class="h3 card-title">Sunset Ride: Menyaksikan Keindahan Matahari Terbenam
-                                        Bersama-sama</h3>
-                                    <p class="card-text">
-                                        Jl.
-                                    </p>
-                                    <p class="card-text">
-                                        <input type="date" class="date">
-                                    </p>
-                                    <ul class="card-meta-list">
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="time"></ion-icon>
-                                                <p class="text">46396</p>
-                                            </div>
-                                        </li>
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="people"></ion-icon>
-                                                <p class="text">Pangandaran</p>
-                                            </div>
-                                        </li>
-                                        <li class="card-meta-item">
-                                            <div class="meta-box">
-                                                <ion-icon name="location"></ion-icon>
-                                                <p class="text">Indonesia</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-price">
-                                    <div class="wrapper">
-                                        <p class="reviews">(16 Ulasan)</p>
-                                        <div class="card-rating">
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                            <ion-icon name="star"></ion-icon>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Track Day Experience: Merasakan Kecepatan di Sirkuit Terkenal
-                            </h3>
-                            <p class="card-text">
-                                Jl.
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46396</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(2.184 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul> <br> <br>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Heritage Ride: Menjelajahi Warisan Budaya dengan Motor Klasik
-                            </h3>
-                            <p class="card-text">
-                                Jl.
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46396</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(1.720 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul> <br><br>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Charity Ride: Berkendara untuk Kebaikan dan Memberi Kembali</h3>
-                            <p class="card-text">
-                                Jl.
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46396</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(2.713 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul> <br><br>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Weekend Getaway: Melepaskan Diri dari Kehidupan Sehari-hari</h3>
-                            <p class="card-text">
-                                Jl.
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46596</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(4.062 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul> <br><br>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Mystery Ride: Mengikuti Rute Tak Terduga ke Destinasi Menarik
-                            </h3>
-                            <p class="card-text">
-                                Jl.
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46396</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(1.604 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul> <br><br>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Scenic Sunday: Menikmati Pemandangan di Hari Minggu</h3>
-                            <p class="card-text">
-                                Jl.
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46396</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(6.358 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul> <br><br>
-                    <div class="package-card" data-aos="fade-up">
-                        <figure class="card-banner">
-                            <img src="{{ asset('images/event2.png') }}" alt="The Allure Villas Pangandaran"
-                                loading="lazy">
-                        </figure>
-                        <div class="card-content" data-aos="fade-up">
-                            <h3 class="h3 card-title">Women Riders Meetup: Menghubungkan Para Pengendara Wanita</h3>
-                            <p class="card-text">
-                                jl
-                            </p>
-                            <p class="card-text">
-                                <input type="date" class="date">
-                            </p>
-                            <ul class="card-meta-list">
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="time"></ion-icon>
-                                        <p class="text">46396</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="people"></ion-icon>
-                                        <p class="text">Pangandaran</p>
-                                    </div>
-                                </li>
-                                <li class="card-meta-item">
-                                    <div class="meta-box">
-                                        <ion-icon name="location"></ion-icon>
-                                        <p class="text">Indonesia</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-price">
-                            <div class="wrapper">
-                                <p class="reviews">(228 Ulasan)</p>
-                                <div class="card-rating">
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                    <ion-icon name="star"></ion-icon>
-                                </div>
-                            </div>
-                            <button class="btn btn-secondary"><a href="" style="color: white;">Lihat Deskripsi</a></button>
-                        </div>
-                    </div>
-                    </li>
-                    </ul>
+                            </li>
+                            @endforeach
+                        </ul> <br><br>
                     <a href="#top" class="go-top" data-go-top>
                         <ion-icon name="chevron-up-outline"></ion-icon>
                     </a>
