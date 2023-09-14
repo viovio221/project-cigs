@@ -139,7 +139,7 @@
 
             <section class="package" id="package" data-aos="fade-up">
                 <div class="container">
-                    <h2 class="h2 section-title" data-aos="fade-up">Exciting Events Adventures</h2>
+                    <h2 class="h2 section-title" data-aos="fade-up">Exciting Events Adventures!</h2>
                     <p class="section-text" data-aos="fade-up">
                         We proudly invite you to explore a series of exciting events we have prepared. From epic road adventures to quality gatherings with fellow motor enthusiasts, we have everything you're looking for. Get ready to feel the thrill of freedom around every corner and celebrate the spirit of community with us. Let's create unforgettable memories together at every event we organize. Don't miss this opportunity to be part of an extraordinary motorbike journey!</p>
                         <ul class="package-list" data-aos="fade-up">
