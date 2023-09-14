@@ -58,12 +58,12 @@
                         </div>
                     </div>
                     <div class="input-container">
+                        <label for="username">Username</label>
                         <input type="text" name="username" class="input" value="{{ auth()->user()->name }}" readonly />
-                        <label for="">Username</label>
-                        <span>Username</span>
                     </div>
 
                     <div class="input-container">
+                        <span>Event Name</span>
                         <label for="event_id">Event Name</label>
                         <select name="event_id" class="input">
                             <option value="">Pilih</option>
@@ -75,41 +75,18 @@
                             @endif
                         </select>
                     </div>
+
                     <div class="input-container">
+                        <span>Content</span>
                         <label for="content">Content</label>
                         <textarea name="content" class="input"></textarea>
-                    </div>
-
-                    <div class="input-container textarea">
-                        <textarea name="description" class="input"></textarea>
-                        <label for="">Description</label>
-                        <span>Description</span>
                     </div>
                     <input type="submit" value="Submit" class="btn" />
                 </form>
             </div>
         </div>
     </div>
-    <script>
-        const inputs = document.querySelectorAll(".input");
-
-        function focusFunc() {
-            let parent = this.parentNode;
-            parent.classList.add("focus");
-        }
-
-        function blurFunc() {
-            let parent = this.parentNode;
-            if (this.value == "") {
-                parent.classList.remove("focus");
-            }
-        }
-
-        inputs.forEach((input) => {
-            input.addEventListener("focus", focusFunc);
-            input.addEventListener("blur", blurFunc);
-        });
-    </script>
+  
 <script>
     const allStar = document.querySelectorAll('.rating .star')
     const ratingValue = document.querySelector('.rating input')
