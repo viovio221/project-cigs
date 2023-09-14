@@ -130,7 +130,7 @@
                             <a class="active" href="/">Landing Page</a>
                         </li>
                     </ul>
-                    <div class="container">
+                    <div class="container-member">
                         <div class="content-container"></div>
                         <div class="bar" id="bar1"></div>
                         <div class="bar" id="bar2"></div>
