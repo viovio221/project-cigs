@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Message;
 use App\Models\Profile;
+use App\Models\CommentPost;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Database\Seeders\EventsSeeder;
@@ -232,6 +233,7 @@ Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'dest
 //events
 Route::get('/', function () {
 
+    $comment_post = CommentPost::all();
     $news = News::all();
-    return view('landingpage.landing', compact('news'));
+    return view('landingpage.landing', compact('news', 'comment_post'));
 })->name('news');
