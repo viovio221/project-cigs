@@ -319,6 +319,7 @@ body {
 	font-family: var(--poppins);
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
+    background-color: #FFDAB8;
 }
 #content main .head-title {
 	display: flex;
@@ -360,6 +361,9 @@ body {
 	align-items: center;
 	grid-gap: 10px;
 	font-weight: 500;
+}
+#content main .table-data .head .btn{
+	color: var(--light);
 }
 
 
@@ -452,10 +456,12 @@ body {
 	margin-top: 24px;
 	width: 100%;
 	color: var(--dark);
+    color: #fff;
+
 }
 #content main .table-data > div {
 	border-radius: 20px;
-	background: var(--light);
+	background: var(--orange);
 	padding: 24px;
 	overflow-x: auto;
 }
@@ -486,7 +492,7 @@ body {
 	padding-bottom: 12px;
 	font-size: 13px;
 	text-align: left;
-	border-bottom: 1px solid var(--grey);
+	border-bottom: 1px solid var(--light);
 }
 #content main .table-data .order table td {
 	padding: 16px 0;
@@ -504,7 +510,7 @@ body {
     object-fit: cover; /* Pertahankan rasio aspek dan isi seluruh kontainer */
 }
 #content main .table-data .order table tbody tr:hover {
-	background: var(--grey);
+	background: var(--orange);
 }
 #content main .table-data .order table tr td .status {
 	font-size: 10px;
@@ -562,6 +568,7 @@ body {
 /* table data */
     /* CSS untuk tampilan desktop */
     .table-data table {
+
         width: 100%;
         font-size: small;
         border-collapse: collapse;
