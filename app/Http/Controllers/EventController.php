@@ -23,7 +23,6 @@ class EventController extends Controller
         return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news', 'profiles'));
     }
 
-
     public function create()
     {
         return view('dashboard.events.create');
@@ -49,28 +48,8 @@ class EventController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil ditambahkan.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully added.');
     }
-
-    // public function store(Request $request)
-    // {
-    //     // Lakukan validasi data yang diinputkan
-    //     $validatedData = $request->validate([
-    //         'name' => 'required',
-    //         'date' => 'required',
-    //         'location' => 'required',
-    //         'description' => 'required',
-    //         'image'=>'required|image|mimes:png,jpg,jpeg',
-    //         'link'=>'required',
-
-    //         // tambahkan validasi lainnya sesuai kebutuhan
-    //     ]);
-
-    //     // Simpan data ke database
-    //     Event::create($validatedData);
-
-    //     return redirect()->route('events.index')->with('success', 'Event berhasil ditambahkan.');
-    // }
 
     public function show($id)
     {
@@ -83,7 +62,6 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         return view('dashboard.events.edit', compact('event'));
     }
-
 
     public function update(Request $request, $id)
     {
@@ -106,15 +84,14 @@ class EventController extends Controller
 
         $event->update($validatedData);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil diperbarui.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully updated.');
     }
-
 
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event berhasil dihapus.');
+        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully deleted.');
     }
 }
