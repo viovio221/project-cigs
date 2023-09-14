@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
 
     <title>Members Data</title>
 </head>
@@ -130,6 +130,22 @@
                             <a class="active" href="/">Landing Page</a>
                         </li>
                     </ul>
+                    <div class="container">
+                        <div class="content-container"></div>
+                        <div class="bar" id="bar1"></div>
+                        <div class="bar" id="bar2"></div>
+                        <div class="button" id="button1"></div>
+                        <div class="button" id="button2"></div>
+                        <div class="title">DATA ANGGOTA</div>
+                        <div class="label" id="label1">No</div>
+                        <div class="label" id="label2">Name</div>
+                        <div class="label" id="label3">Email</div>
+                        <div class="label" id="label4">Status</div>
+                        <div class="label" id="label5">Create At</div>
+                        <div class="label" id="label6">Action</div>
+                        <div class="edit-button">Edit</div>
+                        <div class="delete-button">Delete</div>
+                    </div>
                 </div>
             </div>
 
