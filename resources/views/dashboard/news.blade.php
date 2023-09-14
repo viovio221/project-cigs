@@ -136,17 +136,16 @@
             <ul class="box-info1" style="align-content: center">
                 {{-- @if (isset($news)) --}}
                 @foreach ($news as $nw)
-                <li>
-                    <td>
-                        <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news"
-                        width="100">
-                    </td>
-                    <span class="text1">
-                        <h3>{{ $nw->title }}</h3>
-                        <p>{{ $nw->description }}</p>
-                        <button class="btn1 btn-primary">Read More</button></p>
-                    </span>
-                </li>
+                    <li class="news-item">
+                        <td>
+                            <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news" width="100">
+                        </td>
+                        <span>
+                            <h3 class="title-news">{{ $nw->title }}</h3>
+                            <p>{{ $nw->description }}</p>
+                            <button class="btn3 btn-primary">Read More</button></p>
+                        </span>
+                    </li>
                 @endforeach
                 {{-- @endif --}}
             </ul>

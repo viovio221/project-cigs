@@ -153,11 +153,11 @@
                         <thead>
                             <tr>
                                 <td></td>
+                                <th>Image</th>
                                 <th>Name Event</th>
                                 <th>Date Event</th>
                                 <th>Location</th>
                                 <th>Description</th>
-                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -166,19 +166,20 @@
                                 @foreach ($events as $event)
                                     <tr>
                                         <td></td>
-                                        <td class="event">{{ $event->name }}</td>
-                                        <td>{{ $event->date }}</td>
-                                        <td>{{ $event->location }}</td>
-                                        <td class="description">{!! $event->description !!}</td>
                                         <td>
                                             <img src="{{ asset('storage/event_images/' . $event->image) }}"
                                                 alt="Event" width="100">
                                         </td>
+                                        <td class="event">{{ $event->name }}</td>
+                                        <td>{{ $event->date }}</td>
+                                        <td>{{ $event->location }}</td>
+                                        <td class="description">{!! $event->description !!}</td>
+
                                         <td class="side-menu top">
                                             <a href="{{ route('events.show', $event->id) }}" style="color: green"><i
                                                     class='bx bx-info-circle'></i></a>
                                             <a href="{{ route('events.edit', ['event' => $event->id]) }}"
-                                                method="post" style="color: orange"><i class='bx bx-edit'></i></a>
+                                                method="post" style="color: blue"><i class='bx bx-edit'></i></a>
                                             <form action="{{ route('events.destroy', $event->id) }}" method="POST"
                                                 style="display: inline-block;">
                                                 @csrf
@@ -237,7 +238,7 @@
                                             <a href="{{ route('message.show', $mg->id) }}" style="color: green"><i
                                                     class='bx bx-info-circle'></i></a>
                                             <a href="{{ route('message.edit', ['message' => $mg->id]) }}"
-                                                method="post" style="color: orange"><i class='bx bx-edit'></i></a>
+                                                method="post" style="color: blue"><i class='bx bx-edit'></i></a>
                                             <form action="{{ route('message.destroy', $mg->id) }}" method="POST"
                                                 style="display: inline-block;">
                                                 @csrf
@@ -313,7 +314,7 @@
                                             <a href="{{ route('comment_posts.show', $cp->id) }}"
                                                 style="color: green"><i class='bx bx-info-circle'></i></a>
                                             <a href="{{ route('comment_posts.edit', $cp->id) }}" method="post"
-                                                style="color: orange"><i class='bx bx-edit'></i></a>
+                                                style="color: blue"><i class='bx bx-edit'></i></a>
                                             <form action="{{ route('comment_posts.destroy', $cp->id) }}"
                                                 method="POST" style="display: inline-block;">
                                                 @csrf
@@ -353,9 +354,9 @@
                         <thead>
                             <tr>
                                 <td></td>
+                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Description</th>
-                                <th>Image</th>
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
@@ -365,18 +366,18 @@
                                 @foreach ($news as $nw)
                                     <tr>
                                         <td></td>
-                                        <td  class="event">{{ $nw->title }}</td>
-                                        <td class="description">{!! $nw->description !!}</td>
                                         <td>
                                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news"
                                                 width="100">
                                         </td>
+                                        <td  class="event">{{ $nw->title }}</td>
+                                        <td class="description">{!! $nw->description !!}</td>
                                         <td>{{ $nw->created_at }}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('news.show', $nw->id) }}" style="color: green"><i
                                                     class='bx bx-info-circle'></i></a>
                                             <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
-                                                style="color: orange"><i class='bx bx-edit'></i></a>
+                                                style="color:blue"><i class='bx bx-edit'></i></a>
                                             <form action="{{ route('news.destroy', $nw->id) }}" method="POST"
                                                 style="display: inline-block;">
                                                 @csrf
@@ -416,8 +417,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>History</th>
                                 <th>Image</th>
+                                <th>History</th>
                                 <th>Community Bio</th>
                                 <th>Community Structure</th>
                                 <th>Action</th>
@@ -428,16 +429,17 @@
                                 @foreach ($profiles as $no => $pf)
                                     <tr>
                                         <th>{{ $no + 1 }}</th>
-                                        <td class="history">{{ $pf->history }}</td>
                                         <td>
                                             <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
                                                 alt="profiles" width="100">
                                         </td>
+                                        <td class="history">{{ $pf->history }}</td>
+
                                         <td class="history">{{ $pf->community_bio }}</td>
 
                                         <td class="communitystructure">{{ $pf->community_structure }}</td>
                                         <td>
-                                            <a href="{{ route('profiles.edit', $pf->id) }} " style="color: orange"><i
+                                            <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
                                                     class='bx bx-edit'></i></a>
                                             <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
                                                 style="display: inline-block;">
