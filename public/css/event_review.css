@@ -124,10 +124,6 @@ textarea.input {
 }
 
 .input-container label {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
   padding: 0 0.4rem;
   color:var(--bg-color-1);
   font-size: 0.9rem;
@@ -139,7 +135,6 @@ textarea.input {
 
 .input-container.textarea label {
   top: 1rem;
-  transform: translateY(0);
 }
 
 .btn {
