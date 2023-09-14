@@ -7,7 +7,6 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class MessageController extends Controller
 {
     public function index()
@@ -20,7 +19,7 @@ class MessageController extends Controller
     public function create()
     {
         $user = User::query()->whereDoesntHave('messages')->get();
-        return view('dashboard.message.create', ['users' => $user]); // Menggunakan 'users' sebagai key
+        return view('dashboard.message.create', ['users' => $user]); // Using 'users' as the key
     }
 
     public function store(Request $request)
@@ -30,12 +29,12 @@ class MessageController extends Controller
             'message' => 'required',
         ]);
 
-        // Menggunakan (int) untuk mengonversi 'user_id' menjadi integer
+        // Using (int) to convert 'user_id' to an integer
         $validated['user_id'] = (int)$validated['user_id'];
 
         Message::create($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$request->nama Berhasil ditambahkan!");
+        return redirect()->route('dashboard.data_crud')->with('success', "Message successfully added!");
     }
 
     public function edit(Message $message)
@@ -43,6 +42,7 @@ class MessageController extends Controller
         $user = User::all();
         return view('dashboard.message.edit', compact('message', 'user'));
     }
+
     public function show($id)
     {
         $mg  = Message::findOrFail($id);
@@ -58,14 +58,13 @@ class MessageController extends Controller
 
         $message->update($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$request->name Berhasil diperbarui!");
+        return redirect()->route('dashboard.data_crud')->with('success', "Message successfully updated!");
     }
 
     public function destroy(Message $message)
     {
         $message->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$message->name Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('success', "Message successfully deleted!");
     }
-
 }

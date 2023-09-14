@@ -106,7 +106,7 @@
             </form>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
+            <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
@@ -365,7 +365,7 @@
                                 @foreach ($news as $nw)
                                     <tr>
                                         <td></td>
-                                        <td>{{ $nw->title }}</td>
+                                        <td  class="event">{{ $nw->title }}</td>
                                         <td class="description">{!! $nw->description !!}</td>
                                         <td>
                                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news"
