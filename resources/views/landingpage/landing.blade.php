@@ -37,7 +37,6 @@
 
         <nav class="navbar">
             <a href="{{ route('event') }}">Ride Adventure</a>
-            <a href="{{ route('sejarah') }}">profil</a>
             <a href="/login">Login</a>
             <a href="/register">Register</a>
 
@@ -145,51 +144,24 @@
         </h1>
         <div class="swiper-container review-slider" data-aos="zoom-in">
             <div class="swiper-wrapper">
-                <div class="swiper-slide slide">
-                    <img src="{{ asset('images/profile-icon-png-912.png') }}" alt="">
-                    <h3>Sinta Adelia</h3>
-                    <p>Bergabung dengan Wayang Riders adalah keputusan terbaik yang pernah saya buat! Komunitas yang
-                        luar biasa, dengan acara-acara seru dan teman-teman baru yang ramah. Saya merasa seperti menjadi
-                        bagian dari keluarga motor yang solid.</p>
-                    <div class="stars">
+        @foreach ($comment_post as $cp)
+        <div class="swiper-slide slide">
+            <img src="{{ asset('images/profile-icon-png-912.png') }}" alt="">
+            <h3>{{ $cp->username }}</h3>
+            <p>{{ $cp->content }}</p>
+            <div class="stars">
+                @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= $cp->rating)
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                    @else
                         <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <img src="{{ asset('images/profile-icon-png-912.png') }}" alt="">
-                    <h3>Sinta Adelia</h3>
-                    <p>Akses VIP ke acara motor terbaik membuat pengalaman saya jauh lebih istimewa. Saya merasa
-                        dihargai dan mendapatkan kesempatan untuk terlibat dalam acara yang biasanya tidak mudah
-                        diakses. Wayang Riders sungguh mengerti bagaimana memberikan nilai tambah kepada anggotanya.</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <img src="{{ asset('images/profile-icon-png-912.png') }}" alt="">
-                    <h3>Sinta Adelia</h3>
-                    <p>Komunitas online Wayang Riders adalah tempat yang sempurna untuk berbagi pengalaman, tips, dan
-                        cerita dengan sesama pengendara motor. Diskusi tematik yang dikelola dengan baik membantu saya
-                        memperluas pengetahuan saya tentang dunia motor dan perjalanan</p>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
+                    @endif
+                @endfor
+            </div>
+        </div>
+    @endforeach
+</div>
+</div>
 
             </div>
         </div>
