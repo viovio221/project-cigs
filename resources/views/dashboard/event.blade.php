@@ -124,7 +124,7 @@
         </form>
         <input type="checkbox" id="switch-mode" hidden style="display: none;">
         <label for="switch-mode" class="switch-mode"></label>
-        <a href="#" class="notification">
+        <a href="/dashboard/review" class="notification">
             <i class='bx bxs-bell' ></i>
             <span class="num">8</span>
         </a>
