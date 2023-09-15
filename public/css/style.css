@@ -413,11 +413,16 @@ section{
    color: var(--orange);
 }
 
-.packages .box-container .box .content{
+.packages .box-container .box .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    text-align: center;
     padding: 1.5rem;
     padding-top: 0;
-
 }
+
 .packages .box-container .box .content .price{
     font-weight: 600;
     color: var(--text-color-1);
@@ -672,9 +677,15 @@ line-height: 1.8;
 transform: scale(1.2);
 }
 
-.blogs .box-container .box .content{
+.blogs .box-container .box .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    text-align: center;
     padding-top: 1rem;
 }
+
 .blogs .box-container .box .content h3{
     font-size: 2rem;
     color: var(--text-color-1);
@@ -713,6 +724,7 @@ transform: scale(1.2);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)) ;
     gap: 1.5rem;
+    padding-left: 250px;
 
 }
 .footer .box-container .box h3{
@@ -747,7 +759,16 @@ transform: scale(1.2);
 }
 
 /* ends */
+@media screen and (max-width: 768px) {
+    .footer .box-container {
+        display: block; /* Mengubah tata letak menjadi satu kolom */
+        padding-left: 0; /* Menghapus padding kiri */
+    }
 
+    .footer .box-container .box {
+        width: 100%; /* Mengisi lebar penuh */
+    }
+}
 
 
 /* media
