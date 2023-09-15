@@ -117,47 +117,58 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-        <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Members Data</h1>
-                    <ul class="breadcrumb">
-                        <li>
-                            <a href="/dashboard">Dashboard</a>
-                        </li>
-                        <li><i class='bx bx-chevron-right'></i></li>
-                        <li>
-                            <a class="active" href="/">Landing Page</a>
-                        </li>
-                    </ul>
-                    <div class="container-member">
-                        <div class="content-container"></div>
-                        <div class="bar" id="bar1"></div>
-                        <div class="bar" id="bar2"></div>
-                        <div class="button" id="button1"></div>
-                        <div class="button" id="button2"></div>
-                        <div class="title">DATA ANGGOTA</div>
-                        <div class="label" id="label1">No</div>
-                        <div class="label" id="label2">Name</div>
-                        <div class="label" id="label3">Email</div>
-                        <div class="label" id="label4">Status</div>
-                        <div class="label" id="label5">Create At</div>
-                        <div class="label" id="label6">Action</div>
-                        <div class="edit-button">Edit</div>
-                        <div class="delete-button">Delete</div>
+                <main>
+                    <div class="head-title">
+                        <div class="left">
+                            <h1>Members Data</h1>
+                            <ul class="breadcrumb">
+                                <li>
+                                    <a href="/dashboard">Dashboard</a>
+                                </li>
+                                <li><i class='bx bx-chevron-right'></i></li>
+                                <li>
+                                    <a class="active" href="/">Landing Page</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-        </main>
-        <!-- MAIN -->
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- CONTENT -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-    @include('sweetalert::alert')
-    <!-- CONTENT -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-</body>
-
-</html>
+                    <div class="container-member">
+                        <div class="content-container">
+                            <div class="title">Members Data</div>
+                            <div class="bar" id="bar1"></div>
+                            <div class="bar" id="bar2"></div>
+                            @if (isset($users))
+                            <table class="user-list">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <th>Create At</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $usr)
+                                    <tr>
+                                        <td>{{ $usr->name  }}</td>
+                                        <td>{{ $usr->email }}</td>
+                                        <td>{{ $usr->role }}</td>
+                                        <td>{{ $usr->created_at }}</td>
+                                        <td>
+                                            <div class="edit-button">Edit</div>
+                                            <div class="delete-button">Delete</div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                        </div>
+                    </div>
+                </main>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="{{ asset('js/dashboard.js') }}"></script>
+            @include('sweetalert::alert')
+        </body>
+        </html>
