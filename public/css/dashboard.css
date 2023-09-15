@@ -572,49 +572,40 @@ body {
 /* Style for the container */
 .container-member {
     width: 1055px;
-    height: 1150px;
+    height: auto; /* Ubah ketinggian ke otomatis agar dapat menyesuaikan kontennya */
     position: relative;
-    background: #ffffff;
+    margin: 20px auto; /* Tengahkan container */
+    padding: 20px; /* Berikan ruang di sekitar container */
+    border-radius: 10px;
+}
+
+/* Style for the container */
+.container-member {
+    width: 1055px;
+    height: auto; /* Gunakan "auto" agar tinggi container disesuaikan dengan isi */
+    position: relative;
 }
 
 /* Style for the content container */
 .content-container {
     width: 950px;
-    height: 1000px;
-    left:40px;
-    top: 80px;
-    position: absolute;
-    background: white;
+    padding: 20px; /* Tambahkan ruang padding untuk estetika */
+    margin: 0 auto; /* Pusatkan container horizontal */
+    background: #ffffff;
     border-radius: 25px;
 }
 
 /* Styles for the bars */
 .bar {
-    width: 870px;
+    width: 100%;
     height: 5px;
-    position: absolute;
     background: #FFA902;
 }
-
-#bar1 {
-    left: 80px;
-    top: 120px;
-}
-
-#bar2 {
-    left: 80px;
-    top: 150px;
-}
-
-/* Styles for the buttons */
 
 /* Styles for the titles and labels */
 .title,
 .label {
-    position: absolute;
     text-align: center;
-    left: 50px;
-    top: 200px;
     font-size: 36px;
     font-family: Inter;
     font-weight: 600;
@@ -623,73 +614,56 @@ body {
 }
 
 .title {
-    left: 350px;
-    top: 6px;
+    margin: 20px 0; /* Atur margin atas dan bawah untuk memberi ruang antara judul dan konten */
 }
 
 .label {
     font-size: 19px;
 }
 
-#label1 {
-    left: 100px;
-    top: 125px;
-}
-
-#label2 {
-    left: 200px;
-    top: 125px;
-}
-
-#label3 {
-    left: 340px;
-    top: 125px;
-}
-
-#label4 {
-    left: 480px;
-    top: 125px;
-}
-
-#label5 {
-    left: 630px;
-    top: 125px;
-}
-
-#label6 {
-    left: 830px;
-    top: 125px;
-}
-
 /* Styles for the edit and delete buttons */
 .edit-button,
 .delete-button {
-    position: absolute;
     text-align: center;
     font-size: 24px;
     font-family: Inter;
     font-weight: 800;
     word-wrap: break-word;
+    margin-top: 10px; /* Atur jarak atas untuk tombol Edit dan Delete */
 }
 
 .edit-button {
     width: 70px;
-    left: 800px;
-    top: 160px;
-    font-size: 1.1rem;
     color: white;
     background: #FFA902;
     border-radius: 5px;
+    display: inline-block; /* Agar tombol tidak terlalu lebar */
+    margin-right: 10px; /* Atur jarak antara tombol Edit dan Delete */
+    cursor: pointer; /* Tambahkan tanda kursor pointer untuk tombol */
 }
 
 .delete-button {
     width: 70px;
-    left: 880px;
-    top: 160px;
-    font-size: 1.1rem;
     color: white;
     background: red;
     border-radius: 5px;
+    display: inline-block; /* Agar tombol tidak terlalu lebar */
+    cursor: pointer; /* Tambahkan tanda kursor pointer untuk tombol */
+}
+
+/* Styles for user-list and user-info */
+.user-list {
+    margin-top: 20px; /* Atur jarak atas untuk user-list */
+}
+
+.user-info {
+    margin-top: 10px; /* Atur jarak atas untuk user-info */
+}
+/* Styles for user-label and user-value */
+.user-label,
+.user-value {
+    display: inline-block; /* Mengubah elemen menjadi inline-block */
+    margin-right: 20px; /* Menambahkan margin kanan untuk memberi jarak antar elemen */
 }
 
 /* CONTENT */
