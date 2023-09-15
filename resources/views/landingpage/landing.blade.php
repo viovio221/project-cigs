@@ -20,10 +20,14 @@
     {{-- header section mulai --}}
     <header class="header">
         <a href="#" class="logo">
-            <img src="{{ asset('images/logo_wr.png') }}" alt="Logo">
-            </a>
+            @foreach ($profile as $item)
+            <td>
+                <img src="{{ asset('storage/profile_images/' . $item->image) }}" alt="Logo">
+            </td>
+            @endforeach
+        </a>
         <form action="" class="search-form">
-            <input type="search" name="" placeholder="cari di sini..." id="searchBox">
+            <input type="search" name="" placeholder="search in here..." id="searchBox">
             <label for="searchBox"><i class="fas fa-search"></i></label>
         </form>
         <div class="icon">
@@ -79,8 +83,8 @@
 
             <div class="btn-group" data-aos="zoom-in">
 
-                <button class="btn btn-secondary" data-aos="zoom-in"><a href="https://goo.gl/maps/GhRswbtz19c7jGoV6"
-                        style="color: #FFF;">Jelajahi Sekarang!</a></button>
+                <button class="btn btn-secondary" data-aos="zoom-in"><a href="#kegiatan"
+                        style="color: #FFF;">Explore Now!</a></button>
             </div>
             <div class="slider-navigation">
                 <div class="nav-btn active"></div>
@@ -98,42 +102,20 @@
     <section class="packages" id="kegiatan">
         <h1 class="heading">Ride <span>Adventures</span></h1>
         <div class="box-container">
-            <div class="box" data-aos="fade-up">
-                <div class="image">
-                    <img src="{{ asset('images/event1.png') }}" alt="">
+            @foreach ($events as $item)
+                <div class="box" data-aos="fade-up">
+                    <div class="image">
+                        <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1">
+                    </div>
+                    <div class="content">
+                        <p><b>{!! $item->name !!}</b></p>
+                        <a href="{{ route('event') }}" class="btn">See More Info</a>
+                    </div>
                 </div>
-                <div class="content">
-                    <p>Bergabunglah bersama kami dalam perjalanan mendebarkan saat kami memulai acara Ride Adventures
-                        pada tanggal 20 Agustus 2023! Siapkan diri Anda untuk menjelajahi rute-rute indah dan menjalin
-                        persahabatan baru.</p>
-                    <a href="{{ route('event') }}" class="btn">Lihat Info Lebih Lanjut</a>
-                </div>
-            </div>
-            <div class="box" data-aos="fade-up">
-                <div class="image">
-                    <img src="{{ asset('images/event2.png') }}" alt="">
-                </div>
-                <div class="content">
-                    <p>Rasakan kebebasan jalan terbuka sekali lagi pada tanggal 5 September 2023. Acara Ride Adventures
-                        kami adalah kesempatan Anda untuk melepaskan rutinitas dan merembrak kegembiraan bermotor.</p>
-                    <a href="{{ route('event') }}" class="btn">Lihat Info Lebih Lanjut</a>
-
-                </div>
-            </div>
-            <div class="box" data-aos="fade-up">
-                <div class="image">
-                    <img src="{{ asset('images/event4.png') }}" alt="">
-                </div>
-                <div class="content">
-                    <p>Tanggal 12 Oktober 2023, adalah kesempatan Anda untuk bergabung dengan rekan-rekan pengendara
-                        dalam perjalanan epik selama acara Ride Adventures kami. Biarkan angin membimbing Anda saat kita
-                        menjelajahi jalan-jalan bersama.</p>
-                    <a href="{{ route('event') }}" class="btn">Lihat Info Lebih Lanjut</a>
-
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
+
     {{-- end --}}
 
 
@@ -152,17 +134,17 @@
                         <p>{{ $cp->content }}</p>
                         <div class="stars">
                             @php
-                            $rating = $cp->rating;
-                            $maxRating = 5;
-                        @endphp
-                        @for ($i = 1; $i <= $maxRating; $i++)
-                            @if ($i <= $rating)
-                                <i class='bx bxs-star'></i> <!-- Tampilkan bintang yang menyala -->
-                            @else
-                                <i class='bx bx-star'></i>
-                                <!-- Tampilkan bintang yang tidak menyala -->
-                            @endif
-                        @endfor
+                                $rating = $cp->rating;
+                                $maxRating = 5;
+                            @endphp
+                            @for ($i = 1; $i <= $maxRating; $i++)
+                                @if ($i <= $rating)
+                                    <i class='bx bxs-star'></i> <!-- Tampilkan bintang yang menyala -->
+                                @else
+                                    <i class='bx bx-star'></i>
+                                    <!-- Tampilkan bintang yang tidak menyala -->
+                                @endif
+                            @endfor
                         </div>
                     </div>
                 @endforeach
@@ -174,31 +156,9 @@
     </section>
     {{-- ends --}}
 
-    {{-- start --}}
-    <section class="contact" id="contact">
-        {{-- <h1 class="heading"><span>Hubungi</span> Kami</h1>
-        @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif --}}
-        <h1 class="heading"><span>Kritik</span> Saran</h1>
-        <div class="box-container" data-aos="fade-up"></div>
-        <form action="/submit-message" method="post" data-aos="zoom"
-            onsubmit="return confirm('Terima kasih, pesan anda berhasil dikirim!')">
-            @csrf
-            <div class="inputBox">
-                <input type="text" name="name" placeholder="Masukan Nama Anda" data-aos="fade-up">
-            </div>
-            <textarea name="message" placeholder="Kirimkan Pesanmu" cols="30" rows="10" data-aos="fade-up"></textarea>
-            <input type="submit" value="send message" class="btn">
-        </form>
-    </section>
-    {{-- ends --}}
-
     {{-- blogs --}}
     <section class="blogs" id="others">
-        <h1 class="heading"><span>Berita</span> Terbaru</h1>
+        <h1 class="heading"><span>News</span></h1>
         <div class="box-container" data-aos="fade-up">
 
             @foreach ($news as $nw)
@@ -208,7 +168,7 @@
                     </div>
                     <div class="content">
                         <h3>{!! $nw->title !!}</h3>
-                        <a href="#" class="btn">Pelajari Selengkapnya</a>
+                        <a href="#" class="btn">Learn More</a>
                         <div class="icons">
                             <a href="#"><i class="fas fa-user"></i> by admin</a>
                             <a href="#"><i class="fas fa-calendar"></i> {{ $nw->created_at }}</a>
@@ -237,8 +197,8 @@
 
             </div>
             <div class="box">
-                <h3>Ikuti Kami</h3>
-                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 89687792980/a>
+                <h3>Follow Us</h3>
+                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 89687792980</a>
                     <a href="#" style="text-transform: none;"><i
                             class="fa-brands fa-instagram"></i>wayangriders_id</a>
                     <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>wayang
@@ -249,7 +209,7 @@
                             class="fa-regular fa-envelope"></i></i>wayangriders@gmail.com</a>
             </div>
         </div>
-        <div class="credit">Dibuat Oleh : Komunitas Wayang Riders <span>| all rights reserved</span></div>
+        <div class="credit">Created by: Wayang Riders Community <span>| all rights reserved</span></div>
     </section>
     {{-- ends --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
