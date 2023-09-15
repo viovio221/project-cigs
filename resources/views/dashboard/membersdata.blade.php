@@ -134,31 +134,25 @@
                     </div>
                     <div class="container-member">
                         <div class="content-container">
-                            <div class="title">Members Data</div>
-                            <div class="bar" id="bar1"></div>
-                            <div class="bar" id="bar2"></div>
                             @if (isset($users))
                             <table class="user-list">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Status</th>
-                                        <th>Create At</th>
-                                        <th>Action</th>
+                                        <th class="bar">No</th>
+                                        <th class="bar">Name</th>
+                                        <th class="bar">Email</th>
+                                        <th class="bar">Status</th>
+                                        <th class="bar">Create At</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($users as $usr)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $usr->name  }}</td>
                                         <td>{{ $usr->email }}</td>
                                         <td>{{ $usr->role }}</td>
                                         <td>{{ $usr->created_at }}</td>
-                                        <td>
-                                            <div class="edit-button">Edit</div>
-                                            <div class="delete-button">Delete</div>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

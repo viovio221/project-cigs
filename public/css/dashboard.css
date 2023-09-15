@@ -561,15 +561,6 @@ body {
 	margin-bottom: 0;
 }
 
-/* MAIN */
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Style for the container */
 .container-member {
     width: 1055px;
     height: auto; /* Ubah ketinggian ke otomatis agar dapat menyesuaikan kontennya */
@@ -577,32 +568,30 @@ body {
     margin: 20px auto; /* Tengahkan container */
     padding: 20px; /* Berikan ruang di sekitar container */
     border-radius: 10px;
+
 }
 
-/* Style for the container */
 .container-member {
     width: 1055px;
     height: auto; /* Gunakan "auto" agar tinggi container disesuaikan dengan isi */
     position: relative;
 }
 
-/* Style for the content container */
 .content-container {
     width: 950px;
     padding: 20px; /* Tambahkan ruang padding untuk estetika */
     margin: 0 auto; /* Pusatkan container horizontal */
     background: #ffffff;
     border-radius: 25px;
+    background:  var(--light);
 }
 
-/* Styles for the bars */
 .bar {
     width: 100%;
     height: 5px;
     background: #FFA902;
 }
 
-/* Styles for the titles and labels */
 .title,
 .label {
     text-align: center;
@@ -620,50 +609,67 @@ body {
 .label {
     font-size: 19px;
 }
-
-/* Styles for the edit and delete buttons */
-.edit-button,
-.delete-button {
-    text-align: center;
-    font-size: 24px;
-    font-family: Inter;
-    font-weight: 800;
-    word-wrap: break-word;
-    margin-top: 10px; /* Atur jarak atas untuk tombol Edit dan Delete */
-}
-
-.edit-button {
-    width: 70px;
-    color: white;
-    background: #FFA902;
-    border-radius: 5px;
-    display: inline-block; /* Agar tombol tidak terlalu lebar */
-    margin-right: 10px; /* Atur jarak antara tombol Edit dan Delete */
-    cursor: pointer; /* Tambahkan tanda kursor pointer untuk tombol */
-}
-
-.delete-button {
-    width: 70px;
-    color: white;
-    background: red;
-    border-radius: 5px;
-    display: inline-block; /* Agar tombol tidak terlalu lebar */
-    cursor: pointer; /* Tambahkan tanda kursor pointer untuk tombol */
-}
-
 /* Styles for user-list and user-info */
 .user-list {
-    margin-top: 20px; /* Atur jarak atas untuk user-list */
+    margin-top: 20px;
+    color: var(--dark); /* Atur jarak atas untuk user-list */
 }
 
 .user-info {
-    margin-top: 10px; /* Atur jarak atas untuk user-info */
+    margin-top: 10px;
 }
-/* Styles for user-label and user-value */
 .user-label,
 .user-value {
     display: inline-block; /* Mengubah elemen menjadi inline-block */
     margin-right: 20px; /* Menambahkan margin kanan untuk memberi jarak antar elemen */
+}
+.user-list {
+    width: 100%; /* Menyebarkan tabel di seluruh lebar */
+    border-collapse: collapse; /* Menggabungkan garis tepi sel */
+}
+
+.user-list th,
+.user-list td {
+    text-align: center; /* Teks di tengah secara horizontal */
+    vertical-align: middle; /* Teks di tengah secara vertikal */
+    padding: 8px; /* Atur sesuai kebutuhan Anda */
+}
+
+/* Mengatur lebar kolom "No" */
+.user-list th:first-child, /* Kolom "No" di thead */
+.user-list td:first-child { /* Kolom "No" di tbody */
+    width: 50px; /* Atur lebar kolom "No" sesuai kebutuhan Anda */
+    max-width: 50px; /* Maksimum lebar kolom "No" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis; /* Tambahkan tanda elipsis jika terlalu panjang */
+}
+.user-list th:nth-child(2), /* Kolom "Nama" di thead */
+.user-list td:nth-child(2) { /* Kolom "Nama" di tbody */
+    width: 500px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
+    max-width: 500px; /* Maksimum lebar kolom "Nama" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis;
+    text-align: justify; /* Tambahkan tanda elipsis jika terlalu panjang */
+}
+.user-list th:nth-child(3), /* Kolom "Nama" di thead */
+.user-list td:nth-child(3) { /* Kolom "Nama" di tbody */
+    width: 400px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
+    max-width: 400px; /* Maksimum lebar kolom "Nama" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis;
+    text-align: justify;/* Tambahkan tanda elipsis jika terlalu panjang */
+}
+.user-list th:nth-child(4), /* Kolom "Nama" di thead */
+.user-list td:nth-child(4) { /* Kolom "Nama" di tbody */
+    width: 150px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
+    max-width: 150px; /* Maksimum lebar kolom "Nama" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis;
+    text-align: justify;/* Tambahkan tanda elipsis jika terlalu panjang */
 }
 
 /* CONTENT */
