@@ -12,12 +12,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(300)->create([
+        \App\Models\User::factory(10)->create([
             'phone_number' => '08123456789', // Ganti dengan nomor telepon yang sesuai
             'role' => 'member', // Menambahkan kolom "role" dengan nilai "member"
         ]);
 
-        \App\Models\User::factory(300)->create([
+        \App\Models\User::factory(10)->create([
             'phone_number' => '34567899', // Ganti dengan nomor telepon yang sesuai
             'role' => 'non-member', // Menambahkan kolom "role" dengan nilai "member"
         ]);
