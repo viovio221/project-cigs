@@ -107,8 +107,11 @@ Route::get('/dashboard/news', function () {
     return view('dashboard.news', compact('news'));
 })->name('news');
 
-Route::view('/dashboard/membersdata', 'dashboard.membersdata')->name('dashboard.membersdata');
+Route::get('/dashboard/membersdata', function () {
+    $users = User::all();
 
+    return view('dashboard.membersdata', compact('users'));
+})->name('users');
 
 Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
 Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
@@ -232,8 +235,9 @@ Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'dest
 
 //events
 Route::get('/', function () {
-
+    $profile = Profile::all();
+    $events = Event::all();
     $comment_post = CommentPost::all();
     $news = News::all();
-    return view('landingpage.landing', compact('news', 'comment_post'));
+    return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile'));
 })->name('news');
