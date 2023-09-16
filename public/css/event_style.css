@@ -15,6 +15,8 @@
     --bg-color-1:#fff ;
     --bg-color-2:#eee ;
     --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
+    --light-orange: #FFE0D3;
+
     /**
      * typography
      */
@@ -61,7 +63,6 @@
     body {
       --light: #0C0C1E;
       --grey: #060714;
-      --dark: #FBFBFB; /* Warna teks terang */
     }
   }
   /*-----------------------------------*\
@@ -107,7 +108,6 @@
   }
 
   body {
-    background: var(--bg-color-2);
     overflow-x: hidden;
   }
   body.dark {
@@ -209,7 +209,7 @@ html::-webkit-scrollbar-thumb{
     color: var(--dark);
   }
 
-  .section-title { margin-bottom: 5px; color: var(--dark); }
+  .section-title { margin-bottom: 5px; color: var(--orange); }
 
   .section-text {
     text-align: justify;
@@ -314,6 +314,8 @@ html::-webkit-scrollbar-thumb{
   .package { padding-block: var(--section-padding);
     margin-top: 10px;
     font-family: var(--ff-poppins);
+    color: var(--light);
+
 }
 
   .package-list { margin-bottom: 40px;  }
@@ -321,35 +323,36 @@ html::-webkit-scrollbar-thumb{
   .package-list > li:not(:last-child) { margin-bottom: 30px; }
 
   .package-card {
+    background-color: #FFDAB8;
     overflow: hidden;
     border-radius: 15px;
-    color: var(--dark);
+    color: var(--light);
   }
 
-  .package-card .card-banner { height: 250px;     color: var(--dark);
-  }
+
 
   .package-card .card-banner img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    padding: 25px 20px;
     object-fit: cover;
     transition: var(--default-transition);
-    color: var(--dark);
+    color: var(--light);
 
   }
   .package-card:hover .card-banner img { transform: scale(1.1); }
 
-  .package-card .card-content { padding: 30px 20px; font-family: var(--ff-poppins);     color: var(--dark);
+  .package-card .card-content { padding: 30px 20px; font-family: var(--ff-poppins);       ;
+    ;
   }
 
-  .package-card .card-title { margin-bottom: 15px; font-family: var(--ff-poppins);     color: var(--dark);
+  .package-card .card-title { margin-bottom: 15px; font-family: var(--ff-poppins);
   }
 
   .package-card .card-text {
     font-family: var(--ff-poppins);
     line-height: 1.6;
     margin-bottom: 20px;
-    color: var(--dark);
 
   }
 
@@ -358,7 +361,6 @@ html::-webkit-scrollbar-thumb{
     line-height: 1.6;
     margin-bottom: 20px;
     color: var(--text-color-2);
-    color: var(--dark);
   }
 
   .card-meta-list {
@@ -368,10 +370,8 @@ html::-webkit-scrollbar-thumb{
     justify-content: center;
     align-items: center;
     padding: 8px;
-    box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.15);
-    border-radius: 10px;
+    border-radius: 5px;
     font-family: var(--ff-poppins);
-    color: var(--dark);
 
   }
 
@@ -402,7 +402,6 @@ html::-webkit-scrollbar-thumb{
     font-size: 13px;
   }
   .meta-box > p {
-    color: var(--dark);
     font-size: 13px;
   }
 

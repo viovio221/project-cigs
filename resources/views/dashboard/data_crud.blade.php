@@ -152,7 +152,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <td></td>
+                                <th>No</th>
                                 <th>Image</th>
                                 <th>Name Event</th>
                                 <th>Date Event</th>
@@ -165,16 +165,15 @@
                             @if (isset($events))
                                 @foreach ($events as $event)
                                     <tr>
-                                        <td></td>
+                                        <th>{{ $loop->iteration }}</th>
                                         <td>
                                             <img src="{{ asset('storage/event_images/' . $event->image) }}"
                                                 alt="Event" width="100">
                                         </td>
                                         <td class="event">{{ $event->name }}</td>
                                         <td>{{ $event->date }}</td>
-                                        <td>{{ $event->location }}</td>
-                                        <td class="description">{!! $event->description !!}</td>
-
+                                        <td  class="location">{{ $event->location }}</td>
+                                        <td class="description-event">{!! $event->description !!}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('events.show', $event->id) }}" style="color: green"><i
                                                     class='bx bx-info-circle'></i></a>
@@ -217,7 +216,6 @@
                     <table>
                         <thead>
                             <tr>
-                                <td></td>
                                 <th scope="col">No</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Message</th>
@@ -229,7 +227,6 @@
                             @if (isset($messages))
                                 @foreach ($messages as $mg)
                                     <tr>
-                                        <td></td>
                                         <th>{{ $loop->iteration }}</th>
                                         <td>{{ $mg->user->name }}</td>
                                         <td class="message">{{ $mg->message }}</td>
@@ -276,12 +273,11 @@
                     <table>
                         <thead>
                             <tr>
-                                <td></td>
                                 <th scope="col">No</th>
                                 <th scope="col">Username</th>
                                 <th scope="col">Event</th>
                                 <th scope="col">Content</th>
-                                <td>Rating</td>
+                                <th scope="col">Rating</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -289,7 +285,6 @@
                             @if (isset($comment_posts))
                                 @foreach ($comment_posts as $cp)
                                     <tr>
-                                        <td></td>
                                         <th>{{ $loop->iteration }}</th>
                                         <td>{{ $cp->username }}</td>
                                         <td class="event">{{ $cp->event ? $cp->event->name : 'Event Not Found' }}
@@ -353,7 +348,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <td></td>
+                                <th>No</th>
                                 <th>Image</th>
                                 <th>Title</th>
                                 <th>Description</th>
@@ -365,7 +360,7 @@
                             @if (isset($news))
                                 @foreach ($news as $nw)
                                     <tr>
-                                        <td></td>
+                                        <th>{{ $loop->iteration }}</th>
                                         <td>
                                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news"
                                                 width="100">
@@ -436,17 +431,24 @@
                                             <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
                                                 alt="profiles" width="100">
                                         </td>
+                                        <td class="description">{{ $pf->history }}</td>
+
                                         <td>
                                             <video src="{{ asset('storage/profile_videos/' . $pf->video) }}" width="100" autoplay muted loop controls></video>
                                         </td>
 
                                         <td class="history">{{ $pf->history }}</td>
 
-                                        <td class="history">{{ $pf->community_bio }}</td>
+
+                                        <td class="description">{{ $pf->community_bio }}</td>
+
+
+                                        <td class="description">{{ $pf->community_structure }}</td>
 
                                         <td class="communitystructure">{{ $pf->community_structure }}</td>
                                         <td class="slogan">{{ $pf->slogan }}</td>
                                         <td class="communityname">{{ $pf->community_name }}</td>
+
                                         <td>
                                             <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
                                                     class='bx bx-edit'></i></a>

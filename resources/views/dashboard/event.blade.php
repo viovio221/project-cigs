@@ -161,14 +161,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <ul>
-                                            <li class="card-meta-list">
-                                                <div class="meta-box">
-                                                    <ion-icon name="people"></ion-icon>
-                                                    <p class="text">{{ $item->location }}</p>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                       <br>
                                         <ul>
                                             <li class="card-meta-list">
                                                 <div class="meta-box">
