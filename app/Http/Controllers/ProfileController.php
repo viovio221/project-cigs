@@ -66,22 +66,33 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'history' => 'required',
-            'community_bio' => 'required',
-            'image' => 'nullable|image',
-            'community_structure' => 'required',
-        ]);
+{
+    $validatedData = $request->validate([
+        'history' => 'required',
+        'community_bio' => 'required',
+        'image' => 'nullable|image',
+        'video' => 'nullable|mimetypes:video/*', // Perbaikan di sini
+        'community_structure' => 'required',
+        'slogan' => 'required',
+        'community_name' => 'required',
+    ]);
 
-        $profiles = Profile::findOrFail($id);
+    $profiles = Profile::findOrFail($id);
 
+    if ($request->hasFile('image') || $request->hasFile('video')) {
+        // Hapus file lama jika ada
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete('profile_images/' . $profiles->image);
-
             $newImagePath = $request->file('image')->store('public/profile_images');
             $validatedData['image'] = basename($newImagePath);
         }
+
+        if ($request->hasFile('video')) {
+            Storage::disk('public')->delete('profile_videos/' . $profiles->video);
+            $newVideoPath = $request->file('video')->store('public/profile_videos');
+            $validatedData['video'] = basename($newVideoPath);
+        }
+    }
 
         $profiles->update($validatedData);
 
