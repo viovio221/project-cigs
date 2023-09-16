@@ -411,14 +411,13 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Image</th>
                                 <th>Video</th>
                                 <th>History</th>
-                                <th>Community Bio</th>
-                                <th>Community Structure</th>
+                                <th>C. Bio</th>
+                                <th>C. Structure</th>
                                 <th>Slogan</th>
-                                <th>Community Name</th>
+                                <th>Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -426,28 +425,19 @@
                             @if (isset($profiles))
                                 @foreach ($profiles as $no => $pf)
                                     <tr>
-                                        <th>{{ $no + 1 }}</th>
                                         <td>
                                             <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
                                                 alt="profiles" width="100">
                                         </td>
-                                        <td class="description">{{ $pf->history }}</td>
 
                                         <td>
                                             <video src="{{ asset('storage/profile_videos/' . $pf->video) }}" width="100" autoplay muted loop controls></video>
                                         </td>
-
-                                        <td class="history">{{ $pf->history }}</td>
-
-
+                                        <td class="description">{{ $pf->history }}</td>
                                         <td class="description">{{ $pf->community_bio }}</td>
-
-
                                         <td class="description">{{ $pf->community_structure }}</td>
-
-                                        <td class="communitystructure">{{ $pf->community_structure }}</td>
-                                        <td class="slogan">{{ $pf->slogan }}</td>
-                                        <td class="communityname">{{ $pf->community_name }}</td>
+                                        <td class="descriptio">{{ $pf->slogan }}</td>
+                                        <td class="description">{{ $pf->community_name }}</td>
 
                                         <td>
                                             <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i

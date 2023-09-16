@@ -241,3 +241,5 @@ Route::get('/', function () {
     $news = News::all();
     return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile'));
 })->name('news');
+
+route::resource('kritiksaran', KritikController::class);
