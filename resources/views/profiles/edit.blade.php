@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Event</title>
+    <title>Edit Setting</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -60,6 +60,33 @@
                 <label class="font-weight-bold">Community Structure</label>
                 <textarea class="form-control @error('community_structure') is-invalid @enderror" name="community_structure" rows="5">{{ $profiles->community_structure }}</textarea>
                 @error('community_structure')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Slogan</label>
+                <textarea class="form-control @error('slogan') is-invalid @enderror" name="slogan" rows="5">{{ $profiles->slogan }}</textarea>
+                @error('slogan')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Community Name</label>
+                <textarea class="form-control @error('community_name') is-invalid @enderror" name="community_name" rows="5">{{ $profiles->community_name }}</textarea>
+                @error('community_name')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="video" class="form-label">Video</label>
+                <input type="file" name="video" class="form-control @error('video') is-invalid @enderror">
+                @error('video')
                     <div class="alert alert-danger mt-2">
                         {{ $message }}
                     </div>

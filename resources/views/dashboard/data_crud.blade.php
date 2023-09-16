@@ -418,9 +418,12 @@
                             <tr>
                                 <th>No</th>
                                 <th>Image</th>
+                                <th>Video</th>
                                 <th>History</th>
                                 <th>Community Bio</th>
                                 <th>Community Structure</th>
+                                <th>Slogan</th>
+                                <th>Community Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -433,11 +436,17 @@
                                             <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
                                                 alt="profiles" width="100">
                                         </td>
+                                        <td>
+                                            <video src="{{ asset('storage/profile_videos/' . $pf->video) }}" width="100" autoplay muted loop controls></video>
+                                        </td>
+
                                         <td class="history">{{ $pf->history }}</td>
 
                                         <td class="history">{{ $pf->community_bio }}</td>
 
                                         <td class="communitystructure">{{ $pf->community_structure }}</td>
+                                        <td class="slogan">{{ $pf->slogan }}</td>
+                                        <td class="communityname">{{ $pf->community_name }}</td>
                                         <td>
                                             <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
                                                     class='bx bx-edit'></i></a>
