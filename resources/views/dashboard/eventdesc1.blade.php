@@ -149,51 +149,34 @@
 
                     <div class="center-image">
                         <div class="blog-banner-box">
-                            @foreach ($events as $item)
-                                <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events Image"
-                                    width="100">
-                            @endforeach
+                            <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events Image" width="100">
                         </div>
                     </div>
 
                     <div class="blog-content">
-
                         <h3 class="blog-title">
                             <a href="#">
-                                @foreach ($events as $item)
-                                    {!! $item->name !!}
-                                @endforeach
+                                {{ $event->name }}
                             </a>
                         </h3>
                         <div class="blog-text">
-                            @foreach ($events as $item)
-                                {!! $item->description !!}
-                            @endforeach
-
-                            <p>Lokasi : @foreach ($events as $item)
-                                    {!! $item->location !!}
-                                @endforeach
-                            </p>
+                            {!! $event->description !!}
+                            <p>Lokasi: {{ $event->location }}</p>
                         </div>
                         <div class="wrapper">
-
                             <div class="blog-publish-date">
                                 <i class='bx bx-calendar'></i>
                                 <a href="#">
-                                    @foreach ($events as $item)
-                                        {!! $item->date !!}
-                                    @endforeach
+                                    {{ $event->date }}
                                 </a>
                             </div>
 
                             <!-- ... -->
-                            @foreach ($events as $event)
-                                <button class="btn btn-primary" data-event-id="{{ $event->id }}"
-                                    data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
-                                    <p class="btn-text"><a href="#" style="color: white;">Daftar Acara</a></p>
-                                    <span class="square"></span>
-                                </button>
-                            @endforeach
+                            <button class="btn btn-primary" data-event-id="{{ $event->id }}"
+                                data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
+                                <p class="btn-text"><a href="#" style="color: white;">Daftar Acara</a></p>
+                                <span class="square"></span>
+                            </button>
 
 
 

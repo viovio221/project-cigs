@@ -184,7 +184,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                       <br>
+                                        <br>
                                         <ul>
                                             <li class="card-meta-list">
                                                 <div class="meta-box">
@@ -205,8 +205,9 @@
                                                 <ion-icon name="star"></ion-icon>
                                             </div>
                                         </div>
-                                        <button class="btn btn-secondary"><a href="/dashboard/eventdesc1"
-                                                style="color: white;">Lihat Deskripsi</a></button>
+                                        <button class="btn btn-secondary">
+                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">Lihat Deskripsi</a>
+                                        </button>
                                     </div>
                                 </div>
                             </li>

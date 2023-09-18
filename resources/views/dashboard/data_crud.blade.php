@@ -436,8 +436,8 @@
                                         <td class="description">{{ $pf->history }}</td>
                                         <td class="description">{{ $pf->community_bio }}</td>
                                         <td class="description">{{ $pf->community_structure }}</td>
-                                        <td class="descriptio">{{ $pf->slogan }}</td>
-                                        <td class="description">{{ $pf->community_name }}</td>
+                                        <td class="name">{{ $pf->slogan }}</td>
+                                        <td class="name">{{ $pf->community_name }}</td>
 
                                         <td>
                                             <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
