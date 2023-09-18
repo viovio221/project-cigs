@@ -183,7 +183,9 @@ route::resource('editprofile', EditProfileController::class);
 Route::get('/dashboard/eventdesc1', function () {
     return view('dashboard.eventdesc1');
 });
-
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
+Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
+Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show');
 
 //eventdesc
 Route::get('/dashboard/eventdesc1', function () {
