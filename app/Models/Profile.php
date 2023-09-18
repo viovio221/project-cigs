@@ -12,6 +12,9 @@ class Profile extends Model
         'history',
         'community_bio',
         'image',
+        'video',
         'community_structure',
+        'slogan',
+        'community_name',
     ];
 }
