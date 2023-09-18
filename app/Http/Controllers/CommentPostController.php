@@ -47,7 +47,7 @@ class CommentPostController extends Controller
     $commentPost->rating = $validated['rating'];
     $commentPost->save(); // Simpan data ke dalam database
 
-    return redirect()->route('dashboard.data_crud')->with('success', "$validated[username] Berhasil ditambahkan!");
+    return redirect()->route('dashboard.data_crud')->with('success', "$validated[username] Successfully added!");
 }
 
 
@@ -74,12 +74,12 @@ public function show($id)
 
         $comment_post->update($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$request->judul Berhasil diubah!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$request->judul Successfuly updated!");
     }
     public function destroy(CommentPost $comment_post)
     {
         $comment_post->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$comment_post->judul Berhasil dihapus!");
+        return redirect()->route('dashboard.data_crud')->with('success', "$comment_post->judul Successfully deleted!");
     }
 }
