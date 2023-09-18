@@ -32,13 +32,13 @@
                 </a>
             </li>
             <li>
-                <a href="/dashboard/event">
+                <a href="/dashboard/data_crud">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Events</span>
                 </a>
             </li>
             <li>
-                <a href="/dashboard/news">
+                <a href="/dashboard/data_crud">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">News</span>
                     {{-- admin --}}
