@@ -12,8 +12,11 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->text('history')->nullable();
             $table->text('community_bio')->nullable();
-            $table->string('image')->nullable(); 
+            $table->string('image')->nullable();
+            $table->string('video')->nullable();
             $table->text('community_structure')->nullable();
+            $table->string('slogan', 100)->nullable();
+            $table->string('community_name', 100)->nullable();
             $table->timestamp('updated_at')->useCurrent();
         });
     }
