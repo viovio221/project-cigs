@@ -847,6 +847,14 @@ td.description {
     color: var(--light);
 
 }
+td.name {
+    max-width: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+
+}
 
 .community {
     margin-left: 50px;
