@@ -52,10 +52,12 @@ class EventController extends Controller
     }
 
     public function show($id)
-    {
-        $event = Event::findOrFail($id);
-        return view('dashboard.events.show', compact('event'));
-    }
+{
+    $event = Event::findOrFail($id);
+    return view('dashboard.eventdesc1', compact('event'));
+}
+
+
 
     public function edit($id)
     {

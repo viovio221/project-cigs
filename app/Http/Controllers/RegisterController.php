@@ -43,7 +43,7 @@ class RegisterController extends Controller
 
         $user->save();
 
-        return redirect('/login')->with('success', 'Pendaftaran berhasil! Silakan login.');
+        return redirect('/login')->with('success', 'Registration successful! Please log-in');
     }
 
     /**
