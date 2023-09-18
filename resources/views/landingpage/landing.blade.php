@@ -70,7 +70,9 @@
 
     {{-- beranda --}}
     <section class="hero" id="home">
-        <video class="video-slide active" src="{{ asset('videos/video_1.mp4') }}" autoplay muted loop></video>
+         @foreach ($profile as $item)
+        <video class="video-slide active" src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted loop></video>
+        @endforeach
         <video class="video-slide" src="{{ asset('videos/video_2.mp4') }}" autoplay muted loop></video>
         <video class="video-slide" src="{{ asset('videos/video_3.mp4') }}" autoplay muted loop></video>
         <video class="video-slide" src="{{ asset('videos/video_4.mp4') }}" autoplay muted loop></video>
@@ -78,7 +80,9 @@
         <div class="container">
 
             <h1 class="h1 hero-title" data-aos="zoom-in">
-                <marquee> Ride Together, Thrive Together <br></marquee>
+                @foreach ($profile as $item)
+                <marquee>{!! $item->slogan !!}  <br></marquee>
+                @endforeach
             </h1>
 
             <div class="btn-group" data-aos="zoom-in">
