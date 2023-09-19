@@ -192,18 +192,10 @@
                                         </ul>
                                     </div>
                                     <div class="card-price">
-                                        <div class="wrapper">
-                                            <p class="reviews">(11 Ulasan)</p>
-                                            <div class="card-rating">
-                                                <ion-icon name="star"></ion-icon>
-                                                <ion-icon name="star"></ion-icon>
-                                                <ion-icon name="star"></ion-icon>
-                                                <ion-icon name="star"></ion-icon>
-                                                <ion-icon name="star"></ion-icon>
-                                            </div>
-                                        </div>
+
                                         <button class="btn btn-secondary">
-                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">Lihat Deskripsi</a>
+                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">Lihat
+                                                Deskripsi</a>
                                         </button>
                                     </div>
                                 </div>

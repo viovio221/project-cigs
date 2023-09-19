@@ -179,57 +179,49 @@
                             </button>
 
 
-
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
                                     const registerButtons = document.querySelectorAll('.btn.btn-primary');
 
                                     registerButtons.forEach(registerButton => {
-                                            registerButton.addEventListener('click', function() {
-                                                    @auth
-                                                    const userId = '{{ auth()->user()->id }}';
-                                                @else
-                                                    const userId = null;
-                                                @endauth
+                                        registerButton.addEventListener('click', function() {
+                                            @auth
+                                            const userId = '{{ auth()->user()->id }}';
+                                            @else
+                                            const userId = null;
+                                            @endauth
 
-                                                const eventId = registerButton.getAttribute('data-event-id');
-                                                const eventName = registerButton.getAttribute('data-event-name');
-                                                const eventDate = registerButton.getAttribute('data-event-date');
+                                            const eventId = registerButton.getAttribute('data-event-id');
+                                            const eventName = registerButton.getAttribute('data-event-name');
+                                            const eventDate = registerButton.getAttribute('data-event-date');
 
-                                                Swal.fire({
-                                                    title: 'Are you interested in joining this event?',
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: '#ffa500',
-                                                    cancelButtonColor: '#DB504A',
-                                                    confirmButtonText: 'Register',
-                                                    cancelButtonText: 'Cancel',
-                                                    icon: 'question',
-                                                    html: `
-                                    <p>Nama Pengguna: <strong>{{ auth()->user()->name }}</strong></p>
-                                    <p>Judul Acara: <strong>${eventName}</strong></p>
-                                    <p>Tanggal Acara: <strong>${eventDate}</strong></p>
-                                `
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        axios.post('{{ route('event.register') }}', {
-                                                            user_id: userId,
-                                                            event_id: eventId,
-                                                            eventName: eventName,
-                                                            eventDate: eventDate,
-                                                        }).then((response) => {
-                                                            Swal.fire('Thank you!',
-                                                                'You have registered for this event.', 'success');
-                                                        }).catch((error) => {
-                                                            Swal.fire('Error',
-                                                                'An error occurred while registering for the event.',
-                                                                'error');
-                                                        });
-                                                    }
-                                                });
+                                            axios.post('{{ route('event.register') }}', {
+                                                user_id: userId,
+                                                event_id: eventId,
+                                                eventName: eventName,
+                                                eventDate: eventDate,
+                                            }).then((response) => {
+                                                if (response.data.message === 'You are already registered for this event.') {
+                                                    Swal.fire('You are already registered for this event.',
+                                                        'You cannot register again for the same event.', 'info');
+                                                } else if (response.data.message === 'Registration successful') {
+                                                    Swal.fire('Thank you!',
+                                                        'You have registered for this event.', 'success');
+                                                } else {
+                                                    Swal.fire('Error',
+                                                        'An error occurred while registering for the event.',
+                                                        'error');
+                                                }
+                                            }).catch((error) => {
+                                                Swal.fire('Error',
+                                                    'An error occurred while registering for the event.',
+                                                    'error');
                                             });
+                                        });
                                     });
                                 });
-                            </script>
+                                </script>
+
 
 
 
