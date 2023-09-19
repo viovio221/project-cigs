@@ -35,19 +35,32 @@ class EventDataController extends Controller
             'eventDate' => 'required',
         ]);
 
+        $userId = $request->input('user_id');
+        $eventName = $request->input('eventName');
+
+        // Check if the user is already registered for this event
+        $existingRegistration = EventData::where('user_id', $userId)
+            ->where('event_name', $eventName)
+            ->first();
+
+        if ($existingRegistration) {
+            return response()->json(['message' => 'You are already registered for this event.']);
+        }
+
         $eventData = new EventData([
-            'event_name' => $request->input('eventName'),
+            'event_name' => $eventName,
             'event_date' => $request->input('eventDate'),
-            'user_id' => $request->input('user_id'),
+            'user_id' => $userId,
             'status' => 'registered'
         ]);
 
         if ($eventData->save()) {
-            return response()->json(['message' => 'Pendaftaran berhasil']);
+            return response()->json(['message' => 'Registration successful']);
         } else {
-            return response()->json(['message' => 'Gagal mendaftar acara'], 500); // 500 adalah kode status kesalahan server
+            return response()->json(['message' => 'Failed to register for the event'], 500); // 500 is the server error status code
         }
     }
+
 
 public function edit($id)
 {
