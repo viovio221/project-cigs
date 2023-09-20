@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->string('content');
             $table->integer('rating');
+            $table->string('headline');
+            $table->string('text');
             $table->timestamps();
         });
     }

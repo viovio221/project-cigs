@@ -15,7 +15,12 @@ class MessageController extends Controller
         dd($messages);
         return view('dashboard.data_crud', compact('messages'));
     }
+    public function message()
+    {
+        $user = User::query()->whereDoesntHave('messages')->get();
 
+        return view('dashboard.message', ['users' => $user]);
+    }
     public function create()
     {
         $user = User::query()->whereDoesntHave('messages')->get();
@@ -25,8 +30,10 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required|integer',
+            'user_id' => 'required',
             'message' => 'required',
+            'headline' => 'required',
+            'text' => 'required',
         ]);
 
         // Using (int) to convert 'user_id' to an integer
@@ -34,7 +41,7 @@ class MessageController extends Controller
 
         Message::create($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('success', "Message successfully added!");
+        return redirect()->route('dashboard.message')->with('success', "Message successfully added!");
     }
 
     public function edit(Message $message)
@@ -54,6 +61,8 @@ class MessageController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'message' => 'required',
+            'headline' => 'required',
+            'text' => 'required',
         ]);
 
         $message->update($validated);
