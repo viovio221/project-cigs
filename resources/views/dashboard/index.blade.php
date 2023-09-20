@@ -103,6 +103,9 @@
                 </div>
             </form>
             <input type="checkbox" id="switch-mode" hidden>
+            <a href="dashboard/message">
+                <i class='bx bxs-edit-alt'></i>
+            </a>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
