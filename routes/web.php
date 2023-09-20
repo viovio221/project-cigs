@@ -203,10 +203,10 @@ Route::get('/dashboard/event', function () {
 
 //edit profile
 Route::get('editprofile', [EditProfileController::class, 'index'])->name('editprofile.show');
-Route::get('editprofile/create', [EditProfileController::class, 'create'])->name('editprofile.create');
+Route::get('/editprofile/edit', 'EditProfileController@edit')->name('editprofile.edit');
+Route::put('/editprofile/update', 'EditProfileController@update')->name('editprofile.update');
 Route::post('editprofile', [EditProfileController::class, 'store'])->name('editprofile.store');
 Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])->name('editprofile.edit');
-Route::put('editprofile/{editprofile}', [EditProfileController::class, 'update'])->name('editprofile.update');
 Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
 
 

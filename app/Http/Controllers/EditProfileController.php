@@ -14,48 +14,38 @@ class EditProfileController extends Controller
         return view('editprofile.show');
     }
 
-    public function create()
+    public function edit()
     {
-        return view('editprofile.create');
+        return view('editprofile.edit');
     }
 
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        // Validasi data input dari form
         $request->validate([
             'name' => 'required|max:100',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,' . auth()->user()->id,
             'phone_number' => 'required|max:15',
-            'password' => 'required|min:6|confirmed',
-            'gender' => 'required|in:Male,Female', // Sesuaikan dengan skema gender Anda
-            'date_birth' => 'nullable|date', // Sesuaikan dengan skema tanggal lahir Anda
-            'address' => 'nullable|max:100', // Sesuaikan dengan skema alamat Anda
-            'province' => 'nullable|max:100', // Sesuaikan dengan skema provinsi Anda
-            'city' => 'nullable|max:100', // Sesuaikan dengan skema kota Anda
-            'district' => 'nullable|max:100', // Sesuaikan dengan skema distrik Anda
-            'postal_code' => 'nullable|max:5', // Sesuaikan dengan skema kode pos Anda
+            'date_birth' => 'nullable|date',
+            'address' => 'nullable|max:100',
+            'province' => 'nullable|max:100',
+            'city' => 'nullable|max:100',
+            'district' => 'nullable|max:100',
+            'postal_code' => 'nullable|max:5',
         ]);
 
-        // Buat instance User baru
-        $user = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-            'gender' => $request->gender,
-            'date_birth' => $request->date_birth,
-            'address' => $request->address,
-            'province' => $request->province,
-            'city' => $request->city,
-            'district' => $request->district,
-            'postal_code' => $request->postal_code,
-        ]);
+        $user = auth()->user();
 
-        // Simpan user ke dalam basis data
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone_number = $request->phone_number;
+        $user->date_birth = $request->date_birth;
+        $user->address = $request->address;
+        $user->province = $request->province;
+        $user->city = $request->city;
+        $user->district = $request->district;
+        $user->postal_code = $request->postal_code;
         $user->save();
-
-        // Redirect ke halaman login dengan pesan sukses
-        return redirect()->route('editprofile.show')->with('success', 'Registration successful. Please login.');
+        return redirect()->route('editprofile.show')->with('success', 'Profile updated successfully.');
     }
-
 }
+

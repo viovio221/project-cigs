@@ -46,7 +46,7 @@
                 <h3>Phone Number :</h3>
                 <li>{{ auth()->user()->phone_number }}</li>
             </ul>
-            <form action="{{ route('editprofile.create') }}">
+            <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
                     <button type="submit" class="btn btn-primary">Edit Profile</button>
                 </div>
