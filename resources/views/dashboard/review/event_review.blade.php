@@ -59,7 +59,8 @@
                     </div>
                     <div class="input-container">
                         <label for="username">Username</label>
-                        <input type="text" name="username" class="input" value="{{ auth()->user()->name }}" readonly />
+                        <input type="text" name="username" class="input" value="{{ auth()->user()->name }}"
+                            readonly />
                     </div>
 
                     <div class="input-container">
@@ -67,12 +68,10 @@
                         <label for="event_id">Event Name</label>
                         <select name="event_id" class="input">
                             <option value="">Pilih</option>
-                            @if (isset($event))
-
-                            @foreach ($event as $ev)
-                                <option {{ old('event_id') == $ev->id ? 'selected' : '' }} value="{{ $ev->id }}">{{ $ev->name }}</option>
+                            @foreach ($events as $ev)
+                                <option {{ old('event_id') == $ev->id ? 'selected' : '' }} value="{{ $ev->id }}">
+                                    {{ $ev->name }}</option>
                             @endforeach
-                            @endif
                         </select>
                     </div>
 
@@ -86,27 +85,27 @@
             </div>
         </div>
     </div>
-  
-<script>
-    const allStar = document.querySelectorAll('.rating .star')
-    const ratingValue = document.querySelector('.rating input')
 
-    allStar.forEach((item) => {
-        item.addEventListener('click', function() {
-            const rating = item.getAttribute('data-rating');
-            ratingValue.value = rating;
+    <script>
+        const allStar = document.querySelectorAll('.rating .star')
+        const ratingValue = document.querySelector('.rating input')
 
-            allStar.forEach((i) => {
-                const index = parseInt(i.getAttribute('data-rating'));
-                if (index <= rating) {
-                    i.classList.replace('bx-star', 'bxs-star');
-                } else {
-                    i.classList.replace('bxs-star', 'bx-star');
-                }
+        allStar.forEach((item) => {
+            item.addEventListener('click', function() {
+                const rating = item.getAttribute('data-rating');
+                ratingValue.value = rating;
+
+                allStar.forEach((i) => {
+                    const index = parseInt(i.getAttribute('data-rating'));
+                    if (index <= rating) {
+                        i.classList.replace('bx-star', 'bxs-star');
+                    } else {
+                        i.classList.replace('bxs-star', 'bx-star');
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 </body>
 

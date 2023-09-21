@@ -16,9 +16,8 @@ class CommentPostController extends Controller
 
     public function review()
     {
-        $event = Event::query()->whereDoesntHave('comment_posts')->get();
-
-        return view('dashboard.review.event_review', ['event' => $event]);
+        $event = Event::all();
+        return view('dashboard.review.event_review', ['events' => $event]);
     }
 
     public function store(Request $request)
