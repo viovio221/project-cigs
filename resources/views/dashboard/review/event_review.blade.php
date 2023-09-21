@@ -33,7 +33,7 @@
                         <a href="">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="">
+                        <a href="/dashboard/event">
                             <i class="fas fa-angle-double-left"></i>
                         </a>
                     </div>
@@ -106,7 +106,12 @@
             });
         });
     </script>
+    <!-- CONTENT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+    @include('sweetalert::alert')
 </body>
+
 
 </html>
