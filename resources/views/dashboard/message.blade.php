@@ -44,14 +44,16 @@
             <div class="right">
                 <div class="right-container">
                     <form action="{{ route('message.store') }}" method="post">
-                        @csrf <!-- Ini untuk menambahkan token CSRF Laravel -->
+                        @csrf
+                        <!-- Hapus @method("POST") karena Anda menggunakan metode POST -->
                         <h2 class="lg-view">Wayang Riders</h2>
                         <p>Please give criticism and suggestions that could be better.</p>
                         <div class="input-container">
-                            <input type="text" name="name" class="input" value="{{ auth()->user()->name }}" readonly>
+                            <!-- Tambahkan input untuk user_id, asumsikan ada input dengan nama 'user_id' yang sesuai -->
+                            <input type="text" name="name" class="input" value="{{ auth()->user()->name }}" disabled>
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> <!-- Input tersembunyi untuk user_id -->
                         </div>
                         <div class="form-group">
-
                             <textarea name="message" id="message" placeholder="criticism and suggestions here" rows="10" class="form-control">{{ old('message') }}</textarea>
                         </div>
                         <button type="submit">Submit</button>
