@@ -21,9 +21,9 @@
     <header class="header">
         <a href="#" class="logo">
             @foreach ($profile as $item)
-            <td>
-                <img src="{{ asset('storage/profile_images/' . $item->image) }}" alt="Logo">
-            </td>
+                <td>
+                    <img src="{{ asset('storage/profile_images/' . $item->image) }}" alt="Logo">
+                </td>
             @endforeach
         </a>
         <form action="" class="search-form">
@@ -70,8 +70,9 @@
 
     {{-- beranda --}}
     <section class="hero" id="home">
-         @foreach ($profile as $item)
-        <video class="video-slide active" src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted loop></video>
+        @foreach ($profile as $item)
+            <video class="video-slide active" src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted
+                loop></video>
         @endforeach
         <video class="video-slide" src="{{ asset('videos/video_2.mp4') }}" autoplay muted loop></video>
         <video class="video-slide" src="{{ asset('videos/video_3.mp4') }}" autoplay muted loop></video>
@@ -81,14 +82,14 @@
 
             <h1 class="h1 hero-title" data-aos="zoom-in">
                 @foreach ($profile as $item)
-                <marquee>{!! $item->slogan !!}  <br></marquee>
+                    <marquee>{!! $item->slogan !!} <br></marquee>
                 @endforeach
             </h1>
 
             <div class="btn-group" data-aos="zoom-in">
 
-                <button class="btn btn-secondary" data-aos="zoom-in"><a href="#kegiatan"
-                        style="color: #FFF;">Explore Now!</a></button>
+                <button class="btn btn-secondary" data-aos="zoom-in"><a href="#kegiatan" style="color: #FFF;">Explore
+                        Now!</a></button>
             </div>
             <div class="slider-navigation">
                 <div class="nav-btn active"></div>
@@ -112,7 +113,7 @@
                         <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1">
                     </div>
                     <div class="content">
-                        <p><b>{!! $item->name !!}</b></p>
+                        <h3>{!! $item->name !!}</h3>
                         <a href="{{ route('event') }}" class="btn">See More Info</a>
                     </div>
                 </div>
@@ -172,7 +173,7 @@
                     </div>
                     <div class="content">
                         <h3>{!! $nw->title !!}</h3>
-                        <a href="#" class="btn">Learn More</a>
+                        <a href="/dashboard/news" class="btn">Learn More</a>
                         <div class="icons">
                             <a href="#"><i class="fas fa-user"></i> by admin</a>
                             <a href="#"><i class="fas fa-calendar"></i> {{ $nw->created_at }}</a>
@@ -203,17 +204,20 @@
             <div class="box">
                 <h3>Follow Us</h3>
                 <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 89687792980</a>
-                    <a href="#" style="text-transform: none;"><i
-                            class="fa-brands fa-instagram"></i>wayangriders_id</a>
-                    <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>wayang
-                        riders</a>
-                    <a href="#" style="text-transform: none;"><i
-                            class="fa-brands fa-x-twitter"></i>wayangriders_id</a>
-                    <a href="#" style="text-transform: none;"><i
-                            class="fa-regular fa-envelope"></i></i>wayangriders@gmail.com</a>
+                <a href="#" style="text-transform: none;"><i
+                        class="fa-brands fa-instagram"></i>wayangriders_id</a>
+                <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>wayang
+                    riders</a>
+                <a href="#" style="text-transform: none;"><i
+                        class="fa-brands fa-x-twitter"></i>wayangriders_id</a>
+                <a href="#" style="text-transform: none;"><i
+                        class="fa-regular fa-envelope"></i></i>wayangriders@gmail.com</a>
             </div>
         </div>
-        <div class="credit">Created by: Wayang Riders Community <span>| all rights reserved</span></div>
+        @foreach ($profile as $pf)
+            <div class="credit">{{ $pf->community_name }} <span>| all rights reserved</span>
+            </div>
+        @endforeach
     </section>
     {{-- ends --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

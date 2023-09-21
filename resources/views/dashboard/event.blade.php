@@ -32,7 +32,9 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class="fa-solid fa-motorcycle"></i>
-            <span class="text">Wayang Riders</span>
+            @foreach ($profile as $item)
+                <span class="text">{{ $item->community_name }}</span>
+            @endforeach
         </a>
         <ul class="side-menu top">
             <li>
@@ -113,6 +115,9 @@
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+            <a href="/dashboard/message" class="notification">
+                <i class='bx bxs-edit-alt'></i>
+            </a>
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">

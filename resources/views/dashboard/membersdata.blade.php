@@ -21,7 +21,9 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class="fa-solid fa-motorcycle"></i>
-            <span class="text">Wayang Riders</span>
+            @foreach ($profile as $item)
+                <span class="text">{{ $item->community_name }}</span>
+            @endforeach
         </a>
         <ul class="side-menu top">
             <li>
@@ -103,13 +105,16 @@
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+            <a href="/dashboard/message" class="notification">
+                <i class='bx bxs-edit-alt'></i>
+            </a>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="#" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show')}}" class="profile">
+            <a href="{{ route('editprofile.show') }}" class="profile">
                 <img src="{{ asset('images/devani.jpg') }}">
             </a>
 
@@ -117,52 +122,53 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-                <main>
-                    <div class="head-title">
-                        <div class="left">
-                            <h1>Members Data</h1>
-                            <ul class="breadcrumb">
-                                <li>
-                                    <a href="/dashboard">Dashboard</a>
-                                </li>
-                                <li><i class='bx bx-chevron-right'></i></li>
-                                <li>
-                                    <a class="active" href="/">Landing Page</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="container-member">
-                        <div class="content-container">
-                            @if (isset($users))
-                            <table class="user-list">
-                                <thead>
-                                    <tr>
-                                        <th class="bar">No</th>
-                                        <th class="bar">Name</th>
-                                        <th class="bar">Email</th>
-                                        <th class="bar">Status</th>
-                                        <th class="bar">Create At</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($users as $usr)
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Members Data</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="/dashboard">Dashboard</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="/">Landing Page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container-member">
+                <div class="content-container">
+                    @if (isset($users))
+                        <table class="user-list">
+                            <thead>
+                                <tr>
+                                    <th class="bar">No</th>
+                                    <th class="bar">Name</th>
+                                    <th class="bar">Email</th>
+                                    <th class="bar">Status</th>
+                                    <th class="bar">Create At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $usr)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $usr->name  }}</td>
+                                        <td>{{ $usr->name }}</td>
                                         <td>{{ $usr->email }}</td>
                                         <td>{{ $usr->role }}</td>
                                         <td>{{ $usr->created_at }}</td>
                                     </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            @endif
-                        </div>
-                    </div>
-                </main>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script src="{{ asset('js/dashboard.js') }}"></script>
-            @include('sweetalert::alert')
-        </body>
-        </html>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ asset('js/dashboard.js') }}"></script>
+        @include('sweetalert::alert')
+</body>
+
+</html>
