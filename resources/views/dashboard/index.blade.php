@@ -21,7 +21,9 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class="fa-solid fa-motorcycle"></i>
-            <span class="text">Wayang Riders</span>
+            @foreach ($profile as $item)
+                <span class="text">{{ $item->community_name }}</span>
+            @endforeach
         </a>
         <ul class="side-menu top">
             <li class="active">
@@ -116,23 +118,27 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form action="#" class="search-form">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" placeholder="Search..." class="search-input">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+            <a href="/dashboard/message" class="notification">
+                <i class='bx bxs-edit-alt'></i>
+            </a>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
+
             <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show')}}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}">
+            <a href="{{ route('editprofile.show') }}" class="profile">
+                <img src="{{ asset('images/devani.jpg') }}" alt="Profile Image">
             </a>
-
         </nav>
+
         <!-- NAVBAR -->
 
         <!-- MAIN -->

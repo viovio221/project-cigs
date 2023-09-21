@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="css/profile.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
     <div class="container">
         <div class="box">
@@ -16,39 +15,57 @@
             <ul>
                 <br>
                 <br>
-                <li><i style="font-size:24px" class="fa"></i>
-                    <i style="font-size:24px" class="fa"></i>
-                    <i style="font-size:24px" class="fa"></i></li>
-                    <form action="{{ route('dashboard.data_crud') }}">
-                        <div class="mb-3 d-grid">
-                            <button type="submit" class="button btn-secondary">Back</button>
-                        </div>
-                    </form>
+                        <tr>
+                            <th><i style="font-size:24px" class="fa"></i></th>
+                            <th><i style="font-size:24px" class="fa"></i></th>
+                            <th><i style="font-size:24px" class="fa"></i></th>
+                        </tr>
+                <form action="{{ route('dashboard.data_crud') }}">
+                    <div class="mb-3 d-grid">
+                        <button type="submit" class="button btn-secondary"><b>BACK</b></button>
+                    </div>
+                </form>
             </ul>
         </div>
         <div class="About">
             <ul>
-                <h1>About Profile</h1>
+                <h1><b>ABOUT PROFILE</b></h1>
             </ul>
             <ul>
-                <h3>Full Name :</h3>
-                <li>{{ auth()->user()->name }}</li>
+                <table>
+                    <tr>
+                        <th>Full Name </th>
+                        <td>{{ auth()->user()->name }}</td>
+                    </tr>
+                </table>
             </ul>
             <ul>
-                <h3>Status :</h3>
-                <li>{{ auth()->user()->role }}</li>
+                <table>
+                    <tr>
+                        <th>Status </th>
+                        <td>{{ auth()->user()->role }}</td>
+                    </tr>
+                </table>
             </ul>
             <ul>
-                <h3>Email :</h3>
-                <li>{{ auth()->user()->email }}</li>
+                <table>
+                    <tr>
+                        <th>Email </th>
+                        <td>{{ auth()->user()->email }}</td>
+                    </tr>
+                </table>
             </ul>
             <ul>
-                <h3>Phone Number :</h3>
-                <li>{{ auth()->user()->phone_number }}</li>
+                <table>
+                    <tr>
+                        <th>Phone Number </th>
+                        <td>{{ auth()->user()->phone_number }}</td>
+                    </tr>
+                </table>
             </ul>
-            <form action="{{ route('editprofile.create') }}">
+            <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
-                    <button type="submit" class="btn btn-primary">Edit Profile</button>
+                    <button type="submit" class="btn btn-primary"><b>Edit Profile</b></button>
                 </div>
             </form>
         </div>

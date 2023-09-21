@@ -16,40 +16,44 @@ class CommentPostController extends Controller
 
     public function review()
     {
-        $event = Event::query()->whereDoesntHave('comment_posts')->get();
-
-        return view('dashboard.review.event_review', ['event' => $event]);
+        $event = Event::all();
+        return view('dashboard.review.event_review', ['events' => $event]);
     }
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'username' => 'required',
-        'event_id' => 'required|exists:events,id',
-        'content' => 'required|string',
-        'rating' => 'required|integer',
-    ], [
-        'username.required' => 'Username wajib diisi.',
-        'event_id.required' => 'Event ID wajib diisi.',
-        'event_id.exists' => 'Event ID tidak valid.',
-        'content.required' => 'Content wajib diisi.',
-        'content.string' => 'Content harus berupa teks.',
-        'rating.required' => 'Rating wajib diisi.',
-        'rating.integer' => 'Rating harus berupa angka.',
-    ]);
+    {
+        $validated = $request->validate([
+            'username' => 'required',
+            'event_id' => 'required|exists:events,id',
+            'content' => 'required|string',
+            'rating' => 'required|integer',
+        ], [
+            'username.required' => 'Username is required.',
+            'event_id.required' => 'Event ID is required.',
+            'event_id.exists' => 'Invalid Event ID.',
+            'content.required' => 'Content is required.',
+            'content.string' => 'Content must be a text.',
+            'rating.required' => 'Rating is required.',
+            'rating.integer' => 'Rating must be a number.',
+        ]);
 
+        $existingComment = CommentPost::where('username', $validated['username'])
+            ->where('event_id', $validated['event_id'])
+            ->first();
 
-    // Buat objek CommentPost dan isi kolom-kolomnya dengan data yang divalidasi
-    $commentPost = new CommentPost;
-    $commentPost->username = $validated['username'];
-    $commentPost->event_id = $validated['event_id'];
-    $commentPost->content = $validated['content'];
-    $commentPost->rating = $validated['rating'];
-    $commentPost->save(); // Simpan data ke dalam database
+        if ($existingComment) {
+            return redirect()->back()->with('warning', 'You have already provided a comment for this event, please choose another event.');
+        }
 
-    return redirect()->route('dashboard.data_crud')->with('success', "$validated[username] Successfully added!");
-}
+        $commentPost = new CommentPost;
+        $commentPost->username = $validated['username'];
+        $commentPost->event_id = $validated['event_id'];
+        $commentPost->content = $validated['content'];
+        $commentPost->rating = $validated['rating'];
+        $commentPost->save();
 
+        return redirect()->route('dashboard.data_crud')->with('success', "$validated[username] Successfully added!");
+    }
 
 public function show($id)
 {

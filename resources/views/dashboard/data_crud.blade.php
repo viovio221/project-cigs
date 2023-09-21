@@ -21,7 +21,9 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class="fa-solid fa-motorcycle"></i>
-            <span class="text">Wayang Riders</span>
+            @foreach ($profiles as $item)
+                <span class="text">{{ $item->community_name }}</span>
+            @endforeach
         </a>
         <ul class="side-menu top">
             <li>
@@ -104,6 +106,9 @@
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+            <a href="/dashboard/message" class="notification">
+                <i class='bx bxs-edit-alt'></i>
+            </a>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
@@ -199,7 +204,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="{{ route('message.create') }}" class="btn btn-outline-primary">Add
+                        <h3><a href="#" class="btn btn-outline-primary">Add
                                 Message</a></h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">

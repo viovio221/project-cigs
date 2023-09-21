@@ -384,12 +384,16 @@ section{
     border-radius: .5rem;
     box-shadow: var(--box-shadow);
 }
+.packages .box-container .box:hover .image img{
+    transform: scale(1.1);
+    }
 
 .packages .box-container .box .image{
     height: 25rem;
     width: 100%;
     padding: 1.5rem;
     position: relative;
+    border-radius: .5rem;
 }
 
 .packages .box-container .box .image img{
@@ -435,11 +439,10 @@ section{
     text-decoration: line-through;
 }
 
-.packages .box-container .box .content p{
-    font-size: 1.5rem;
-    padding: .5rem 0;
-    color: var(--text-color-2);
-    line-height: 1.7rem;
+.packages .box-container .box .content h3{
+        font-size: 2rem;
+        color: var(--text-color-1);
+        line-height: 1.5;
 }
 
 /* benefits */
