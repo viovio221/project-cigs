@@ -32,8 +32,6 @@ class MessageController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'message' => 'required',
-            'headline' => 'required',
-            'text' => 'required',
         ]);
 
         // Using (int) to convert 'user_id' to an integer
@@ -61,8 +59,6 @@ class MessageController extends Controller
         $validated = $request->validate([
             'user_id' => 'required',
             'message' => 'required',
-            'headline' => 'required',
-            'text' => 'required',
         ]);
 
         $message->update($validated);
