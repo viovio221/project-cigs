@@ -50,27 +50,27 @@
                     </div>
                     <div class="inputfield">
                         <label for="address">Address</label>
-                        <textarea id="address" name="address" rows="5" cols="60">
-                        </textarea>
+                        <textarea id="address" name="address" rows="5" cols="60">{{ old('address', auth()->user()->address) }}</textarea>
                     </div>
                     <div class="inputfield">
                         <label for="province">Province</label>
-                        <input type="Text" name="province" id="province" class="input"
-                            placeholder="Enter your Province">
+                        <input type="text" name="province" id="province" class="input"
+                            placeholder="Enter your Province" value="{{ old('province', auth()->user()->province) }}">
                     </div>
                     <div class="inputfield">
                         <label for="city">City</label>
-                        <input type="Text" name="city" id="city" class="input"
-                            placeholder="Enter your City">
+                        <input type="text" name="city" id="city" class="input"
+                            placeholder="Enter your City" value="{{ old('city', auth()->user()->city) }}">
                     </div>
                     <div class="inputfield">
                         <label for="district">district</label>
-                        <input type="Text" name="district" id="district" class="input"
-                            placeholder="Enter your district">
+                        <input type="text" name="district" id="district" class="input"
+                            placeholder="Enter your district" value="{{ old('district', auth()->user()->district) }}">
                     </div>
                     <div class="inputfield">
-                        <label for="postalcode">Postal Code</label>
-                        <input type="number" name="postal_code" id="postal_code" class="input" placeholder="Enter your postal code">
+                        <label for="postal_code">Postal Code</label>
+                        <input type="number" name="postal_code" id="postal_code" class="input"
+                            placeholder="Enter your postal code" value="{{ old('postal_code', auth()->user()->postal_code) }}">
                     </div>
                     <div class="inputfield">
                         <input type="submit" value="Edit" class="btn">
@@ -82,3 +82,8 @@
 </body>
 
 </html>
+
+
+
+
+
