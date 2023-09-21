@@ -42,7 +42,7 @@ class MessageController extends Controller
         $message->message = $validated['message'];
         $message->save();
 
-        return redirect()->route('dashboard')->with('success', "Pesan berhasil ditambahkan!");
+        return redirect()->route('dashboard')->with('success', "Message Successfully Added!");
     }
     public function edit(Message $message)
     {

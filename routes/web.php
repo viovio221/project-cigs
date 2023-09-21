@@ -88,8 +88,7 @@ Route::get('/commentpost', function () {
     return view('commentpost.index_users');
 });
 
-// message
-Route::get('/dashboard/message/create', [MessageController::class, 'create'])->name('message.create');
+Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
 Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
 Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
 Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
@@ -98,19 +97,18 @@ Route::delete('/dashboard/message/{message}', [MessageController::class, 'destro
 Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
 
 
-
 Route::resource('users', UserController::class);
 Route::resource('news', NewsController::class);
 Route::get('/dashboard/news', function () {
     $news = News::all();
-
-    return view('dashboard.news', compact('news'));
+    $profile = Profile::all();
+    return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
 
 Route::get('/dashboard/membersdata', function () {
     $users = User::all();
-
-    return view('dashboard.membersdata', compact('users'));
+    $profile = Profile::all();
+    return view('dashboard.membersdata', compact('users', 'profile'));
 })->name('users');
 
 Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
@@ -196,8 +194,9 @@ Route::get('/dashboard/eventdesc1', function () {
 
 //events
 Route::get('/dashboard/event', function () {
+    $profile = Profile::all();
     $events = Event::all();
-    return view('dashboard.event', compact('events'));
+    return view('dashboard.event', compact('events', 'profile'));
 })->name('event');
 
 
@@ -244,4 +243,3 @@ Route::get('/', function () {
     return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile'));
 })->name('news');
 
-route::resource('kritiksaran', KritikController::class);
