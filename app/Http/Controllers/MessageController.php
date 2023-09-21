@@ -23,25 +23,27 @@ class MessageController extends Controller
     }
     public function create()
     {
-        $user = User::query()->whereDoesntHave('messages')->get();
-        return view('dashboard.message.create', ['users' => $user]); // Using 'users' as the key
+        // Dapatkan pengguna yang tidak memiliki pesan
+        $users = User::whereDoesntHave('messages')->get();
+
+        return view('dashboard.message', compact('users'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'user_id' => 'required',
+            'user_id' => 'required', // Validasi user_id
             'message' => 'required',
         ]);
 
-        // Using (int) to convert 'user_id' to an integer
-        $validated['user_id'] = (int)$validated['user_id'];
+        // Buat instance pesan baru
+        $message = new Message();
+        $message->user_id = $validated['user_id'];
+        $message->message = $validated['message'];
+        $message->save();
 
-        Message::create($validated);
-
-        return redirect()->route('dashboard.message')->with('success', "Message successfully added!");
+        return redirect()->route('dashboard')->with('success', "Pesan berhasil ditambahkan!");
     }
-
     public function edit(Message $message)
     {
         $user = User::all();
