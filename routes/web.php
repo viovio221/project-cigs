@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Message;
 use App\Models\Profile;
+use App\Models\Property;
 use App\Models\CommentPost;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -236,10 +237,17 @@ Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'dest
 
 //events
 Route::get('/', function () {
+
+    $users = User::all();
+    $properties = Property::all();
     $profile = Profile::all();
     $events = Event::all();
     $comment_post = CommentPost::all();
     $news = News::all();
-    return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile'));
+    return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile', 'properties', 'users'));
 })->name('news');
-
+Route::resource('property', PropertyController::class);
+Route::get('/dashboard/review', function () {
+    $properties = Property::all();
+    return view('dashboard.commentpost.event_review', compact('properties'));
+})->name('event');
