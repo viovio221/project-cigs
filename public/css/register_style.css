@@ -201,7 +201,7 @@ body{
     padding-right: 20px; /* Ruang agar ikon tidak tumpang tindih dengan teks input */
   }
 
-  .password-toggle {
+  .password-toggle{
     color: orange;
     position: absolute;
     top: 50%;
