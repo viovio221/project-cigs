@@ -61,5 +61,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class);
     }
+    // User.php
+public function document()
+{
+    return $this->hasOne(UserDocument::class, 'user_id');
+}
+
 
 }

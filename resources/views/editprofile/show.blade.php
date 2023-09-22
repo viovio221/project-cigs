@@ -63,6 +63,78 @@
                     </tr>
                 </table>
             </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Gender </th>
+                        <td>{{ auth()->user()->gender }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Date Birth </th>
+                        <td>{{ auth()->user()->date_birth }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Address </th>
+                        <td>{{ auth()->user()->address }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Province </th>
+                        <td>{{ auth()->user()->province }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>City </th>
+                        <td>{{ auth()->user()->city }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>District </th>
+                        <td>{{ auth()->user()->district }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Postal Code </th>
+                        <td>{{ auth()->user()->postal_code }}</td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Document Image </th>
+                        <td><img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}" alt="Document Image" class="document_images"></td>
+                    </tr>
+                </table>
+            </ul>
+            <ul>
+                <table>
+                    <tr>
+                        <th>Tipe </th>
+                        <td>{{auth()->user()->document->tipe}}</td>
+                    </tr>
+                </table>
+            </ul>
             <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
                     <button type="submit" class="btn btn-primary"><b>Edit Profile</b></button>
@@ -70,5 +142,10 @@
             </form>
         </div>
     </div>
+     <!-- CONTENT -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+     <script src="{{ asset('js/dashboard.js') }}"></script>
+     @include('sweetalert::alert')
 </body>
 </html>
