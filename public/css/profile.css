@@ -24,6 +24,11 @@ table {
     height: auto;
     border-collapse: collapse;
 }
+.document_images {
+    max-width: 100%;
+    max-height: 100px;
+
+}
 
 th, td {
     padding: 8px;

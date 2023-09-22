@@ -176,7 +176,11 @@ body{
 .wrapper .form .inputfield:last-child{
   margin-bottom: 0;
 }
+.current-image {
+    max-width: 100%;
+    max-height: 80px;
 
+}
 @media (max-width:420px) {
   .wrapper .form .inputfield{
     flex-direction: column;
@@ -191,14 +195,13 @@ body{
 }
 
 
-/* Gaya untuk kotak input password dan ikon Show Password */
 .password-container {
     position: relative;
     width: 450px;
   }
 
   .input[type="password"] {
-    padding-right: 20px; /* Ruang agar ikon tidak tumpang tindih dengan teks input */
+    padding-right: 20px;
   }
 
   .password-toggle{

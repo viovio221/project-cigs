@@ -392,7 +392,6 @@
                             @endif
                         </tbody>
                     </table>
-
                 </div>
             </div>
 
@@ -463,6 +462,74 @@
                     </table>
                 </div>
             </div>
+
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3><a href="{{ route('property.create') }}" class="btn btn-outline-primary">Add Property</a>
+                        </h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>H. Event</th>
+                                <th>T. Event</th>
+                                <th>H. Message</th>
+                                <th>T. Message</th>
+                                <th>Phone Number</th>
+                                <th>IG</th>
+                                <th>FB</th>
+                                <th>TWT</th>
+                                <th>EM</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($properties))
+                                @foreach ($properties as $pr)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $pr->headline_ev }}</td>
+                                    <td>{{ $pr->text_ev }}</td>
+                                    <td>{{ $pr->headline_mg }}</td>
+                                    <td>{{ $pr->text_mg }}</td>
+                                    <td>{{ $pr->phone_number }}</td>
+                                    <td>{{ $pr->instagram }}</td>
+                                    <td>{{ $pr->facebook }}</td>
+                                    <td>{{ $pr->twitter }}</td>
+                                    <td>{{ $pr->email }}</td>
+                                    <td>
+                                        <a href="{{ route('property.edit', $pr->id) }} " style="color: blue"><i
+                                                class='bx bx-edit'></i></a>
+                                        <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
+                                            style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                style="background: none; border: none; color:red"><i
+                                                    class='bx bx-trash'></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </main>
         <!-- MAIN -->
     </section>

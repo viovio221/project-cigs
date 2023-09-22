@@ -192,27 +192,27 @@
         <div class="box-container">
             <div class="box">
                 <h3>Our Communities</h3>
-                <a href="https://www.google.com/maps/search/?api=1&query=Bandung"><i
-                        class="fas fa-map-marker-alt"></i>Bandung</a>
-                <a href="https://www.google.com/maps/search/?api=1&query=Cimahi"><i
-                        class="fas fa-map-marker-alt"></i>Cimahi</a>
-                <a href="https://www.google.com/maps/search/?api=1&query=Bogor"><i
-                        class="fas fa-map-marker-alt"></i>Bogor</a>
-                <a href="https://www.google.com/maps/search/?api=1&query=Pangandaran"><i
-                        class="fas fa-map-marker-alt"></i>Pangandaran</a>
-
+                <ul>
+                    @foreach ($users->take(4) as $item)
+                        <li>
+                            <a href=""><i class="fas fa-map-marker-alt"></i>{{ $item->province }}</a>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
+
             <div class="box">
                 <h3>Follow Us</h3>
-                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>+62 89687792980</a>
+                @foreach ($properties as $item)
+                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>{{ $item->phone_number }}</a>
                 <a href="#" style="text-transform: none;"><i
-                        class="fa-brands fa-instagram"></i>wayangriders_id</a>
-                <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>wayang
-                    riders</a>
+                        class="fa-brands fa-instagram"></i>{{ $item->instagram }}</a>
+                <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>{{ $item->facebook }}</a>
                 <a href="#" style="text-transform: none;"><i
-                        class="fa-brands fa-x-twitter"></i>wayangriders_id</a>
+                        class="fa-brands fa-x-twitter"></i>{{ $item->twitter }}</a>
                 <a href="#" style="text-transform: none;"><i
-                        class="fa-regular fa-envelope"></i></i>wayangriders@gmail.com</a>
+                        class="fa-regular fa-envelope"></i></i>{{ $item->email }}</a>
+                @endforeach
             </div>
         </div>
         @foreach ($profile as $pf)
