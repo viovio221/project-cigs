@@ -119,6 +119,7 @@
                     </tr>
                 </table>
             </ul>
+            @if(auth()->user()->document)
             <ul>
                 <table>
                     <tr>
@@ -131,10 +132,11 @@
                 <table>
                     <tr>
                         <th>Tipe </th>
-                        <td>{{auth()->user()->document->tipe}}</td>
+                        <td>{{ auth()->user()->document->tipe }}</td>
                     </tr>
                 </table>
             </ul>
+        @endif
             <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
                     <button type="submit" class="btn btn-primary"><b>Edit Profile</b></button>
