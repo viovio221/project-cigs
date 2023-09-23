@@ -97,6 +97,9 @@ body {
 	display: flex;
     font-size: 18.7px;
 }
+.side1 .text2{
+    margin-left:15px;
+}
 #sidebar .side-menu {
 	width: 100%;
 	margin-top: 48px;
@@ -164,8 +167,6 @@ body {
 	display: flex;
 	justify-content: center;
 }
-/* SIDEBAR */
-
 
 /* CONTENT */
 #content {
