@@ -56,6 +56,26 @@
                     <i class='bx bx-data'></i> <span class="text">CRUD Riders</span>
                 </a>
             </li>
+            <li class="side1">
+                <a href="/dashboard/data_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/data_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/data_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/data_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
             <li>
