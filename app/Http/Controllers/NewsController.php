@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,9 +11,9 @@ class NewsController extends Controller
 {
     public function index()
     {
+        $profiles = Profile::all();
         $news = News::all();
-
-        return view('news.index', ['news' => $news]);
+        return view('dashboard.news_crud', ['news' => $news, 'profiles' => $profiles]);
     }
 
     public function create()
@@ -36,7 +37,7 @@ class NewsController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'News successfully added.');
+        return redirect()->route('dashboard.news_crud')->with('success', 'News successfully added.');
     }
 
     public function show($id)
