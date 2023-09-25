@@ -247,7 +247,7 @@ Route::get('/', function () {
     return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile', 'properties', 'users'));
 })->name('news');
 Route::resource('property', PropertyController::class);
-Route::get('/dashboard/review', function () {
-    $properties = Property::all();
-    return view('dashboard.commentpost.event_review', compact('properties'));
-})->name('event');
+// Route::get('/dashboard/review', function () {
+//     $properties = Property::all();
+//     return view('dashboard.commentpost.event_review', compact('properties'));
+// })->name('event');

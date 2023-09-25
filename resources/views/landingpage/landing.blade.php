@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     {{-- custom css file cdn link --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    
 </head>
 
 <body>
@@ -23,14 +22,17 @@
         <a href="#" class="logo">
             @foreach ($profile as $item)
                 <td>
-                    <img src="{{ asset('storage/profile_images/' . $item->image) }}" alt="Logo" oncontextmenu="return false;">
+                    <img src="{{ asset('storage/profile_images/' . $item->image) }}" alt="Logo"
+                        oncontextmenu="return false;">
                 </td>
             @endforeach
         </a>
         <form action="" class="search-form">
             <input type="search" name="" placeholder="search in here..." id="searchBox">
             <label for="searchBox"><i class="fas fa-search"></i></label>
+            <button type="submit" style="display: none;" id="searchSubmit"></button>
         </form>
+
         <div class="icon">
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-moon" id="theme-btn"></div>
@@ -72,8 +74,8 @@
     {{-- beranda --}}
     <section class="hero" id="home">
         @foreach ($profile as $item)
-            <video class="video-slide active" src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted
-                loop></video>
+            <video class="video-slide active box searchable-element"
+                src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted loop></video>
         @endforeach
         <video class="video-slide" src="{{ asset('videos/video_2.mp4') }}" autoplay muted loop></video>
         <video class="video-slide" src="{{ asset('videos/video_3.mp4') }}" autoplay muted loop></video>
@@ -81,7 +83,7 @@
         <video class="video-slide" src="{{ asset('videos/video_4.mp4') }}" autoplay muted loop></video>
         <div class="container">
 
-            <h1 class="h1 hero-title" data-aos="zoom-in">
+            <h1 class="h1 hero-title searchable-element" data-aos="zoom-in">
                 @foreach ($profile as $item)
                     <marquee>{!! $item->slogan !!} <br></marquee>
                 @endforeach
@@ -89,7 +91,7 @@
 
             <div class="btn-group" data-aos="zoom-in">
 
-                <button class="btn btn-secondary" data-aos="zoom-in"><a href="#kegiatan" style="color: #FFF;">Explore
+                <button class="btn btn-secondary" data-aos="zoom-in"><a href="#events" style="color: #FFF;">Explore
                         Now!</a></button>
             </div>
             <div class="slider-navigation">
@@ -105,9 +107,9 @@
 
 
     {{-- packages --}}
-    <section class="packages" id="kegiatan">
-        <h1 class="heading">Ride <span>Adventures</span></h1>
-        <div class="box-container">
+    <section class="packages">
+        <h1 class="heading  searchable-element" id="events">Ride <span>Adventures</span></h1>
+        <div class="box-container searchable-element" id="events">
             @foreach ($events as $item)
                 <div class="box" data-aos="fade-up">
                     <div class="image">
@@ -128,7 +130,7 @@
 
     {{-- review --}}
     <section class="review" id="review">
-        <h1 class="heading">
+        <h1 class="heading searchable-element" id="review">
             events <span>review</span>
         </h1>
         <div class="swiper-container review-slider" data-aos="zoom-in">
@@ -148,7 +150,6 @@
                                     <i class='bx bxs-star'></i> <!-- Tampilkan bintang yang menyala -->
                                 @else
                                     <i class='bx bx-star'></i>
-                                    <!-- Tampilkan bintang yang tidak menyala -->
                                 @endif
                             @endfor
                         </div>
@@ -164,11 +165,11 @@
 
     {{-- blogs --}}
     <section class="blogs" id="others">
-        <h1 class="heading"><span>News</span></h1>
-        <div class="box-container" data-aos="fade-up">
+        <h1 class="heading searchable-element" id="news"><span>News</span></h1>
+        <div class="box-container  searchable-element" id="news" data-aos="fade-up">
 
             @foreach ($news as $nw)
-                <div class="box" data-aos="zoom">
+                <div class="box  searchable-element" id="news" data-aos="zoom">
                     <div class="image">
                         <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="Events" loading="lazy">
                     </div>
@@ -189,7 +190,7 @@
     {{-- ends --}}
     {{-- footer --}}
     <section class="footer">
-        <div class="box-container">
+        <div class="box-container searchable-element" id="communities">
             <div class="box">
                 <h3>Our Communities</h3>
                 <ul>
@@ -201,17 +202,19 @@
                 </ul>
             </div>
 
-            <div class="box">
+            <div class="box searchable-element" id="social-media">
                 <h3>Follow Us</h3>
                 @foreach ($properties as $item)
-                <a href="#" style="text-transform: none;"><i class="fas fa-phone"></i>{{ $item->phone_number }}</a>
-                <a href="#" style="text-transform: none;"><i
-                        class="fa-brands fa-instagram"></i>{{ $item->instagram }}</a>
-                <a href="#" style="text-transform: none;"><i class="fa-brands fa-facebook-f"></i>{{ $item->facebook }}</a>
-                <a href="#" style="text-transform: none;"><i
-                        class="fa-brands fa-x-twitter"></i>{{ $item->twitter }}</a>
-                <a href="#" style="text-transform: none;"><i
-                        class="fa-regular fa-envelope"></i></i>{{ $item->email }}</a>
+                    <a href="#" style="text-transform: none;"><i
+                            class="fas fa-phone"></i>{{ $item->phone_number }}</a>
+                    <a href="#" style="text-transform: none;"><i
+                            class="fa-brands fa-instagram"></i>{{ $item->instagram }}</a>
+                    <a href="#" style="text-transform: none;"><i
+                            class="fa-brands fa-facebook-f"></i>{{ $item->facebook }}</a>
+                    <a href="#" style="text-transform: none;"><i
+                            class="fa-brands fa-x-twitter"></i>{{ $item->twitter }}</a>
+                    <a href="#" style="text-transform: none;"><i
+                            class="fa-regular fa-envelope"></i></i>{{ $item->email }}</a>
                 @endforeach
             </div>
         </div>
@@ -232,34 +235,70 @@
         });
     </script>
     <script src="js/script.js"></script>
-    <script type="text/javascript">
-        //Javacript for video slider navigation
-        const btns = document.querySelectorAll(".nav-btn");
-        const slides = document.querySelectorAll(".video-slide");
-        const contents = document.querySelectorAll(".container");
-        var sliderNav = function(manual) {
-            btns.forEach((btn) => {
-                btn.classList.remove("active");
-            });
-            slides.forEach((slide) => {
-                slide.classList.remove("active");
-            });
-            contents.forEach((content) => {
-                content.classList.remove("active");
-            });
-            contents.forEach((content) => {
-                content.classList.remove("active");
-            });
-            btns[manual].classList.add("active");
-            slides[manual].classList.add("active");
-            contents[manual].classList.add("active");
+    <script type="text/javascript"></script>
+    <script>
+   const searchBox = document.getElementById('searchBox');
+const searchSubmit = document.getElementById('searchSubmit');
+let alertShown = false;
+
+searchSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
+    const searchTerm = searchBox.value.toLowerCase();
+
+    if (searchTerm === '') {
+        return;
+    }
+
+    removeHighlights();
+
+    const textElements = document.querySelectorAll('.searchable-element');
+
+    let found = false;
+    let firstMatchId = null;
+
+    textElements.forEach((element) => {
+        const text = element.innerText.toLowerCase();
+        const regex = new RegExp(searchTerm, 'gi');
+
+        if (regex.test(text)) {
+            found = true;
+            const highlightedText = element.innerHTML.replace(
+                regex,
+                '<span class="highlight">$&</span>'
+            );
+            element.innerHTML = highlightedText;
+
+            if (!firstMatchId) {
+                firstMatchId = element.getAttribute('id');
+            }
         }
-        btns.forEach((btn, i) => {
-            btn.addEventListener("click", () => {
-                sliderNav(i);
-            });
-        });
-    </script>
+    });
+
+    if (found) {
+        if (firstMatchId) {
+            window.location.href = `#${firstMatchId}`;
+        }
+    } else {
+        if (!alertShown) {
+            Swal.fire('Sorry!', 'No results for this search!', 'info');
+            alertShown = true;
+        } else {
+            alertShown = false;
+        }
+    }
+});
+
+function removeHighlights() {
+    const highlightedElements = document.querySelectorAll('.highlight');
+    highlightedElements.forEach((element) => {
+        element.outerHTML = element.innerHTML;
+    });
+}
+
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/dashboard.js') }}"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>
