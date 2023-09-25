@@ -21,7 +21,7 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class="fa-solid fa-motorcycle"></i>
-            @foreach ($profile as $item)
+            @foreach ($profiles as $item)
                 <span class="text">{{ $item->community_name }}</span>
             @endforeach
         </a>

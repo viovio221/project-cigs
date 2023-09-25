@@ -252,13 +252,5 @@ Route::resource('property', PropertyController::class);
 //     return view('dashboard.commentpost.event_review', compact('properties'));
 // })->name('event');
 
-Route::get('/dashboard/event_crud', function () {
 
-    $users = User::all();
-    $properties = Property::all();
-    $profile = Profile::all();
-    $events = Event::all();
-    $comment_post = CommentPost::all();
-    $news = News::all();
-    return view('dashboard.event_crud', compact('news', 'comment_post', 'events', 'profile', 'properties', 'users'));
-})->name('event_crud');
+Route::get('/dashboard/event_crud', [EventController::class, 'index'])->name('dashboard.event_crud');
