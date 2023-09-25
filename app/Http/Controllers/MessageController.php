@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -9,11 +10,12 @@ use Illuminate\Support\Facades\Storage;
 
 class MessageController extends Controller
 {
+
     public function index()
     {
+        $profiles = Profile::all();
         $messages = Message::all();
-        dd($messages);
-        return view('dashboard.data_crud', compact('messages'));
+        return view('dashboard.message_crud', compact('messages','profiles'));
     }
     public function message()
     {
