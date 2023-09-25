@@ -12,7 +12,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Admin Dashboard</title>
+    <title>Data CRUD</title>
 </head>
 
 <body>
@@ -21,19 +21,19 @@
     <section id="sidebar">
         <a href="#" class="brand">
             <i class="fa-solid fa-motorcycle"></i>
-            @foreach ($profile as $item)
+            @foreach ($profiles as $item)
                 <span class="text">{{ $item->community_name }}</span>
             @endforeach
         </a>
         <ul class="side-menu top">
-            <li class="active">
-                <a href="#">
+            <li>
+                <a href="/dashboard">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="/dashboard/event">
+                <a href="/dashboard/commentposts_crud">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Events</span>
                 </a>
@@ -50,30 +50,16 @@
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
                 </a>
-            </li>
+            </li>y
             <li>
-                <a href="/dashboard/data_crud">
-                    <i class='bx bx-data'></i> <span class="text">CRUD Riders</span>
+                <a href="">
+                    <i class='bx bx-data'></i>
+                    <span class="text">CRUD Riders</span>
                 </a>
             </li>
-            <li class="side1">
+            <li class="side1" class="active">
                 <a href="/dashboard/data_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
                 </a>
             </li>
         </ul>
@@ -90,9 +76,11 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const logoutButton = document.querySelector('.logout');
 
+                // Tambahkan event click ke elemen logout
                 logoutButton.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    e.preventDefault(); // Mencegah tindakan logout asli
 
+                    // Tampilkan pesan konfirmasi SweetAlert2
                     Swal.fire({
                         title: 'Are you sure to logout?',
                         text: "You won't be able to revert this!",
@@ -109,7 +97,6 @@
                 });
             });
         </script>
-
     </section>
     <!-- SIDEBAR -->
 
@@ -118,9 +105,9 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#" class="search-form">
+            <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search..." class="search-input">
+                    <input type="search" placeholder="Search...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -129,26 +116,25 @@
             </a>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
-
             <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
             <a href="{{ route('editprofile.show') }}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}" alt="Profile Image">
+                <img src="{{ asset('images/devani.jpg') }}">
             </a>
-        </nav>
 
+        </nav>
         <!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Admin Dashboard</h1>
+                    <h1>Data CRUD Riders</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a href="/dashboard/index">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
@@ -157,76 +143,81 @@
                     </ul>
                 </div>
             </div>
-
-            <ul class="box-info" style="align-content: center">
-                <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3>{{ $memberCount }}</h3>
-                        <p>Member Club</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-                        <h3>{{ $nonMemberCount }}</h3>
-                        <p>New Request</p>
-                    </span>
-                </li>
-            </ul>
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3>New Event's Data</h3>
-                    </div>
-                    <div class="table-data">
-                        <div class="order">
-                            <i class='bx bx-search'></i>
-                            <i class='bx bx-filter'></i>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Members Name</th>
-                                    <th>Event Date</th>
-                                    <th>Event Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (isset($eventData))
-                                    @foreach ($eventData as $data)
-                                        <tr>
-                                            <td>{{ $data->user->name }}</td>
-                                            <td>{{ $data->event_date }}</td>
-                                            <td>{{ $data->event_name }}</td>
-                                            <td><span class="status pending">{{ $data->status }}</span></td>
-                                            <td class="side-menu top">
-                                                <form action="{{ route('event.destroy', $data->id) }}" method="POST"
-                                                    style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        style="background: none; border: none; color:red"><i
-                                                            class='bx bx-trash'></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                        <h3><a href="#" class="btn btn-outline-primary">Setting</a>
+                        </h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
                                     @endforeach
-                                @endif
-                            </tbody>
-                        </table>
+                                </ul>
+                            </div>
+                        @endif
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
                     </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Video</th>
+                                <th>History</th>
+                                <th>C. Bio</th>
+                                <th>C. Structure</th>
+                                <th>Slogan</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($profiles))
+                                @foreach ($profiles as $no => $pf)
+                                    <tr>
+                                        <td>
+                                            <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
+                                                alt="profiles" width="100">
+                                        </td>
+
+                                        <td>
+                                            <video src="{{ asset('storage/profile_videos/' . $pf->video) }}" width="100" autoplay muted loop controls></video>
+                                        </td>
+                                        <td class="description">{{ $pf->history }}</td>
+                                        <td class="description">{{ $pf->community_bio }}</td>
+                                        <td class="description">{{ $pf->community_structure }}</td>
+                                        <td class="name">{{ $pf->slogan }}</td>
+                                        <td class="name">{{ $pf->community_name }}</td>
+
+                                        <td>
+                                            <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
+                                                    class='bx bx-edit'></i></a>
+                                            <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
+            </div>
+
         </main>
         <!-- MAIN -->
     </section>
-    <!-- CONTENT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
 </body>
 
-</html
+</html>

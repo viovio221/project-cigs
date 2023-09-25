@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\CommentPost;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class CommentPostController extends Controller
 {
     public function index()
     {
+        $profiles = Profile::all();
         $comment_post = CommentPost::all();
-        return view('dashboard.data_crud', ['comment_postlist' => $comment_post]);
+        return view('dashboard.commentposts_crud', ['comment_postlist' => $comment_post, 'profiles'=> $profiles]);
     }
 
     public function review()
@@ -78,12 +80,12 @@ public function show($id)
 
         $comment_post->update($validated);
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$request->judul Successfuly updated!");
+        return redirect()->route('dashboard.commentposts_crud')->with('success', "$request->judul Successfuly updated!");
     }
     public function destroy(CommentPost $comment_post)
     {
         $comment_post->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$comment_post->judul Successfully deleted!");
+        return redirect()->route('dashboard.commentposts_crud')->with('success', "$comment_post->judul Successfully deleted!");
     }
 }
