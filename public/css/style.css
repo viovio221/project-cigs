@@ -167,6 +167,9 @@ section{
     color: var(--text-color-1);
     font-size: 4rem;
 }
+.highlight {
+    background-color: yellow; 
+}
 .heading span{
     position: relative;
     z-index: 0;
