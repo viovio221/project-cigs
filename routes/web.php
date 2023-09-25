@@ -258,3 +258,4 @@ Route::get('/dashboard/commentposts_crud', [CommentPostController::class, 'index
 Route::get('/dashboard/message_crud', [MessageController::class, 'index'])->name('dashboard.message_crud');
 Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->name('dashboard.setting_crud');
 Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
+Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');

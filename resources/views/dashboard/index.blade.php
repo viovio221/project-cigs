@@ -62,18 +62,28 @@
                 </a>
             </li>
             <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
+                <a href="/dashboard/message_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
                 </a>
             </li>
             <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
+                <a href="/dashboard/commentposts_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
                 </a>
             </li>
             <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
+                <a href="/dashboard/news_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/setting_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/property_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
                 </a>
             </li>
         </ul>
@@ -187,6 +197,7 @@
                         <table>
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Members Name</th>
                                     <th>Event Date</th>
                                     <th>Event Name</th>
@@ -198,6 +209,7 @@
                                 @if (isset($eventData))
                                     @foreach ($eventData as $data)
                                         <tr>
+                                            <th></th>
                                             <td>{{ $data->user->name }}</td>
                                             <td>{{ $data->event_date }}</td>
                                             <td>{{ $data->event_name }}</td>
