@@ -163,6 +163,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>No</th>
                                 <th>H. Event</th>
                                 <th>T. Event</th>
@@ -180,6 +181,7 @@
                             @if (isset($properties))
                                 @foreach ($properties as $pr)
                                 <tr>
+                                    <th></th>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pr->headline_ev }}</td>
                                     <td>{{ $pr->text_ev }}</td>

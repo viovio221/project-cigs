@@ -28,6 +28,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EventDataController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
