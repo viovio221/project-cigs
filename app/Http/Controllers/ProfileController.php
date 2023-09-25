@@ -16,6 +16,12 @@ class ProfileController extends Controller
         return view('profile.history', compact('profiles', 'dataCount'));
     }
 
+    public function setting()
+    {
+        $profiles = Profile::all();
+        $dataCount = User::where('role', 'member')->count();
+        return view('dashboard.setting_crud', compact('profiles', 'dataCount'));
+    }
     public function create()
     {
         $profiles = Profile::all();

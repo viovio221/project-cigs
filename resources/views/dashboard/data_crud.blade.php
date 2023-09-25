@@ -258,79 +258,7 @@
                 </div>
             </div>
 
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Add
-                                Comment Posts</a></h3>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Event</th>
-                                <th scope="col">Content</th>
-                                <th scope="col">Rating</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (isset($comment_posts))
-                                @foreach ($comment_posts as $cp)
-                                    <tr>
-                                        <th>{{ $loop->iteration }}</th>
-                                        <td>{{ $cp->username }}</td>
-                                        <td class="event">{{ $cp->event ? $cp->event->name : 'Event Not Found' }}
-                                        </td>
-                                        <td class="description">{{ $cp->content }}</td>
-                                        <td>
-                                            @php
-                                                $rating = $cp->rating;
-                                                $maxRating = 5;
-                                            @endphp
-                                            @for ($i = 1; $i <= $maxRating; $i++)
-                                                @if ($i <= $rating)
-                                                    <i class='bx bxs-star'></i> <!-- Tampilkan bintang yang menyala -->
-                                                @else
-                                                    <i class='bx bx-star'></i>
-                                                    <!-- Tampilkan bintang yang tidak menyala -->
-                                                @endif
-                                            @endfor
-                                        </td>
 
-                                        <td class="side-menu top">
-                                            <a href="{{ route('comment_posts.show', $cp->id) }}"
-                                                style="color: green"><i class='bx bx-info-circle'></i></a>
-                                            <a href="{{ route('comment_posts.edit', $cp->id) }}" method="post"
-                                                style="color: blue"><i class='bx bx-edit'></i></a>
-                                            <form action="{{ route('comment_posts.destroy', $cp->id) }}"
-                                                method="POST" style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    style="background: none; border: none; color:red"><i
-                                                        class='bx bx-trash'></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
             {{-- crud news atau berita terbaru --}}
             <div class="table-data">
@@ -395,73 +323,7 @@
                 </div>
             </div>
 
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Setting</a>
-                        </h3>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Video</th>
-                                <th>History</th>
-                                <th>C. Bio</th>
-                                <th>C. Structure</th>
-                                <th>Slogan</th>
-                                <th>Name</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (isset($profiles))
-                                @foreach ($profiles as $no => $pf)
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
-                                                alt="profiles" width="100">
-                                        </td>
-
-                                        <td>
-                                            <video src="{{ asset('storage/profile_videos/' . $pf->video) }}" width="100" autoplay muted loop controls></video>
-                                        </td>
-                                        <td class="description">{{ $pf->history }}</td>
-                                        <td class="description">{{ $pf->community_bio }}</td>
-                                        <td class="description">{{ $pf->community_structure }}</td>
-                                        <td class="name">{{ $pf->slogan }}</td>
-                                        <td class="name">{{ $pf->community_name }}</td>
-
-                                        <td>
-                                            <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
-                                                    class='bx bx-edit'></i></a>
-                                            <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
-                                                style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    style="background: none; border: none; color:red"><i
-                                                        class='bx bx-trash'></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+           
 
             <div class="table-data">
                 <div class="order">
