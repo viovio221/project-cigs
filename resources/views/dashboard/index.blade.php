@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li class="side1">
-                <a href="/dashboard/event_crud" class="text2">
+                <a href="/dashboard/data_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
                 </a>
             </li>
