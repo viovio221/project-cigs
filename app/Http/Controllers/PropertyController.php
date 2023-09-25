@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,9 @@ class PropertyController extends Controller
 {
     public function index()
 {
+    $profiles = Profile::all();
     $properties = Property::all();
-
-    return view('dashboard.data_crud', compact('properties'));
+    return view('dashboard.property_crud', compact('properties', 'profiles'));
 }
 
     public function edit($id)
