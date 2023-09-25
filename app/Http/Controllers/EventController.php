@@ -50,7 +50,7 @@ class EventController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully added.');
+        return redirect()->route('dashboard.event_crud')->with('success', 'Event successfully added.');
     }
 
     public function show($id)

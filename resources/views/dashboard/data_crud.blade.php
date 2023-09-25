@@ -138,7 +138,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="table-data">
+            {{-- <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3><a href="{{ route('events.create') }}" class="btn btn-outline-primary">Add Event</a></h3>
@@ -199,7 +199,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="table-data">
                 <div class="order">
