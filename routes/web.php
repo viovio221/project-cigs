@@ -148,6 +148,7 @@ Route::get('/dashboard/news', function () {
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
+Route::get('/dashboard/news/{id}', 'App\Http\Controllers\NewsController@showReadMore')->name('dashboard.news.readmore');
 Route::get('/dashboard/membersdata', function () {
     $users = User::all();
     $profile = Profile::all();
@@ -195,12 +196,13 @@ Route::get('/dashboard/event', function () {
     });
 });
 
-//non member ya
+
+
 Route::middleware(['checkUserRole:non-member'])->group(function () {
-    Route::get('/dashboard/non-member', [EventDataController::class, 'index'])->name('dashboard.non-member')->middleware('auth');
-    Route::get('/dashboard/non-member/membersdata', function () {
+    Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
+    Route::get('/dashboard/membersdata', function () {
         $users = User::all();
         $profile = Profile::all();
         return view('dashboard.membersdata', compact('users', 'profile'));
-    })->name('dashboard.non-member.membersdata');
+    })->name('dashboard.membersdata');
 });

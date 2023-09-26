@@ -55,11 +55,13 @@ class NewsController extends Controller
         return redirect()->route('dashboard.news_crud')->with('success', 'News successfully added.');
     }
 
-    public function show($id)
-    {
-        $nw = News::findOrFail($id);
-        return view('dashboard.news.show', compact('nw'));
-    }
+
+    public function showReadMore($id)
+{
+    $nw = News::findOrFail($id);
+    return view('dashboard.readmore.readmore', compact('nw'));
+}
+
 
     public function edit($id)
     {

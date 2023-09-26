@@ -221,13 +221,6 @@
             </ul>
             <ul class="box-info" style="align-content: center">
                 <li>
-                    <i class='bx bx-user-pin'></i>
-                    <span class="text">
-                        <h3>{{ $adminCount }}</h3>
-                        <p>Admin</p>
-                    </span>
-                </li>
-                <li>
                     <i class='bx bxs-book-open'></i>
                     <span class="text">
                         <h3>{{ $eventCount }}</h3>
