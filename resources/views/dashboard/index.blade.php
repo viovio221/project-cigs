@@ -160,28 +160,26 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#" class="search-form">
+            <form action="#" class="search-form" hidden>
                 <div class="form-input">
                     <input type="search" placeholder="Search..." class="search-input">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <a href="/dashboard/message" class="notification">
+            <a href="/dashboard/message" class="notification" title="message here">
                 <i class='bx bxs-edit-alt'></i>
             </a>
             <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
 
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
-                <a href="/dashboard/review" class="notification">
+                <a href="/dashboard/review" class="notification" title="event's review here">
                     <i class='bx bxs-bell'></i>
-                    <span class="num">8</span>
                 </a>
             @endif
 
-            <a href="{{ route('editprofile.show') }}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}" alt="Profile Image">
-            </a>
+            <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                <i class='bx bxs-user-circle'></i>       </a>
         </nav>
 
         <!-- NAVBAR -->

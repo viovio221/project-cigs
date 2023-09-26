@@ -132,23 +132,22 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" placeholder="Cari...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
             <a href="/dashboard/message" class="notification">
                 <i class='bx bxs-edit-alt'></i>
             </a>
-            <input type="checkbox" id="switch-mode" hidden>
+            <input type="checkbox" id="switch-mode" hidden style="display: none;">
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show') }}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}">
-            </a>
 
+            <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                <i class='bx bxs-user-circle'></i>       </a>
         </nav>
         <!-- NAVBAR -->
 

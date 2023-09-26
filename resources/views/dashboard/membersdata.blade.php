@@ -82,7 +82,7 @@
                     </a>
                 </li>
                 <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
-                    <a href="dashboard/data_crud">
+                    <a href="#">
                         <i class='bx bx-data'></i>
                         <span class="text">CRUD Riders</span>
                     </a>
@@ -161,7 +161,7 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form action="#" hidden>
                 <div class="form-input">
                     <input type="search" placeholder="Cari...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
@@ -179,9 +179,9 @@
                     <span class="num">8</span>
                 </a>
             @endif
-            <a href="{{ route('editprofile.show') }}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}">
-            </a>
+
+            <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                <i class='bx bxs-user-circle'></i>       </a>
 
         </nav>
         <!-- NAVBAR -->
