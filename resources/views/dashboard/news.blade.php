@@ -174,7 +174,8 @@
                         <span>
                             <h3 class="title-news">{{ $nw->title }}</h3>
                             <p>{{ $nw->description }}</p>
-                            <button class="btn3 btn-primary">Read More</button></p>
+                            <a href="{{url('readmore')}}">
+                            <button class="btn3 btn-primary">Read More</button></a></p>
                         </span>
                     </li>
                 @endforeach

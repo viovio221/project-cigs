@@ -99,7 +99,6 @@ Route::get('/dashboard/news', function () {
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
-
 Route::get('/dashboard/membersdata', function () {
     $users = User::all();
     $profile = Profile::all();
@@ -275,7 +274,7 @@ Route::middleware(['checkUserRole:member'])->group(function () {
 });
 
 //non member ya
-Route::middleware(['checkUserRole:non-member'])->group(function () {
+Route::middleware(['checkUserRole:non-member'])->group(function () { 
     Route::get('/dashboard/non-member', [EventDataController::class, 'index'])->name('dashboard.non-member')->middleware('auth');
     Route::get('/dashboard/non-member/membersdata', function () {
         $users = User::all();
@@ -292,3 +291,5 @@ Route::get('/dashboard/eventdesc1', function () {
     $events = Event::all();
     return view('dashboard.eventdesc1', compact('events'));
 })->name('eventdesc1');
+
+Route::view('readmore', 'readmore/readmore');

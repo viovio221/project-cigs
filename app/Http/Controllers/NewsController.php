@@ -80,4 +80,13 @@ class NewsController extends Controller
 
         return redirect()->route('dashboard.data_crud')->with('success', "News successfully deleted!");
     }
+
+    public function readmoree($id)
+    {
+        $news = News::findOrFail($id);
+        $profile = Profile::findOrFail($id); // Mengambil data profile, pastikan ini sesuai dengan kebutuhan Anda
+
+
+        return view('readmore/readmore', compact('news','profile'));
+    } 
 }
