@@ -102,7 +102,7 @@ class ProfileController extends Controller
 
         $profiles->update($validatedData);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Profile successfully updated.');
+        return redirect()->route('dashboard.setting_crud')->with('success', 'Setting successfully updated.');
     }
 
     public function destroy(string $id)

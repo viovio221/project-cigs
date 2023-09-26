@@ -86,13 +86,13 @@ class NewsController extends Controller
 
         $news->update($validatedData);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'News successfully updated.');
+        return redirect()->route('dashboard.news_crud')->with('success', 'News successfully updated.');
     }
 
     public function destroy(News $news)
     {
         $news->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('success', "News successfully deleted!");
+        return redirect()->route('dashboard.news_crud')->with('success', "News successfully deleted!");
     }
 }
