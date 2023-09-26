@@ -76,7 +76,6 @@ Route::resource('comment_posts', CommentPostController::class);
 //     return view('dashboard.index');
 // })->name('dashboard.index')->middleware('auth');
 
-Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
 
 // comment post
 Route::get('/commentpost', function () {
@@ -241,7 +240,7 @@ Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->nam
 Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 
-
+Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
 Route::get('/dashboard/event', function () {
     $profile = Profile::all();
     $events = Event::all();
@@ -251,24 +250,24 @@ Route::get('/dashboard/event', function () {
 });
 
 
-Route::middleware(['checkUserRole:member'])->group(function () {
-    Route::get('/dashboard/member', [EventDataController::class, 'index'])->name('dashboard.member')->middleware('auth');
-    Route::get('/dashboard/member/event', function () {
-        $profile = Profile::all();
-        $events = Event::all();
-        return view('dashboard.event', compact('events', 'profile'));
-    })->name('dashboard.member.event');
-    Route::get('/dashboard/member/membersdata', function () {
-        $users = User::all();
-        $profile = Profile::all();
-        return view('dashboard.membersdata', compact('users', 'profile'));
-    })->name('dashboard.member.membersdata');
-    Route::get('/dashboard/member/news', function () {
-        $news = News::all();
-        $profile = Profile::all();
-        return view('dashboard.news', compact('news', 'profile'));
-    })->name('dashboard.member.news');
-});
+// Route::middleware(['checkUserRole:member'])->group(function () {
+//     Route::get('/dashboard/member', [EventDataController::class, 'index'])->name('dashboard.member')->middleware('auth');
+//     Route::get('/dashboard/member/event', function () {
+//         $profile = Profile::all();
+//         $events = Event::all();
+//         return view('dashboard.event', compact('events', 'profile'));
+//     })->name('dashboard.member.event');
+//     Route::get('/dashboard/member/membersdata', function () {
+//         $users = User::all();
+//         $profile = Profile::all();
+//         return view('dashboard.membersdata', compact('users', 'profile'));
+//     })->name('dashboard.member.membersdata');
+//     Route::get('/dashboard/member/news', function () {
+//         $news = News::all();
+//         $profile = Profile::all();
+//         return view('dashboard.news', compact('news', 'profile'));
+//     })->name('dashboard.member.news');
+// });
 
 //non member ya
 Route::middleware(['checkUserRole:non-member'])->group(function () {
