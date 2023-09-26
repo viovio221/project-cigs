@@ -10,14 +10,19 @@ use Illuminate\Support\Facades\Hash;
 
 class EditProfileController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware('auth', ['except' => 'logout']);
+}
+
     public function index()
     {
-        return view('editprofile.show');
+        return view('dashboard.editprofile.show');
     }
 
     public function edit()
     {
-        return view('editprofile.edit');
+        return view('dashboard.editprofile.edit');
     }
 
     public function update(Request $request)
@@ -33,7 +38,7 @@ class EditProfileController extends Controller
             'district' => 'required|max:100',
             'postal_code' => 'required|max:5',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar dokumen
-            'tipe' => 'required|in:KTP,SIM,STNK', 
+            'tipe' => 'required|in:KTP,SIM,STNK',
         ]);
 
         $user = auth()->user();
@@ -70,6 +75,6 @@ class EditProfileController extends Controller
             }
         }
 
-        return redirect()->route('editprofile.show')->with('success', 'Profile updated successfully.');
+        return redirect()->route('dashboard.editprofile.show')->with('success', 'Profile updated successfully.');
     }
 }
