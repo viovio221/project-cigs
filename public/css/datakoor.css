@@ -1,0 +1,69 @@
+
+.container {
+    width: 1200x;
+    height: 982px;
+    position: relative;
+    background: white;
+  }
+
+  .header {
+    left: 500px;
+    top: 51px;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 800;
+    word-wrap: break-word;
+  }
+
+  .line {
+    width: 300px;
+    height: 5px;
+    left: 480px;
+    top: 114px;
+    position: absolute;
+    background: #FFA902;
+    border-radius: 5px;
+  }
+
+  .box {
+    width: 150px;
+    height: 36px;
+    position: absolute;
+    background: #FFA902;
+    border-radius: 3px;
+  }
+
+  .label {
+    position: absolute;
+    left: 50px;
+    top: 40px;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 800;
+    word-wrap: break-word;
+  }
+
+  .name-label {
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-size: 12px;
+    left: 50px;
+    top: 40px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+
+  .image {
+    width: 200px;
+    height: 250px;
+    left: -72px;
+    top: -26px;
+    position: absolute;
+  }
