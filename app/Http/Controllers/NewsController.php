@@ -9,11 +9,25 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+=
+        $search = $request->query('search');
+        if(!empty($search)){
+            $data = News::where('news', 'like', '%' . $request->search . '%')->paginate(5);
+
+        }else {
+            $data = News::paginate(5);
+        }
+        return view('news.index')->with([
+            'news' => $data,
+            'search' => $search
+        ]);
+
         $profiles = Profile::all();
         $news = News::all();
         return view('dashboard.news_crud', ['news' => $news, 'profiles' => $profiles]);
+
     }
 
     public function create()
