@@ -176,9 +176,9 @@
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show') }}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}" alt="Profile Image">
-            </a>
+
+            <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                <i class='bx bxs-user-circle'></i>       </a>
         </nav>
         <!-- NAVBAR -->
 

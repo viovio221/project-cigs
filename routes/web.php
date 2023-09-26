@@ -123,8 +123,6 @@ Route::put('/editprofile/update', 'EditProfileController@update')->name('editpro
 Route::post('editprofile', [EditProfileController::class, 'store'])->name('editprofile.store');
 Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])->name('editprofile.edit');
 Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
-
-
 //events
 Route::get('/', function () {
     $users = User::all();
