@@ -26,66 +26,62 @@
             @endforeach
         </a>
         <ul class="side-menu top">
-            <li class="active">
-                <a href="#">
+            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="/dashboard/event">
-                    <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Events</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dashboard/news">
-                    <i class='bx bxs-message-dots'></i>
-                    <span class="text">News</span>
-                    {{-- admin --}}
-                </a>
-            </li>
-            <li>
-                <a href="/dashboard/membersdata">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Members Data</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dashboard/data_crud">
-                    <i class='bx bx-data'></i> <span class="text">CRUD Riders</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/data_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/message_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/commentposts_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/news_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/setting_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
-                </a>
-            </li>
-            <li class="side1">
-                <a href="/dashboard/property_crud" class="text2">
-                    <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
-                </a>
-            </li>
+            @if (Auth::check() && Auth::user()->role === 'non-member')
+                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                    <a href="/dashboard/membersdata">
+                        <i class='bx bxs-group'></i>
+                        <span class="text">Members Data</span>
+                    </a>
+                </li>
+            @endif
+            @if (Auth::check() && Auth::user()->role === 'member')
+                <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
+                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                    <a href="/dashboard/event">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Events</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                    <a href="/dashboard/news">
+                        <i class='bx bxs-message-dots'></i>
+                        <span class="text">News</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                    <a href="/dashboard/membersdata">
+                        <i class='bx bxs-group'></i>
+                        <span class="text">Members Data</span>
+                    </a>
+                </li>
+            @endif
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
+                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                    <a href="/dashboard/event">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Events</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                    <a href="/dashboard/news">
+                        <i class='bx bxs-message-dots'></i>
+                        <span class="text">News</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
+                    <a href="dashboard/data_crud">
+                        <i class='bx bx-data'></i>
+                        <span class="text">CRUD Riders</span>
+                    </a>
+                </li>
+            @endif
         </ul>
         <ul class="side-menu">
             <li>
@@ -95,7 +91,6 @@
                 </a>
             </li>
         </ul>
-
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const logoutButton = document.querySelector('.logout');
@@ -140,10 +135,13 @@
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
 
-            <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
-                <span class="num">8</span>
-            </a>
+            @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
+                <a href="/dashboard/review" class="notification">
+                    <i class='bx bxs-bell'></i>
+                    <span class="num">8</span>
+                </a>
+            @endif
+
             <a href="{{ route('editprofile.show') }}" class="profile">
                 <img src="{{ asset('images/devani.jpg') }}" alt="Profile Image">
             </a>
@@ -155,7 +153,9 @@
         <main>
             <div class="head-title">
                 <div class="left">
+                    @if (Auth::check() && (Auth::user()->role === 'admin'))
                     <h1>Admin Dashboard</h1>
+                    @endif
                     <ul class="breadcrumb">
                         <li>
                             <a href="#">Dashboard</a>
@@ -184,53 +184,55 @@
                     </span>
                 </li>
             </ul>
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>New Event's Data</h3>
-                    </div>
-                    <div class="table-data">
-                        <div class="order">
-                            <i class='bx bx-search'></i>
-                            <i class='bx bx-filter'></i>
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <div class="table-data">
+                    <div class="order">
+                        <div class="head">
+                            <h3>New Event's Data</h3>
                         </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Members Name</th>
-                                    <th>Event Date</th>
-                                    <th>Event Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (isset($eventData))
-                                    @foreach ($eventData as $data)
-                                        <tr>
-                                            <th></th>
-                                            <td>{{ $data->user->name }}</td>
-                                            <td>{{ $data->event_date }}</td>
-                                            <td>{{ $data->event_name }}</td>
-                                            <td><span class="status pending">{{ $data->status }}</span></td>
-                                            <td class="side-menu top">
-                                                <form action="{{ route('event.destroy', $data->id) }}" method="POST"
-                                                    style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        style="background: none; border: none; color:red"><i
-                                                            class='bx bx-trash'></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
+                        <div class="table-data">
+                            <div class="order">
+                                <i class='bx bx-search'></i>
+                                <i class='bx bx-filter'></i>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Members Name</th>
+                                        <th>Event Date</th>
+                                        <th>Event Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (isset($eventData))
+                                        @foreach ($eventData as $data)
+                                            <tr>
+                                                <th></th>
+                                                <td>{{ $data->user->name }}</td>
+                                                <td>{{ $data->event_date }}</td>
+                                                <td>{{ $data->event_name }}</td>
+                                                <td><span class="status pending">{{ $data->status }}</span></td>
+                                                <td class="side-menu top">
+                                                    <form action="{{ route('event.destroy', $data->id) }}"
+                                                        method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            style="background: none; border: none; color:red"><i
+                                                                class='bx bx-trash'></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+            @endif
         </main>
         <!-- MAIN -->
     </section>

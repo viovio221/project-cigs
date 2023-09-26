@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -42,8 +42,8 @@
                 <a href="/dashboard/news">
                     <i class='bx bxs-message-dots'></i>
                     <span class="text">News</span>
-                    {{-- admin --}}
-                </a>
+                    admin --}}
+                {{-- </a>
             </li>
             <li>
                 <a href="/dashboard/membersdata">
@@ -137,7 +137,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="table-data">
                 <div class="order">
                     <div class="head">
@@ -201,7 +201,7 @@
                 </div>
             </div> --}}
 
-            <div class="table-data">
+            {{-- <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3><a href="#" class="btn btn-outline-primary">Add
@@ -261,7 +261,7 @@
 
 
             {{-- crud news atau berita terbaru --}}
-            <div class="table-data">
+            {{-- <div class="table-data">
                 <div class="order">
                     <div class="head">
                         <h3><a href="{{ route('news.create') }}" class="btn btn-outline-primary">Add News</a>
@@ -323,10 +323,10 @@
                 </div>
             </div>
 
-           
 
-            <div class="table-data">
-                <div class="order">
+
+            <div class="table-data"> --}}
+                {{-- <div class="order">
                     <div class="head">
                         <h3><a href="{{ route('property.create') }}" class="btn btn-outline-primary">Add Property</a>
                         </h3>
@@ -401,4 +401,4 @@
     @include('sweetalert::alert')
 </body>
 
-</html>
+</html> --}}

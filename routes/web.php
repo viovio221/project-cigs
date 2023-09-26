@@ -66,13 +66,6 @@ Route::post('/submit-message', function (Request $request) {
     return redirect('/')->with('success', 'Pesan berhasil dikirim!');
 });
 
-Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');
-Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
-Route::get('/dashboard/events/{event}', [EventController::class, 'show'])->name('events.show');
-Route::get('/dashboard/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
-Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->name('events.update');
-Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
-Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 
 // ends
 
@@ -180,26 +173,6 @@ Route::get('/logout', function () {
 route::resource('editprofile', EditProfileController::class);
 
 //description
-Route::get('/dashboard/eventdesc1', function () {
-    return view('dashboard.eventdesc1');
-});
-Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
-Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
-Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show');
-
-//eventdesc
-Route::get('/dashboard/eventdesc1', function () {
-    $events = Event::all();
-    return view('dashboard.eventdesc1', compact('events'));
-})->name('eventdesc1');
-
-
-//events
-Route::get('/dashboard/event', function () {
-    $profile = Profile::all();
-    $events = Event::all();
-    return view('dashboard.event', compact('events', 'profile'));
-})->name('event');
 
 
 //edit profile
@@ -247,16 +220,75 @@ Route::get('/', function () {
     $news = News::all();
     return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile', 'properties', 'users'));
 })->name('news');
-Route::resource('property', PropertyController::class);
-// Route::get('/dashboard/review', function () {
-//     $properties = Property::all();
-//     return view('dashboard.commentpost.event_review', compact('properties'));
-// })->name('event');
 
 
+Route::middleware(['checkUserRole:member'])->group(function () {
+    Route::middleware(['crudAccess'])->group(function () {
 Route::get('/dashboard/event_crud', [EventController::class, 'index'])->name('dashboard.event_crud');
 Route::get('/dashboard/commentposts_crud', [CommentPostController::class, 'index'])->name('dashboard.commentposts_crud');
 Route::get('/dashboard/message_crud', [MessageController::class, 'index'])->name('dashboard.message_crud');
 Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->name('dashboard.setting_crud');
 Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
 Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');
+Route::resource('property', PropertyController::class);
+
+Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');
+Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
+Route::get('/dashboard/events/{event}', [EventController::class, 'show'])->name('events.show');
+Route::get('/dashboard/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->name('events.update');
+Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
+
+Route::get('/dashboard/member/news', function () {
+    $news = News::all();
+    $profile = Profile::all();
+    return view('dashboard.news', compact('news', 'profile'));
+})->name('dashboard.member.news');
+
+Route::get('/dashboard/event', function () {
+    $profile = Profile::all();
+    $events = Event::all();
+    return view('dashboard.event', compact('events', 'profile'));
+})->name('event');
+    });
+});
+
+
+Route::middleware(['checkUserRole:member'])->group(function () {
+    Route::get('/dashboard/member', [EventDataController::class, 'index'])->name('dashboard.member')->middleware('auth');
+    Route::get('/dashboard/member/event', function () {
+        $profile = Profile::all();
+        $events = Event::all();
+        return view('dashboard.event', compact('events', 'profile'));
+    })->name('dashboard.member.event');
+    Route::get('/dashboard/member/membersdata', function () {
+        $users = User::all();
+        $profile = Profile::all();
+        return view('dashboard.membersdata', compact('users', 'profile'));
+    })->name('dashboard.member.membersdata');
+    Route::get('/dashboard/member/news', function () {
+        $news = News::all();
+        $profile = Profile::all();
+        return view('dashboard.news', compact('news', 'profile'));
+    })->name('dashboard.member.news');
+});
+
+//non member ya
+Route::middleware(['checkUserRole:non-member'])->group(function () {
+    Route::get('/dashboard/non-member', [EventDataController::class, 'index'])->name('dashboard.non-member')->middleware('auth');
+    Route::get('/dashboard/non-member/membersdata', function () {
+        $users = User::all();
+        $profile = Profile::all();
+        return view('dashboard.membersdata', compact('users', 'profile'));
+    })->name('dashboard.non-member.membersdata');
+});
+
+Route::get('/dashboard/eventdesc1', function () { return view('dashboard.eventdesc1'); });
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
+Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
+Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show');
+Route::get('/dashboard/eventdesc1', function () {
+    $events = Event::all();
+    return view('dashboard.eventdesc1', compact('events'));
+})->name('eventdesc1');

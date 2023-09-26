@@ -68,6 +68,8 @@ class Kernel extends HttpKernel
     ];
     protected $routeMiddleware = [
         'customRedirect' => \App\Http\Middleware\CustomRedirectIfAuthenticated::class,
+        'checkUserRole' => \App\Http\Middleware\CheckUserRoleMiddleware::class,
+        'crudAccess' => \App\Http\Middleware\CheckAccessToCrudRoutesMiddleware::class,
     ];
 
 }
