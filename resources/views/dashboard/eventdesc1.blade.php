@@ -19,52 +19,78 @@
 </head>
 
 <body>
-    <section id="sidebar">
-        <a href="#" class="brand">
-            <i class="fa-solid fa-motorcycle"></i>
-            <span class="text">Wayang Riders</span>
-        </a>
-        <ul class="side-menu top">
-            <li>
-                <a href="/dashboard">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dashboard/data_crud">
-                    <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">Events</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dashboard/data_crud">
-                    <i class='bx bxs-message-dots'></i>
-                    <span class="text">News</span>
-                    {{-- admin --}}
-                </a>
-            </li>
-            <li>
-                <a href="#">
+   <!-- SIDEBAR -->
+<section id="sidebar">
+    <a href="#" class="brand">
+        <i class="fa-solid fa-motorcycle"></i>
+        <span class="text">Wayang Riders</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}">
+                <i class='bx bxs-dashboard'></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        @if (Auth::check() && Auth::user()->role === 'non-member')
+            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                <a href="/dashboard/membersdata">
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
                 </a>
             </li>
-            <li>
-                <a href="/dashboard/data_crud">
-                    <i class='bx bx-data'></i> <span class="text">CRUD Riders</span>
+        @endif
+        @if (Auth::check() && Auth::user()->role === 'member')
+            <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
+            <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                <a href="/dashboard/event">
+                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <span class="text">Events</span>
                 </a>
             </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+            <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">News</span>
                 </a>
             </li>
-        </ul>
-
+            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                <a href="/dashboard/membersdata">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Members Data</span>
+                </a>
+            </li>
+        @endif
+        @if (Auth::check() && Auth::user()->role === 'admin')
+            <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
+            <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                <a href="/dashboard/event">
+                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <span class="text">Events</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">News</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
+                <a href="#">
+                    <i class='bx bx-data'></i>
+                    <span class="text">CRUD Riders</span>
+                </a>
+            </li>
+        @endif
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="#" class="logout">
+                <i class='bx bxs-log-out-circle'></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const logoutButton = document.querySelector('.logout');
