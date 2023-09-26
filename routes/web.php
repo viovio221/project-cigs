@@ -176,12 +176,6 @@ Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])
 Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
 Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
 
-Route::get('/dashboard/membersdata', function () {
-    $users = User::all();
-    $profile = Profile::all();
-    return view('dashboard.membersdata', compact('users', 'profile'));
-})->name('users');
-
 Route::resource('news', NewsController::class);
 Route::resource('comment_posts', CommentPostController::class);
 //edit profile
@@ -238,3 +232,9 @@ Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit
 Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
 Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
 Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
+
+Route::get('/dashboard/membersdata', function () {
+    $users = User::all();
+    $profile = Profile::all();
+    return view('dashboard.membersdata', compact('users', 'profile'));
+})->name('users');
