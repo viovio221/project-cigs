@@ -8,11 +8,19 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::all();
+        $search = $request->query('search');
+        if(!empty($search)){
+            $data = News::where('news', 'like', '%' . $request->search . '%')->paginate(5);
 
-        return view('news.index', ['news' => $news]);
+        }else {
+            $data = News::paginate(5);
+        }
+        return view('news.index')->with([
+            'news' => $data,
+            'search' => $search
+        ]);
     }
 
     public function create()
