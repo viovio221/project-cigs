@@ -95,7 +95,7 @@ class EventController extends Controller
 
         $event->update($validatedData);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully updated.');
+        return redirect()->route('dashboard.event_crud')->with('success', 'Event successfully updated.');
     }
 
     public function destroy($id)
@@ -103,6 +103,6 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $event->delete();
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully deleted.');
+        return redirect()->route('dashboard.event_crud')->with('success', 'Event successfully deleted.');
     }
 }

@@ -78,11 +78,12 @@
                         <input type="file" name="image" id="image" accept="image/*" class="input">
                     </div>
 
-                    @if(auth()->user()->document)
-                    <div class="inputfield">
-                        <p>Current Image:</p>
-                        <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}" alt="Current Image" class="current-image">
-                    </div>
+                    @if (auth()->user()->document)
+                        <div class="inputfield">
+                            <p>Current Image:</p>
+                            <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}"
+                                alt="Current Image" class="current-image">
+                        </div>
                     @endif
 
                     <div class="inputfield">
@@ -100,10 +101,10 @@
             </div>
         </form>
     </div>
-     <!-- CONTENT -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CONTENT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-     @include('sweetalert::alert')
+    @include('sweetalert::alert')
 </body>
 
 </html>
