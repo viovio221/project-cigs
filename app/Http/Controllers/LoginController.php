@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,8 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('login.index');
+        $profile = Profile::all();
+        return view('login.index', compact('profile'));
     }
 
 
