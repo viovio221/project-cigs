@@ -148,21 +148,12 @@ Route::get('/dashboard/news', function () {
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
-Route::get('/dashboard/news/{id}', 'App\Http\Controllers\NewsController@showReadMore')->name('dashboard.news.readmore');
+
 Route::get('/dashboard/membersdata', function () {
     $users = User::all();
     $profile = Profile::all();
     return view('dashboard.membersdata', compact('users', 'profile'));
 })->name('users');
-Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
-Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
-Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
-Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
-Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
-Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
-Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
-Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
-Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
 
 
 Route::get('/dashboard/eventdesc1', function () { return view('dashboard.eventdesc1'); });
@@ -173,6 +164,24 @@ Route::get('/dashboard/eventdesc1', function () {
     $events = Event::all();
     return view('dashboard.eventdesc1', compact('events'));
 })->name('eventdesc1');
+Route::get('/dashboard/news/{id}', 'App\Http\Controllers\NewsController@showReadMore')->name('dashboard.news.readmore');
+
+Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
+Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
+Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
+Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
+Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
+Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
+Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
+Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
+Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
+
+Route::get('/dashboard/membersdata', function () {
+    $users = User::all();
+    $profile = Profile::all();
+    return view('dashboard.membersdata', compact('users', 'profile'));
+})->name('users');
+
 Route::resource('news', NewsController::class);
 Route::resource('comment_posts', CommentPostController::class);
 //edit profile
@@ -206,3 +215,26 @@ Route::middleware(['checkUserRole:non-member'])->group(function () {
         return view('dashboard.membersdata', compact('users', 'profile'));
     })->name('dashboard.membersdata');
 });
+
+
+
+Route::get('/dashboard/eventdesc1', function () { return view('dashboard.eventdesc1'); });
+Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
+Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
+Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show');
+Route::get('/dashboard/eventdesc1', function () {
+    $profile = Profile::all();
+    $events = Event::all();
+    return view('dashboard.eventdesc1', compact('events', 'profile'));
+})->name('eventdesc1');
+Route::get('/dashboard/news/{id}', 'App\Http\Controllers\NewsController@showReadMore')->name('dashboard.news.readmore');
+
+Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
+Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
+Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
+Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
+Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
+Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
+Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
+Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
+Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');

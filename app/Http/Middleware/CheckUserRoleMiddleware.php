@@ -17,7 +17,7 @@ class CheckUserRoleMiddleware
             if ($user->role == 'admin') {
                 return $next($request);
             } elseif ($user->role == 'member') {
-                $allowedRoutes = ['dashboard', 'event', 'membersdata', 'news'];
+                $allowedRoutes = ['dashboard', 'event', 'membersdata', 'news', 'review', 'message', 'comment_posts'];
                 $currentRoute = $request->route()->getName();
 
                 if (in_array($currentRoute, $allowedRoutes)) {

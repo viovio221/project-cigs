@@ -924,7 +924,9 @@ ul.box-info1 li .text1 h3,
 }
 .btn3{
 	display: block;
+    padding-top: 15px;
     width: 100%;
+    text-align: center;
 	height: 37px;
 	border-radius: 25px;
 	outline: none;

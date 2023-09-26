@@ -75,14 +75,50 @@
                     <span class="text">News</span>
                 </a>
             </li>
+            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                <a href="/dashboard/membersdata">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Members Data</span>
+                </a>
+            </li>
             <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
                 <a href="#">
                     <i class='bx bx-data'></i>
                     <span class="text">CRUD Riders</span>
                 </a>
             </li>
-        @endif
+            <li class="side1">
+                <a href="/dashboard/event_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/message_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/commentposts_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/news_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/setting_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/property_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
+                </a>
+            </li>
     </ul>
+    @endif
     <ul class="side-menu">
         <li>
             <a href="#" class="logout">
@@ -130,16 +166,18 @@
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+            <a href="/dashboard/message" class="notification">
+                <i class='bx bxs-edit-alt'></i>
+            </a>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
+            <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a>
-            <a href="{{ route('editprofile.show')}}" class="profile">
-                <img src="{{ asset('images/devani.jpg') }}">
-            </a>
 
+            <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                <i class='bx bxs-user-circle'></i>       </a>
         </nav>
         <!-- NAVBAR -->
 
