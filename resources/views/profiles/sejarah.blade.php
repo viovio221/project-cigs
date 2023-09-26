@@ -99,73 +99,7 @@
                 </div>
             </div>
         </div>
-      </section>
-
-      <section class="blog section">
-        <div class="container">
-          <div class="section-header">
-            <h3 class="title" data-title="">Structure</h3>
-          </div>
-
-          <div class="blog-wrapper">
-            <div class="blog-wrap">
-              <div class="blog-card">
-
-                <div class="blog-content">
-                  <div class="blog-info">
-                  </div>
-                  <h3 class="title-sm">Chairman</h3>
-                  <p class="blog-text">
-                    Leader 1 : Irfan Santika <br>
-                    Leader 2 : Gugum GUmilar
-                  </p>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="blog-wrap">
-              <div class="blog-card">
-
-                <div class="blog-content">
-                  <div class="blog-info">
-                  </div>
-                  <h3 class="title-sm">Domicile Head</h3>
-                  <p class="blog-text">
-                   Jawa Barat : Dhafa <br>
-                   Jawa Timur : Azzam <br>
-                   Jawa Tengah : Keyza <br>
-                  </p>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="blog-wrap">
-              <div class="blog-card">
-
-
-                <div class="blog-content">
-                  <div class="blog-info">
-
-                  </div>
-                  <h3 class="title-sm">Position Head</h3>
-                  <p class="blog-text">
-                    Business Head : Riki <br>
-                    Work Program: Yudi <br>
-                    Finnancial : Yusuf <br>
-                    Public Relations : Taufik <br>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-            </div>
-          </div>
-        </div>
-      </section>
+      </section
           </div>
         </div>
       </div>
