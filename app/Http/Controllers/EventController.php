@@ -14,16 +14,23 @@ use App\Models\Profile;
 class EventController extends Controller
 {
     public function index()
-    {
-        $properties = Property::all();
-        $events = Event::all();
-        $messages = Message::all();
-        $comment_posts = CommentPost::all();
-        $news = News::all();
-        $profiles = Profile::all();
+{
+    $profiles = Profile::all();
+    $events = Event::all();
+    return view('dashboard.event_crud', compact('events','profiles'));
+}
 
-        return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news', 'profiles', 'properties'));
-    }
+    // public function index()
+    // {
+    //     $properties = Property::all();
+    //     $events = Event::all();
+    //     $messages = Message::all();
+    //     $comment_posts = CommentPost::all();
+    //     $news = News::all();
+    //     $profiles = Profile::all();
+
+    //     return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news', 'profiles', 'properties'));
+    // }
 
     public function create()
     {
@@ -50,7 +57,7 @@ class EventController extends Controller
             'image' => $image->hashName(),
         ]);
 
-        return redirect()->route('dashboard.data_crud')->with('success', 'Event successfully added.');
+        return redirect()->route('dashboard.event_crud')->with('success', 'Event successfully added.');
     }
 
     public function show($id)
