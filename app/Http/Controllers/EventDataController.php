@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Profile;
 use App\Models\EventData;
 use Illuminate\Http\Request;
@@ -18,10 +19,11 @@ class EventDataController extends Controller
         $profile = Profile::all();
         $nonMemberCount = User::where('role', 'member')->count();
         $memberCount = User::where('role', 'non-member')->count();
-
+        $adminCount = User::where('role', 'admin')->count();
+        $eventCount = Event::count();
         if (auth()->check()) {
             $eventData = EventData::all();
-            return view('dashboard.index', compact('eventData', 'memberCount', 'nonMemberCount', 'profile'));
+            return view('dashboard.index', compact('eventData', 'memberCount', 'nonMemberCount', 'profile', 'adminCount', 'eventCount'));
         } else {
             Alert::error('You dont have access to the dashboard page', 'Please log in first')->persistent('Close');
             return redirect('/login');
