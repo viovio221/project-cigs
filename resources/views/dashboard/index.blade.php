@@ -153,7 +153,9 @@
         <main>
             <div class="head-title">
                 <div class="left">
+                    @if (Auth::check() && (Auth::user()->role === 'admin'))
                     <h1>Admin Dashboard</h1>
+                    @endif
                     <ul class="breadcrumb">
                         <li>
                             <a href="#">Dashboard</a>
