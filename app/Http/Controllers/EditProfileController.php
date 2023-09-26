@@ -17,12 +17,12 @@ class EditProfileController extends Controller
 
     public function index()
     {
-        return view('dashboard.editprofile.show');
+        return view('editprofile.show');
     }
 
     public function edit()
     {
-        return view('dashboard.editprofile.edit');
+        return view('editprofile.edit');
     }
 
     public function update(Request $request)
@@ -75,6 +75,6 @@ class EditProfileController extends Controller
             }
         }
 
-        return redirect()->route('dashboard.editprofile.show')->with('success', 'Profile updated successfully.');
+        return redirect()->route('editprofile.show')->with('success', 'Profile updated successfully.');
     }
 }
