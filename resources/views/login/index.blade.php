@@ -11,9 +11,11 @@
 <body>
     <img class="wave" src="{{ asset('') }}" alt="">
     <div class="container">
+        @foreach ($profile as $pr)
         <div class="img">
-            <img src="{{ asset('images/209408166-biker-man-riding-motorcycle-removebg-preview.png') }}" alt="">
+            <img src="{{ asset('storage/profile_images/' . $pr->image) }}" alt="">
         </div>
+    @endforeach
         <div class="login-content">
             <form action="{{ route('login.handleLogin') }}" method="POST">
                 @csrf <!-- Tambahkan ini untuk melindungi formulir dari serangan CSRF -->
