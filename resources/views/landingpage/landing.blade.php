@@ -36,16 +36,15 @@
 
         <div class="icon">
             <div class="fas fa-search" id="search-btn"></div>
-            <div class="fas fa-moon" id="theme-btn"></div>
-            <a href="{{ route('sejarah') }}">
+            <div class="fas fa-moon" id="theme-btn" title="switch mode"></div>
+            <a href="{{ route('sejarah') }}" title="about wayang riders">
                 <div class="fas fa-user" id="login-btn"></div>
             </a>
 
-            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-bars" id="menu-btn" title="login register in here"></div>
         </div>
 
         <nav class="navbar">
-            <a href="{{ route('event') }}">Ride Adventure</a>
             <a href="/login">Login</a>
             <a href="/register">Register</a>
 
