@@ -230,6 +230,7 @@ Route::get('/dashboard/message_crud', [MessageController::class, 'index'])->name
 Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->name('dashboard.setting_crud');
 Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
 Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');
+Route::resource('property', PropertyController::class);
 
 Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
@@ -290,4 +291,4 @@ Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdes
 Route::get('/dashboard/eventdesc1', function () {
     $events = Event::all();
     return view('dashboard.eventdesc1', compact('events'));
-})->name('eventdesc1'); 
+})->name('eventdesc1');
