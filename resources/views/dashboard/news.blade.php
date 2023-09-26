@@ -210,7 +210,7 @@
                         <span>
                             <h3 class="title-news">{{ $nw->title }}</h3>
                             <p>{{ $nw->description }}</p>
-                            <button class="btn3 btn-primary">Read More</button></p>
+                            <a href="{{ route('dashboard.news.readmore', $nw->id) }}" class="btn3 btn-primary">Read More</a>
                         </span>
                     </li>
                 @endforeach
