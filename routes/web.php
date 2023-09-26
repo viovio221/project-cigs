@@ -94,11 +94,6 @@ Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message'
 
 Route::resource('users', UserController::class);
 Route::resource('news', NewsController::class);
-Route::get('/dashboard/news', function () {
-    $news = News::all();
-    $profile = Profile::all();
-    return view('dashboard.news', compact('news', 'profile'));
-})->name('news');
 
 Route::get('/dashboard/membersdata', function () {
     $users = User::all();
@@ -231,6 +226,12 @@ Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->na
 Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
 Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');
 Route::resource('property', PropertyController::class);
+Route::get('/dashboard/news', function () {
+    $news = News::all();
+    $profile = Profile::all();
+    return view('dashboard.news', compact('news', 'profile'));
+})->name('news');
+
 
 Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');
 Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
@@ -240,11 +241,6 @@ Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->nam
 Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 
-Route::get('/dashboard/member/news', function () {
-    $news = News::all();
-    $profile = Profile::all();
-    return view('dashboard.news', compact('news', 'profile'));
-})->name('dashboard.member.news');
 
 Route::get('/dashboard/event', function () {
     $profile = Profile::all();

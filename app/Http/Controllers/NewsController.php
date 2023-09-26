@@ -11,7 +11,6 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-=
         $search = $request->query('search');
         if(!empty($search)){
             $data = News::where('news', 'like', '%' . $request->search . '%')->paginate(5);
