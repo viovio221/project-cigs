@@ -81,7 +81,38 @@
                         <span class="text">CRUD Riders</span>
                     </a>
                 </li>
-            @endif
+                <li class="side1">
+                    <a href="/dashboard/event_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
+                    </a>
+                </li>
+                <li class="side1">
+                    <a href="/dashboard/message_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
+                    </a>
+                </li>
+                <li class="side1">
+                    <a href="/dashboard/commentposts_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
+                    </a>
+                </li>
+                <li class="side1">
+                    <a href="/dashboard/news_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
+                    </a>
+                </li>
+                <li class="side1">
+                    <a href="/dashboard/setting_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
+                    </a>
+                </li>
+                <li class="side1">
+                    <a href="/dashboard/property_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
+                    </a>
+                </li>
+        </ul>
+        @endif
         </ul>
         <ul class="side-menu">
             <li>
@@ -153,8 +184,8 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    @if (Auth::check() && (Auth::user()->role === 'admin'))
-                    <h1>Admin Dashboard</h1>
+                    @if (Auth::check() && Auth::user()->role === 'admin')
+                        <h1>Admin Dashboard</h1>
                     @endif
                     <ul class="breadcrumb">
                         <li>
