@@ -86,8 +86,14 @@
                         <span class="text">News</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                    <a href="/dashboard/membersdata">
+                        <i class='bx bxs-group'></i>
+                        <span class="text">Members Data</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
-                    <a href="dashboard/data_crud">
+                    <a href="#">
                         <i class='bx bx-data'></i>
                         <span class="text">CRUD Riders</span>
                     </a>
