@@ -210,8 +210,6 @@ Route::middleware(['checkUserRole:non-member'])->group(function () {
     })->name('dashboard.membersdata');
 });
 
-
-
 Route::get('/dashboard/eventdesc1', function () { return view('dashboard.eventdesc1'); });
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
