@@ -28,19 +28,19 @@
   }
 
   .title {
-    left: 40%;
+    text-align: center;
     top: 200px;
     position: absolute;
     color: black;
-    font-size: 24px;
+    font-size: 30px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 500;
     word-wrap: break-word;
   }
 
   .description {
-    left: 270px;
-    top: 40px;
+    left: 250px;
+    top: 100px;
     position: absolute;
     color: black;
     font-size: 24px;
@@ -74,8 +74,7 @@
 
   .image {
     width: 200px;
-    height: 200px;
-    /* left: 750px; */
+    height: 80%;
     top: 50px;
     position: absolute;
     margin-left:40px;
