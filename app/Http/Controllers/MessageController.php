@@ -25,10 +25,10 @@ class MessageController extends Controller
     }
     public function create()
     {
-        // Dapatkan pengguna yang tidak memiliki pesan
+        $profiles = Profile::all();
         $users = User::whereDoesntHave('messages')->get();
 
-        return view('dashboard.message', compact('users'));
+        return view('dashboard.message', compact('users', 'profiles'));
     }
 
     public function store(Request $request)
@@ -48,14 +48,16 @@ class MessageController extends Controller
     }
     public function edit(Message $message)
     {
+        $profiles = Profile::all();
         $user = User::all();
-        return view('dashboard.message.edit', compact('message', 'user'));
+        return view('dashboard.message.edit', compact('message', 'user', 'profiles'));
     }
 
     public function show($id)
     {
+        $profiles = Profile::all();
         $mg  = Message::findOrFail($id);
-        return view('dashboard.message.show', compact('mg'));
+        return view('dashboard.message.show', compact('mg', 'profiles'));
     }
 
     public function update(Request $request, Message $message)
