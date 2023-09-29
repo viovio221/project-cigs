@@ -175,7 +175,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="{{ route('news.create') }}" class="btn btn-outline-primary">Add News</a>
+                        <h3><a href="/dashboard/news/create" class="btn btn-outline-primary">Add News</a>
                         </h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">

@@ -177,6 +177,7 @@ Route::get('/dashboard/membersdata', function () {
 })->name('users')->middleware('auth');
 
 Route::resource('news', NewsController::class);
+Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::resource('comment_posts', CommentPostController::class);
 //edit profile
 Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');
