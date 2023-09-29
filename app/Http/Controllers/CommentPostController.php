@@ -60,14 +60,16 @@ class CommentPostController extends Controller
 
 public function show($id)
 {
+    $profiles = Profile::all();
     $comment_post  = CommentPost::findOrFail($id);
-    return view('dashboard.commentpost.show', compact('comment_post'));
+    return view('dashboard.commentpost.show', compact('comment_post', 'profiles'));
 }
 
     public function edit(CommentPost $comment_post)
     {
+        $profiles = Profile::all();
         $event = CommentPost::all();
-        return view('dashboard.commentpost.edit', compact('comment_post', 'event'));
+        return view('dashboard.commentpost.edit', compact('comment_post', 'event','profiles'));
     }
 
     public function update(Request $request, CommentPost $comment_post )

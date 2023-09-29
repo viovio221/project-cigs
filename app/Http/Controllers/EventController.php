@@ -34,7 +34,8 @@ class EventController extends Controller
 
     public function create()
     {
-        return view('dashboard.events.create');
+        $profiles = Profile::all();
+        return view('dashboard.events.create', compact('profiles'));
     }
 
     public function store(Request $request)
@@ -62,16 +63,18 @@ class EventController extends Controller
 
     public function show($id)
 {
+    $profiles = Profile::all();
     $event = Event::findOrFail($id);
-    return view('dashboard.eventdesc1', compact('event'));
+    return view('dashboard.eventdesc1', compact('event', 'profiles'));
 }
 
 
 
     public function edit($id)
     {
+        $profiles = Profile::all();
         $event = Event::findOrFail($id);
-        return view('dashboard.events.edit', compact('event'));
+        return view('dashboard.events.edit', compact('event', 'profiles'));
     }
 
     public function update(Request $request, $id)

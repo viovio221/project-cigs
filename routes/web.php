@@ -154,8 +154,9 @@ Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
 Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show');
 Route::get('/dashboard/eventdesc1', function () {
+    $profiles = Profile::all();
     $events = Event::all();
-    return view('dashboard.eventdesc1', compact('events'));
+    return view('dashboard.eventdesc1', compact('events', 'profiles'));
 })->name('eventdesc1');
 Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name('news.showReadmore');
 
