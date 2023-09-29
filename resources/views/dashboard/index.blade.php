@@ -227,7 +227,7 @@
                         <p>New Event</p>
                     </span>
                 </li>
-           
+
                 <li>
                     <i class='bx bxs-news'></i>
                     <span class="text">

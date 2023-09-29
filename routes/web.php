@@ -149,12 +149,6 @@ Route::get('/dashboard/news', function () {
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
 
-Route::get('/dashboard/membersdata', function () {
-    $users = User::all();
-    $profile = Profile::all();
-    return view('dashboard.membersdata', compact('users', 'profile'));
-})->name('users');
-
 
 Route::get('/dashboard/eventdesc1', function () { return view('dashboard.eventdesc1'); });
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
@@ -164,7 +158,7 @@ Route::get('/dashboard/eventdesc1', function () {
     $events = Event::all();
     return view('dashboard.eventdesc1', compact('events'));
 })->name('eventdesc1');
-Route::get('/dashboard/news/{id}', 'App\Http\Controllers\NewsController@showReadMore')->name('dashboard.news.readmore');
+Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name('news.showReadmore');
 
 Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
 Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
@@ -180,7 +174,7 @@ Route::get('/dashboard/membersdata', function () {
     $users = User::all();
     $profile = Profile::all();
     return view('dashboard.membersdata', compact('users', 'profile'));
-})->name('users');
+})->name('users')->middleware('auth');
 
 Route::resource('news', NewsController::class);
 Route::resource('comment_posts', CommentPostController::class);
@@ -213,7 +207,7 @@ Route::middleware(['checkUserRole:non-member'])->group(function () {
         $users = User::all();
         $profile = Profile::all();
         return view('dashboard.membersdata', compact('users', 'profile'));
-    })->name('dashboard.membersdata');
+    })->name('dashboard.membersdata')->middleware('auth');
 });
 
 
@@ -237,3 +231,9 @@ Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit
 Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
 Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
 Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
+
+Route::get('/dashboard/membersdata', function () {
+    $users = User::all();
+    $profile = Profile::all();
+    return view('dashboard.membersdata', compact('users', 'profile'));
+})->name('users')->middleware('auth');

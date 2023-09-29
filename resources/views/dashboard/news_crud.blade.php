@@ -207,8 +207,7 @@
                                         <td class="description">{!! $nw->description !!}</td>
                                         <td>{{ $nw->created_at }}</td>
                                         <td class="side-menu top">
-                                            <a href="{{ route('news.show', $nw->id) }}" style="color: green"><i
-                                                    class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('news.showReadmore', $nw->id) }}" style="color: green"><i class='bx bx-info-circle'></i></a>
                                             <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
                                                 style="color:blue"><i class='bx bx-edit'></i></a>
                                             <form action="{{ route('news.destroy', $nw->id) }}" method="POST"

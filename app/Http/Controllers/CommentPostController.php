@@ -54,7 +54,7 @@ class CommentPostController extends Controller
         $commentPost->rating = $validated['rating'];
         $commentPost->save();
 
-        return redirect()->route('dashboard.data_crud')->with('success', "$validated[username] Successfully added!");
+        return redirect()->route('dashboard.commentposts_crud')->with('success', "$validated[username] Successfully added!");
     }
 
 public function show($id)

@@ -186,6 +186,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <td></td>
                                 <th>Image</th>
                                 <th>Video</th>
                                 <th>History</th>
@@ -200,6 +201,7 @@
                             @if (isset($profiles))
                                 @foreach ($profiles as $no => $pf)
                                     <tr>
+                                        <td></td>
                                         <td>
                                             <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
                                                 alt="profiles" width="100">
