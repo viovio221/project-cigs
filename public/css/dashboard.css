@@ -322,6 +322,14 @@ body {
 	overflow-y: auto;
     background-color: #FFDAB8;
 }
+#content .membersdata {
+	width: 100%;
+	padding: 36px 24px;
+	font-family: var(--poppins);
+    height: 1000px;
+	overflow-y: auto;
+    background-color: #FFDAB8;
+}
 #content main .head-title {
 	display: flex;
 	align-items: center;

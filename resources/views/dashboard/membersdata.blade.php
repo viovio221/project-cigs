@@ -176,7 +176,6 @@
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
                 <a href="/dashboard/review" class="notification">
                     <i class='bx bxs-bell'></i>
-                    <span class="num">8</span>
                 </a>
             @endif
 
@@ -187,7 +186,7 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-        <main>
+        <main class="membersdata">
             <div class="head-title">
                 <div class="left">
                     <h1>Members Data</h1>
