@@ -132,6 +132,11 @@
                         <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
                     </a>
                 </li>
+                <li class="side1">
+                    <a href="/dashboard/membersdata_crud" class="text2">
+                        <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
+                    </a>
+                </li>
         </ul>
         @endif
         </ul>
