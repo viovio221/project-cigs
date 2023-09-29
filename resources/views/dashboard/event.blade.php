@@ -73,7 +73,6 @@
                 </li>
             @endif
             @if (Auth::check() && Auth::user()->role === 'admin')
-                <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
                 <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
                     <a href="/dashboard/event">
                         <i class='bx bxs-shopping-bag-alt'></i>
@@ -172,7 +171,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari...">
+                    <input type="search" placeholder="Search...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -183,7 +182,6 @@
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
-                <span class="num">8</span>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">

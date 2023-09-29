@@ -67,7 +67,7 @@
                     <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
                 </a>
             </li>
-            <li class="side1">
+            <li class="side1 {{ Request::is('dashboard/commentposts_crud*') ? 'active' : '' }}">
                 <a href="/dashboard/commentposts_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
                 </a>
@@ -132,7 +132,7 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Cari...">
+                    <input type="search" placeholder="Search...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -143,7 +143,6 @@
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
                 <i class='bx bxs-bell'></i>
-                <span class="num">8</span>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -152,7 +151,7 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-        <main>
+        <main class="membersdata">
             <div class="head-title">
                 <div class="left">
                     <h1>Data CRUD Riders</h1>

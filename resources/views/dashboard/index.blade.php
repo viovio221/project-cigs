@@ -227,6 +227,14 @@
                         <p>New Event</p>
                     </span>
                 </li>
+           
+                <li>
+                    <i class='bx bxs-news'></i>
+                    <span class="text">
+                        <h3>{{ $newsCount }}</h3>
+                        <p>News Update</p>
+                    </span>
+                </li>
             </ul>
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <div class="table-data">
