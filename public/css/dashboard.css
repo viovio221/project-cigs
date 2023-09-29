@@ -216,6 +216,7 @@ body {
     font-family: var(--poppins);
 	cursor: pointer;
 	color: var(--dark);
+    margin-left:auto;
 }
 #content nav .nav-link {
     font-family: var(--poppins);
