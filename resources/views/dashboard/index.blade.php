@@ -185,7 +185,7 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-        <main>
+        <main class="membersdata">
             <div class="head-title">
                 <div class="left">
                     @if (Auth::check() && Auth::user()->role === 'admin')
