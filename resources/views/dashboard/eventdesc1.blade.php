@@ -160,10 +160,10 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form id="searchForm">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <input type="search" id="searchBox" placeholder="Cari...">
+                    <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
             <a href="/dashboard/message" class="notification">
@@ -202,13 +202,13 @@
 
         <section class="blog" id="blog" data-aos="fade-up">
 
-            <p class="section-subtitle">Selamat Datang di Event Wayang Riders</p>
+            <p class="section-subtitle  searchable-element">Selamat Datang di Event Wayang Riders</p>
 
-            <h2 class="section-title">Bergabung Dengan Kami Untuk Events Yang Akan Datang</h2>
+            <h2 class="section-title  searchable-element">Bergabung Dengan Kami Untuk Events Yang Akan Datang</h2>
 
             <div class="blog-grid">
 
-                <div class="blog-card" data-aos="zoom">
+                <div class="blog-card  searchable-element" data-aos="zoom">
 
                     <div class="center-image">
                         <div class="blog-banner-box">
@@ -217,16 +217,16 @@
                     </div>
 
                     <div class="blog-content">
-                        <h3 class="blog-title">
+                        <h3 class="blog-title  searchable-element">
                             <a href="#">
                                 {{ $event->name }}
                             </a>
                         </h3>
-                        <div class="blog-text">
+                        <div class="blog-text  searchable-element">
                             {!! $event->description !!}
                             <p>Lokasi: {{ $event->location }}</p>
                         </div>
-                        <div class="wrapper">
+                        <div class="wrapper  searchable-element">
                             <div class="blog-publish-date">
                                 <i class='bx bx-calendar'></i>
                                 <a href="#">
@@ -292,7 +292,7 @@
 
                             <div class="blog-comment">
                                 <i class='bx bx-comment-dots'></i>
-                                <a href="#">3 Review</a>
+                                <a href="/dashboard/review">3 Review</a>
                             </div>
 
                         </div>
@@ -317,6 +317,66 @@
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            const searchBox = document.getElementById('searchBox');
+         const searchSubmit = document.getElementById('searchSubmit');
+         let alertShown = false;
+
+         searchSubmit.addEventListener('click', (e) => {
+             e.preventDefault();
+             const searchTerm = searchBox.value.toLowerCase();
+
+             if (searchTerm === '') {
+                 return;
+             }
+
+             removeHighlights();
+
+             const textElements = document.querySelectorAll('.searchable-element');
+
+             let found = false;
+             let firstMatchId = null;
+
+             textElements.forEach((element) => {
+                 const text = element.innerText.toLowerCase();
+                 const regex = new RegExp(searchTerm, 'gi');
+
+                 if (regex.test(text)) {
+                     found = true;
+                     const highlightedText = element.innerHTML.replace(
+                         regex,
+                         '<span class="highlight">$&</span>'
+                     );
+                     element.innerHTML = highlightedText;
+
+                     if (!firstMatchId) {
+                         firstMatchId = element.getAttribute('id');
+                     }
+                 }
+             });
+
+             if (found) {
+                 if (firstMatchId) {
+                     window.location.href = `#${firstMatchId}`;
+                 }
+             } else {
+                 if (!alertShown) {
+                     Swal.fire('Sorry!', 'No results for this search!', 'info');
+                     alertShown = true;
+                 } else {
+                     alertShown = false;
+                 }
+             }
+         });
+
+         function removeHighlights() {
+             const highlightedElements = document.querySelectorAll('.highlight');
+             highlightedElements.forEach((element) => {
+                 element.outerHTML = element.innerHTML;
+             });
+         }
+
+         </script>
         <!-- CONTENT -->
         <script src="{{ asset('js/dashboard.js') }}"></script>
         @include('sweetalert::alert')

@@ -161,10 +161,10 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form id="searchForm">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <input type="search" id="searchBox" placeholder="Cari...">
+                    <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
             <a href="/dashboard/message" class="notification">
@@ -202,14 +202,14 @@
             <ul class="box-info1" style="align-content: center">
                 {{-- @if (isset($news)) --}}
                 @foreach ($news as $nw)
-                    <li class="news-item">
+                    <li class="news-item searchable-element">
                         <td>
                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news" width="100">
                         </td>
                         <span>
-                            <h3 class="title-news">{{ $nw->title }}</h3>
-                            <p>{{ $nw->description }}</p>
-                            <a href="{{ route('dashboard.news.readmore', $nw->id) }}" class="btn3 btn-primary">Read More</a>
+                            <h3 class="title-news searchable-element">{{ $nw->title }}</h3>
+                            <p class="searchable-element">{{ $nw->description }}</p>
+                            <a href="{{ route('dashboard.news.readmore', $nw->id) }}" class="btn3 btn-primary searchable-element">Read More</a>
                         </span>
                     </li>
                 @endforeach
@@ -225,6 +225,66 @@
     @include('sweetalert::alert')
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    <script>
+        const searchBox = document.getElementById('searchBox');
+     const searchSubmit = document.getElementById('searchSubmit');
+     let alertShown = false;
+
+     searchSubmit.addEventListener('click', (e) => {
+         e.preventDefault();
+         const searchTerm = searchBox.value.toLowerCase();
+
+         if (searchTerm === '') {
+             return;
+         }
+
+         removeHighlights();
+
+         const textElements = document.querySelectorAll('.searchable-element');
+
+         let found = false;
+         let firstMatchId = null;
+
+         textElements.forEach((element) => {
+             const text = element.innerText.toLowerCase();
+             const regex = new RegExp(searchTerm, 'gi');
+
+             if (regex.test(text)) {
+                 found = true;
+                 const highlightedText = element.innerHTML.replace(
+                     regex,
+                     '<span class="highlight">$&</span>'
+                 );
+                 element.innerHTML = highlightedText;
+
+                 if (!firstMatchId) {
+                     firstMatchId = element.getAttribute('id');
+                 }
+             }
+         });
+
+         if (found) {
+             if (firstMatchId) {
+                 window.location.href = `#${firstMatchId}`;
+             }
+         } else {
+             if (!alertShown) {
+                 Swal.fire('Sorry!', 'No results for this search!', 'info');
+                 alertShown = true;
+             } else {
+                 alertShown = false;
+             }
+         }
+     });
+
+     function removeHighlights() {
+         const highlightedElements = document.querySelectorAll('.highlight');
+         highlightedElements.forEach((element) => {
+             element.outerHTML = element.innerHTML;
+         });
+     }
+
+     </script>
 </body>
 
 </html>

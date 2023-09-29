@@ -50,9 +50,9 @@
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
                 </a>
-            </li>y
+            </li>
             <li>
-                <a href="">
+                <a href="#">
                     <i class='bx bx-data'></i>
                     <span class="text">CRUD Riders</span>
                 </a>
@@ -145,7 +145,7 @@
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i> </a>
         </nav>
         <!-- NAVBAR -->
 
@@ -202,32 +202,32 @@
                         <tbody>
                             @if (isset($properties))
                                 @foreach ($properties as $pr)
-                                <tr>
-                                    <th></th>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $pr->headline_ev }}</td>
-                                    <td>{{ $pr->text_ev }}</td>
-                                    <td>{{ $pr->headline_mg }}</td>
-                                    <td>{{ $pr->text_mg }}</td>
-                                    <td>{{ $pr->phone_number }}</td>
-                                    <td>{{ $pr->instagram }}</td>
-                                    <td>{{ $pr->facebook }}</td>
-                                    <td>{{ $pr->twitter }}</td>
-                                    <td>{{ $pr->email }}</td>
-                                    <td>
-                                        <a href="{{ route('property.edit', $pr->id) }} " style="color: blue"><i
-                                                class='bx bx-edit'></i></a>
-                                        <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
-                                            style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                style="background: none; border: none; color:red"><i
-                                                    class='bx bx-trash'></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    <tr>
+                                        <th></th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pr->headline_ev }}</td>
+                                        <td>{{ $pr->text_ev }}</td>
+                                        <td>{{ $pr->headline_mg }}</td>
+                                        <td>{{ $pr->text_mg }}</td>
+                                        <td>{{ $pr->phone_number }}</td>
+                                        <td>{{ $pr->instagram }}</td>
+                                        <td>{{ $pr->facebook }}</td>
+                                        <td>{{ $pr->twitter }}</td>
+                                        <td>{{ $pr->email }}</td>
+                                        <td>
+                                            <a href="{{ route('property.edit', $pr->id) }} " style="color: blue"><i
+                                                    class='bx bx-edit'></i></a>
+                                            <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endif
                         </tbody>
                     </table>
