@@ -12,7 +12,13 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Data CRUD</title>
+    @if ($profiles->count() > 0)
+    <title>Members Data | {{ $profiles[0]->community_name }}</title>
+    @foreach ($profiles as $profile)
+        <p>{{ $profile->community_name }}</p>
+    @endforeach
+@endif
+
 </head>
 
 <body>
@@ -85,6 +91,11 @@
             <li class="side1">
                 <a href="/dashboard/property_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/membersdata_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
                 </a>
             </li>
         </ul>

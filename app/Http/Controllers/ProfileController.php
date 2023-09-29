@@ -64,12 +64,12 @@ class ProfileController extends Controller
         return view('profiles.show', compact('profiles'));
     }
 
-    public function edit(string $id)
-    {
+    public function edit($id) {
         $profiles = Profile::findOrFail($id);
-
         return view('profiles.edit', compact('profiles'));
     }
+
+
 
     public function update(Request $request, $id)
 {
