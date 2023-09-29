@@ -22,6 +22,10 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
+
 
     <title>Events</title>
 </head>
@@ -169,12 +173,13 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form id="searchForm">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <input type="search" id="searchBox" placeholder="Cari...">
+                    <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+
             <a href="/dashboard/message" class="notification">
                 <i class='bx bxs-edit-alt'></i>
             </a>
@@ -191,7 +196,7 @@
 
         <body>
 
-            <section class="package" id="package" data-aos="fade-up">
+            <section class="package searchable-element" id="package" data-aos="fade-up">
                 <div class="container">
                     <h2 class="h2 section-title" data-aos="fade-up">Exciting Events Adventures!</h2>
                     <p class="section-text" data-aos="fade-up">
@@ -203,13 +208,13 @@
                     <ul class="package-list" data-aos="fade-up">
                         @foreach ($events as $item)
                             <li>
-                                <div class="package-card" data-aos="fade-up">
+                                <div class="package-card searchable-element" data-aos="fade-up" id="package-card">
                                     <figure class="card-banner">
                                         <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1"
                                             loading="lazy">
                                     </figure>
                                     <div class="card-content" data-aos="fade-up">
-                                        <h3 class="h3 card-title">{!! $item->name !!}</h3>
+                                        <h3 class="h3 card-title searchable-element">{!! $item->name !!}</h3>
                                         <p class="card-text">
                                             {{-- Lokasi : {!! $item->location !!} --}}
                                         </p>
@@ -220,7 +225,7 @@
                                             <li class="card-meta-item">
                                                 <div class="meta-box">
                                                     <ion-icon name="time"></ion-icon>
-                                                    <p class="text">{{ $item->date }}</p>
+                                                    <p class="text searchable-element">{{ $item->date }}</p>
                                                 </div>
                                             </li>
                                         </ul>
@@ -229,16 +234,15 @@
                                             <li class="card-meta-list">
                                                 <div class="meta-box">
                                                     <ion-icon name="location"></ion-icon>
-                                                    <p class="text">{{ $item->location }}</p>
+                                                    <p class="text searchable-element">{{ $item->location }}</p>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="card-price">
 
-                                        <button class="btn btn-secondary">
-                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">Lihat
-                                                Deskripsi</a>
+                                        <button class="btn btn-secondary searchable-element">
+                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">See Description</a>
                                         </button>
                                     </div>
                                 </div>
@@ -296,6 +300,66 @@
             <script src="{{ asset('js/dashboard.js') }}"></script>
             @include('sweetalert::alert')
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                const searchBox = document.getElementById('searchBox');
+             const searchSubmit = document.getElementById('searchSubmit');
+             let alertShown = false;
+
+             searchSubmit.addEventListener('click', (e) => {
+                 e.preventDefault();
+                 const searchTerm = searchBox.value.toLowerCase();
+
+                 if (searchTerm === '') {
+                     return;
+                 }
+
+                 removeHighlights();
+
+                 const textElements = document.querySelectorAll('.searchable-element');
+
+                 let found = false;
+                 let firstMatchId = null;
+
+                 textElements.forEach((element) => {
+                     const text = element.innerText.toLowerCase();
+                     const regex = new RegExp(searchTerm, 'gi');
+
+                     if (regex.test(text)) {
+                         found = true;
+                         const highlightedText = element.innerHTML.replace(
+                             regex,
+                             '<span class="highlight">$&</span>'
+                         );
+                         element.innerHTML = highlightedText;
+
+                         if (!firstMatchId) {
+                             firstMatchId = element.getAttribute('id');
+                         }
+                     }
+                 });
+
+                 if (found) {
+                     if (firstMatchId) {
+                         window.location.href = `#${firstMatchId}`;
+                     }
+                 } else {
+                     if (!alertShown) {
+                         Swal.fire('Sorry!', 'No results for this search!', 'info');
+                         alertShown = true;
+                     } else {
+                         alertShown = false;
+                     }
+                 }
+             });
+
+             function removeHighlights() {
+                 const highlightedElements = document.querySelectorAll('.highlight');
+                 highlightedElements.forEach((element) => {
+                     element.outerHTML = element.innerHTML;
+                 });
+             }
+
+             </script>
         </body>
 
 </html>
