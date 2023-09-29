@@ -12,8 +12,9 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Data CRUD</title>
-</head>
+    @foreach ($profiles as $item)
+    <title>Property CRUD | {{ $item->community_name }}</title>
+    @endforeach   </head>
 
 <body>
 

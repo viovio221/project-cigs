@@ -74,7 +74,14 @@ public function edit($id)
     return view('event_data.edit', compact('eventData'));
 }
 
+// public function showSettingPage()
+// {
+//     $profiles = Profile::all();
 
+//     $pageTitle = $profiles->isEmpty() ? 'Default Page Title' : $profiles->first()->community_name;
+
+//     return view('dashboard', ['pageTitle' => $pageTitle]);
+// }
 public function destroy($id)
 {
     $eventData = EventData::find($id);

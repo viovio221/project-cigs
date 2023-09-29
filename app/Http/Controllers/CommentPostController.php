@@ -18,8 +18,9 @@ class CommentPostController extends Controller
 
     public function review()
     {
+        $profiles = Profile::all();
         $event = Event::all();
-        return view('dashboard.review.event_review', ['events' => $event]);
+        return view('dashboard.review.event_review', ['events' => $event, 'profiles'=> $profiles]);
     }
 
     public function store(Request $request)

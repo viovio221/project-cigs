@@ -11,8 +11,9 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-
-    <title>Admin Dashboard</title>
+    @foreach ($profile as $item)
+    <title>Dashboard | {{ $item->community_name }}</title>
+    @endforeach
 </head>
 
 <body>

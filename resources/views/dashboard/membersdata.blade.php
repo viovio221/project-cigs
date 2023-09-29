@@ -12,7 +12,9 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
 
-    <title>Members Data</title>
+    @foreach ($profile as $item)
+    <title>Members Data | {{ $item->community_name }}</title>
+    @endforeach
 </head>
 
 <body>

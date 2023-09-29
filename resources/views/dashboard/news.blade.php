@@ -12,7 +12,9 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>News</title>
+    @foreach ($profile as $item)
+    <title>News | {{ $item->community_name }}</title>
+    @endforeach
 </head>
 
 <body>
@@ -163,7 +165,7 @@
             <i class='bx bx-menu'></i>
             <form id="searchForm">
                 <div class="form-input">
-                    <input type="search" id="searchBox" placeholder="Cari...">
+                    <input type="search" id="searchBox" placeholder="Search...">
                     <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>

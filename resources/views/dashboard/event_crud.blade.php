@@ -12,8 +12,9 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
-    <title>Data CRUD</title>
-</head>
+    @foreach ($profiles as $item)
+    <title>Event CRUD | {{ $item->community_name }}</title>
+    @endforeach   </head>
 
 <body>
 
@@ -127,10 +128,10 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form id="searchForm">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <input type="search" id="searchBox" placeholder="Search...">
+                    <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
             <a href="/dashboard/message" class="notification">
@@ -200,10 +201,10 @@
                                             <img src="{{ asset('storage/event_images/' . $event->image) }}"
                                                 alt="Event" width="100">
                                         </td>
-                                        <td class="event">{{ $event->name }}</td>
-                                        <td>{{ $event->date }}</td>
-                                        <td class="location">{{ $event->location }}</td>
-                                        <td class="description-event">{!! $event->description !!}</td>
+                                        <td class="event searchable-element">{{ $event->name }}</td>
+                                        <td class="searchable-element">{{ $event->date }}</td>
+                                        <td class="location searchable-element">{{ $event->location }}</td>
+                                        <td class="description-event searchable-element">{!! $event->description !!}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('events.show', $event->id) }}" style="color: green"><i
                                                     class='bx bx-info-circle'></i></a>
@@ -236,6 +237,66 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const searchBox = document.getElementById('searchBox');
+     const searchSubmit = document.getElementById('searchSubmit');
+     let alertShown = false;
+
+     searchSubmit.addEventListener('click', (e) => {
+         e.preventDefault();
+         const searchTerm = searchBox.value.toLowerCase();
+
+         if (searchTerm === '') {
+             return;
+         }
+
+         removeHighlights();
+
+         const textElements = document.querySelectorAll('.searchable-element');
+
+         let found = false;
+         let firstMatchId = null;
+
+         textElements.forEach((element) => {
+             const text = element.innerText.toLowerCase();
+             const regex = new RegExp(searchTerm, 'gi');
+
+             if (regex.test(text)) {
+                 found = true;
+                 const highlightedText = element.innerHTML.replace(
+                     regex,
+                     '<span class="highlight">$&</span>'
+                 );
+                 element.innerHTML = highlightedText;
+
+                 if (!firstMatchId) {
+                     firstMatchId = element.getAttribute('id');
+                 }
+             }
+         });
+
+         if (found) {
+             if (firstMatchId) {
+                 window.location.href = `#${firstMatchId}`;
+             }
+         } else {
+             if (!alertShown) {
+                 Swal.fire('Sorry!', 'No results for this search!', 'info');
+                 alertShown = true;
+             } else {
+                 alertShown = false;
+             }
+         }
+     });
+
+     function removeHighlights() {
+         const highlightedElements = document.querySelectorAll('.highlight');
+         highlightedElements.forEach((element) => {
+             element.outerHTML = element.innerHTML;
+         });
+     }
+
+     </script>
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')

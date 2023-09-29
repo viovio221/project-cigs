@@ -148,8 +148,7 @@ Route::get('/dashboard/news', function () {
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
-
-
+Route::get('/dashboard/membersdata_crud', [UserController::class, 'index'])->name('dashboard.membersdata_crud');
 Route::get('/dashboard/eventdesc1', function () { return view('dashboard.eventdesc1'); });
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');

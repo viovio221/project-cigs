@@ -27,8 +27,9 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
 
 
-    <title>Events</title>
-</head>
+@foreach ($profile as $item)
+<title>Events | {{ $item->community_name }}</title>
+@endforeach   </head>
 
 <body>
 
@@ -175,7 +176,7 @@
             <i class='bx bx-menu'></i>
             <form id="searchForm">
                 <div class="form-input">
-                    <input type="search" id="searchBox" placeholder="Cari...">
+                    <input type="search" id="searchBox" placeholder="Search...">
                     <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
