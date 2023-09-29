@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,11 +11,17 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth', ['except' => 'logout']);
+     }
     public function index()
     {
+        $profiles = Profile::all();
         $users = User::paginate(20);
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact('users', 'profiles'));
     }
 
     /**

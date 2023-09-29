@@ -169,14 +169,16 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
+                        <h3><a href="#" class="btn btn-outline-primary">Add
+                                Message</a></h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
-                                </ul>Route::get('/dashboard/membersdata_crud', [UserController,
-                                'index'])->name('dashboard.membersdata_crud');
+                                </ul>Route::get('/dashboard/message_crud', [MessageController,
+                                'index'])->name('dashboard.message_crud');
                             </div>
                         @endif
                         <i class='bx bx-search'></i>
@@ -186,33 +188,37 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created At</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Action</th>
-                              </tr>
+                            </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $us)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $us->name }}</td>
-                                <td>{{ $us->email }}</td>
-                                <td>{{ $us->role }}</td>
-                                <td>{{ $us->created_at }}</td>
-                                <td>
-                                    <a href="{{ route('users.edit', $us->id) }}" style="color: blue"><i class='bx bx-edit'></i></a>
-                                    <form action="{{ route('users.destroy', $us->id) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                        style="background: none; border: none; color:red"><i
-                                            class='bx bx-trash'></i></button>
-                                </form>
-                                </td>
-                            </tr>
-                            @endforeach
+                            @if (isset($messages))
+                                @foreach ($messages as $mg)
+                                    <tr>
+                                        <th>{{ $loop->iteration }}</th>
+                                        <td>{{ $mg->user->name }}</td>
+                                        <td class="message">{{ $mg->message }}</td>
+                                        <td>{{ $mg->created_at }}</td>
+                                        <td class="side-menu top">
+                                            <a href="{{ route('message.show', $mg->id) }}" style="color: green"><i
+                                                    class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('message.edit', ['message' => $mg->id]) }}"
+                                                method="post" style="color: blue"><i class='bx bx-edit'></i></a>
+                                            <form action="{{ route('message.destroy', $mg->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -228,3 +234,29 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
