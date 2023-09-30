@@ -12,7 +12,7 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     @foreach ($profile as $item)
-    <title>Dashboard | {{ $item->community_name }}</title>
+        <title>Dashboard | {{ $item->community_name }}</title>
     @endforeach
 </head>
 
@@ -185,7 +185,7 @@
             @endif
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i> </a>
         </nav>
 
         <!-- NAVBAR -->
@@ -279,7 +279,8 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
-                                                            style="background: none; border: none; color:red"><i
+                                                            style="background: none; border: none; color:red"
+                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                                                 class='bx bx-trash'></i></button>
                                                     </form>
                                                 </td>
