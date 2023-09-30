@@ -206,23 +206,23 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $us)
+                            @if ($us->role === 'non-member')
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $us->name }}</td>
                                 <td>{{ $us->email }}</td>
                                 <td>{{ $us->role }}</td>
                                 <td>{{ $us->created_at }}</td>
-                                <td>
-                                    <a href="{{ route('users.edit', $us->id) }}" style="color: blue"><i class='bx bx-edit'></i></a>
-                                    <form action="{{ route('users.destroy', $us->id) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                        style="background: none; border: none; color:red"><i
-                                            class='bx bx-trash'></i></button>
-                                </form>
-                                </td>
+                                    <td>
+                                        <a href="#" style="color: blue" class="edit-user" data-user-id="{{ $us->id }}"><i class='bx bx-edit'></i></a>
+                                        <form action="{{ route('users.destroy', $us->id) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="background: none; border: none; color:red" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class='bx bx-trash'></i></button>
+                                        </form>
+                                    </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -232,6 +232,68 @@
         </main>
         <!-- MAIN -->
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.edit-user');
+
+            editButtons.forEach((button) => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const userId = button.getAttribute('data-user-id');
+
+                    Swal.fire({
+                        title: 'Konfirmasi Perubahan Status',
+                        text: 'Apakah Anda ingin mengubah status pengguna ini menjadi member?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya',
+                        cancelButtonText: 'Tidak'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Kirim permintaan ke server untuk mengubah status pengguna
+                            fetch(`/dashboard/membersdata_crud/${userId}/confirm`, {
+                                method: 'POST',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ status: 'member' })
+                            })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.success) {
+                                    Swal.fire({
+                                        title: 'Status Berhasil Diubah!',
+                                        text: 'Status pengguna telah diubah menjadi member.',
+                                        icon: 'success'
+                                    });
+                                    // Refresh halaman setelah menampilkan pesan sukses
+                                    location.reload();
+                                } else {
+                                    Swal.fire({
+                                        title: 'Gagal Mengubah Status!',
+                                        text: 'Terjadi kesalahan saat mengubah status pengguna.',
+                                        icon: 'error'
+                                    });
+                                }
+                            })
+                            .catch((error) => {
+                                Swal.fire({
+                                    title: 'Gagal Menghubungi Server!',
+                                    text: 'Terjadi kesalahan saat menghubungi server.',
+                                    icon: 'error'
+                                });
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>

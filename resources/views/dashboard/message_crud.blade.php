@@ -218,7 +218,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red"><i
+                                                    style="background: none; border: none; color:red" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                                         class='bx bx-trash'></i></button>
                                             </form>
                                         </td>
