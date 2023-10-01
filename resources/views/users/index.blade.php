@@ -243,17 +243,16 @@
                     const userId = button.getAttribute('data-user-id');
 
                     Swal.fire({
-                        title: 'Konfirmasi Perubahan Status',
-                        text: 'Apakah Anda ingin mengubah status pengguna ini menjadi member?',
+                        title: 'Confirm Status Change',
+                        text: 'Do you want to change this user\'s status to member?',
                         icon: 'question',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya',
-                        cancelButtonText: 'Tidak'
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Kirim permintaan ke server untuk mengubah status pengguna
                             fetch(`/dashboard/membersdata_crud/${userId}/confirm`, {
                                 method: 'POST',
                                 headers: {
@@ -266,24 +265,23 @@
                             .then((data) => {
                                 if (data.success) {
                                     Swal.fire({
-                                        title: 'Status Berhasil Diubah!',
-                                        text: 'Status pengguna telah diubah menjadi member.',
+                                        title: 'Status Successfully Changed!',
+                                        text: 'The user\'s status has been changed to member.',
                                         icon: 'success'
                                     });
-                                    // Refresh halaman setelah menampilkan pesan sukses
                                     location.reload();
                                 } else {
                                     Swal.fire({
-                                        title: 'Gagal Mengubah Status!',
-                                        text: 'Terjadi kesalahan saat mengubah status pengguna.',
+                                        title: 'Failed to Change Status!',
+                                        text: 'An error occurred while changing the user\'s status.',
                                         icon: 'error'
                                     });
                                 }
                             })
                             .catch((error) => {
                                 Swal.fire({
-                                    title: 'Gagal Menghubungi Server!',
-                                    text: 'Terjadi kesalahan saat menghubungi server.',
+                                    title: 'Failed to Contact the Server!',
+                                    text: 'An error occurred while contacting the server.',
                                     icon: 'error'
                                 });
                             });

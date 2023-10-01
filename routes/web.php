@@ -112,7 +112,7 @@ Route::get('/profiles/sejarah', function () {
     $dataCount = User::where('role', 'member')->count();
     return view('profiles.sejarah', compact('profiles', 'dataCount'));
 })->name('sejarah');
-Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit')->middleware('auth');
 Route::put('/dashboard/profiles/{profiles}', [ProfileController::class, 'update'])->name('profiles.update');
 Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
 
@@ -238,3 +238,5 @@ Route::get('/dashboard/membersdata', function () {
     $profile = Profile::all();
     return view('dashboard.membersdata', compact('users', 'profile'));
 })->name('users')->middleware('auth');
+
+Route::post('/dashboard/membersdata_crud/{id}/confirm', [UserController::class, 'confirmMemberStatus'])->name('users.confirm');
