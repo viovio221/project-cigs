@@ -154,8 +154,9 @@ Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show');
 Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show');
 Route::get('/dashboard/eventdesc1', function () {
+    $profiles = Profile::all();
     $events = Event::all();
-    return view('dashboard.eventdesc1', compact('events'));
+    return view('dashboard.eventdesc1', compact('events', 'profiles'));
 })->name('eventdesc1');
 Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name('news.showReadmore');
 
@@ -176,6 +177,7 @@ Route::get('/dashboard/membersdata', function () {
 })->name('users')->middleware('auth');
 
 Route::resource('news', NewsController::class);
+Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::resource('comment_posts', CommentPostController::class);
 //edit profile
 Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');

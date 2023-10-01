@@ -88,6 +88,11 @@
                     <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
                 </a>
             </li>
+            <li class="side1">
+                <a href="/dashboard/membersdata_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
+                </a>
+            </li>
         </ul>
         <ul class="side-menu">
             <li>
@@ -170,7 +175,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="{{ route('news.create') }}" class="btn btn-outline-primary">Add News</a>
+                        <h3><a href="/dashboard/news/create" class="btn btn-outline-primary">Add News</a>
                         </h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -216,7 +221,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red"><i
+                                                    style="background: none; border: none; color:red" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
                                                         class='bx bx-trash'></i></button>
                                             </form>
                                         </td>

@@ -33,7 +33,8 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('dashboard.news.create');
+        $profiles = Profile::all();
+        return view('dashboard.news.create', compact('profiles'));
     }
 
     public function store(Request $request)
@@ -65,8 +66,9 @@ class NewsController extends Controller
 
     public function edit($id)
     {
+        $profiles = Profile::all();
         $news = News::findOrFail($id);
-        return view('dashboard.news.edit', compact('news'));
+        return view('dashboard.news.edit', compact('news', 'profiles'));
     }
 
     public function update(Request $request, $id)

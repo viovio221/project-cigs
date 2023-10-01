@@ -37,8 +37,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $profiles = Profile::all();
         $user = User::findOrFail($id); // Ambil data pengguna berdasarkan ID
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'profiles'));
     }
 
     public function update(Request $request, $id)

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Message</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @foreach ($profiles as $item)
+    <title>Detail Message | {{ $item->community_name }}</title>
+    @endforeach    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
@@ -20,7 +21,7 @@
                 <p class="card-text"><strong>Created at:</strong> {{ $mg->created_at }}</p>
             </div>
         </div>
-        <a href="{{ route('dashboard.data_crud') }}" class="btn btn-secondary mt-3">Kembali</a>
+        <a href="{{ route('dashboard.message_crud') }}" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 </body>
 </html>

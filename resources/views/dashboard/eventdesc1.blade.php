@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Description</title>
-    <!-- Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    @foreach ($profiles as $item)
+    <title>Event Description | {{ $item->community_name }}</title>
+    @endforeach     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
@@ -115,6 +116,11 @@
             <li class="side1">
                 <a href="/dashboard/property_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/membersdata_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
                 </a>
             </li>
     </ul>
