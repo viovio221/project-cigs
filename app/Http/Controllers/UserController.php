@@ -18,10 +18,11 @@ class UserController extends Controller
      }
     public function index()
     {
+        $nonMemberUsers = User::where('role', 'non-member')->get();
         $profiles = Profile::all();
         $users = User::paginate(20);
 
-        return view('users.index', compact('users', 'profiles'));
+        return view('users.index', compact('users', 'profiles', 'nonMemberUsers'));
     }
 
     /**
@@ -38,7 +39,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $profiles = Profile::all();
-        $user = User::findOrFail($id); // Ambil data pengguna berdasarkan ID
+        $user = User::findOrFail($id); 
         return view('users.edit', compact('user', 'profiles'));
     }
 
@@ -91,5 +92,17 @@ class UserController extends Controller
 
     return redirect()->route('users.index')->with('success', 'User deleted successfully.');
 }
+public function confirmMemberStatus(Request $request, $id)
+{
+    try {
+        $user = User::findOrFail($id);
+        $user->update(['role' => 'member']);
+
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()]);
+    }
+}
+
 
 }
