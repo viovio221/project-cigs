@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/add_news.css') }}">
     @if ($profiles->count() > 0)
-    <title>Edit Property | {{ $profiles[0]->community_name }}</title>
-    @foreach ($profiles as $profile)
-        <p>{{ $profile->community_name }}</p>
-
+    <title>
+        @foreach ($profiles as $profile)
+            Edit Property | {{ $profile->community_name }}
+        @endforeach
+    </title>
+@endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
