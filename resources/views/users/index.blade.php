@@ -196,6 +196,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <th></th>
                                 <th scope="col">No</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
@@ -208,7 +209,8 @@
                             @foreach ($users as $us)
                             @if ($us->role === 'non-member')
                             <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th></th>
+                                <td scope="row">{{ $loop->iteration }}</td>
                                 <td>{{ $us->name }}</td>
                                 <td>{{ $us->email }}</td>
                                 <td>{{ $us->role }}</td>
