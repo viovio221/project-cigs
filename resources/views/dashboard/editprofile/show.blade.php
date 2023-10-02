@@ -144,9 +144,11 @@
             </form>
         </div>
     </div>
-     <!-- CONTENT -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+    <!-- CONTENT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CONTENT -->
      <script src="{{ asset('js/dashboard.js') }}"></script>
      @include('sweetalert::alert')
 </body>
