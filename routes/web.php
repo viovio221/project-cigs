@@ -112,7 +112,7 @@ Route::get('/profiles/sejarah', function () {
     $dataCount = User::where('role', 'member')->count();
     return view('profiles.sejarah', compact('profiles', 'dataCount'));
 })->name('sejarah');
-Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit')->middleware('auth');
 Route::put('/dashboard/profiles/{profiles}', [ProfileController::class, 'update'])->name('profiles.update');
 Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
 
@@ -143,6 +143,7 @@ Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->na
 Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
 Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');
 Route::resource('property', PropertyController::class);
+Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register')->middleware('auth');
 Route::get('/dashboard/news', function () {
     $news = News::all();
     $profile = Profile::all();
@@ -188,7 +189,6 @@ Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->nam
 Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 Route::resource('users', UserController::class);
-Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register');
 Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::delete('/dashboard/event/{id}', [EventDataController::class, 'destroy'])->name('event.destroy')->middleware('auth');
 Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
@@ -238,3 +238,6 @@ Route::get('/dashboard/membersdata', function () {
     $profile = Profile::all();
     return view('dashboard.membersdata', compact('users', 'profile'));
 })->name('users')->middleware('auth');
+
+Route::post('/dashboard/membersdata_crud/{id}/confirm', [UserController::class, 'confirmMemberStatus'])->name('users.confirm');
+Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register')->middleware('auth');
