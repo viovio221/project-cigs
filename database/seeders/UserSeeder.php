@@ -14,10 +14,10 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Non Member',
-            'email' => 'devaniamelia495@gmail.com',
+            'name' => 'Fadilah Nurhasani',
+            'email' => 'fadilahnurhasani41@gmail.com',
             'password' => bcrypt('password'),
-            'role' => 'non-member',
+            'role' => 'member',
             'phone_number' => '081234567890',
             'gender' => 'male',
         ]);
@@ -31,10 +31,26 @@ class UserSeeder extends Seeder
             'gender'=>'male',
         ]);
         User::create([
-            'name' => 'Member',
+            'name' => 'Devani Amelia Pratiwi',
             'email' => 'devaniamelia2018@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'member',
+            'phone_number' => '089123456789',
+            'gender' => 'female',
+        ]);
+        User::create([
+            'name' => 'Azzam Zulfan Noya',
+            'email' => 'azzamnoya123@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'non-member',
+            'phone_number' => '089123456789',
+            'gender' => 'female',
+        ]);
+        User::create([
+            'name' => 'Keyza Khalish Murad',
+            'email' => 'keyzakhalishmurad@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'non-member',
             'phone_number' => '089123456789',
             'gender' => 'female',
         ]);
