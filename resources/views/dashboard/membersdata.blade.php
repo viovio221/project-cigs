@@ -217,8 +217,6 @@
                                     <th class="bar">No</th>
                                     <th class="bar">Name</th>
                                     <th class="bar">Email</th>
-                                    <th class="bar">Status</th>
-                                    <th class="bar">Create At</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -227,8 +225,6 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $usr->name }}</td>
                                         <td>{{ $usr->email }}</td>
-                                        <td>{{ $usr->role }}</td>
-                                        <td>{{ $usr->created_at }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
