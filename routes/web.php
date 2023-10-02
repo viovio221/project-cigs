@@ -143,6 +143,7 @@ Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->na
 Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
 Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');
 Route::resource('property', PropertyController::class);
+Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register')->middleware('auth');
 Route::get('/dashboard/news', function () {
     $news = News::all();
     $profile = Profile::all();

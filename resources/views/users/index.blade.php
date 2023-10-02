@@ -93,7 +93,7 @@
                     <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
                 </a>
             </li>
-            <li class="side1">
+            <li class="side1 {{ Request::is('dashboard/membersdata_crud*') ? 'active' : '' }}">
                 <a href="/dashboard/membersdata_crud" class="text2">
                     <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
                 </a>
@@ -214,12 +214,7 @@
                                 <td>{{ $us->role }}</td>
                                 <td>{{ $us->created_at }}</td>
                                     <td>
-                                        <a href="#" style="color: blue" class="edit-user" data-user-id="{{ $us->id }}"><i class='bx bx-edit'></i></a>
-                                        <form action="{{ route('users.destroy', $us->id) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="background: none; border: none; color:red" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class='bx bx-trash'></i></button>
-                                        </form>
+                                        <a href="#" style="color: blue" class="edit-user" data-user-id="{{ $us->id }}"><i class='bx bxs-user-check'></i></a>
                                     </td>
                             </tr>
                             @endif
