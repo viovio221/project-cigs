@@ -188,7 +188,6 @@ Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->nam
 Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
 Route::resource('users', UserController::class);
-Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register');
 Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::delete('/dashboard/event/{id}', [EventDataController::class, 'destroy'])->name('event.destroy')->middleware('auth');
 Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
@@ -240,3 +239,4 @@ Route::get('/dashboard/membersdata', function () {
 })->name('users')->middleware('auth');
 
 Route::post('/dashboard/membersdata_crud/{id}/confirm', [UserController::class, 'confirmMemberStatus'])->name('users.confirm');
+Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register')->middleware('auth');
