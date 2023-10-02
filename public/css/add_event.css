@@ -1,0 +1,55 @@
+/* CSS untuk container */
+.container {
+    max-width: 100%; /* Sesuaikan lebar sesuai kebutuhan Anda */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFDAB8;
+    border-radius: 5px;
+
+}
+
+/* CSS untuk judul "Add Event" */
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* CSS untuk label */
+.form-label {
+    font-weight: bold;
+}
+
+/* CSS untuk input teks */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* CSS untuk pesan kesalahan */
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+/* CSS untuk tombol "Simpan" */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover state untuk tombol "Simpan" */
+.btn-primary:hover {
+    background-color: #0056b3;
+}
