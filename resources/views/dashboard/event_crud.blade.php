@@ -203,7 +203,7 @@
                                     <tr>
                                         <th>{{ $loop->iteration }}</th>
                                         <td>
-                                            <img src="{{ asset('storage/event_images/' . $event->image) }}"
+                                            <img src="{{ $event->image }}"
                                                 alt="Event" width="100">
                                         </td>
                                         <td class="event searchable-element">{{ $event->name }}</td>

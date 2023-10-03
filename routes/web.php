@@ -46,9 +46,9 @@ Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.hand
 route::resource('register', RegisterController::class);
 Route::get('/register', [LoginController::class, 'show'])->name('login.show');
 Route::get('/register', [RegisterController::class, 'index'])->name('login.register');
-Route::get('/', function () {
-    return view('landingpage.landing'); // Mengganti 'welcome' dengan 'landingpage.landing'
-});
+// Route::get('/', function () {
+//     return view('landingpage.landing'); // Mengganti 'welcome' dengan 'landingpage.landing'
+// });
 
 Route::post('/submit-message', function (Request $request) {
     $message = new Message();

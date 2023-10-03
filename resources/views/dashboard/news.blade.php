@@ -211,7 +211,7 @@
                 @foreach ($news as $nw)
                     <li class="news-item searchable-element">
                         <td>
-                            <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news" width="100">
+                            <img src="{{ $nw->image }}" alt="news" width="100">
                         </td>
                         <span>
                             <h3 class="title-news searchable-element">{{ $nw->title }}</h3>

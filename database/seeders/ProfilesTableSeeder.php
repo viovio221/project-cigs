@@ -31,7 +31,7 @@ class ProfilesTableSeeder extends Seeder
             Storage::disk('public')->put($imagePathInStorage, $imageContents);
 
             $profileData['image'] = $imagePathInStorage;
-            $profileData['video'] = 'public/' . $profileData['video'];
+            $profileData['video'] = 'profile_videos/' . $profileData['video'];
             DB::table('profiles')->insert($profileData);
         }
     }

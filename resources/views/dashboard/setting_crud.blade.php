@@ -209,12 +209,12 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <img src="{{ asset('storage/profile_images/' . $pf->image) }}"
+                                            <img src="{{ asset('/storage/' . $pf->image) }}"
                                                 alt="profiles" width="100">
                                         </td>
 
                                         <td>
-                                            <video src="{{ asset('storage/profile_videos/' . $pf->video) }}" width="100" autoplay muted loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video }}" width="100" autoplay muted loop controls></video>
                                         </td>
                                         <td class="description">{{ $pf->history }}</td>
                                         <td class="description">{{ $pf->community_bio }}</td>
