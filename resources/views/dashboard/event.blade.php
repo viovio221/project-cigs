@@ -216,7 +216,7 @@
                             <li>
                                 <div class="package-card searchable-element" data-aos="fade-up" id="package-card">
                                     <figure class="card-banner">
-                                        <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Events 1"
+                                        <img src="{{ $item->image }}" alt="Events 1"
                                             loading="lazy">
                                     </figure>
                                     <div class="card-content" data-aos="fade-up">

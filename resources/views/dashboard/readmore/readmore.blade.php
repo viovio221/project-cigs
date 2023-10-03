@@ -217,7 +217,7 @@
 
                     <div class="center-image">
                         <div class="blog-banner-box">
-                            <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="News Image" width="100">
+                            <img src="{{ $nw->image }}" alt="News Image" width="100">
                         </div>
                     </div>
 
