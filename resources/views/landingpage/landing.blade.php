@@ -76,14 +76,14 @@
     {{-- beranda --}}
     <section class="hero" id="home">
         @foreach ($profile as $item)
-            <video class="video-slide active box searchable-element" src="{{ '/storage/' . $item->video }}" autoplay
-                muted loop>
-            </video>
-        @endforeach
-        <video class="video-slide" src="{{ asset('videos/video_2.mp4') }}" autoplay muted loop></video>
-        <video class="video-slide" src="{{ asset('videos/video_3.mp4') }}" autoplay muted loop></video>
-        <video class="video-slide" src="{{ asset('videos/video_4.mp4') }}" autoplay muted loop></video>
-        <video class="video-slide" src="{{ asset('videos/video_4.mp4') }}" autoplay muted loop></video>
+        <video class="video-slide active box searchable-element"
+            src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted loop></video>
+        <video class="video-slide active box searchable-element"
+            src="{{ asset('storage/profile_videos/' . $item->video1) }}" autoplay muted loop></video>
+        <video class="video-slide active box searchable-element"
+            src="{{ asset('storage/profile_videos/' . $item->video2) }}" autoplay muted loop></video>
+    @endforeach
+
         <div class="container">
 
             <h1 class="h1 hero-title searchable-element" data-aos="zoom-in">

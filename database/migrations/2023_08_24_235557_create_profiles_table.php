@@ -14,6 +14,8 @@ class CreateProfilesTable extends Migration
             $table->text('community_bio')->nullable();
             $table->string('image')->nullable();
             $table->string('video')->nullable();
+            $table->string('video1')->nullable();
+            $table->string('video2')->nullable();
             $table->text('community_structure')->nullable();
             $table->string('slogan', 100)->nullable();
             $table->string('community_name', 100)->nullable();
