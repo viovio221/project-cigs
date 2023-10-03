@@ -78,6 +78,8 @@ class ProfileController extends Controller
         'community_bio' => 'required',
         'image' => 'nullable|image',
         'video' => 'nullable|mimetypes:video/*', // Perbaikan di sini
+        'video1' => 'nullable|mimetypes:video/*', // Perbaikan di sini
+        'video2' => 'nullable|mimetypes:video/*', // Perbaikan di sini
         'community_structure' => 'required',
         'slogan' => 'required',
         'community_name' => 'required',
