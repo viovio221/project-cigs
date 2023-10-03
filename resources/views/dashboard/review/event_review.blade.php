@@ -67,7 +67,7 @@
                     <div class="input-container">
                         <span>Event Name</span>
                         <label for="event_id">Event Name</label>
-                        <select name="event_id" class="input">
+                        <select name="event_id" class="input-o">
                             <option value="">Pilih</option>
                             @foreach ($events as $ev)
                                 <option {{ old('event_id') == $ev->id ? 'selected' : '' }} value="{{ $ev->id }}">
