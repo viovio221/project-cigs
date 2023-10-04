@@ -16,10 +16,10 @@ class CommentPostController extends Controller
         return view('dashboard.commentposts_crud', ['comment_postlist' => $comment_post, 'profiles'=> $profiles]);
     }
 
-    public function review()
+    public function review(Request $request)
     {
         $profiles = Profile::all();
-        $event = Event::all();
+        $event = auth()->user()->events;
         return view('dashboard.review.event_review', ['events' => $event, 'profiles'=> $profiles]);
     }
 
@@ -55,7 +55,7 @@ class CommentPostController extends Controller
         $commentPost->rating = $validated['rating'];
         $commentPost->save();
 
-        return redirect()->route('dashboard.commentposts_crud')->with('success', "$validated[username] Successfully added!");
+        return redirect()->route('dashboard')->with('success', "$validated[username] Successfully added!");
     }
 
 public function show($id)
