@@ -77,7 +77,7 @@
     <section class="hero" id="home">
         @foreach ($profile as $item)
         <video class="video-slide active box searchable-element"
-            src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted loop></video>
+            src="{{ '/storage/' . $item->video }}" autoplay muted loop></video>
         <video class="video-slide active box searchable-element"
             src="{{ asset('storage/profile_videos/' . $item->video1) }}" autoplay muted loop></video>
         <video class="video-slide active box searchable-element"
