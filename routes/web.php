@@ -29,6 +29,8 @@ use App\Http\Controllers\EventDataController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -229,3 +231,4 @@ Route::get('/dashboard/eventdesc1', function () {
 
 Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review')->middleware('auth');
 Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store')->middleware('auth');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

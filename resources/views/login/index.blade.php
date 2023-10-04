@@ -58,7 +58,6 @@
             <p><a href="{{ route('password.request') }}" class="reset-password">Reset Password</a></p>
         </div>
     </div>
-    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

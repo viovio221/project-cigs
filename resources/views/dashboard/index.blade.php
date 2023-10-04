@@ -296,6 +296,30 @@
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButton = document.querySelector('.logout');
+
+            logoutButton.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: 'Are you sure to logout?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ffa500',
+                    cancelButtonColor: '#DB504A',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Setelah pengguna mengonfirmasi logout, arahkan mereka ke rute logout
+                        window.location.href = '{{ route('logout') }}';
+                    }
+                });
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="{{ asset('js/dashboard.js') }}"></script>

@@ -15,7 +15,6 @@
 <body>
     <div class="container">
         <span class="big-circle"></span>
-        <img src="img/shape.png" class="square" alt="" />
         <div class="form">
             <div class="contact-info">
                 <h3 class="title">Welcome to Wayang Riders Event's Review</h3>
@@ -110,7 +109,6 @@
     <!-- CONTENT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
 </body>
 
