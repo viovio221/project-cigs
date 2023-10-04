@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <title>Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -29,6 +34,30 @@
         </div>
         <div class="About">
             <ul>
+                <section id="content">
+                    <!-- NAVBAR -->
+                    <nav>
+                        <i class='bx bx-menu'></i>
+                        <form action="#" class="search-form" hidden>
+                            <div class="form-input">
+                                <input type="search" placeholder="Search..." class="search-input">
+                                <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                            </div>
+                        </form>
+                        <a href="/dashboard/message" class="notification" title="message here">
+                            <i class='bx bxs-edit-alt'></i>
+                        </a>
+
+                        @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
+                            <a href="/dashboard/review" class="notification" title="event's review here">
+                                <i class='bx bxs-bell'></i>
+                            </a>
+                        @endif
+
+                        <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                            <i class='bx bxs-user-circle'></i> </a>
+                    </nav>
+                </section>
                 <h1><b>ABOUT PROFILE</b></h1>
             </ul>
             <ul>
