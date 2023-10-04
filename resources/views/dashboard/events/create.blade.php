@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- Custom CSS link -->
     <link rel="stylesheet" href="{{ asset('css/add_event.css') }}">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 
 </head>
 
@@ -271,35 +270,47 @@
                 <!-- ... -->
 
 
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const registerButtons = document.querySelectorAll('.btn.btn-primary');
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const registerButtons = document.querySelectorAll('.btn.btn-primary');
 
-                                            const eventId = registerButton.getAttribute('data-event-id');
-                                            const eventName = registerButton.getAttribute('data-event-name');
-                                            const eventDate = registerButton.getAttribute('data-event-date');
+                        registerButtons.forEach((registerButton) => {
+                            registerButton.addEventListener('click', function() {
+                                const eventId = registerButton.getAttribute('data-event-id');
+                                const eventName = registerButton.getAttribute('data-event-name');
+                                const eventDate = registerButton.getAttribute('data-event-date');
 
-                                            }).then((response) => {
-                                                if (response.data.message === 'You are already registered for this event.') {
-                                                    Swal.fire('You are already registered for this event.',
-                                                        'You cannot register again for the same event.', 'info');
-                                                } else if (response.data.message === 'Registration successful') {
-                                                    Swal.fire('Thank you!',
-                                                        'You have registered for this event.', 'success');
-                                                } else {
-                                                    Swal.fire('Error',
-                                                        'An error occurred while registering for the event.',
-                                                        'error');
-                                                }
-                                            }).catch((error) => {
-                                                Swal.fire('Error',
-                                                    'An error occurred while registering for the event.',
-                                                    'error');
-                                            });
-                                        });
-                                    });
-                                });
-                                </script>
+                                // Hapus blok kode ini
+                                // const eventId = registerButton.getAttribute('data-event-id');
+                                // const eventName = registerButton.getAttribute('data-event-name');
+                                // const eventDate = registerButton.getAttribute('data-event-date');
+
+                                // Lakukan sesuatu dengan data event, misalnya menampilkan pesan SweetAlert2
+                                Swal.fire('Registration Clicked', `Event ID: ${eventId}, Name: ${eventName}, Date: ${eventDate}`, 'info');
+
+                                // Hapus blok kode ini
+                                // }).then((response) => {
+                                //     if (response.data.message === 'You are already registered for this event.') {
+                                //         Swal.fire('You are already registered for this event.',
+                                //             'You cannot register again for the same event.', 'info');
+                                //     } else if (response.data.message === 'Registration successful') {
+                                //         Swal.fire('Thank you!',
+                                //             'You have registered for this event.', 'success');
+                                //     } else {
+                                //         Swal.fire('Error',
+                                //             'An error occurred while registering for the event.',
+                                //             'error');
+                                //     }
+                                // }).catch((error) => {
+                                //     Swal.fire('Error',
+                                //         'An error occurred while registering for the event.',
+                                //         'error');
+                                // });
+                            });
+                        });
+                    });
+                </script>
+
 
 
 
@@ -396,7 +407,6 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"></script>
         @include('sweetalert::alert')
 </body>
 

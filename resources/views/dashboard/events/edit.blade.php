@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- Custom CSS link -->
     <link rel="stylesheet" href="{{ asset('css/edit_event.css') }}">
-
 </head>
 
 <body>
@@ -277,31 +276,16 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-            const registerButtons = document.querySelectorAll('.btn.btn-primary');
+                const registerButtons = document.querySelectorAll('.btn.btn-primary');
 
-            const eventId = registerButton.getAttribute('data-event-id');
-            const eventName = registerButton.getAttribute('data-event-name');
-            const eventDate = registerButton.getAttribute('data-event-date');
-
-            }).then((response) => {
-            if (response.data.message === 'You are already registered for this event.') {
-            Swal.fire('You are already registered for this event.',
-            'You cannot register again for the same event.', 'info');
-            } else if (response.data.message === 'Registration successful') {
-            Swal.fire('Thank you!',
-            'You have registered for this event.', 'success');
-            } else {
-            Swal.fire('Error',
-            'An error occurred while registering for the event.',
-            'error');
-            }
-            }).catch((error) => {
-            Swal.fire('Error',
-            'An error occurred while registering for the event.',
-            'error');
-            });
-            });
-            });
+                registerButtons.forEach((registerButton) => {
+                    registerButton.addEventListener('click', function() {
+                        const eventId = registerButton.getAttribute('data-event-id');
+                        const eventName = registerButton.getAttribute('data-event-name');
+                        const eventDate = registerButton.getAttribute('data-event-date');
+                        Swal.fire('Registration Clicked', `Event ID: ${eventId}, Name: ${eventName}, Date: ${eventDate}`, 'info');
+                    });
+                });
             });
         </script>
 
