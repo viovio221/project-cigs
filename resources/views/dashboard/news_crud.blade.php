@@ -206,7 +206,7 @@
                                     <tr>
                                         <th>{{ $loop->iteration }}</th>
                                         <td>
-                                            <img src="{{ $nw->image }}" alt="news"
+                                            <img src="{{ asset('storage/new_images/' . $nw->image) }}"" alt="news"
                                                 width="100">
                                         </td>
                                         <td  class="event">{{ $nw->title }}</td>
