@@ -113,13 +113,13 @@
     <section class="packages">
         <h1 class="heading  searchable-element" id="events">Ride <span>Adventures</span></h1>
         <div class="box-container searchable-element" id="events">
-            @foreach ($events as $item)
+            @foreach ($events as $event)
                 <div class="box" data-aos="fade-up">
                     <div class="image">
-                        <img src="{{ $item->image }}" alt="Events 1">
+                        <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events 1">
                     </div>
                     <div class="content">
-                        <h3>{!! $item->name !!}</h3>
+                        <h3>{!! $event->name !!}</h3>
                         <a href="{{ route('event') }}" class="btn">See More Info</a>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
             @foreach ($news as $nw)
                 <div class="box  searchable-element" id="news" data-aos="zoom">
                     <div class="image">
-                        <img src="{{ $nw->image }}" alt="News" loading="lazy">
+                        <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="News" loading="lazy">
                     </div>
                     <div class="content">
                         <h3>{!! $nw->title !!}</h3>
