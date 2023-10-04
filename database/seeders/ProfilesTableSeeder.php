@@ -17,7 +17,7 @@ class ProfilesTableSeeder extends Seeder
                 'image' => 'OYgzUVM53L1lDc2uDUF39v3HGmlbz65SpJtfxFAu.png',
                 'community_bio' => 'Welcome to the profile page Wayang Riders! Together, we arre more than just a community; we are a family that shares the spirit of adventure, experiences, and journeys. With the motto "Ride Together, Thrive Together," we build strong bonds and achieve remarkable feats. Embrace the freedom and adventure with us on uncharted roads and unforgettable moments. Every ride is fueled by camaraderie and a collective spirit, for we believe that togetherness is the key to our success. Lets keep this fiery spirit alive, navigating lifes twists and turns with enthusiasm and unity. Wayang Riders invites you to experience the thrill of freedom behind every twist of the throttle, leaving your mark on both the asphalt and hearts, and celebrating every accomplishment together. Join Wayang Riders today and become part of an inspiring journey of friendship and growth. Lets ride side by side, evolve together, and savor every moment of this exhilarating journey! Thank you for choosing Wayang Riders. Come, lets ride and thrive together! Welcome to our community!',
                 'community_structure' => 'Struktur komunitas=> pengurus daerah, struktur anggota',
-                'video'=>'4clk1CYFRszNurl7exMljZ9wb1vLFfqcybeQ0OmY.mp4',
+                'video'=>'video.mp4',
                 'slogan'=>'Ride Together, Thrive Together',
                 'community_name' => 'Wayang Riders',
             ],
