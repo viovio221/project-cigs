@@ -203,22 +203,28 @@
                                 <th scope="col">Status</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
-                              </tr>
+                            </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $number = 1;
+                            @endphp
                             @foreach ($users as $us)
                             @if ($us->role === 'non-member')
                             <tr>
                                 <th></th>
-                                <td scope="row">{{ $loop->iteration }}</td>
+                                <td scope="row">{{ $number }}</td>
                                 <td>{{ $us->name }}</td>
                                 <td>{{ $us->email }}</td>
                                 <td>{{ $us->role }}</td>
                                 <td>{{ $us->created_at }}</td>
-                                    <td>
-                                        <a href="#" style="color: blue" class="edit-user" data-user-id="{{ $us->id }}"><i class='bx bxs-user-check'></i></a>
-                                    </td>
+                                <td>
+                                    <a href="#" style="color: blue" class="edit-user" data-user-id="{{ $us->id }}"><i class='bx bxs-user-check'></i></a>
+                                </td>
                             </tr>
+                            @php
+                            $number++;
+                            @endphp
                             @endif
                             @endforeach
                         </tbody>
