@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <div class="box">
-            <img src="images/profile-icon-png-912.png" alt="">
+            <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
             <ul>
                 <br>
                 <br>
@@ -176,7 +176,6 @@
      <!-- CONTENT -->
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-     <script src="{{ asset('js/dashboard.js') }}"></script>
      @include('sweetalert::alert')
 </body>
 </html>

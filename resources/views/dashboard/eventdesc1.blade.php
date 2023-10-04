@@ -218,7 +218,7 @@
 
                     <div class="center-image">
                         <div class="blog-banner-box">
-                            <img src="{{ $event->image }}" alt="Events Image" width="100">
+                            <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events Image" width="100">
                         </div>
                     </div>
 

@@ -9,27 +9,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     {{-- font awesome CDN link --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    {{-- custom css file cdn link --}}
     <link rel="stylesheet" href="{{ asset('css/event_style.css') }}">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-<link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css">
 
-
-@foreach ($profile as $item)
-<title>Events | {{ $item->community_name }}</title>
-@endforeach   </head>
+    @foreach ($profile as $item)
+        <title>Events | {{ $item->community_name }}</title>
+    @endforeach
+</head>
 
 <body>
 
@@ -182,7 +173,8 @@
             <form id="searchForm">
                 <div class="form-input">
                     <input type="search" id="searchBox" placeholder="Search...">
-                    <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <button type="submit" id="searchSubmit" class="search-btn"><i
+                            class='bx bx-search'></i></button>
                 </div>
             </form>
 
@@ -196,7 +188,7 @@
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i> </a>
         </nav>
         <!-- NAVBAR -->
 
@@ -216,7 +208,7 @@
                             <li>
                                 <div class="package-card searchable-element" data-aos="fade-up" id="package-card">
                                     <figure class="card-banner">
-                                        <img src="{{ $item->image }}" alt="Events 1"
+                                        <img src="{{ asset('storage/event_images/' . $item->image) }}" alt="Newss 1"
                                             loading="lazy">
                                     </figure>
                                     <div class="card-content" data-aos="fade-up">
@@ -248,7 +240,8 @@
                                     <div class="card-price">
 
                                         <button class="btn btn-secondary searchable-element">
-                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">See Description</a>
+                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">See
+                                                Description</a>
                                         </button>
                                     </div>
                                 </div>
@@ -266,7 +259,6 @@
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
                     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-                    <script src="https://unpkg.com/your-package@your-version/dist/script.js"></script>
                     <script>
                         AOS.init({
                             duration: 800,
@@ -308,64 +300,63 @@
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
                 const searchBox = document.getElementById('searchBox');
-             const searchSubmit = document.getElementById('searchSubmit');
-             let alertShown = false;
+                const searchSubmit = document.getElementById('searchSubmit');
+                let alertShown = false;
 
-             searchSubmit.addEventListener('click', (e) => {
-                 e.preventDefault();
-                 const searchTerm = searchBox.value.toLowerCase();
+                searchSubmit.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const searchTerm = searchBox.value.toLowerCase();
 
-                 if (searchTerm === '') {
-                     return;
-                 }
+                    if (searchTerm === '') {
+                        return;
+                    }
 
-                 removeHighlights();
+                    removeHighlights();
 
-                 const textElements = document.querySelectorAll('.searchable-element');
+                    const textElements = document.querySelectorAll('.searchable-element');
 
-                 let found = false;
-                 let firstMatchId = null;
+                    let found = false;
+                    let firstMatchId = null;
 
-                 textElements.forEach((element) => {
-                     const text = element.innerText.toLowerCase();
-                     const regex = new RegExp(searchTerm, 'gi');
+                    textElements.forEach((element) => {
+                        const text = element.innerText.toLowerCase();
+                        const regex = new RegExp(searchTerm, 'gi');
 
-                     if (regex.test(text)) {
-                         found = true;
-                         const highlightedText = element.innerHTML.replace(
-                             regex,
-                             '<span class="highlight">$&</span>'
-                         );
-                         element.innerHTML = highlightedText;
+                        if (regex.test(text)) {
+                            found = true;
+                            const highlightedText = element.innerHTML.replace(
+                                regex,
+                                '<span class="highlight">$&</span>'
+                            );
+                            element.innerHTML = highlightedText;
 
-                         if (!firstMatchId) {
-                             firstMatchId = element.getAttribute('id');
-                         }
-                     }
-                 });
+                            if (!firstMatchId) {
+                                firstMatchId = element.getAttribute('id');
+                            }
+                        }
+                    });
 
-                 if (found) {
-                     if (firstMatchId) {
-                         window.location.href = `#${firstMatchId}`;
-                     }
-                 } else {
-                     if (!alertShown) {
-                         Swal.fire('Sorry!', 'No results for this search!', 'info');
-                         alertShown = true;
-                     } else {
-                         alertShown = false;
-                     }
-                 }
-             });
+                    if (found) {
+                        if (firstMatchId) {
+                            window.location.href = `#${firstMatchId}`;
+                        }
+                    } else {
+                        if (!alertShown) {
+                            Swal.fire('Sorry!', 'No results for this search!', 'info');
+                            alertShown = true;
+                        } else {
+                            alertShown = false;
+                        }
+                    }
+                });
 
-             function removeHighlights() {
-                 const highlightedElements = document.querySelectorAll('.highlight');
-                 highlightedElements.forEach((element) => {
-                     element.outerHTML = element.innerHTML;
-                 });
-             }
-
-             </script>
+                function removeHighlights() {
+                    const highlightedElements = document.querySelectorAll('.highlight');
+                    highlightedElements.forEach((element) => {
+                        element.outerHTML = element.innerHTML;
+                    });
+                }
+            </script>
         </body>
 
 </html>

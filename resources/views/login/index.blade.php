@@ -11,11 +11,13 @@
 <body>
     <img class="wave" src="{{ asset('') }}" alt="">
     <div class="container">
-        @foreach ($profile as $pr)
+    @foreach ($profile as $item)
+    <td>
         <div class="img">
-            <img src="{{ asset('storage/profile_images/' . $pr->image) }}" alt="">
-        </div>
-    @endforeach
+        <img src="{{ asset('/storage/' . $item->image) }}" alt="Logo" oncontextmenu="return false;">
+    </div>
+    </td>
+@endforeach
         <div class="login-content">
             <form action="{{ route('login.handleLogin') }}" method="POST">
                 @csrf <!-- Tambahkan ini untuk melindungi formulir dari serangan CSRF -->
@@ -56,7 +58,6 @@
             <p><a href="{{ route('password.request') }}" class="reset-password">Reset Password</a></p>
         </div>
     </div>
-    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

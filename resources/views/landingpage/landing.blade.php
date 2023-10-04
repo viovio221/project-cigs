@@ -39,18 +39,37 @@
         <div class="icon">
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-moon" id="theme-btn" title="switch mode"></div>
-            <a href="{{ route('sejarah') }}" title="about wayang riders">
-                <div class="fas fa-user" id="login-btn"></div>
-            </a>
+            @if (Auth::check())
+                <!-- Pengguna sudah login -->
+                <a href="{{ route('dashboard') }}" title="dashboard">
+                    <div class="fas fa-tachometer-alt" id="dashboard-btn"></div>
+                </a>
+            @else
+                <!-- Pengguna belum login -->
+                <a href="/profiles/sejarah" title="wayang riders structure">
+                    <div class="fas fa-user" id="login-btn"></div>
+                </a>
+            @endif
+            <div class="fas fa-bars" id="menu-btn"
+            @if (Auth::check() && (Auth::user()->role === 'non-member'))
+            title="login register in here"> @endif</div>
 
-            <div class="fas fa-bars" id="menu-btn" title="login register in here"></div>
         </div>
 
         <nav class="navbar">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-
+            @if (Auth::check())
+                <!-- Pengguna sudah login -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <a href="#" onclick="event.preventDefault(); confirmLogout();">Logout</a>
+                </form>
+            @else
+                <!-- Pengguna belum login -->
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            @endif
         </nav>
+
 
         {{-- <form action="" class="login-form">
             <div class="inputBox">
@@ -77,11 +96,7 @@
     <section class="hero" id="home">
         @foreach ($profile as $item)
         <video class="video-slide active box searchable-element"
-            src="{{ asset('storage/profile_videos/' . $item->video) }}" autoplay muted loop></video>
-        <video class="video-slide active box searchable-element"
-            src="{{ asset('storage/profile_videos/' . $item->video1) }}" autoplay muted loop></video>
-        <video class="video-slide active box searchable-element"
-            src="{{ asset('storage/profile_videos/' . $item->video2) }}" autoplay muted loop></video>
+            src="{{ '/storage/' . $item->video }}" autoplay muted loop></video>
     @endforeach
 
         <div class="container">
@@ -113,13 +128,13 @@
     <section class="packages">
         <h1 class="heading  searchable-element" id="events">Ride <span>Adventures</span></h1>
         <div class="box-container searchable-element" id="events">
-            @foreach ($events as $item)
+            @foreach ($events as $event)
                 <div class="box" data-aos="fade-up">
                     <div class="image">
-                        <img src="{{ $item->image }}" alt="Events 1">
+                        <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events 1">
                     </div>
                     <div class="content">
-                        <h3>{!! $item->name !!}</h3>
+                        <h3>{!! $event->name !!}</h3>
                         <a href="{{ route('event') }}" class="btn">See More Info</a>
                     </div>
                 </div>
@@ -140,7 +155,6 @@
             <div class="swiper-wrapper">
                 @foreach ($comment_post as $cp)
                     <div class="swiper-slide slide">
-                        <img src="{{ asset('images/profile-icon-png-912.png') }}" alt="">
                         <h3>{{ $cp->username }}</h3>
                         <p>{{ $cp->content }}</p>
                         <div class="stars">
@@ -174,7 +188,7 @@
             @foreach ($news as $nw)
                 <div class="box  searchable-element" id="news" data-aos="zoom">
                     <div class="image">
-                        <img src="{{ $nw->image }}" alt="News" loading="lazy">
+                        <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="News" loading="lazy">
                     </div>
                     <div class="content">
                         <h3>{!! $nw->title !!}</h3>
@@ -230,7 +244,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/your-package@your-version/dist/script.js"></script>
     <script>
         AOS.init({
             duration: 800,
@@ -298,8 +311,25 @@
             });
         }
     </script>
+    <script>
+    function confirmLogout() {
+    Swal.fire({
+        title: 'Are you sure to logout?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ffa500',
+        cancelButtonColor: '#DB504A',
+        confirmButtonText: 'Yes, logout'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('logout-form').submit();
+        }
+    });
+}
+
+</script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
 </body>
 
