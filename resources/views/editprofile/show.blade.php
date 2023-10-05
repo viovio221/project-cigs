@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,18 +9,21 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <div class="container">
         <div class="box">
-            <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
+            @if (auth()->user() && auth()->user()->document)
+                <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
+            @endif
             <ul>
                 <br>
                 <br>
-                        <tr>
-                            <th><i style="font-size:24px" class="fa"></i></th>
-                            <th><i style="font-size:24px" class="fa"></i></th>
-                            <th><i style="font-size:24px" class="fa"></i></th>
-                        </tr>
+                <tr>
+                    <th><i style="font-size:24px" class="fa"></i></th>
+                    <th><i style="font-size:24px" class="fa"></i></th>
+                    <th><i style="font-size:24px" class="fa"></i></th>
+                </tr>
                 <form action="{{ route('dashboard') }}">
                     <div class="mb-3 d-grid">
                         <button type="submit" class="button btn-secondary"><b>BACK</b></button>
@@ -119,24 +123,25 @@
                     </tr>
                 </table>
             </ul>
-            @if(auth()->user()->document)
-            <ul>
-                <table>
-                    <tr>
-                        <th>Document Image </th>
-                        <td><img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}" alt="Document Image" class="document_images"></td>
-                    </tr>
-                </table>
-            </ul>
-            <ul>
-                <table>
-                    <tr>
-                        <th>Tipe </th>
-                        <td>{{ auth()->user()->document->tipe }}</td>
-                    </tr>
-                </table>
-            </ul>
-        @endif
+            @if (auth()->user()->document)
+                <ul>
+                    <table>
+                        <tr>
+                            <th>Document Image </th>
+                            <td><img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}"
+                                    alt="Document Image" class="document_images"></td>
+                        </tr>
+                    </table>
+                </ul>
+                <ul>
+                    <table>
+                        <tr>
+                            <th>Tipe </th>
+                            <td>{{ auth()->user()->document->tipe }}</td>
+                        </tr>
+                    </table>
+                </ul>
+            @endif
             <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
                     <button type="submit" class="btn btn-primary"><b>Edit Profile</b></button>
@@ -144,9 +149,10 @@
             </form>
         </div>
     </div>
-     <!-- CONTENT -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- CONTENT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-     @include('sweetalert::alert')
+    @include('sweetalert::alert')
 </body>
+
 </html>
