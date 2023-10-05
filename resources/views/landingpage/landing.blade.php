@@ -59,6 +59,7 @@
         <nav class="navbar">
             @if (Auth::check())
                 <!-- Pengguna sudah login -->
+                <a href="/profiles/sejarah">About Wayang Riders</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <a href="#" onclick="event.preventDefault(); confirmLogout();">Logout</a>
