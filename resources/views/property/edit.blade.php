@@ -210,21 +210,21 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label class="form-label">Headline Event</label>
+                    <label class="form-label">Headline</label>
                     <input name="headline_ev" type="text" class="form-control @error('headline_ev') is-invalid @enderror" value="{{ old('headline_ev', $properties->headline_ev) }}" required>
                     @error('headline_ev')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Text Event</label>
+                    <label class="form-label">Text</label>
                     <input name="text_ev" type="text" class="form-control @error('text_ev') is-invalid @enderror" value="{{ old('text_ev',$properties->text_ev)  }}" required>
                     @error('text_ev')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Headline Message</label>
+                    <label class="form-label">Message</label>
                     <input name="headline_mg" type="text" class="form-control @error('headline_mg') is-invalid @enderror" value="{{ old('headline_mg', $properties->headline_mg) }}">
                     @error('headline_mg')
                         <div class="invalid-feedback">{{ $message }}</div>
