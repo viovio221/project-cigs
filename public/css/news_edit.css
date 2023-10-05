@@ -17,12 +17,12 @@
     border: 1px solid #ccc;
     border-radius: 3px;
 }
-
 .description {
     font-size: 10px;
     font-weight: bold;
     margin-bottom: 10px;
     color:#000000;
+    max-width: 100%;
 }
 
 .description textarea {
