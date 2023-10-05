@@ -211,13 +211,14 @@
                 @method('put')
                 <div class="form-group">
                     <div class="title">Edit News</div>
+                    <div class="text-1">Title</div>
                     <input name="title" type="text" class="form-control @error('title') is-invalid @enderror"
                         value="{{ $news->title }}">
                     @error('title')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="description">Description</div>
+                <div class="text-1">Description</div>
                 <div class="form-group">
                     <textarea name="description" class="form-control description @error('description') is-invalid @enderror">{{ old('description', $news->description) }}</textarea>
                     @error('description')
@@ -246,36 +247,29 @@
 
                             <script>
                                 document.addEventListener('DOMContentLoaded', function() {
-                                    const registerButtons = document.querySelectorAll('.btn.btn-primary');
+                                    const logoutButton = document.querySelector('.logout');
 
-                                            const eventId = registerButton.getAttribute('data-event-id');
-                                            const eventName = registerButton.getAttribute('data-event-name');
-                                            const eventDate = registerButton.getAttribute('data-event-date');
+                                    // Tambahkan event click ke elemen logout
+                                    logoutButton.addEventListener('click', function(e) {
+                                        e.preventDefault(); // Mencegah tindakan logout asli
 
-                                            }).then((response) => {
-                                                if (response.data.message === 'You are already registered for this event.') {
-                                                    Swal.fire('You are already registered for this event.',
-                                                        'You cannot register again for the same event.', 'info');
-                                                } else if (response.data.message === 'Registration successful') {
-                                                    Swal.fire('Thank you!',
-                                                        'You have registered for this event.', 'success');
-                                                } else {
-                                                    Swal.fire('Error',
-                                                        'An error occurred while registering for the event.',
-                                                        'error');
-                                                }
-                                            }).catch((error) => {
-                                                Swal.fire('Error',
-                                                    'An error occurred while registering for the event.',
-                                                    'error');
-                                            });
+                                        // Tampilkan pesan konfirmasi SweetAlert2
+                                        Swal.fire({
+                                            title: 'Are you sure to logout?',
+                                            text: "You won't be able to revert this!",
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#ffa500',
+                                            cancelButtonColor: '#DB504A',
+                                            confirmButtonText: 'Yes, logout'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.href = '{{ route('logout') }}';
+                                            }
                                         });
                                     });
                                 });
-                                </script>
-
-
-
+                            </script>
 
                             <!-- ... -->
 
