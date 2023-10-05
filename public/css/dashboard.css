@@ -83,24 +83,27 @@ body {
 	left: 0;
 	background: var(--light);
 	z-index: 500;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 	box-sizing: content-box;
 }
 #sidebar .brand .fa-solid {
-	min-width: 60px;
+	min-width: 40px;
 	display: flex;
 	justify-content: center;
-    padding-left: 20px;
+    padding-left: 10px;
 
 }
 #sidebar .brand .text {
-	min-width: 60px;
+    min-width: 40px;
     color: var(--dark);
-	display: flex;
-    font-size: 18.7px;
+    display: flex;
+    margin-right: 2px;
+    font-size: 17px;
+    margin-left: 10px;
 }
+
 .side1 .text2{
-    margin-left:15px;
+    margin-left:7px;
 }
 #sidebar .side-menu {
 	width: 100%;
