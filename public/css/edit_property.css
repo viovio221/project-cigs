@@ -2,7 +2,7 @@
   /* Container styling */
   .container {
     margin-top: -1rem; /* Margin atas 5 rem */
-    text-align: center; /* Posisi inputan di tengah */
+    /* Posisi inputan di tengah */
     background-color: #FFDAB8; /* Warna latar belakang oranye */
   }
 
@@ -19,6 +19,7 @@
   /* Label styling */
   .form-label {
     font-weight: bold; /* Tebal teks label */
+    margin-right:80%;
   }
 
   /* Input styling */

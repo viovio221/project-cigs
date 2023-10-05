@@ -206,7 +206,7 @@
         <!-- MAIN -->
 
         <div class="container mt-5">
-            <h1>Setting</h1>
+           <center> <h1>Setting</h1></center>
             <form action="{{ route('profiles.update', ['profiles' => $profiles->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT') <!-- Add this line to indicate the PUT request -->
