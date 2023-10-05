@@ -17,7 +17,7 @@ class NewsSeeder extends Seeder
     {
         $news = [
             [
-                'title' => 'Wayang Riders Officially Launched: A New Motorcycle Community Inspiring The Spirit Of Brotherhood',
+                'title' => 'Wayang Riders Officially Launched: A New Community',
                 'description' => 'Today marks the official launch of Wayang Riders, a vibrant motorcycle community dedicated to celebrating the rich heritage of Javanese puppetry. Founded by passionate riders and puppetry enthusiasts, this community aims to foster the spirit of brotherhood among motorcycle enthusiasts who share a deep love for Wayang Jawa.',
                 'image' => 'news1.png',
                 'created_at' => now(),

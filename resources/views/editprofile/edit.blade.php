@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Edit</title>
-    <link rel="stylesheet" href="{{ asset('css/register_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/editprofile_style.css') }}">
 </head>
 
 <body>
-    <div class="body-card">
+    <div class="container">
+        <span class="big-circle"></span>
+        <div class="form">
+            <div class="contact-info">
         <form action="{{ route('editprofile.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -97,10 +100,12 @@
                     <div class="inputfield">
                         <input type="submit" value="Edit" class="btn">
                     </div>
+                        <a href="/editprofile" class="btn" style="text-decoration: none; text-align: center;">Back</a>
                 </div>
             </div>
         </form>
     </div>
+        </div>
     <!-- CONTENT -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
