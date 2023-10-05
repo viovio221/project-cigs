@@ -195,6 +195,8 @@
                                 <td></td>
                                 <th>Image</th>
                                 <th>Video</th>
+                                <th>Video 1</th>
+                                <th>Video 2</th>
                                 <th>History</th>
                                 <th>C. Bio</th>
                                 <th>C. Structure</th>
@@ -215,6 +217,12 @@
 
                                         <td>
                                             <video src="{{ '/storage/' . $pf->video }}" width="100" autoplay muted loop controls></video>
+                                        </td>
+                                        <td>
+                                            <video src="{{ '/storage/' . $pf->video1 }}" width="100" autoplay muted loop controls></video>
+                                        </td>
+                                        <td>
+                                            <video src="{{ '/storage/' . $pf->video2 }}" width="100" autoplay muted loop controls></video>
                                         </td>
                                         <td class="description">{{ $pf->history }}</td>
                                         <td class="description">{{ $pf->community_bio }}</td>
