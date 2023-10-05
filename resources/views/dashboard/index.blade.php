@@ -8,7 +8,6 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <!-- My CSS -->
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     @foreach ($profile as $item)
