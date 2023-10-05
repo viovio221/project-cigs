@@ -1,0 +1,48 @@
+
+  /* Container styling */
+  .container {
+    margin-top: -1rem; /* Margin atas 5 rem */
+    text-align: center; /* Posisi inputan di tengah */
+    background-color: #FFDAB8; /* Warna latar belakang oranye */
+  }
+
+  /* Form styling */
+  form {
+    padding: 20px;
+  }
+
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 1rem; /* Jarak antara setiap grup input */
+  }
+
+  /* Label styling */
+  .form-label {
+    font-weight: bold; /* Tebal teks label */
+  }
+
+  /* Input styling */
+  .form-control {
+    width: 100%; /* Lebar input 100% dari kontainer */
+    padding: 0.5rem; /* Ruang di dalam input */
+    border: 1px solid #ccc; /* Garis tepi input */
+    border-radius: 5px; /* Bentuk sudut input */
+  }
+
+  /* Invalid feedback styling */
+  .invalid-feedback {
+    color: red; /* Warna teks feedback invalid */
+  }
+
+  .btn-primary {
+    background-color: #FFFFFF;
+    color: #FFA902;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background-color: #F6F6F6;
+  }
