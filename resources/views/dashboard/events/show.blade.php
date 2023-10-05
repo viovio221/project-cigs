@@ -11,8 +11,6 @@
 
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
     <div class="container mt-5">
         <h1>Detail Event</h1>
         <div class="card">
