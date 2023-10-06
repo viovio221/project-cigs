@@ -230,45 +230,6 @@
                         <div class="blog-text  searchable-element">
                             {!! $nw->description !!}
                         </div>
-                            <!-- ... -->
-
-
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const registerButtons = document.querySelectorAll('.btn.btn-primary');
-
-                                            const eventId = registerButton.getAttribute('data-event-id');
-                                            const eventName = registerButton.getAttribute('data-event-name');
-                                            const eventDate = registerButton.getAttribute('data-event-date');
-
-                                            }).then((response) => {
-                                                if (response.data.message === 'You are already registered for this event.') {
-                                                    Swal.fire('You are already registered for this event.',
-                                                        'You cannot register again for the same event.', 'info');
-                                                } else if (response.data.message === 'Registration successful') {
-                                                    Swal.fire('Thank you!',
-                                                        'You have registered for this event.', 'success');
-                                                } else {
-                                                    Swal.fire('Error',
-                                                        'An error occurred while registering for the event.',
-                                                        'error');
-                                                }
-                                            }).catch((error) => {
-                                                Swal.fire('Error',
-                                                    'An error occurred while registering for the event.',
-                                                    'error');
-                                            });
-                                        });
-                                    });
-                                });
-                                </script>
-
-
-
-
-                            <!-- ... -->
-
-
                         </div>
 
                     </div>
