@@ -27,13 +27,13 @@
                         <br>
                         <p>Connect with us:</p>
                     <div class="social-icons">
-                        <a href="">
+                        <a href="https://twitter.com/wayangriders">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="">
+                        <a href="https://www.instagram.com/wayang_riders/">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="">
+                        <a href="/dashboard">
                             <i class="fas fa-angle-double-left"></i>
                         </a>
                     </div>

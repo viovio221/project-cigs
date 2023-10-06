@@ -224,14 +224,15 @@
                 @foreach ($properties as $item)
                     <a href="#" style="text-transform: none;"><i
                             class="fas fa-phone"></i>{{ $item->phone_number }}</a>
-                    <a href="#" style="text-transform: none;"><i
+                    <a href="https://www.instagram.com/wayang_riders/" style="text-transform: none;"><i
                             class="fa-brands fa-instagram"></i>{{ $item->instagram }}</a>
                     <a href="#" style="text-transform: none;"><i
                             class="fa-brands fa-facebook-f"></i>{{ $item->facebook }}</a>
-                    <a href="#" style="text-transform: none;"><i
+                    <a href="https://twitter.com/wayangriders" style="text-transform: none;"><i
                             class="fa-brands fa-x-twitter"></i>{{ $item->twitter }}</a>
-                    <a href="#" style="text-transform: none;"><i
-                            class="fa-regular fa-envelope"></i></i>{{ $item->email }}</a>
+                    <a href="mailto:wayangriders@gmail.com" style="text-transform: none;">
+                        <i class="fa-regular fa-envelope"></i></i>{{ $item->email }}</a>
+
                 @endforeach
             </div>
         </div>
