@@ -189,14 +189,17 @@
             <div class="box">
                 <h3>Our Communities</h3>
                 <ul>
-                    @foreach ($users->take(4) as $item)
+                    @php
+                        $provincesToDisplay = ['Jawa Barat', 'Papua', 'Sulawesi', 'Jakarta', 'Jawa Timur'];
+                        $filteredUsers = $users->whereIn('province', $provincesToDisplay)->take(5);
+                    @endphp
+                    @foreach ($filteredUsers as $item)
                         <li>
                             <a href=""><i class="fas fa-map-marker-alt"></i>{{ $item->province }}</a>
                         </li>
                     @endforeach
                 </ul>
             </div>
-
             <div class="box searchable-element" id="social-media">
                 <h3>Follow Us</h3>
                 @foreach ($properties as $item)
