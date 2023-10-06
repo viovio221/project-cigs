@@ -1,23 +1,8 @@
 <html>
     <head>
         <title>Forgot Password</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/forgot.css">
     </head>
-    <style>
-        body{
-            background: orange
-        }
-        .main{
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .form{
-            background: #fff;
-            padding: 50px 30px;
-        }
-    </style>
     <body>
         <div class="main">
             <div class="form">
@@ -36,7 +21,7 @@
                 @endif
 
                 <h2>Forgot Your Password?</h2>
-                <p>please enter your mail to password reset request</p>
+                <p>Please enter your mail to password reset request</p>
                 <form action="{{ route('password.email') }}" method="post">
                 @csrf
                 <label for="email" class="form-label">Email</label>
