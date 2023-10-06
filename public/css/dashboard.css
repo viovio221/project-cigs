@@ -90,7 +90,7 @@ body {
 	min-width: 40px;
 	display: flex;
 	justify-content: center;
-    padding-left: 10px;
+    padding-left: 15px;
 
 }
 #sidebar .brand .text {
@@ -99,7 +99,7 @@ body {
     display: flex;
     margin-right: 2px;
     font-size: 17px;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .side1 .text2{

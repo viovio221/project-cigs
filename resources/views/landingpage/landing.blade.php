@@ -51,54 +51,33 @@
                 </a>
             @endif
             <div class="fas fa-bars" id="menu-btn"
-            @if (Auth::check() && (Auth::user()->role === 'non-member'))
-            title="login register in here"> @endif</div>
+                @if (Auth::check() && Auth::user()->role === 'non-member') title="login register in here"> @endif</div>
 
-        </div>
-
-        <nav class="navbar">
-            @if (Auth::check())
-                <!-- Pengguna sudah login -->
-                <a href="/profiles/sejarah">About Wayang Riders</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <a href="#" onclick="event.preventDefault(); confirmLogout();">Logout</a>
-                </form>
-            @else
-                <!-- Pengguna belum login -->
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-            @endif
-        </nav>
-
-
-        {{-- <form action="" class="login-form">
-            <div class="inputBox">
-                <span>Username</span>
-                <input type="text" placeholder="Masukan Nama Anda">
             </div>
 
-            <div class="inputBox">
-                <span>Password</span>
-                <input type="password" placeholder="Masukan Kata Sandi Anda">
-            </div>
-
-            <div class="remember">
-                <input type="checkbox" name="" id="login-remember">
-                <label for="login-remember">Ingat Saya</label>
-            </div>
-
-            <input type="submit" class="btn" value="login">
-        </form> --}}
+            <nav class="navbar">
+                @if (Auth::check())
+                    <!-- Pengguna sudah login -->
+                    <a href="/profiles/sejarah">About Wayang Riders</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a href="#" onclick="event.preventDefault(); confirmLogout();">Logout</a>
+                    </form>
+                @else
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                @endif
+            </nav>
     </header>
-    {{-- header section end --}}
-
-    {{-- beranda --}}
     <section class="hero" id="home">
         @foreach ($profile as $item)
-        <video class="video-slide active box searchable-element"
-            src="{{ '/storage/' . $item->video }}" autoplay muted loop></video>
-    @endforeach
+            <video class="video-slide active box searchable-element" src="{{ '/storage/' . $item->video }}" autoplay
+                muted loop></video>
+            <video class="video-slide  box searchable-element" src="{{ '/storage/' . $item->video1 }}" autoplay muted
+                loop></video>
+            <video class="video-slide box searchable-element" src="{{ '/storage/' . $item->video2 }}" autoplay muted
+                loop></video>
+        @endforeach
 
         <div class="container">
 
@@ -115,8 +94,6 @@
             </div>
             <div class="slider-navigation">
                 <div class="nav-btn active"></div>
-                <div class="nav-btn"></div>
-                <div class="nav-btn"></div>
                 <div class="nav-btn"></div>
                 <div class="nav-btn"></div>
             </div>
@@ -313,23 +290,49 @@
         }
     </script>
     <script>
-    function confirmLogout() {
-    Swal.fire({
-        title: 'Are you sure to logout?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#ffa500',
-        cancelButtonColor: '#DB504A',
-        confirmButtonText: 'Yes, logout'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.getElementById('logout-form').submit();
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Are you sure to logout?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ffa500',
+                cancelButtonColor: '#DB504A',
+                confirmButtonText: 'Yes, logout'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
         }
-    });
-}
-
-</script>
+    </script>
+    <script type="text/javascript">
+        const btns = document.querySelectorAll(".nav-btn");
+        const slides = document.querySelectorAll(".video-slide");
+        const contents = document.querySelectorAll(".container");
+        var sliderNav = function(manual) {
+            btns.forEach((btn) => {
+                btn.classList.remove("active");
+            });
+            slides.forEach((slide) => {
+                slide.classList.remove("active");
+            });
+            contents.forEach((content) => {
+                content.classList.remove("active");
+            });
+            contents.forEach((content) => {
+                content.classList.remove("active");
+            });
+            btns[manual].classList.add("active");
+            slides[manual].classList.add("active");
+            contents[manual].classList.add("active");
+        }
+        btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                sliderNav(i);
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @include('sweetalert::alert')
 </body>

@@ -5,22 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <link rel="stylesheet" href="/css/register_style.css">
+    <link rel="stylesheet" href="{{ asset('css/register_style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<!-- ... (bagian atas halaman HTML) ... -->
 
 <body>
-    <div class="body-card">
-        <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="wrapper">
-                <div class="title">
-                    Registration Form
+    <div class="container">
+        <span class="big-circle"></span>
+        <div class="form">
+            <div class="contact-info">
+                <h3 class="title">Welcome to Wayang Riders Register</h3>
+                <p class="text">
+                    After registering, we will direct you to the review page where you can share your experience and provide feedback about the event you attended. Thank you for being a part of our motorcycle community!
+                </p>
+
+                <div class="social-media">
+                    <p>Connect with us:</p>
+                    <div class="social-icons">
+                        <a href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="/">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="form">
+            </div>
+            <div class="body-card">
+                <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="title">
+                        Registration Form
+                    </div>
                     <div class="inputfield">
                         <label for="name">Full Name</label>
                         <input type="text" name="name" id="name" class="input"
@@ -41,7 +62,9 @@
                         <div class="password-container">
                             <input type="password" name="password" id="password" class="input"
                                 placeholder="Enter your Password">
-                            <i class="fa fa-eye password-toggle" id="showPassword"></i>
+                            <span class="password-toggle" id="showPassword">
+                                <i class="fa fa-eye-slash"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="inputfield">
@@ -49,17 +72,21 @@
                         <div class="password-container">
                             <input type="password" name="password_confirmation" id="password_confirmation"
                                 class="input" placeholder="Confirm your Password">
-                            <i class="fa fa-eye password-toggle" id="showConfirmPassword"></i>
+                            <span class="password-toggle" id="showConfirmPassword">
+                                <i class="fa fa-eye-slash"></i>
+                            </span>
                         </div>
-                    </div>
+                    </div> <br>
                     <div class="inputfield">
                         <input type="submit" value="Register" class="btn">
                     </div>
-                    <p class="register">Already have an account? <a href="{{ route('login.index') }}"
-                            class="login">Login</a></p>
-                </div>
+                    <div class="inputfield center">
+                        <p class="register">Already have an account? <a href="{{ route('login.index') }}" class="login"
+                                style="text-decoration: none; color: orange;">Login</a></p>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
     <script>
         const showPassword = document.getElementById('showPassword');
@@ -90,31 +117,8 @@
         }
     </script>
 
-    <script>
-        let passwordInputToggle = document.getElementById('txtPassword');
-        let toggle = document.getElementById('btnToogle');
-        let icon = document.getElementById('eyeIcon');
-
-        if (toggle) {
-            function togglePassword() {
-                if (passwordInputToggle.type === 'password') {
-                    passwordInputToggle.type = 'text';
-                    icon.classList.add('fa-eye-slash');
-                } else {
-                    passwordInputToggle.type = 'password';
-                    icon.classList.remove('fa-eye-slash');
-                }
-            }
-
-            function checkInput() {}
-
-            toggle.addEventListener('click', togglePassword, false);
-            toggle.addEventListener('keyup', checkInput, false);
-        }
-    </script>
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 
 </html>
