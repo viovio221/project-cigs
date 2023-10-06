@@ -20,18 +20,6 @@ class EventController extends Controller
     return view('dashboard.event_crud', compact('events','profiles'));
 }
 
-    // public function index()
-    // {
-    //     $properties = Property::all();
-    //     $events = Event::all();
-    //     $messages = Message::all();
-    //     $comment_posts = CommentPost::all();
-    //     $news = News::all();
-    //     $profiles = Profile::all();
-
-    //     return view('dashboard.data_crud', compact('events', 'messages', 'comment_posts', 'news', 'profiles', 'properties'));
-    // }
-
     public function create()
     {
         $profiles = Profile::all();
