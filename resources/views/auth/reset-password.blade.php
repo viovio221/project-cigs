@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirm Password</title>
-    <link rel="stylesheet" href="/css/register_style.css">
+    <link rel="stylesheet" href="/css/newpass.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -39,6 +39,7 @@
                             <i class="fa fa-eye password-toggle" id="showPassword"></i>
                         </div>
                     </div>
+                    <br>
                     <div class="inputfield">
                         <label for="password">Confirm Password</label>
                         <div class="password-container">
@@ -46,7 +47,7 @@
                             <i class="fas fa-eye-slash password-toggle" id="showConfirmPassword"></i>
                         </div>
                     </div>
-
+                    <br>
                     <div class="inputfield">
                         <input type="submit" value="Update Password" class="btn">
                     </div>
