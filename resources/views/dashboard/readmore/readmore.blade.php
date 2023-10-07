@@ -196,7 +196,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/dashboard/news">Back to Events</a>
+                            <a class="active" href="/dashboard/news">Back to News</a>
                         </li>
                     </ul>
                 </div>
@@ -207,9 +207,9 @@
 
         <section class="blog" id="blog" data-aos="fade-up">
 
-            <p class="section-subtitle  searchable-element">Selamat Datang di News Wayang Riders</p>
+            <p class="section-subtitle  searchable-element">Welcome to the News Wayang Riders</p>
 
-            <h2 class="section-title  searchable-element">Berita Wayang Riders Akan Muncul Disini</h2>
+            <h2 class="section-title  searchable-element">The Wayang Riders News Will Appear Here</h2>
 
             <div class="blog-grid">
 
