@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;700&display=swap');
 .main {
-    background-color: #FFA902;
+    background-color: orange;
     padding: 50px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     margin-top:200px;
-    margin-left:500px;
+    margin-left:400px;
 }
 
 .form {

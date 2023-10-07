@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Forgot Password</title>
-        <link rel="stylesheet" href="/css/forgot.css">
+        <link rel="stylesheet" href="{{ asset('css/forgot.css') }}">
     </head>
     <body>
         <div class="main">
@@ -31,4 +31,6 @@
             </div>
         </div>
     </body>
+    @include('sweetalert::alert')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
