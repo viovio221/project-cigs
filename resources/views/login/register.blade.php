@@ -18,7 +18,7 @@
             <div class="contact-info">
                 <h3 class="title">Welcome to Wayang Riders Register</h3>
                 <p class="text">
-                    After registering, we will direct you to the review page where you can share your experience and provide feedback about the event you attended. Thank you for being a part of our motorcycle community!
+                    After registering, we will direct you to the dashboard page where you can share your experience and provide feedback about the event you attended. Thank you for being a part of our motorcycle community!
                 </p>
 
                 <div class="social-media">
