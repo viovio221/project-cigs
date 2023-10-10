@@ -20,6 +20,12 @@
                 <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
             @endif
             <ul>
+                @if (auth()->user()->barcode_path)
+                <img src="{{ asset(auth()->user()->barcode_path) }}" alt="Barcode">
+            @else
+                <p>Anda belum memiliki barcode.</p>
+            @endif
+
                 <br>
                 <br>
                 <tr>

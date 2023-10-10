@@ -189,7 +189,7 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>News Description</h1>
+                    <h1>Edit News</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard">Dashboard</a>

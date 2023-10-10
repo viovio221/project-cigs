@@ -241,7 +241,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Current Image</label>
-                    <img src="{{ asset('storage/profile_images/' . $profiles->image) }}" alt="Profiles Image" width="100">
+                    <img src="{{ asset('/storage/' . $profiles->image) }}" alt="Profiles Image" width="100">
                 </div>
 
                 {{-- <div class="mb-3">
@@ -284,6 +284,37 @@
                         </div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Current Image</label>
+                    <video src="{{ '/storage/' . $profiles->video }}" alt="Profiles Video" width="100">
+                </div>
+                <div class="mb-3">
+                    <label for="video" class="form-label">Video 1</label>
+                    <input type="file" name="video" class="form-control @error('video') is-invalid @enderror">
+                    @error('video')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Current Image</label>
+                    <video src="{{ '/storage/' . $profiles->video1 }}" alt="Profiles Video" width="100">
+                    </div>
+                <div class="mb-3">
+                    <label for="video" class="form-label">Video 2</label>
+                    <input type="file" name="video" class="form-control @error('video') is-invalid @enderror">
+                    @error('video')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Current Image</label>
+                    <video src="{{ '/storage/' . $profiles->video2 }}" alt="Profiles Video" width="100">
+                    </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
                 <center><button type="submit" class="btn btn-primary">Save Changes</button></center>
             </form>
         </div>
