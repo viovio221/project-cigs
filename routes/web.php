@@ -151,8 +151,7 @@ Route::middleware(['checkUserRole:member'])->group(function () {
         Route::get('/dashboard/eventdesc1', function () {
             return view('dashboard.eventdesc1');
         });
-        Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name('news.showReadmore');
-
+            Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name('news.showReadmore');
         Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
         Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
         Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
@@ -232,3 +231,8 @@ Route::get('/dashboard/eventdesc1', function () {
 Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review')->middleware('auth');
 Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store')->middleware('auth');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// web.php
+
+// routes/web.php
+
+Route::post('/store', [EventDataController::class, 'store'])->name('store');
