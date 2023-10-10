@@ -12,7 +12,6 @@ use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
 class EventDataController extends Controller
 {
     public function index()
@@ -31,7 +30,6 @@ class EventDataController extends Controller
             return redirect('/login');
         }
     }
-
 
     public function registerEvent(Request $request)
     {
@@ -67,31 +65,59 @@ class EventDataController extends Controller
         }
     }
 
+    public function store(Request $request)
+    {
+        $dateToday = now()->toDateString();
+        $request->validate([
+            'user_id' => 'required',
+        ]);
 
-public function edit($id)
-{
-    $eventData = EventData::findOrFail($id);
-    return view('event_data.edit', compact('eventData'));
-}
+        $userId = $request->input('user_id');
+        $eventName = $request->input('event_name');
+        $eventDate = $request->input('event_date');
 
-// public function showSettingPage()
-// {
-//     $profiles = Profile::all();
+        $existingRegistration = EventData::where('user_id', $userId)
+            ->where('event_name', $eventName)
+            ->first();
 
-//     $pageTitle = $profiles->isEmpty() ? 'Default Page Title' : $profiles->first()->community_name;
+        if ($existingRegistration) {
+            return redirect()->route('event')->with('warning', 'You have already registered for this event!');
+        }
 
-//     return view('dashboard', ['pageTitle' => $pageTitle]);
-// }
-public function destroy($id)
-{
-    $eventData = EventData::find($id);
+        $attendanceToday = EventData::where('user_id', $userId)
+            ->whereDate('event_date', $dateToday)
+            ->count();
 
-    if (!$eventData) {
-        return redirect()->route('dashboard')->with('error', 'Event data not found.');
+        if ($attendanceToday > 0) {
+            return redirect()->route('event')->with('warning', 'You have already attended this event today.');
+        }
+
+        $newRegistration = new EventData([
+            'user_id' => $userId,
+            'event_name' => $eventName,
+            'event_date' => $eventDate,
+        ]);
+
+        $newRegistration->save();
+
+        return redirect()->route('event')->with('success', 'Registration successful.');
     }
-    $eventData->delete();
 
-    return redirect()->route('dashboard')->with('success', 'Event data deleted successfully.');
-}
+    public function edit($id)
+    {
+        $eventData = EventData::findOrFail($id);
+        return view('event_data.edit', compact('eventData'));
+    }
 
+    public function destroy($id)
+    {
+        $eventData = EventData::find($id);
+
+        if (!$eventData) {
+            return redirect()->route('dashboard')->with('error', 'Event data not found.');
+        }
+        $eventData->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Event data deleted successfully.');
+    }
 }

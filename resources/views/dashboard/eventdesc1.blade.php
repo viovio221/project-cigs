@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     @foreach ($profiles as $item)
         <title>Event Description | {{ $item->community_name }}</title>
     @endforeach
@@ -43,7 +42,6 @@
                 </li>
             @endif
             @if (Auth::check() && Auth::user()->role === 'member')
-                <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
                 <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
                     <a href="/dashboard/event">
                         <i class='bx bxs-shopping-bag-alt'></i>
@@ -137,12 +135,8 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const logoutButton = document.querySelector('.logout');
-
-                // Tambahkan event click ke elemen logout
                 logoutButton.addEventListener('click', function(e) {
-                    e.preventDefault(); // Mencegah tindakan logout asli
-
-                    // Tampilkan pesan konfirmasi SweetAlert2
+                    e.preventDefault();
                     Swal.fire({
                         title: 'Are you sure to logout?',
                         text: "You won't be able to revert this!",
@@ -161,10 +155,7 @@
         </script>
     </section>
     <!-- SIDEBAR -->
-
-    <!-- CONTENT -->
     <section id="content">
-        <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
             <form id="searchForm">
@@ -186,9 +177,6 @@
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
                 <i class='bx bxs-user-circle'></i> </a>
         </nav>
-        <!-- NAVBAR -->
-
-        <!-- MAIN -->
         <main>
             <div class="head-title">
                 <div class="left">
@@ -204,27 +192,18 @@
                     </ul>
                 </div>
             </div>
-
         </main>
-        <!-- MAIN -->
-
         <section class="blog" id="blog" data-aos="fade-up">
-
             <p class="section-subtitle  searchable-element">Welcome to the Wayang Riders Event</p>
-
             <h2 class="section-title  searchable-element"> Join Us for Upcoming Events</h2>
-
             <div class="blog-grid">
-
                 <div class="blog-card  searchable-element" data-aos="zoom">
-
                     <div class="center-image">
                         <div class="blog-banner-box">
                             <img src="{{ asset('storage/event_images/' . $event->image) }}" alt="Events Image"
                                 width="100">
                         </div>
                     </div>
-
                     <div class="blog-content">
                         <h3 class="blog-title  searchable-element">
                             <a href="#">
@@ -242,77 +221,127 @@
                                     {{ $event->date }}
                                 </a>
                             </div>
+                            @if (Auth::check() && Auth::user()->role === 'admin')
+                                <button class="btn btn-primary" data-event-id="{{ $event->id }}"
+                                    data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
+                                    <div class="container col-lg-3 py-3">
+                                        <div class="card bg-white shadow rounded-3 p-3 broder-0">
+                                            @if (session()->has('failed'))
+                                                <div class="alert alert-warning alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong> {{ session()->get('failed') }}</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            @endif
 
-                            <!-- ... -->
-                            <button class="btn btn-primary" data-event-id="{{ $event->id }}"
-                                data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
-                                <p class="btn-text"><a href="#" style="color: white;">Register Event</a></p>
-                                <span class="square"></span>
-                            </button>
+                                            @if (session()->has('success'))
+                                                <div class="alert alert-success alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong> {{ session()->get('succes') }}</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            @endif
+                                            <video id="preview" playsinline></video>
+                                            <form action="{{ route('store') }}" method="POST" id="form">
+                                                @csrf
+                                                <input type="hidden" name="user_id" id="user_id">
+                                                <input type="hidden" name="event_name" id="event_name">
+                                                <input type="hidden" name="event_date" id="event_date">
+                                            </form>
+                                        </div>
+                                    </div>
 
+                                    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+                                    <script type="text/javascript">
+                                        let scanner = new Instascan.Scanner({
+                                            video: document.getElementById('preview')
+                                        });
+                                        scanner.addListener('scan', function(content) {
+                                            console.log(content);
+                                        });
+                                        Instascan.Camera.getCameras().then(function(cameras) {
+                                            if (cameras.length > 0) {
+                                                scanner.start(cameras[0]);
+                                            } else {
+                                                console.error('No cameras found.');
+                                            }
+                                        }).catch(function(e) {
+                                            console.error(e);
+                                        });
 
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const registerButtons = document.querySelectorAll('.btn.btn-primary');
+                                        scanner.addListener('scan', function(c) {
+                                            var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
+                                            var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
+                                            document.getElementById('user_id').value = parseInt(c); // Mengonversi 'c' menjadi integer
+                                            document.getElementById('event_name').value = eventName;
+                                            document.getElementById('event_date').value = eventDate;
+                                            document.getElementById('form').submit();
+                                        })
+                                    </script>
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                                        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+                                    </script>
+                                @else
+                                    <button class="btn btn-primary" data-event-id="{{ $event->id }}"
+                                        data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
+                                        <p class="btn-text"><a href="#" style="color: white;">Register
+                                                Event</a></p>
+                                        <span class="square"></span>
+                                    </button>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            const registerButtons = document.querySelectorAll('.btn.btn-primary');
 
-                                    registerButtons.forEach(registerButton => {
-                                            registerButton.addEventListener('click', function() {
-                                                    @auth
-                                                    const userId = '{{ auth()->user()->id }}';
-                                                @else
-                                                    const userId = null;
-                                                @endauth
+                                            registerButtons.forEach(registerButton => {
+                                                    registerButton.addEventListener('click', function() {
+                                                            @auth
+                                                            const userId = '{{ auth()->user()->id }}';
+                                                        @else
+                                                            const userId = null;
+                                                        @endauth
 
-                                                const eventId = registerButton.getAttribute('data-event-id');
-                                                const eventName = registerButton.getAttribute('data-event-name');
-                                                const eventDate = registerButton.getAttribute('data-event-date');
+                                                        const eventId = registerButton.getAttribute('data-event-id');
+                                                        const eventName = registerButton.getAttribute('data-event-name');
+                                                        const eventDate = registerButton.getAttribute('data-event-date');
 
-                                                axios.post('{{ route('event.register') }}', {
-                                                    user_id: userId,
-                                                    event_id: eventId,
-                                                    eventName: eventName,
-                                                    eventDate: eventDate,
-                                                }).then((response) => {
-                                                    if (response.data.message ===
-                                                        'You are already registered for this event.') {
-                                                        Swal.fire('You are already registered for this event.',
-                                                            'You cannot register again for the same event.', 'info');
-                                                    } else if (response.data.message === 'Registration successful') {
-                                                        Swal.fire('Thank you!',
-                                                            'You have registered for this event.', 'success');
-                                                    } else {
-                                                        Swal.fire('Error',
-                                                            'An error occurred while registering for the event.',
-                                                            'error');
-                                                    }
-                                                }).catch((error) => {
-                                                    Swal.fire('Error',
-                                                        'An error occurred while registering for the event.',
-                                                        'error');
-                                                });
+                                                        axios.post('{{ route('event.register') }}', {
+                                                            user_id: userId,
+                                                            event_id: eventId,
+                                                            eventName: eventName,
+                                                            eventDate: eventDate,
+                                                        }).then((response) => {
+                                                            if (response.data.message ===
+                                                                'You are already registered for this event.') {
+                                                                Swal.fire('You are already registered for this event.',
+                                                                    'You cannot register again for the same event.', 'info');
+                                                            } else if (response.data.message === 'Registration successful') {
+                                                                Swal.fire('Thank you!',
+                                                                    'You have registered for this event.', 'success');
+                                                            } else {
+                                                                Swal.fire('Error',
+                                                                    'An error occurred while registering for the event.',
+                                                                    'error');
+                                                            }
+                                                        }).catch((error) => {
+                                                            Swal.fire('Error',
+                                                                'An error occurred while registering for the event.',
+                                                                'error');
+                                                        });
+                                                    });
                                             });
-                                    });
-                                });
-                            </script>
-
-
-
-
-                            <!-- ... -->
-
-                            <div class="blog-comment">
-                                <i class='bx bx-comment-dots'></i>
-                                <a href="/dashboard/review">3 Review</a>
-                            </div>
-
+                                        });
+                                    </script>
+                                    <div class="blog-comment">
+                                        <i class='bx bx-comment-dots'></i>
+                                        <a href="/dashboard/review">3 Review</a>
+                                    </div>
+                            @endif
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </section>
         <!-- Ionicon link -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -367,7 +396,9 @@
 
                 if (found) {
                     if (firstMatchId) {
-                        window.location.href = `#${firstMatchId}`;
+                        window.location.href = #$ {
+                            firstMatchId
+                        };
                     }
                 } else {
                     if (!alertShown) {

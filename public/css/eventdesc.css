@@ -630,4 +630,39 @@ padding-top: 0;
     width: 100%;
     padding: 15px;
 }
+#preview {
+    max-width: 50px; /
+}
+}
+#preview {
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .blog-grid {
+        display: block;
+    }
+
+    .blog-card {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .blog-content {
+        margin-left: 0; /* Hapus margin kiri pada konten */
+    }
+
+    .blog-banner-box {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .blog-title {
+        font-size: 20px;
+    }
+
+    .blog-text {
+        font-size: 16px;
+    }
 }
