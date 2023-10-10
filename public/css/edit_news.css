@@ -70,9 +70,20 @@ img {
     margin-top: 10px;
     max-width: 100%;
 }
-.btn {
-    background-color: white;
-    color: #F57500;
+.btn{
+    background-color: #fff;
+    color: #ff6600;
+    font-weight: 700;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #ff4500;
+    color: #fff;
 }
 .form-group{
     border-radius: 70px;

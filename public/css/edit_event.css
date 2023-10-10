@@ -39,18 +39,20 @@ h1 {
 }
 
 /* CSS untuk tombol "Save Changes" */
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
+.btn {
+    background-color: #fff;
+    color: #ff6600;
+    font-weight: 700;
+    padding: 10px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover state untuk tombol "Save Changes" */
-.btn-primary:hover {
-    background-color: #0056b3;
+.btn:hover {
+    background-color: #ff4500;
+    color: #fff;
 }
 
 /* CSS untuk gambar saat ini */

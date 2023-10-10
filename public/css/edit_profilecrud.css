@@ -9,7 +9,7 @@
   /* Judul styling */
   h1 {
     color: orange; /* Warna teks judul */
-    
+
   }
 
   /* Form styling */
@@ -42,19 +42,21 @@
   }
 
   /* Tombol styling */
-  .btn-primary {
-    background-color: #FFFFFF;
-    color: #FFA902;
+  .btn{
+    background-color: #fff;
+    color: #ff6600;
+    font-weight: 700;
+    padding: 10px;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 20px;
     cursor: pointer;
-  }
+    transition: background-color 0.3s, color 0.3s;
+}
 
-  .btn-primary:hover {
-    background-color: #F6F6F6;
-  }
-
+.btn:hover {
+    background-color: #ff4500;
+    color: #fff;
+}
 
   /* Gambar styling */
   img {

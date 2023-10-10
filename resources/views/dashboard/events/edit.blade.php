@@ -262,7 +262,7 @@
                         width="100">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <center><button type="submit" class="btn btn-primary">Save Changes</button></center>
             </form>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
