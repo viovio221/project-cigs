@@ -294,7 +294,7 @@
                     @error('video')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
-                        </div>
+                    </div>
                     @enderror
                 </div>
                 <div class="mb-3">
@@ -315,7 +315,6 @@
                     <video src="{{ '/storage/' . $profiles->video2 }}" alt="Profiles Video" width="100">
                     </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
-                <center><button type="submit" class="btn btn-primary">Save Changes</button></center>
             </form>
         </div>
                             <!-- ... -->
@@ -419,7 +418,7 @@
 
              if (found) {
                  if (firstMatchId) {
-                     window.location.href = `#${firstMatchId}`;
+                     window.location.href = #${firstMatchId};
                  }
              } else {
                  if (!alertShown) {
