@@ -285,7 +285,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Current Image</label>
+                    <label class="form-label">Current Video</label>
                     <video src="{{ '/storage/' . $profiles->video }}" alt="Profiles Video" width="100">
                 </div>
                 <div class="mb-3">
@@ -298,7 +298,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Current Image</label>
+                    <label class="form-label">Current Video</label>
                     <video src="{{ '/storage/' . $profiles->video1 }}" alt="Profiles Video" width="100">
                     </div>
                 <div class="mb-3">
@@ -311,7 +311,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Current Image</label>
+                    <label class="form-label">Current Video</label>
                     <video src="{{ '/storage/' . $profiles->video2 }}" alt="Profiles Video" width="100">
                     </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -345,9 +345,6 @@
                                                     'An error occurred while registering for the event.',
                                                     'error');
                                             });
-                                        });
-                                    });
-                                });
                                 </script>
 
 
