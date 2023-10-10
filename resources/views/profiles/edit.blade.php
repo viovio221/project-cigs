@@ -315,6 +315,7 @@
                     <video src="{{ '/storage/' . $profiles->video2 }}" alt="Profiles Video" width="100">
                     </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
+                <center><button type="submit" class="btn btn-primary">Save Changes</button></center>
             </form>
         </div>
                             <!-- ... -->
