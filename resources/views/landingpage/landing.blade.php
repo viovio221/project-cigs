@@ -46,7 +46,7 @@
                 </a>
             @else
                 <!-- Pengguna belum login -->
-                <a href="/profiles/sejarah" title="wayang riders structure">
+                <a href="/profiles/sejarah" title="about wayang riders">
                     <div class="fas fa-user" id="login-btn"></div>
                 </a>
             @endif
