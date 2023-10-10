@@ -40,17 +40,18 @@ h1 {
 }
 
 /* CSS untuk tombol "Simpan" */
-.btn-primary {
-    background-color: #FFFFFF;
-    color: #FFA902;
+.btn {
+    background-color: #fff;
+    color: #ff6600;
+    font-weight: 700;
+    padding: 10px;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 20px;
     cursor: pointer;
-  }
+    transition: background-color 0.3s, color 0.3s;
+}
 
-
-/* Hover state untuk tombol "Simpan" */
-.btn-primary:hover {
-    background-color: #0056b3;
+.btn:hover {
+    background-color: #ff4500;
+    color: #fff;
 }
