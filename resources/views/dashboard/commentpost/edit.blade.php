@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -381,4 +381,4 @@
         @include('sweetalert::alert')
 </body>
 
-</html>
+</html> --}}

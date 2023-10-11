@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Message;
 use App\Models\Profile;
 use App\Models\Property;
+use App\Models\EventData;
 use App\Models\CommentPost;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Database\Seeders\EventsSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Password;
@@ -24,12 +26,11 @@ use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EventDataController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
-use App\Http\Controllers\PropertyController;
-use App\Http\Controllers\AuthController;
 
 
 /*
@@ -236,3 +237,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // routes/web.php
 
 Route::post('/store', [EventDataController::class, 'store'])->name('store');
+Route::get('/dashboard/qrcode/event_register', function () {
+    $eventData = EventData::where('event_name', 'available')->pluck('event_name');
+    $profile = Profile::all();
+    $event = Event::all();
+    return view('dashboard.qrcode.event_register', compact('eventData', 'profile', 'event'));
+});
+Route::get('/dashboard/qrcode/getEvent/{eventId}', [EventDataController::class, 'getEventById']);
