@@ -19,7 +19,7 @@
                 <p class="card-text"><strong>Created at:</strong> {{ $mg->created_at }}</p>
             </div>
         </div>
-        <a href="{{ route('dashboard.message_crud') }}" class="btn btn-secondary mt-3">Kembali</a>
+        <a href="{{ route('dashboard.message_crud') }}" class="btn btn-secondary mt-3">Back</a>
     </div>
 </body>
 </html>

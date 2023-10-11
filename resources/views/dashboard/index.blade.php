@@ -297,6 +297,9 @@
                                                         @method('DELETE')
                                                         <button type="submit"
                                                             style="background: none; border: none; color:red"
+
+                                                            onclick="return confirm('Are you sure you want to delete this data?')"><i
+
                                                             onclick="return confirm('Are you sure to delete this?')"><i
                                                                 class='bx bx-trash'></i></button>
                                                     </form>
