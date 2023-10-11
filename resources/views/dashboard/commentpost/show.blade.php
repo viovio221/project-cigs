@@ -21,7 +21,7 @@
                 <p class="card-text"><strong>Rating:</strong>  {{ $comment_post->rating }}</p>
             </div>
         </div>
-        <a href="{{ route('dashboard.data_crud') }}" class="btn btn-secondary mt-3">Kembali</a>
+        <a href="{{ route('dashboard.data_crud') }}" class="btn btn-secondary mt-3">Back</a>
     </div>
 </body>
 </html>
