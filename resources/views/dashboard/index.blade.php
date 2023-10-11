@@ -26,103 +26,105 @@
             @endforeach
         </a>
         <ul class="side-menu top">
-            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                <a href="{{ route('dashboard') }}">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
+        @if (Auth::check())
+            @if (Auth::user()->role === 'organizer')
+                <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+            @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'member' || Auth::user()->role === 'non-member')
+                <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+            @endif
+        @endif
+        @if (Auth::check() && Auth::user()->role === 'member')
+            <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
+            <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                <a href="/dashboard/event">
+                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <span class="text">Events</span>
                 </a>
             </li>
-            @if (Auth::check() && Auth::user()->role === 'non-member')
-                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                    <a href="/dashboard/membersdata">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Members Data</span>
-                    </a>
-                </li>
-            @endif
-            @if (Auth::check() && Auth::user()->role === 'member')
-                <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
-                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
-                    <a href="/dashboard/event">
-                        <i class='bx bxs-shopping-bag-alt'></i>
-                        <span class="text">Events</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
-                    <a href="/dashboard/news">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">News</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                    <a href="/dashboard/membersdata">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Members Data</span>
-                    </a>
-                </li>
-            @endif
-            @if (Auth::check() && Auth::user()->role === 'admin')
-                <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
-                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
-                    <a href="/dashboard/event">
-                        <i class='bx bxs-shopping-bag-alt'></i>
-                        <span class="text">Events</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
-                    <a href="/dashboard/news">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">News</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                    <a href="/dashboard/membersdata">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Members Data</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
-                    <a href="#">
-                        <i class='bx bx-data'></i>
-                        <span class="text">CRUD Riders</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/event_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/message_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/commentposts_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/news_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/setting_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/property_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/membersdata_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
-                    </a>
-                </li>
-        </ul>
+            <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">News</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                <a href="/dashboard/membersdata">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Members Data</span>
+                </a>
+            </li>
+        @endif
+        @if (Auth::check() && Auth::user()->role === 'admin')
+            <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
+            <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                <a href="/dashboard/event">
+                    <i class='bx bxs-shopping-bag-alt'></i>
+                    <span class="text">Events</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">News</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
+                <a href="/dashboard/membersdata">
+                    <i class='bx bxs-group'></i>
+                    <span class="text">Members Data</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
+                <a href="#">
+                    <i class='bx bx-data'></i>
+                    <span class="text">CRUD Riders</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/event_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/message_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/commentposts_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/news_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/setting_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/property_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
+                </a>
+            </li>
+            <li class="side1">
+                <a href="/dashboard/membersdata_crud" class="text2">
+                    <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
+                </a>
+            </li>
         @endif
         </ul>
         <ul class="side-menu">
@@ -207,8 +209,24 @@
                     </ul>
                 </div>
             </div>
-
+            @if (Auth::check() && Auth::user()->role === 'organizer')
             <ul class="box-info" style="align-content: center">
+                <li>
+                    <i class='bx bxs-calendar-check'></i>
+                    <span class="text">
+                        <h3><a href="/dashboard/qrcode/event_register">Scan Register Event</a></h3>
+                    </span>
+                </li>
+            </ul>
+            <ul class="box-info" style="align-content: center">
+                <li>
+                    <i class='bx bxs-book-open'></i>
+                    <span class="text">
+                        <h3><a href="">Scan Presence Event</a></h3>
+                    </span>
+                </li>
+            </ul>
+           @else <ul class="box-info" style="align-content: center">
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
@@ -279,7 +297,10 @@
                                                         @method('DELETE')
                                                         <button type="submit"
                                                             style="background: none; border: none; color:red"
+
                                                             onclick="return confirm('Are you sure you want to delete this data?')"><i
+
+                                                            onclick="return confirm('Are you sure to delete this?')"><i
                                                                 class='bx bx-trash'></i></button>
                                                     </form>
                                                 </td>
@@ -290,39 +311,17 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </ul>
+            @endif
             @endif
         </main>
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutButton = document.querySelector('.logout');
-
-            logoutButton.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                Swal.fire({
-                    title: 'Are you sure to logout?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#ffa500',
-                    cancelButtonColor: '#DB504A',
-                    confirmButtonText: 'Yes, logout'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Setelah pengguna mengonfirmasi logout, arahkan mereka ke rute logout
-                        window.location.href = '{{ route('logout') }}';
-                    }
-                });
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
 </body>
 
-</html
+</html>

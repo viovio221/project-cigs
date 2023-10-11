@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('event_date');
             $table->string('event_name');
-            $table->string('status');
+            $table->string('status')->default('registered');
             $table->timestamps();
         });
     }

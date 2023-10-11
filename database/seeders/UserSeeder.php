@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'Fadilah Nurhasani',
             'email' => 'fadilahnurhasani41@gmail.com',
             'password' => bcrypt('password'),
-            'role' => 'member',
+            'role' => 'organizer',
             'phone_number' => '081234567890',
             'gender' => 'male',
         ]);

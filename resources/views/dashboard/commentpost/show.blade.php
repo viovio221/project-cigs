@@ -22,6 +22,7 @@
             </div>
         </div>
         <a href="{{ route('dashboard.data_crud') }}" class="btn btn-secondary mt-3">Back</a>
+        <a href="{{ route('dashboard.commentposts_crud') }}" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 </body>
 </html>

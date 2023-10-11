@@ -102,6 +102,16 @@ class EventDataController extends Controller
 
         return redirect()->route('event')->with('success', 'Registration successful.');
     }
+    public function getEventById($eventId)
+    {
+        $eventData = EventData::find($eventId);
+
+        if ($eventData) {
+            return response()->json($eventData);
+        }
+
+        return response()->json(['error' => 'Event not found'], 404);
+    }
 
     public function edit($id)
     {

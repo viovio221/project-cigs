@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RealRashid\SweetAlert\Facades\Alert; // Impor SweetAlert
+use RealRashid\SweetAlert\Facades\Alert; // Import SweetAlert
 
 class CheckUserRoleMiddleware
 {
@@ -28,6 +28,13 @@ class CheckUserRoleMiddleware
                 }
             } elseif ($user->role == 'non-member') {
                 if ($request->route()->getName() == 'dashboard' || $request->route()->getName() == 'membersdata') {
+                    return $next($request);
+                } else {
+                    Alert::error('Access Denied', 'You do not have permission to access this page.');
+                    return redirect()->route('dashboard');
+                }
+            } elseif ($user->role == 'organizer') {
+                if ($request->route()->getName() == 'dashboard') {
                     return $next($request);
                 } else {
                     Alert::error('Access Denied', 'You do not have permission to access this page.');
