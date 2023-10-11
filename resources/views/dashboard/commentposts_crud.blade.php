@@ -227,8 +227,8 @@
                                         <td class="side-menu top">
                                             <a href="{{ route('comment_posts.show', $cp->id) }}"
                                                 style="color: green"><i class='bx bx-info-circle'></i></a>
-                                            <a href="{{ route('comment_posts.edit', $cp->id) }}" method="post"
-                                                style="color: blue"><i class='bx bx-edit'></i></a>
+                                            {{-- <a href="{{ route('comment_posts.edit', $cp->id) }}" method="post"
+                                                style="color: blue"><i class='bx bx-edit'></i></a> --}}
                                             <form action="{{ route('comment_posts.destroy', $cp->id) }}"
                                                 method="POST" style="display: inline-block;">
                                                 @csrf
