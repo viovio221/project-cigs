@@ -22,8 +22,10 @@ class EventDataController extends Controller
         $adminCount = User::where('role', 'admin')->count();
         $eventCount = Event::count();
         $newsCount = News::count();
+
         if (auth()->check()) {
             $eventData = EventData::all();
+
             return view('dashboard.index', compact('eventData', 'memberCount', 'nonMemberCount', 'profile', 'adminCount', 'eventCount', 'newsCount'));
         } else {
             Alert::error('You dont have access to the dashboard page', 'Please log in first')->persistent('Close');
@@ -104,14 +106,16 @@ class EventDataController extends Controller
     }
     public function getEventById($eventId)
     {
-        $eventData = EventData::find($eventId);
-
-        if ($eventData) {
-            return response()->json($eventData);
-        }
-
-        return response()->json(['error' => 'Event not found'], 404);
+        $eventData = EventData::where('event_name', $eventId)->get();
+        return response()->json($eventData);
     }
+//     public function getEventDescription($eventId)
+// {
+//     $event = Event::find($eventId);
+
+//     return view('dashboard.qrcode.event_register', compact('event'));
+// }
+
 
     public function edit($id)
     {
