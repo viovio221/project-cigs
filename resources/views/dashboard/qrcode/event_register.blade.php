@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
         <title>Dashboard | {{ $item->community_name }}</title>
     @endforeach
 </head>
+
 <body>
     <!-- SIDEBAR -->
     <section id="sidebar">
@@ -161,8 +163,8 @@
                                 <select name="event_id" class="input-o" id="eventDropdown">
                                     <option value="">Pilih</option>
                                     @foreach ($event as $ev)
-                                        <option {{ old('event_id') == $ev->id ? 'selected' : '' }}
-                                                value="{{ $ev->id }}">
+                                        <option {{ request('event') == $ev->id ? 'selected' : '' }}
+                                            value="{{ $ev->id }}">
                                             {{ $ev->name }}</option>
                                     @endforeach
                                 </select>
@@ -175,7 +177,6 @@
                                         <th>Event Date</th>
                                         <th>Event Name</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="eventTableBody">
@@ -187,17 +188,6 @@
                                                 <td>{{ $data->event_date }}</td>
                                                 <td>{{ $data->event_name }}</td>
                                                 <td><span class="status pending">{{ $data->status }}</span></td>
-                                                <td class="side-menu top">
-                                                    <form action="{{ route('event.destroy', $data->id) }}"
-                                                        method="POST" style="display: inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                                style="background: none; border: none; color:red"
-                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i
-                                                                class='bx bx-trash'></i></button>
-                                                    </form>
-                                                </td>
                                             </tr>
                                         @endforeach
                                     @endif
@@ -206,14 +196,14 @@
                         </div>
                     </div>
                 </div>
+                </ul>
             @endif
             <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
                 data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }}">
                 <div class="container col-lg-3 py-3">
                     <div class="card bg-white shadow rounded-3 p-3 broder-0">
                         @if (session()->has('failed'))
-                            <div class="alert alert-warning alert-dismissible fade show"
-                                role="alert">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <strong> {{ session()->get('failed') }}</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
@@ -221,8 +211,7 @@
                         @endif
 
                         @if (session()->has('success'))
-                            <div class="alert alert-success alert-dismissible fade show"
-                                role="alert">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong> {{ session()->get('succes') }}</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert"
                                     aria-label="Close"></button>
@@ -259,41 +248,32 @@
                     scanner.addListener('scan', function(c) {
                         var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
                         var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
-                        document.getElementById('user_id').value = parseInt(c); // Mengonversi 'c' menjadi integer
-                        document.getElementById('event_name').value = eventName;
-                        document.getElementById('event_date').value = eventDate;
-                        document.getElementById('form').submit();
+
+                        // Simpan kode pengiriman data atau tindakan yang Anda perlukan di sini, jika diperlukan.
+
+                        // Tampilkan SweetAlert tanpa mengirimkan permintaan POST.
+                        Swal.fire('Registration successful', 'You have registered for this event.', 'success');
                     })
                 </script>
-                </main>
-        </section>
-        <!-- MAIN -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-<script>
+        </main>
+    </section>
+    <!-- MAIN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+    <script>
     $(document).ready(function() {
-        $('#eventDropdown').change(function() {
-            var selectedEventId = $(this).val();
+            $('#eventDropdown').change(function() {
+                var selectedEventId = $(this).val();
 
-            if (selectedEventId) {
-                $.ajax({
-                    url: '/dashboard/qrcode/getEvent/' + selectedEventId,
-                    method: 'GET',
-                    success: function(data) {
-                        $('#eventTable').html(data);
-                    },
-                    error: function() {
-                        alert('Terjadi kesalahan saat mengambil data event.');
-                    }
-                });
-            }
+                window.location.href = ('?event=' + selectedEventId)
+            });
         });
-    });
-</script>
-
-
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
 </body>
+
 </html>

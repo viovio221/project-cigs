@@ -222,7 +222,7 @@
                 <li>
                     <i class='bx bxs-book-open'></i>
                     <span class="text">
-                        <h3><a href="">Scan Presence Event</a></h3>
+                        <h3><a href="/dashboard/qrcode/presence">Scan Presence Event</a></h3>
                     </span>
                 </li>
             </ul>
