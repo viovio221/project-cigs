@@ -8,7 +8,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- My CSS -->
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/qr.css') }}">
     @foreach ($profile as $item)
         <title>Dashboard | {{ $item->community_name }}</title>
     @endforeach
@@ -16,120 +16,6 @@
 
 <body>
     <!-- SIDEBAR -->
-    <section id="sidebar">
-        <a href="#" class="brand">
-            <i class="fa-solid fa-motorcycle"></i>
-            @foreach ($profile as $item)
-                <span class="text">{{ $item->community_name }}</span>
-            @endforeach
-        </a>
-        <ul class="side-menu top">
-            @if (Auth::check())
-                @if (Auth::user()->role === 'organizer' ||
-                        Auth::user()->role === 'admin' ||
-                        Auth::user()->role === 'member' ||
-                        Auth::user()->role === 'non-member')
-                    <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard') }}">
-                            <i class='bx bxs-dashboard'></i>
-                            <span class="text">Dashboard</span>
-                        </a>
-                    </li>
-                @endif
-            @endif
-            @if (Auth::check() && Auth::user()->role === 'member')
-                <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
-                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
-                    <a href="/dashboard/event">
-                        <i class='bx bxs-shopping-bag-alt'></i>
-                        <span class="text">Events</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
-                    <a href="/dashboard/news">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">News</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                    <a href="/dashboard/membersdata">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Members Data</span>
-                    </a>
-                </li>
-            @endif
-            @if (Auth::check() && Auth::user()->role === 'admin')
-                <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
-                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
-                    <a href="/dashboard/event">
-                        <i class='bx bxs-shopping-bag-alt'></i>
-                        <span class="text">Events</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
-                    <a href="/dashboard/news">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">News</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                    <a href="/dashboard/membersdata">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Members Data</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('dashboard/data_crud*') ? 'active' : '' }}">
-                    <a href="#">
-                        <i class='bx bx-data'></i>
-                        <span class="text">CRUD Riders</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/event_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Events</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/message_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Message</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/commentposts_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Comment Posts</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/news_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">News</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/setting_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Setting</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/property_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Property</span>
-                    </a>
-                </li>
-                <li class="side1">
-                    <a href="/dashboard/membersdata_crud" class="text2">
-                        <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
-                    </a>
-                </li>
-            @endif
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
-    </section>
     <!-- SIDEBAR -->
 
     <!-- CONTENT -->
@@ -142,11 +28,11 @@
                     @endif
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a href="#">Event Register Scan </a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/dashboard">Back to dashboard</a>
                         </li>
                     </ul>
                 </div>
