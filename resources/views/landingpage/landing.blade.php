@@ -24,9 +24,7 @@
         <a href="#" class="logo">
             @foreach ($profile as $item)
                 <td>
-
                     <img src="{{ asset('/storage/' . $item->image) }}" alt="Logo" oncontextmenu="return false;">
-
                 </td>
             @endforeach
         </a>

@@ -32,7 +32,6 @@ use App\Http\Controllers\EventDataController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,10 +44,14 @@ use App\Http\Controllers\EditProfileController;
 */
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-Route::post('/login', [LoginController::class, 'handleLogin'])->name('login.handleLogin');
+Route::post('/login', [LoginController::class, 'handleLogin'])->name(
+    'login.handleLogin'
+);
 route::resource('register', RegisterController::class);
 Route::get('/register', [LoginController::class, 'show'])->name('login.show');
-Route::get('/register', [RegisterController::class, 'index'])->name('login.register');
+Route::get('/register', [RegisterController::class, 'index'])->name(
+    'login.register'
+);
 Route::post('/submit-message', function (Request $request) {
     $message = new Message();
     $message->message = $request->input('message');
@@ -60,21 +63,25 @@ Route::post('/submit-message', function (Request $request) {
 // forgot password
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
+})
+    ->middleware('guest')
+    ->name('password.request');
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
+    $status = Password::sendResetLink($request->only('email'));
     return $status === Password::RESET_LINK_SENT
         ? back()->with(['status' => __($status)])
         : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
+})
+    ->middleware('guest')
+    ->name('password.email');
 
 //reset password
 Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
+})
+    ->middleware('guest')
+    ->name('password.reset');
 Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
@@ -84,17 +91,23 @@ Route::post('/reset-password', function (Request $request) {
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
         function ($user, $password) {
-            $user->forceFill([
-                'password' => Hash::make($password),
-            ])->setRememberToken(Str::random(60));
+            $user
+                ->forceFill([
+                    'password' => Hash::make($password),
+                ])
+                ->setRememberToken(Str::random(60));
             $user->save();
             event(new PasswordReset($user));
         }
     );
     return $status === Password::PASSWORD_RESET
-        ? redirect()->route('login.index')->with('status', __($status))
+        ? redirect()
+            ->route('login.index')
+            ->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
-})->middleware('guest')->name('password.update');
+})
+    ->middleware('guest')
+    ->name('password.update');
 
 //logout
 Route::get('/logout', function () {
@@ -102,8 +115,12 @@ Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
 Route::middleware(['auth'])->group(function () {
-    Route::get('editprofile/upload-document', [EditProfileController::class])->name('editprofile.uploadDocumentForm');
-    Route::post('editprofile/upload-document', [EditProfileController::class])->name('editprofile.uploadDocument');
+    Route::get('editprofile/upload-document', [
+        EditProfileController::class,
+    ])->name('editprofile.uploadDocumentForm');
+    Route::post('editprofile/upload-document', [
+        EditProfileController::class,
+    ])->name('editprofile.uploadDocument');
 });
 // profiles count
 Route::get('/profiles/sejarah', function () {
@@ -111,17 +128,42 @@ Route::get('/profiles/sejarah', function () {
     $dataCount = User::where('role', 'member')->count();
     return view('profiles.sejarah', compact('profiles', 'dataCount'));
 })->name('sejarah');
-Route::get('/dashboard/profiles/{profiles}/edit', [ProfileController::class, 'edit'])->name('profiles.edit')->middleware('auth');
-Route::put('/dashboard/profiles/{profiles}', [ProfileController::class, 'update'])->name('profiles.update');
-Route::delete('/dashboard/profiles/{profiles}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
+Route::get('/dashboard/profiles/{profiles}/edit', [
+    ProfileController::class,
+    'edit',
+])
+    ->name('profiles.edit')
+    ->middleware('auth');
+Route::put('/dashboard/profiles/{profiles}', [
+    ProfileController::class,
+    'update',
+])->name('profiles.update');
+Route::delete('/dashboard/profiles/{profiles}', [
+    ProfileController::class,
+    'destroy',
+])->name('profiles.destroy');
 
 route::resource('editprofile', EditProfileController::class);
-Route::get('editprofile', [EditProfileController::class, 'index'])->name('editprofile.show');
-Route::get('/editprofile/edit', 'EditProfileController@edit')->name('editprofile.edit');
-Route::put('/editprofile/update', 'EditProfileController@update')->name('editprofile.update');
-Route::post('editprofile', [EditProfileController::class, 'store'])->name('editprofile.store');
-Route::get('editprofile/{editprofile}', [EditProfileController::class, 'edit'])->name('editprofile.edit');
-Route::delete('editprofile/{editprofile}', [EditProfileController::class, 'destroy'])->name('editprofile.destroy');
+Route::get('editprofile', [EditProfileController::class, 'index'])->name(
+    'editprofile.show'
+);
+Route::get('/editprofile/edit', 'EditProfileController@edit')->name(
+    'editprofile.edit'
+);
+Route::put('/editprofile/update', 'EditProfileController@update')->name(
+    'editprofile.update'
+);
+Route::post('editprofile', [EditProfileController::class, 'store'])->name(
+    'editprofile.store'
+);
+Route::get('editprofile/{editprofile}', [
+    EditProfileController::class,
+    'edit',
+])->name('editprofile.edit');
+Route::delete('editprofile/{editprofile}', [
+    EditProfileController::class,
+    'destroy',
+])->name('editprofile.destroy');
 //events
 Route::get('/', function () {
     $users = User::all();
@@ -130,58 +172,151 @@ Route::get('/', function () {
     $events = Event::all();
     $comment_post = CommentPost::all();
     $news = News::all();
-    return view('landingpage.landing', compact('news', 'comment_post', 'events', 'profile', 'properties', 'users'));
+    return view(
+        'landingpage.landing',
+        compact(
+            'news',
+            'comment_post',
+            'events',
+            'profile',
+            'properties',
+            'users'
+        )
+    );
 })->name('news');
 
 Route::middleware(['checkUserRole:member'])->group(function () {
     Route::middleware(['crudAccess'])->group(function () {
-        Route::get('/dashboard/event_crud', [EventController::class, 'index'])->name('dashboard.event_crud');
-        Route::get('/dashboard/commentposts_crud', [CommentPostController::class, 'index'])->name('dashboard.commentposts_crud');
-        Route::get('/dashboard/message_crud', [MessageController::class, 'index'])->name('dashboard.message_crud');
-        Route::get('/dashboard/setting_crud', [ProfileController::class, 'setting'])->name('dashboard.setting_crud');
-        Route::get('/dashboard/news_crud', [NewsController::class, 'index'])->name('dashboard.news_crud');
-        Route::get('/dashboard/property_crud', [PropertyController::class, 'index'])->name('dashboard.property_crud');
+        Route::get('/dashboard/event_crud', [
+            EventController::class,
+            'index',
+        ])->name('dashboard.event_crud');
+        Route::get('/dashboard/commentposts_crud', [
+            CommentPostController::class,
+            'index',
+        ])->name('dashboard.commentposts_crud');
+        Route::get('/dashboard/message_crud', [
+            MessageController::class,
+            'index',
+        ])->name('dashboard.message_crud');
+        Route::get('/dashboard/setting_crud', [
+            ProfileController::class,
+            'setting',
+        ])->name('dashboard.setting_crud');
+        Route::get('/dashboard/news_crud', [
+            NewsController::class,
+            'index',
+        ])->name('dashboard.news_crud');
+        Route::get('/dashboard/property_crud', [
+            PropertyController::class,
+            'index',
+        ])->name('dashboard.property_crud');
         Route::resource('property', PropertyController::class);
-        Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register')->middleware('auth');
+        Route::post('/event/register', [
+            EventDataController::class,
+            'registerEvent',
+        ])
+            ->name('event.register')
+            ->middleware('auth');
         Route::get('/dashboard/news', function () {
             $news = News::all();
             $profile = Profile::all();
             return view('dashboard.news', compact('news', 'profile'));
         })->name('news');
-        Route::get('/dashboard/membersdata_crud', [UserController::class, 'index'])->name('dashboard.membersdata_crud');
+        Route::get('/dashboard/membersdata_crud', [
+            UserController::class,
+            'index',
+        ])->name('dashboard.membersdata_crud');
         Route::get('/dashboard/eventdesc1', function () {
             return view('dashboard.eventdesc1');
         });
-            Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name('news.showReadmore');
-        Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
-        Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
-        Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
-        Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
-        Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
-        Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
-        Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
+        Route::get('/news/{id}', [NewsController::class, 'showReadmore'])->name(
+            'news.showReadmore'
+        );
+        Route::get('/dashboard/message', [
+            MessageController::class,
+            'create',
+        ])->name('message.create');
+        Route::post('/dashboard/message', [
+            MessageController::class,
+            'store',
+        ])->name('message.store');
+        Route::get('/dashboard/message/{message}', [
+            MessageController::class,
+            'show',
+        ])->name('message.show');
+        Route::get('/dashboard/message/{message}/edit', [
+            MessageController::class,
+            'edit',
+        ])->name('message.edit');
+        Route::put('/dashboard/message/{message}', [
+            MessageController::class,
+            'update',
+        ])->name('message.update');
+        Route::delete('/dashboard/message/{message}', [
+            MessageController::class,
+            'destroy',
+        ])->name('message.destroy');
+        Route::view('/dashboard/message', 'dashboard.message')->name(
+            'dashboard.message'
+        );
 
         Route::get('/dashboard/membersdata', function () {
             $users = User::all();
             $profile = Profile::all();
             return view('dashboard.membersdata', compact('users', 'profile'));
-        })->name('users')->middleware('auth');
+        })
+            ->name('users')
+            ->middleware('auth');
 
         Route::resource('news', NewsController::class);
-        Route::get('/dashboard/news/create', [NewsController::class, 'create'])->name('news.create');
+        Route::get('/dashboard/news/create', [
+            NewsController::class,
+            'create',
+        ])->name('news.create');
         Route::resource('comment_posts', CommentPostController::class);
         //edit profile
-        Route::get('/dashboard/events/create', [EventController::class, 'create'])->name('events.create');
-        Route::post('/dashboard/events', [EventController::class, 'store'])->name('events.store');
-        Route::get('/dashboard/events/{event}', [EventController::class, 'show'])->name('events.show');
-        Route::get('/dashboard/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
-        Route::put('/dashboard/events/{event}', [EventController::class, 'update'])->name('events.update');
-        Route::delete('/dashboard/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
-        Route::view('/dashboard/event', 'dashboard.event')->name('dashboard.event');
+        Route::get('/dashboard/events/create', [
+            EventController::class,
+            'create',
+        ])->name('events.create');
+        Route::post('/dashboard/events', [
+            EventController::class,
+            'store',
+        ])->name('events.store');
+        Route::get('/dashboard/events/{event}', [
+            EventController::class,
+            'show',
+        ])->name('events.show');
+        Route::get('/dashboard/events/{event}/edit', [
+            EventController::class,
+            'edit',
+        ])->name('events.edit');
+        Route::put('/dashboard/events/{event}', [
+            EventController::class,
+            'update',
+        ])->name('events.update');
+        Route::delete('/dashboard/events/{event}', [
+            EventController::class,
+            'destroy',
+        ])->name('events.destroy');
+        Route::view('/dashboard/event', 'dashboard.event')->name(
+            'dashboard.event'
+        );
         Route::resource('users', UserController::class);
-        Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
-        Route::delete('/dashboard/event/{id}', [EventDataController::class, 'destroy'])->name('event.destroy')->middleware('auth');
-        Route::get('/dashboard/data_crud', [EventController::class, 'index'])->name('dashboard.data_crud');
+        Route::get('/dashboard', [EventDataController::class, 'index'])
+            ->name('dashboard')
+            ->middleware('auth');
+        Route::delete('/dashboard/event/{id}', [
+            EventDataController::class,
+            'destroy',
+        ])
+            ->name('event.destroy')
+            ->middleware('auth');
+        Route::get('/dashboard/data_crud', [
+            EventController::class,
+            'index',
+        ])->name('dashboard.data_crud');
         Route::get('/dashboard/event', function () {
             $profile = Profile::all();
             $events = Event::all();
@@ -190,57 +325,133 @@ Route::middleware(['checkUserRole:member'])->group(function () {
     });
 });
 
-
-
 Route::middleware(['checkUserRole:non-member'])->group(function () {
-    Route::get('/dashboard', [EventDataController::class, 'index'])->name('dashboard')->middleware('auth');
+    Route::get('/dashboard', [EventDataController::class, 'index'])
+        ->name('dashboard')
+        ->middleware('auth');
     Route::get('/dashboard/membersdata', function () {
         $users = User::all();
         $profile = Profile::all();
         return view('dashboard.membersdata', compact('users', 'profile'));
-    })->name('dashboard.membersdata')->middleware('auth');
+    })
+        ->name('dashboard.membersdata')
+        ->middleware('auth');
 });
-Route::get('/dashboard/news/{id}', 'App\Http\Controllers\NewsController@showReadMore')->name('dashboard.news.readmore');
+Route::get(
+    '/dashboard/news/{id}',
+    'App\Http\Controllers\NewsController@showReadMore'
+)->name('dashboard.news.readmore');
 
-Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review');
-Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store');
-Route::get('/dashboard/message', [MessageController::class, 'create'])->name('message.create');
-Route::post('/dashboard/message', [MessageController::class, 'store'])->name('message.store');
-Route::get('/dashboard/message/{message}', [MessageController::class, 'show'])->name('message.show');
-Route::get('/dashboard/message/{message}/edit', [MessageController::class, 'edit'])->name('message.edit');
-Route::put('/dashboard/message/{message}', [MessageController::class, 'update'])->name('message.update');
-Route::delete('/dashboard/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
-Route::view('/dashboard/message', 'dashboard.message')->name('dashboard.message');
+Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name(
+    'dashboard.review'
+);
+Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name(
+    'comment_posts.store'
+);
+Route::get('/dashboard/message', [MessageController::class, 'create'])->name(
+    'message.create'
+);
+Route::post('/dashboard/message', [MessageController::class, 'store'])->name(
+    'message.store'
+);
+Route::get('/dashboard/message/{message}', [
+    MessageController::class,
+    'show',
+])->name('message.show');
+Route::get('/dashboard/message/{message}/edit', [
+    MessageController::class,
+    'edit',
+])->name('message.edit');
+Route::put('/dashboard/message/{message}', [
+    MessageController::class,
+    'update',
+])->name('message.update');
+Route::delete('/dashboard/message/{message}', [
+    MessageController::class,
+    'destroy',
+])->name('message.destroy');
+Route::view('/dashboard/message', 'dashboard.message')->name(
+    'dashboard.message'
+);
 
 Route::get('/dashboard/membersdata', function () {
     $users = User::all();
     $profile = Profile::all();
     return view('dashboard.membersdata', compact('users', 'profile'));
-})->name('users')->middleware('auth');
+})
+    ->name('users')
+    ->middleware('auth');
 
-Route::post('/dashboard/membersdata_crud/{id}/confirm', [UserController::class, 'confirmMemberStatus'])->name('users.confirm');
-Route::post('/event/register', [EventDataController::class, 'registerEvent'])->name('event.register')->middleware('auth');
-Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show')->middleware('auth');
-Route::get('/eventdesc1/{id}', [EventController::class, 'show'])->name('eventdesc1.show')->middleware('auth');
-Route::get('/eventdesc2/{id}', [EventController::class, 'show'])->name('eventdesc2.show')->middleware('auth');
-Route::get('/dashboard/eventdesc1', function () {
-    $profiles = Profile::all();
-    $events = Event::all();
-    return view('dashboard.eventdesc1', compact('events', 'profiles'));
-})->name('eventdesc1')->middleware('auth');
+Route::post('/dashboard/membersdata_crud/{id}/confirm', [
+    UserController::class,
+    'confirmMemberStatus',
+])->name('users.confirm');
+Route::post('/event/register', [EventDataController::class, 'registerEvent'])
+    ->name('event.register')
+    ->middleware('auth');
+Route::get('/event/{id}', [EventController::class, 'show'])
+    ->name('event.show')
+    ->middleware('auth');
+Route::get('/eventdesc1/{id}', [EventController::class, 'show'])
+    ->name('eventdesc1.show')
+    ->middleware('auth');
+Route::get('/eventdesc2/{id}', [EventController::class, 'show'])
+    ->name('eventdesc2.show')
+    ->middleware('auth');
+// Route::get('/dashboard/eventdesc1', function () {
+//     $profiles = Profile::all();
+//     $events = Event::all();
+//     return view('dashboard.eventdesc1', compact('events', 'profiles'));
+// })->name('eventdesc1')->middleware('auth');
 
-Route::get('/dashboard/review', [CommentPostController::class, 'review'])->name('dashboard.review')->middleware('auth');
-Route::post('/dashboard/review', [CommentPostController::class, 'store'])->name('comment_posts.store')->middleware('auth');
+Route::get('/dashboard/review', [CommentPostController::class, 'review'])
+    ->name('dashboard.review')
+    ->middleware('auth');
+Route::post('/dashboard/review', [CommentPostController::class, 'store'])
+    ->name('comment_posts.store')
+    ->middleware('auth');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // web.php
 
 // routes/web.php
 
 Route::post('/store', [EventDataController::class, 'store'])->name('store');
-Route::get('/dashboard/qrcode/event_register', function () {
-    $eventData = EventData::where('event_name', 'available')->pluck('event_name');
-    $profile = Profile::all();
-    $event = Event::all();
-    return view('dashboard.qrcode.event_register', compact('eventData', 'profile', 'event'));
+Route::middleware(['checkUserRole:organizer'])->group(function () {
+    Route::get('/dashboard/qrcode/event_register', function () {
+        $profile = Profile::all();
+        $event = Event::all();
+
+        if (request()->event) {
+            $eventFind = Event::findOrFail(request()->event);
+
+            $eventData = EventData::where(
+                'event_name',
+                $eventFind->name
+            )->get();
+        } else {
+            $eventData = EventData::all();
+        }
+
+        return view(
+            'dashboard.qrcode.event_register',
+            compact('eventData', 'profile', 'event')
+        );
+    });
+
+    Route::get('/dashboard/qrcode/getEvent/{event_name}', [
+        EventDataController::class,
+        'getEventById',
+    ]);
+    Route::get('/dashboard/event', function () {
+        $profile = Profile::all();
+        $events = Event::all();
+        return view('dashboard.event', compact('events', 'profile'));
+    })->name('event');
+    Route::get('/dashboard/qrcode/presence', function () {
+        $profile = Profile::all();
+        $event = Event::all();
+        return view(
+            'dashboard.qrcode.presence',
+            compact('profile', 'event'));
 });
-Route::get('/dashboard/qrcode/getEvent/{eventId}', [EventDataController::class, 'getEventById']);
+});
