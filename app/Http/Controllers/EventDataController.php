@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -44,7 +43,6 @@ class EventDataController extends Controller
         $userId = $request->input('user_id');
         $eventName = $request->input('eventName');
 
-        // Check if the user is already registered for this event
         $existingRegistration = EventData::where('user_id', $userId)
             ->where('event_name', $eventName)
             ->first();
@@ -104,11 +102,8 @@ class EventDataController extends Controller
 
         return redirect()->route('event')->with('success', 'Registration successful.');
     }
-    public function getEventById($eventId)
-    {
-        $eventData = EventData::where('event_name', $eventId)->get();
-        return response()->json($eventData);
-    }
+
+
 //     public function getEventDescription($eventId)
 // {
 //     $event = Event::find($eventId);
@@ -116,6 +111,42 @@ class EventDataController extends Controller
 //     return view('dashboard.qrcode.event_register', compact('event'));
 // }
 
+public function storeForEventRegister(Request $request)
+{
+    $dateToday = now()->toDateString();
+
+    $request->validate([
+        'user_id' => 'required',
+        'event_name' => 'required',
+        'event_date' => 'required',
+    ]);
+    $userId = $request->input('user_id');
+    $eventName = $request->input('event_name');
+    $eventDate = $request->input('event_date');
+    $existingRegistration = EventData::where('user_id', $userId)
+        ->where('event_name', $eventName)
+        ->first();
+    if ($existingRegistration) {
+        return redirect()->route('dashboard')->with('warning', 'You are already registered for this event!');
+    }
+    $attendanceToday = EventData::where('user_id', $userId)
+        ->whereDate('event_date', $dateToday)
+        ->count();
+
+    if ($attendanceToday > 0) {
+        return redirect()->route('dashboard')->with('warning', 'You have already attended an event today.');
+    }
+
+    $newRegistration = new EventData([
+        'user_id' => $userId,
+        'event_name' => $eventName,
+        'event_date' => $eventDate,
+    ]);
+
+    $newRegistration->save();
+
+    return redirect()->route('dashboard')->with('success', 'Pendaftaran berhasil.');
+}
 
     public function edit($id)
     {
