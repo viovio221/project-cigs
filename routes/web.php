@@ -438,7 +438,7 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
         );
     });
 
-    Route::get('/dashboard/qrcode/getEvent/{event_name}', [
+    Route::get('/dashboard/qrcode/event_register/{event_name}', [
         EventDataController::class,
         'getEventById',
     ]);
@@ -455,3 +455,4 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
             compact('profile', 'event'));
 });
 });
+Route::post('/storeForEventRegister', [EventDataController::class, 'storeForEventRegister'])->name('storeForEventRegister');
