@@ -309,11 +309,50 @@
                                     @endif
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </ul>
-            @endif
+                            @if (Auth::check() && Auth::user()->role === 'admin')
+                            <div class="table-data">
+                                <div class="order">
+                                    <div class="head">
+                                        <h3><a href="#" class="btn btn-outline-primary">New Barcode's Data</a></h3>
+                                    </div>
+                                    <div class="table-data">
+                                        <div class="order">
+                                            <i class='bx bx-search'></i>
+                                            <i class='bx bx-filter'></i>
+                                        </div>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>QR Code</th>
+                                                    <th>Name</th>
+                                                    <th>Pass</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($users as $usr)
+                                                <tr>
+                                                    <td>{{ $usr->id }}</td>
+                                                    <td>
+                                                        <?php
+                                                            $kode = $usr->id."/"."wayangriders/".$usr->password."";
+                                                            require_once('qrcode/qrlib.php');
+                                                            QRcode::png("$kode", "wayangriders" . $usr->id . ".png", 2, 2);
+                                                        ?>
+                                                        <img src="wayangriders{{ $usr->id }}.png" alt="">
+                                                    </td>
+                                                    <td>{{ $usr->name }}</td>
+                                                    <td>{{ $usr->password }}</td>
+                                                </tr>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        @endif
             @endif
         </main>
         <!-- MAIN -->
