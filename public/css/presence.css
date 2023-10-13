@@ -1,0 +1,832 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+:root {
+	--poppins: 'Poppins', sans-serif;
+
+	--light: #F9F9F9;
+	--orange: #ffa500;
+	--light-orange:#FFD700;
+	--grey: #eee;
+	--dark-grey: #AAAAAA;
+	--dark: #342E37;
+	--red: #DB504A;
+	--yellow: #FFCE26;
+	--light-yellow: #FFF2C6;
+	--light-orange: #FFE0D3;
+    --green : #2ea82e;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body.dark {
+	--light: #0C0C1E;
+	--grey: #060714;
+	--dark: #FBFBFB;
+}
+
+body {
+	background: var(--grey);
+	overflow-x: hidden;
+}
+
+
+
+.highlight {
+    background-color: yellow;
+}
+/* CONTENT */
+#content{
+	max-width: 100%;
+	transition: .3s ease;
+}
+
+.btn {
+    background-color: #fff;
+    color: #ff6600;
+    font-weight: 700;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius:20px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-left:24%;
+}
+/* NAVBAR */
+#content nav {
+	height: 56px;
+	background: var(--light);
+	padding: 0 24px;
+	display: flex;
+	align-items: center;
+	grid-gap: 24px;
+	font-family: var(--poppins);
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+#content nav::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	bottom: -40px;
+	left: 0;
+	border-radius: 50%;
+	box-shadow: -20px -20px 0 var(--light);
+}
+#content nav a {
+	color: var(--dark);
+}
+#content nav .bx.bx-menu {
+    font-family: var(--poppins);
+	cursor: pointer;
+	color: var(--dark);
+    margin-left:auto;
+}
+#content nav .nav-link {
+    font-family: var(--poppins);
+	font-size: 16px;
+	transition: .3s ease;
+}
+#content nav .nav-link:hover {
+	color: var(--orange);
+}
+#content nav form {
+	max-width: 400px;
+	width: 100%;
+	margin-right: auto;
+}
+#content nav form .form-input {
+	display: flex;
+	align-items: center;
+	height: 36px;
+}
+#content nav form .form-input input {
+	flex-grow: 1;
+	padding: 0 16px;
+	height: 100%;
+	border: none;
+	background: var(--grey);
+	border-radius: 36px 0 0 36px;
+	outline: none;
+	width: 100%;
+	color: var(--dark);
+}
+#content nav form .form-input button {
+	width: 36px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--orange);
+	color: var(--light);
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-radius: 0 36px 36px 0;
+	cursor: pointer;
+}
+#content nav .notification {
+	font-size: 20px;
+	position: relative;
+}
+#content nav .notification .num {
+	position: absolute;
+	top: -6px;
+	right: -6px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid var(--light);
+	background: var(--red);
+	color: var(--light);
+	font-weight: 700;
+	font-size: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#content nav .profile img {
+	width: 36px;
+	height: 36px;
+	object-fit: cover;
+	border-radius: 50%;
+}
+#content nav .switch-mode {
+	display: block;
+	min-width: 50px;
+	height: 25px;
+	border-radius: 25px;
+	background: var(--grey);
+	cursor: pointer;
+	position: relative;
+}
+#content nav .switch-mode::before {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	width: calc(25px - 4px);
+	background: var(--orange);
+	border-radius: 50%;
+	transition: all .3s ease;
+}
+#content nav #switch-mode:checked + .switch-mode::before {
+	left: calc(100% - (25px - 4px) - 2px);
+}
+/* NAVBAR */
+
+/* MAIN */
+#content main {
+	width: 100%;
+	padding: 36px 24px;
+	font-family: var(--poppins);
+	max-height: calc(100vh - 56px);
+	overflow-y: auto;
+    background-color: #FFDAB8;
+}
+#content .membersdata {
+	width: 100%;
+	padding: 36px 24px;
+	font-family: var(--poppins);
+    height: 1000px;
+	overflow-y: auto;
+    background-color: #FFDAB8;
+}
+#content main .head-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	grid-gap: 16px;
+	flex-wrap: wrap;
+}
+#content main .head-title .left h1 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	color: var(--light);
+}
+#content main .head-title .left .breadcrumb {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+}
+#content main .head-title .left .breadcrumb li {
+	color: var(--dark);
+}
+#content main .head-title .left .breadcrumb li a {
+	color: var(--dark-grey);
+	pointer-events: none;
+}
+#content main .head-title .left .breadcrumb li a.active {
+	color: var(--orange);
+	pointer-events: unset;
+}
+#content main .head-title .btn-download {
+	height: 36px;
+	padding: 0 16px;
+	border-radius: 36px;
+	background: var(--orange);
+	color: var(--light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 10px;
+	font-weight: 500;
+}
+#content main .table-data .head .btn{
+	color: var(--light);
+}
+
+
+
+
+#content main .box-info {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-gap: 24px;
+	margin-top: 36px;
+}
+#content main .box-info li {
+	padding: 24px;
+	background: var(--light);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	grid-gap: 24px;
+}
+#content main .box-info li .bx {
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#content main .box-info li:nth-child(1) .bx {
+	background: var(--light-orange);
+	color: var(--orange);
+}
+#content main .box-info li:nth-child(2) .bx {
+	background: var(--light-yellow);
+	color: var(--yellow);
+}
+#content main .box-info li:nth-child(3) .bx {
+	background: var(--light-orange);
+	color: var(--orange);
+}
+#content main .box-info li .text h3 {
+	font-size: 24px;
+	font-weight: 600;
+	color: var(--dark);
+}
+#content main .box-info li .text p {
+	color: var(--dark);
+}
+#content main .box-info1 li {
+	padding: 24px;
+	background: var(--light);
+	display: flex;
+	align-items: center;
+    background-color: var(--orange);
+	grid-gap: 24px;
+    border-radius: 20px;
+}
+#content main .box-info1 li .bx {
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn1{
+	display: block;
+	width: 80px;
+	height: 25px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #FF8C00, #FF8C00, #FF8C00);
+	background-size: 200%;
+	font-size: 0.6rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+
+
+#content main .table-data {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin-top: 24px;
+	width: 100%;
+	color: var(--light);
+
+}
+#content main .table-data > div {
+	border-radius: 20px;
+	background: var(--orange);
+	padding: 24px;
+	overflow-x: auto;
+}
+#content main .table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+#content main .table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}
+#content main .table-data .head .bx {
+	cursor: pointer;
+}
+
+#content main .table-data .order {
+	flex-grow: 1;
+	flex-basis: 500px;
+}
+#content main .table-data .order table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#content main .table-data .order table th {
+	padding-bottom: 12px;
+	font-size: 18px;
+	text-align: left;
+	border-bottom: 1px solid var(--light);
+}
+#content main .table-data .order table td {
+    font-size: 15px;
+	padding: 16px 0;
+    border-bottom: 1px solid var(--light);
+}
+#content main .table-data .order table tr td:first-child {
+	display: flex;
+	align-items: center;
+	grid-gap: 12px;
+	padding-left: 6px;
+}
+#content main .table-data .order table td img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover; /* Pertahankan rasio aspek dan isi seluruh kontainer */
+}
+#content main .table-data .order table tbody tr:hover {
+	background: var(--orange);
+}
+#content main .table-data .order table tr td .status {
+	font-size: 10px;
+	padding: 6px 16px;
+	color: var(--light);
+	border-radius: 20px;
+	font-weight: 700;
+}
+#content main .table-data .order table tr td .status.completed {
+	background: var(--orange);
+}
+#content main .table-data .order table tr td .status.process {
+	background: var(--green);
+}
+#content main .table-data .order table tr td .status.pending {
+	background: var(--red);
+}
+
+
+#content main .table-data .todo {
+	flex-grow: 1;
+	flex-basis: 300px;
+}
+#content main .table-data .todo .todo-list {
+	width: 100%;
+}
+#content main .table-data .todo .todo-list li {
+	width: 100%;
+	margin-bottom: 16px;
+	background: var(--grey);
+	border-radius: 10px;
+	padding: 14px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#content main .table-data .todo .todo-list li .bx {
+	cursor: pointer;
+}
+#content main .table-data .todo .todo-list li.completed {
+	border-left: 10px solid var(--orange);
+}
+#content main .table-data .todo .todo-list li.not-completed {
+	border-left: 10px solid var(--red);
+}
+#content main .table-data .todo .todo-list li:last-child {
+	margin-bottom: 0;
+}
+
+.container-member {
+    width: 1055px;
+    height: auto; /* Ubah ketinggian ke otomatis agar dapat menyesuaikan kontennya */
+    position: relative;
+    margin: 20px auto; /* Tengahkan container */
+    padding: 20px; /* Berikan ruang di sekitar container */
+    border-radius: 10px;
+
+}
+
+.container-member {
+    width: 1055px;
+    height: auto; /* Gunakan "auto" agar tinggi container disesuaikan dengan isi */
+    position: relative;
+}
+
+.content-container {
+    width: 950px;
+    padding: 20px; /* Tambahkan ruang padding untuk estetika */
+    margin: 0 auto; /* Pusatkan container horizontal */
+    background: #ffffff;
+    border-radius: 25px;
+    background:  var(--light);
+}
+
+.bar {
+    width: 100%;
+    height: 5px;
+    background: #FFA902;
+}
+
+.title,
+.label {
+    text-align: center;
+    font-size: 36px;
+    font-family: Inter;
+    font-weight: 600;
+    word-wrap: break-word;
+    color: black;
+}
+
+.title {
+    margin: 20px 0; /* Atur margin atas dan bawah untuk memberi ruang antara judul dan konten */
+}
+
+.label {
+    font-size: 19px;
+}
+/* Styles for user-list and user-info */
+.user-list {
+    margin-top: 20px;
+    color: var(--dark); /* Atur jarak atas untuk user-list */
+}
+
+.user-info {
+    margin-top: 10px;
+}
+.user-label,
+.user-value {
+    display: inline-block; /* Mengubah elemen menjadi inline-block */
+    margin-right: 20px; /* Menambahkan margin kanan untuk memberi jarak antar elemen */
+}
+.user-list {
+    width: 100%; /* Menyebarkan tabel di seluruh lebar */
+    border-collapse: collapse; /* Menggabungkan garis tepi sel */
+}
+
+.user-list th,
+.user-list td {
+    text-align: center; /* Teks di tengah secara horizontal */
+    vertical-align: middle; /* Teks di tengah secara vertikal */
+    padding: 8px; /* Atur sesuai kebutuhan Anda */
+}
+
+/* Mengatur lebar kolom "No" */
+.user-list th:first-child, /* Kolom "No" di thead */
+.user-list td:first-child { /* Kolom "No" di tbody */
+    width: 50px; /* Atur lebar kolom "No" sesuai kebutuhan Anda */
+    max-width: 50px; /* Maksimum lebar kolom "No" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis; /* Tambahkan tanda elipsis jika terlalu panjang */
+}
+.user-list th:nth-child(2), /* Kolom "Nama" di thead */
+.user-list td:nth-child(2) { /* Kolom "Nama" di tbody */
+    width: 500px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
+    max-width: 500px; /* Maksimum lebar kolom "Nama" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis;
+    text-align: justify; /* Tambahkan tanda elipsis jika terlalu panjang */
+}
+.user-list th:nth-child(3), /* Kolom "Nama" di thead */
+.user-list td:nth-child(3) { /* Kolom "Nama" di tbody */
+    width: 400px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
+    max-width: 400px; /* Maksimum lebar kolom "Nama" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis;
+    text-align: justify;/* Tambahkan tanda elipsis jika terlalu panjang */
+}
+.user-list th:nth-child(4), /* Kolom "Nama" di thead */
+.user-list td:nth-child(4) { /* Kolom "Nama" di tbody */
+    width: 150px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
+    max-width: 150px; /* Maksimum lebar kolom "Nama" */
+    white-space: nowrap; /* Hindari pemisahan kata */
+    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+    text-overflow: ellipsis;
+    text-align: justify;/* Tambahkan tanda elipsis jika terlalu panjang */
+}
+
+/* CONTENT */
+
+
+
+/* table data */
+    /* CSS untuk tampilan desktop */
+    .table-data table {
+
+        width: 100%;
+        font-size: small;
+        border-collapse: collapse;
+    }
+
+    /* CSS untuk tampilan mobile */
+    @media (max-width: 768px) {
+        .table-data table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-data th,
+        .table-data td {
+            display: block;
+            width: 100%;
+            text-align: justify;
+            box-sizing: border-box;
+            border: none;
+            padding: 8px;
+        }
+        .table-data td img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    }
+
+
+
+
+
+@media screen and (max-width: 768px) {
+	#sidebar {
+		width: 200px;
+	}
+
+	#content {
+		width: calc(100% - 60px);
+		left: 200px;
+	}
+
+	#content nav .nav-link {
+		display: none;
+	}
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    ul.box-info1 li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: justify;
+    }
+    ul.box-info1 img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    .btn3 {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 576px) {
+	#content nav form .form-input input {
+		display: none;
+	}
+
+	#content nav form .form-input button {
+		width: auto;
+		height: auto;
+		background: transparent;
+		border-radius: none;
+		color: var(--dark);
+	}
+
+	#content nav form.show .form-input input {
+		display: block;
+		width: 100%;
+	}
+	#content nav form.show .form-input button {
+		width: 36px;
+		height: 100%;
+		border-radius: 0 36px 36px 0;
+		color: var(--light);
+		background: var(--red);
+	}
+
+	#content nav form.show ~ .notification,
+	#content nav form.show ~ .profile {
+		display: none;
+	}
+
+	#content main .box-info {
+		grid-template-columns: 1fr;
+	}
+
+	#content main .table-data .head {
+		min-width: 420px;
+	}
+	#content main .table-data .order table {
+		min-width: 420px;
+	}
+	#content main .table-data .todo .todo-list {
+		min-width: 420px;
+	}
+}
+.description {
+    max-width: 200px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+}
+td.event {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+
+}
+.description-event {
+    max-width: 20px;
+    word-wrap: break-word;
+    white-space: normal;
+    color: var(--light);
+
+}
+td.description-event {
+    max-width: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+
+}
+
+td.location {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+
+}
+
+td.description {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+
+}
+td.name {
+    max-width: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--light);
+
+}
+
+.community {
+    margin-left: 50px;
+    max-width:220px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+    color: var(--light);
+
+}
+.communitystructure{
+    max-width: 220px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+}
+.history {
+    margin-right: 50px;
+    max-width:220px;
+    word-wrap: break-word;
+    white-space: normal;
+    text-align: justify;
+    color: var(--light);
+
+}
+.event{
+    color: var(--light);
+
+        max-width: 220px;
+        word-wrap: break-word;
+        white-space: normal;
+
+}
+.message{
+    max-width: 220px;
+    word-wrap: break-word;
+    white-space: normal;
+    color: var(--light);
+
+
+}
+
+
+ul.box-info1 li .text1 h3,
+    ul.box-info1 li .text h3,
+    ul.box-info1 li .text1 p,
+    ul.box-info1 li .text p {
+        text-align: justify;
+    }
+    ul.box-info1 img {
+        width: 20%;
+        height: auto;
+        border-radius: 10px;
+    }
+    li.news-item {
+        text-align: justify;
+        margin-bottom: 25px;
+        padding: 25px;
+        color: var(--light);
+    }
+.title-news{
+    padding-bottom: 20px;
+    font-size: 25px;
+    color: var(--light);
+
+}
+.btn3{
+	display: block;
+    padding-top: 15px;
+    width: 100%;
+    text-align: center;
+	height: 37px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+    background-color: var(--red);
+	background-size: 200%;
+	font-size: 0.6rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+	text-transform: uppercase;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
