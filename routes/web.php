@@ -26,6 +26,7 @@ use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PresenceController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EventDataController;
@@ -447,12 +448,8 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
         $events = Event::all();
         return view('dashboard.event', compact('events', 'profile'));
     })->name('event');
-    Route::get('/dashboard/qrcode/presence', function () {
-        $profile = Profile::all();
-        $event = Event::all();
-        return view(
-            'dashboard.qrcode.presence',
-            compact('profile', 'event'));
-});
+    Route::get('/dashboard/qrcode/presence', [PresenceController::class, 'index'])->name('presence.index');
 });
 Route::post('/storeForEventRegister', [EventDataController::class, 'storeForEventRegister'])->name('storeForEventRegister');
+Route::post('/store', [PresenceController::class, 'store'])->name('store');
+Route::get('/dashboard/qrcode/presence/{eventId}', [PresenceController::class, 'scan'])->name('dashboard.qrcode.presence');
