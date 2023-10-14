@@ -317,13 +317,15 @@
                                                                 Swal.fire('You are already registered for this event.',
                                                                     'You cannot register again for the same event.', 'info');
                                                             } else if (response.data.message === 'Registration successful') {
-                                                                Swal.fire('Thank you!',
-                                                                    'You have registered for this event.', 'success');
+                                                                Swal.fire('Thank you!', 'You have registered for this event.',
+                                                                    'success');
+                                                                window.location.href =
+                                                                '/dashboard/event'; 
                                                             } else {
-                                                                Swal.fire('Error',
-                                                                    'An error occurred while registering for the event.',
+                                                                Swal.fire('Error', 'An error occurred while registering for the event.',
                                                                     'error');
                                                             }
+
                                                         }).catch((error) => {
                                                             Swal.fire('Error',
                                                                 'An error occurred while registering for the event.',

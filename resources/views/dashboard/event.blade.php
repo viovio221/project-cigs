@@ -238,6 +238,7 @@
                                         </ul>
                                     </div>
                                     <div class="card-price">
+
                                         @foreach ($events as $evco)
                                             <td>
                                                 @if ($evco->is_registered)
@@ -255,6 +256,32 @@
                                         <button class="btn btn-secondary searchable-element">
                                             <a href="{{ route('event.show', $item->id) }}" style="color: white;">See Description</a>
                                         </button>
+                                        @if (Auth::check())
+                                            @if (Auth::user()->role === 'organizer')
+                                                <button class="btn btn-secondary searchable-element">
+                                                    <a href="{{ route('dashboard.qrcode.presence', $item->id) }}"
+                                                        title="Scan QR Code Presence" style="color: white;">
+                                                        <i class='bx bx-scan'></i> Scan Presence
+                                                    </a>
+                                                </button>
+
+                                                <button class="btn btn-secondary searchable-element">
+                                                    <a href="#" title="Take a Photo" style="color: white;">
+                                                        <i class='bx bx-photo-album'></i> Take a Pictrure
+                                                    </a>
+                                                </button>
+                                            @else
+                                                <button class="btn btn-secondary searchable-element">
+                                                    <a href="{{ route('event.show', $item->id) }}"
+                                                        style="color: white;">See Description</a>
+                                                </button>
+                                            @endif
+                                        @else
+                                            <button class="btn btn-secondary searchable-element">
+                                                <a href="{{ route('event.show', $item->id) }}"
+                                                    style="color: white;">See Description</a>
+                                            </button>
+                                        @endif
                                     </div>
 
                                 </div>
