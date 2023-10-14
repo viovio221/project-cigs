@@ -238,6 +238,24 @@
                                         </ul>
                                     </div>
                                     <div class="card-price">
+
+                                        @foreach ($events as $evco)
+                                            <td>
+                                                @if ($evco->is_registered)
+                                                    <?php
+                                                    $kode = $evco->id . '/' . 'wayangriders/' . $evco->name . '';
+                                                    require_once 'qrcode/qrlib.php';
+                                                    $filename = 'wayangriders' . $evco->id . '.png';
+                                                    $path = storage_path('app/public/presence_images/' . $filename);
+                                                    QRcode::png("$kode", $path, 2, 2);
+                                                    ?>
+                                                    <img src="{{ asset('storage/presence_images/' . $filename) }}" alt="">
+                                                @endif
+                                            </td>
+                                        @endforeach
+                                        <button class="btn btn-secondary searchable-element">
+                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">See Description</a>
+                                        </button>
                                         @if (Auth::check())
                                             @if (Auth::user()->role === 'organizer')
                                                 <button class="btn btn-secondary searchable-element">
@@ -265,6 +283,7 @@
                                             </button>
                                         @endif
                                     </div>
+
                                 </div>
                             </li>
                         @endforeach
