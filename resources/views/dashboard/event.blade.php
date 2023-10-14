@@ -264,7 +264,6 @@
                                                         <i class='bx bx-scan'></i> Scan Presence
                                                     </a>
                                                 </button>
-
                                                 <button class="btn btn-secondary searchable-element">
                                                     <a href="#" title="Take a Photo" style="color: white;">
                                                         <i class='bx bx-photo-album'></i> Take a Pictrure
