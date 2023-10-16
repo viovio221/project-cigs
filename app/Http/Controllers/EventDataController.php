@@ -1,13 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\News;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Profile;
+use App\Models\Presence;
 use App\Models\EventData;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,6 +16,8 @@ class EventDataController extends Controller
 {
     public function index()
     {
+        $eventdata= EventData::all();
+        $presence = Presence::all();
         $users = User::all();
         $profile = Profile::all();
         $nonMemberCount = User::where('role', 'member')->count();
@@ -26,7 +29,7 @@ class EventDataController extends Controller
         if (auth()->check()) {
             $eventData = EventData::all();
 
-            return view('dashboard.index', compact('eventData', 'memberCount', 'nonMemberCount', 'profile', 'adminCount', 'eventCount', 'newsCount', 'users'));
+            return view('dashboard.index', compact('eventData', 'memberCount', 'nonMemberCount', 'profile', 'adminCount', 'eventCount', 'newsCount', 'users', 'presence', 'eventdata'));
         } else {
             Alert::error('You dont have access to the dashboard page', 'Please log in first')->persistent('Close');
             return redirect('/login');

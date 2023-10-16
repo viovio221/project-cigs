@@ -6,8 +6,9 @@ use App\Models\Event;
 use App\Models\Profile;
 use App\Models\Presence;
 use App\Models\EventData;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use App\Models\PresenceImage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PresenceController extends Controller
 {
@@ -36,7 +37,7 @@ class PresenceController extends Controller
             Alert::success('Thank you for check-in', 'Success');
         }
 
-        return redirect()->route('event');
+        return redirect()->route('dashboard.qrcode.webcam');
     }
     public function scan($eventId)
 {
@@ -57,6 +58,18 @@ public function uploadImage(Request $request)
     $presence->save();
 
     return response()->json(['success' => true]);
+}
+public function simpanGambar(Request $request)
+{
+    $imageData = $request->input('image');
+
+    $presenceImage = new PresenceImage();
+    $presenceImage->image_path = $imageData;
+    $presenceImage->save();
+
+    Alert::success('Image saved', 'Success')->persistent(true);
+
+    return redirect()->route('dashboard');
 }
 
 
