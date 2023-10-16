@@ -22,23 +22,26 @@ class PresenceController extends Controller
     public function store(Request $request)
     {
         $eventDataId = $request->input('event_data_id');
-        $existingPresence = Presence::where('event_data_id', $eventDataId)->first();
 
-        if ($existingPresence) {
-            Alert::warning('You have already checked in for this event', 'Warning');
-        } else {
-            $newPresence = new Presence([
+        $eventData = EventData::find($eventDataId);
+
+        if ($eventData) {
+            $eventData->update(['status' => 'checkin']);
+
+            Presence::create([
                 'status' => 'checkin',
-                'event_data_id' => $eventDataId,
+                'event_data_id' => $eventData->id,
             ]);
 
-            $newPresence->save();
-
             Alert::success('Thank you for check-in', 'Success');
+        } else {
+            Alert::warning('Event not found', 'Warning');
         }
 
         return redirect()->route('dashboard.qrcode.webcam');
     }
+
+
     public function scan($eventId)
 {
     $profile = Profile::all();

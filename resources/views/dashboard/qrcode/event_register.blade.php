@@ -50,7 +50,8 @@
                                     <option value="">Pilih</option>
                                     @foreach ($event as $ev)
                                         <option {{ request('event') == $ev->id ? 'selected' : '' }}
-                                            value="{{ $ev->id }}" data-name="{{ $ev->name }}" data-date="{{ $ev->date }}">
+                                            value="{{ $ev->id }}" data-name="{{ $ev->name }}"
+                                            data-date="{{ $ev->date }}">
                                             {{ $ev->name }}
                                         </option>
                                     @endforeach
@@ -87,76 +88,71 @@
                 </ul>
             @endif
             <br>
-            <center><h1>Scan Here</h1></center>
+            <center>
+                <h1>Scan Here</h1>
+            </center>
             <br>
             <center><button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
-                data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }}">
-                <div class="container col-lg-3 py-3">
-                    <div class="card bg-white shadow rounded-3 p-3 broder-0">
-                        @if (session()->has('failed'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong> {{ session()->get('failed') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
+                    data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }}">
+                    <div class="container col-lg-3 py-3">
+                        <div class="card bg-white shadow rounded-3 p-3 broder-0">
+                            @if (session()->has('failed'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong> {{ session()->get('failed') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
 
-                        @if (session()->has('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong> {{ session()->get('succes') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-                        <video id="preview" playsinline></video>
-                        <form action="{{ route('storeForEventRegister') }}" method="POST" id="form">
-                            @csrf
-                            <input type="hidden" name="user_id" id="user_id">
-                            <input type="text" name="event_name" id="event_name">
-                            <input type="hidden" name="event_date" id="event_date">
-                        </form>
+                            @if (session()->has('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong> {{ session()->get('succes') }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+                            <!-- ... -->
+                            <video id="preview" playsinline style="width: 100%; max-width: 450px;"></video>
+                            <!-- ... -->
+                            <form action="{{ route('storeForEventRegister') }}" method="POST" id="form">
+                                @csrf
+                                <input type="hidden" name="user_id" id="user_id">
+                                <input type="hidden" name="event_name" id="event_name">
+                                <input type="hidden" name="event_date" id="event_date">
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-                <script type="text/javascript">
-                    let scanner = new Instascan.Scanner({
-                        video: document.getElementById('preview')
-                    });
-                    scanner.addListener('scan', function(content) {
-                        console.log(content);
-                    });
-                    Instascan.Camera.getCameras().then(function(cameras) {
-                        if (cameras.length > 0) {
-                            scanner.start(cameras[0]);
-                        } else {
-                            console.error('No cameras found.');
-                        }
-                    }).catch(function(e) {
-                        console.error(e);
-                    });
+                    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+                    <script type="text/javascript">
+                        let scanner = new Instascan.Scanner({
+                            video: document.getElementById('preview')
+                        });
+                        scanner.addListener('scan', function(content) {
+                            console.log(content);
+                        });
+                        Instascan.Camera.getCameras().then(function(cameras) {
+                            if (cameras.length > 0) {
+                                scanner.start(cameras[0]);
+                            } else {
+                                console.error('No cameras found.');
+                            }
+                        }).catch(function(e) {
+                            console.error(e);
+                        });
 
-                    scanner.addListener('scan', function(c) {
-                        // var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
-                        // var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
-                        var selectedEventId = document.getElementById('eventDropdown')
-                            .value; // Ambil ID event yang dipilih dari dropdown
-
-
-                        // Tampilkan SweetAlert tanpa mengirimkan permintaan POST.
-                        Swal.fire('Registration successful', 'You have registered for this event.', 'success');
-                    })
-                  </script>
-            </center>  
-
-                        document.getElementById('user_id').value = parseInt(c);
-                        document.getElementById('event_name').value = localStorage.getItem('eventName');
-                        document.getElementById('event_date').value = localStorage.getItem('eventDate');
-                        selectedEventId; // Tambahkan ID event yang dipilih ke dalam data formulir
-                        document.getElementById('form').submit();
-                    });
-                </script>
-
+                        scanner.addListener('scan', function(c) {
+                            // var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
+                            // var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
+                            var selectedEventId = document.getElementById('eventDropdown')
+                                .value;
+                            document.getElementById('user_id').value = parseInt(c);
+                            document.getElementById('event_name').value = localStorage.getItem('eventName');
+                            document.getElementById('event_date').value = localStorage.getItem('eventDate');
+                            selectedEventId;
+                            document.getElementById('form').submit();
+                        });
+                    </script>
         </main>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -194,7 +190,7 @@
 
     <script>
         $(document).ready(function() {
-            var selectedEventId = null; 
+            var selectedEventId = null;
 
             $('#eventDropdown').change(function() {
                 selectedEventId = $(this).val();
