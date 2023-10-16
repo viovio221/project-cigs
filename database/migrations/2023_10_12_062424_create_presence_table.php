@@ -11,7 +11,7 @@ class CreatePresenceTable extends Migration
         Schema::create('presence', function (Blueprint $table) {
             $table->id();
             $table->string('status')->default('checkin');
-            $table->string('images')->nullable();
+            $table->mediumText('images')->nullable();
             $table->foreignId('event_data_id')->constrained('event_data');
             $table->timestamps();
 
