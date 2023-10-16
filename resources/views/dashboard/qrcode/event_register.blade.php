@@ -86,7 +86,10 @@
                 </div>
                 </ul>
             @endif
-            <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
+            <br>
+            <center><h1>Scan Here</h1></center>
+            <br>
+            <center><button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
                 data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }}">
                 <div class="container col-lg-3 py-3">
                     <div class="card bg-white shadow rounded-3 p-3 broder-0">
@@ -139,6 +142,13 @@
                         var selectedEventId = document.getElementById('eventDropdown')
                             .value; // Ambil ID event yang dipilih dari dropdown
 
+
+                        // Tampilkan SweetAlert tanpa mengirimkan permintaan POST.
+                        Swal.fire('Registration successful', 'You have registered for this event.', 'success');
+                    })
+                  </script>
+            </center>  
+
                         document.getElementById('user_id').value = parseInt(c);
                         document.getElementById('event_name').value = localStorage.getItem('eventName');
                         document.getElementById('event_date').value = localStorage.getItem('eventDate');
@@ -146,6 +156,7 @@
                         document.getElementById('form').submit();
                     });
                 </script>
+
         </main>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
