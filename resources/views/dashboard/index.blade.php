@@ -349,7 +349,7 @@
                                                             alt="">
                                                     </td>
                                                     <td>{{ $usr->name }}</td>
-                                                    <td>{{ $usr->password }}</td>
+                                                    <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -376,7 +376,7 @@
                                     <tr>
                                         <th style>No</th>
                                         <th style>QR Code</th>
-                                        <th style>User Id</th>
+                                        <th style>Event Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -393,7 +393,7 @@
                                                 <img src="{{ asset('storage/presence_images/' . $filename) }}"
                                                     alt="">
                                             </td>
-                                            <td>{{ $evco->event_data_id }}</td>
+                                            <td>{{ $evco->event_name }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -460,6 +460,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
+
 </body>
 
 </html>
