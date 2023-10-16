@@ -17,17 +17,12 @@
     <div class="container">
         <div class="box">
             @foreach ($users as $user)
-                @if (auth()->user() && auth()->user()->document && auth()->user()->id == $user->id)
-                    <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
-                @endif
                 <td>
                     <?php
                     $kode = $user->id . '/' . 'wayangriders/' . $user->password . '';
                     require_once 'qrcode/qrlib.php';
                     $filename = 'wayangriders' . $user->id . '.png';
                     $path = storage_path('app/public/qrcode_images/' . $filename);
-
-                    // Membuat QR Code hanya jika ID pengguna cocok
                     if (auth()->user() && auth()->user()->id == $user->id) {
                         QRcode::png("$kode", $path, 2, 2);
                     }
