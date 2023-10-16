@@ -63,6 +63,13 @@
                         <span class="text">Members Data</span>
                     </a>
                 </li>
+                @elseif (Auth::check() && Auth::user()->role === 'non-member')
+                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                    <a href="/dashboard/news">
+                        <i class='bx bxs-message-dots'></i>
+                        <span class="text">News</span>
+                    </a>
+                </li>
             @endif
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
@@ -327,6 +334,7 @@
                                     <table>
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th style>No</th>
                                                 <th style>QR Code</th>
                                                 <th style>Name</th>
@@ -336,6 +344,7 @@
                                         <tbody>
                                             @foreach ($users as $usr)
                                                 <tr>
+                                                    <th></th>
                                                     <td>{{ $usr->id }}</td>
                                                     <td>
                                                         <?php
@@ -374,6 +383,7 @@
                             <table>
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th style>No</th>
                                         <th style>QR Code</th>
                                         <th style>Event Name</th>
@@ -382,6 +392,7 @@
                                 <tbody>
                                     @foreach ($eventdata as $evco)
                                         <tr>
+                                            <th></th>
                                             <td>{{ $evco->id }}</td>
                                             <td>
                                                 <?php

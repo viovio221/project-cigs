@@ -219,11 +219,7 @@ Route::middleware(['checkUserRole:member'])->group(function () {
         ])
             ->name('event.register')
             ->middleware('auth');
-        Route::get('/dashboard/news', function () {
-            $news = News::all();
-            $profile = Profile::all();
-            return view('dashboard.news', compact('news', 'profile'));
-        })->name('news');
+
         Route::get('/dashboard/membersdata_crud', [
             UserController::class,
             'index',
@@ -444,9 +440,10 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
         'getEventById',
     ]);
     Route::get('/dashboard/event', function () {
+        $eventdata = EventData::all();
         $profile = Profile::all();
         $events = Event::all();
-        return view('dashboard.event', compact('events', 'profile'));
+        return view('dashboard.event', compact('events', 'profile', 'eventdata'));
     })->name('event');
     Route::get('/dashboard/qrcode/presence', [PresenceController::class, 'index'])->name('presence.index');
 });
@@ -457,3 +454,8 @@ Route::view('/dashboard/qrcode/webcam', 'dashboard.qrcode.webcam')->name(
     'dashboard.qrcode.webcam'
 );
 Route::post('/simpan-gambar', [PresenceController::class, 'simpanGambar']);
+Route::get('/dashboard/news', function () {
+    $news = News::all();
+    $profile = Profile::all();
+    return view('dashboard.news', compact('news', 'profile'));
+})->name('news');
