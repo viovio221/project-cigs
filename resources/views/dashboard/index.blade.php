@@ -394,11 +394,60 @@
                                                     alt="">
                                             </td>
                                             <td>{{ $evco->event_data_id }}</td>
-                                            <!-- Perhatikan bahwa perubahan terjadi pada variabel $evco -->
                                         </tr>
                                     @endforeach
                                 </tbody>
 
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if (Auth::check() && Auth::user()->role === 'organizer')
+                <div class="table-data">
+                    <div class="order">
+                        <div class="head">
+                            <h3>New Presence Data</h3>
+                        </div>
+                        <div class="table-data">
+                            <div class="order">
+                                <i class='bx bx-search'></i>
+                                <i class='bx bx-filter'></i>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>Event Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (isset($presence))
+                                        @foreach ($presence as $data)
+                                            <tr>
+                                                <th></th>
+                                                <td>{{ $data->id }}</td>
+                                                <td>{{ $data->eventData->event_name }}</td>
+                                                <td><span class="status pending">{{ $data->status }}</span></td>
+                                                <td class="side-menu top">
+                                                    <form action="{{ route('event.destroy', $data->id) }}"
+                                                        method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            style="background: none; border: none; color:red"
+                                                            onclick="return confirm('Are you sure you want to delete this data?')">
+                                                            <i class='bx bx-trash'></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
                             </table>
                         </div>
                     </div>
