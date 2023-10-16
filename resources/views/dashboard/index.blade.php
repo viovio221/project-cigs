@@ -329,7 +329,8 @@
                                             <tr>
                                                 <th style>No</th>
                                                 <th style>QR Code</th>
-                                                <th style>Event Name</th>
+                                                <th style>Name</th>
+                                                <th style>Pass</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -385,13 +386,15 @@
                                             <td>
                                                 <?php
                                                 $kode = $evco->id . '/' . 'wayangriders/' . $evco->event_data_id . '';
-                                                $filename = 'wayangriders' .$evco->event_data_id . '.png';
+                                                $filename = 'wayangriders' . $evco->event_data_id . '.png';
                                                 $path = storage_path('app/public/presence_images/' . $filename);
                                                 QRcode::png("$kode", $path, 2, 2);
                                                 ?>
-                                                <img src="{{ asset('storage/presence_images/' . $filename) }}" alt="">
+                                                <img src="{{ asset('storage/presence_images/' . $filename) }}"
+                                                    alt="">
                                             </td>
-                                            <td>{{ $evco->event_data_id }}</td> <!-- Perhatikan bahwa perubahan terjadi pada variabel $evco -->
+                                            <td>{{ $evco->event_data_id }}</td>
+                                            <!-- Perhatikan bahwa perubahan terjadi pada variabel $evco -->
                                         </tr>
                                     @endforeach
                                 </tbody>
