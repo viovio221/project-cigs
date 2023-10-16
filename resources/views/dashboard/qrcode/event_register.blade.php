@@ -46,14 +46,16 @@
                         <div class="table-data">
                             <div class="select-event">
                                 <label for="eventDropdown">Select an Event:</label>
-                                <select name="event_id" class="input-o" id="eventDropdown">
+                                <select name="event_id" class="input-o" id="eventDropdown" onchange="dropdownChange()">
                                     <option value="">Pilih</option>
                                     @foreach ($event as $ev)
                                         <option {{ request('event') == $ev->id ? 'selected' : '' }}
-                                            value="{{ $ev->id }}">
-                                            {{ $ev->name }}</option>
+                                            value="{{ $ev->id }}" data-name="{{ $ev->name }}" data-date="{{ $ev->date }}">
+                                            {{ $ev->name }}
+                                        </option>
                                     @endforeach
                                 </select>
+
                             </div>
                             <table id="eventTable">
                                 <thead>
@@ -107,10 +109,10 @@
                             </div>
                         @endif
                         <video id="preview" playsinline></video>
-                        <form action="{{ route('store') }}" method="POST" id="form">
+                        <form action="{{ route('storeForEventRegister') }}" method="POST" id="form">
                             @csrf
                             <input type="hidden" name="user_id" id="user_id">
-                            <input type="hidden" name="event_name" id="event_name">
+                            <input type="text" name="event_name" id="event_name">
                             <input type="hidden" name="event_date" id="event_date">
                         </form>
                     </div>
@@ -135,32 +137,72 @@
                     });
 
                     scanner.addListener('scan', function(c) {
-                        var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
-                        var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
+                        // var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
+                        // var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
+                        var selectedEventId = document.getElementById('eventDropdown')
+                            .value; // Ambil ID event yang dipilih dari dropdown
 
-                        // Simpan kode pengiriman data atau tindakan yang Anda perlukan di sini, jika diperlukan.
 
                         // Tampilkan SweetAlert tanpa mengirimkan permintaan POST.
                         Swal.fire('Registration successful', 'You have registered for this event.', 'success');
                     })
                   </script>
             </center>  
+
+                        document.getElementById('user_id').value = parseInt(c);
+                        document.getElementById('event_name').value = localStorage.getItem('eventName');
+                        document.getElementById('event_date').value = localStorage.getItem('eventDate');
+                        selectedEventId; // Tambahkan ID event yang dipilih ke dalam data formulir
+                        document.getElementById('form').submit();
+                    });
+                </script>
+
         </main>
     </section>
-    <!-- MAIN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
             $('#eventDropdown').change(function() {
                 var selectedEventId = $(this).val();
+                console.log(selectedEventId);
 
                 window.location.href = ('?event=' + selectedEventId)
             });
         });
     </script>
+
+    {{-- Mendapatkan data event name dan data date event --}}
+    <script>
+        var nameEventOption = document.getElementById('eventDropdown');
+        document.addEventListener('DOMContentLoaded', function() {
+            nameEventOption.addEventListener('change', function() {
+                var selectedNameEvent = nameEventOption.options[nameEventOption.selectedIndex];
+                var dataNameValue = selectedNameEvent.getAttribute('data-name');
+                var dataDateValue = selectedNameEvent.getAttribute('data-date');
+
+                var nameDataInput = document.getElementById('event_name');
+                nameDataInput.value = dataNameValue;
+
+                localStorage.setItem('eventName', dataNameValue);
+                localStorage.setItem('eventDate', dataDateValue);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var selectedEventId = null; 
+
+            $('#eventDropdown').change(function() {
+                selectedEventId = $(this).val();
+            });
+        });
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')

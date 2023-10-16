@@ -16,17 +16,32 @@
 <body>
     <div class="container">
         <div class="box">
-            @if (auth()->user() && auth()->user()->document)
-                <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
-            @endif
-            <ul>
-                @if (auth()->user()->barcode_path)
-                <img src="{{ asset(auth()->user()->barcode_path) }}" alt="Barcode">
-            @else
-                <p>Anda belum memiliki barcode.</p>
-            @endif
+            @foreach ($users as $user)
+                @if (auth()->user() && auth()->user()->document && auth()->user()->id == $user->id)
+                    <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
+                @endif
+                <td>
+                    <?php
+                    $kode = $user->id . '/' . 'wayangriders/' . $user->password . '';
+                    require_once 'qrcode/qrlib.php';
+                    $filename = 'wayangriders' . $user->id . '.png';
+                    $path = storage_path('app/public/qrcode_images/' . $filename);
 
-                <br>
+                    // Membuat QR Code hanya jika ID pengguna cocok
+                    if (auth()->user() && auth()->user()->id == $user->id) {
+                        QRcode::png("$kode", $path, 2, 2);
+                    }
+                    ?>
+                    @if (auth()->user() && auth()->user()->id == $user->id)
+                        <img src="{{ asset('storage/qrcode_images/' . $filename) }}" alt="QR Code">
+                    @endif
+                </td>
+            @endforeach
+
+
+
+
+            <ul>
                 <br>
                 <tr>
                     <th><i style="font-size:24px" class="fa"></i></th>

@@ -343,26 +343,85 @@ h1 {
 	margin-bottom: 0;
 }
 
+
+  .form-group-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-group-row label {
+    margin-right: 1rem;
+  }
+
+  .dorm-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .dorm-group label {
+    margin-right: 1rem;
+  }
+
+#my_camera {
+    width: 320px;
+    height: 240px;
+    margin-bottom: 2rem;
+    border: 20px solid orange;
+    box-sizing: border-box;
+  }
+
+  #results {
+    width: 320px;
+    height: 240px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+  }
+
+
+  @media (max-width: 576px) {
+    .membersdata {
+      padding: 1rem;
+    }
+
+    #my_camera {
+      width: 100%;
+      height: auto;
+    }
+
+    #results {
+      width: 100%;
+      height: auto;
+    }
+  }
+  /* end kamera */
+
+
 .container-member {
     width: 1055px;
-    height: auto; /* Ubah ketinggian ke otomatis agar dapat menyesuaikan kontennya */
+    height: auto;
     position: relative;
-    margin: 20px auto; /* Tengahkan container */
-    padding: 20px; /* Berikan ruang di sekitar container */
+    margin: 20px auto;
+    padding: 20px;
     border-radius: 10px;
 
 }
 
 .container-member {
     width: 1055px;
-    height: auto; /* Gunakan "auto" agar tinggi container disesuaikan dengan isi */
+    height: auto;
     position: relative;
 }
 
 .content-container {
     width: 950px;
-    padding: 20px; /* Tambahkan ruang padding untuk estetika */
-    margin: 0 auto; /* Pusatkan container horizontal */
+    padding: 20px;
+    margin: 0 auto;
     background: #ffffff;
     border-radius: 25px;
     background:  var(--light);
@@ -385,16 +444,15 @@ h1 {
 }
 
 .title {
-    margin: 20px 0; /* Atur margin atas dan bawah untuk memberi ruang antara judul dan konten */
+    margin: 20px 0;
 }
 
 .label {
     font-size: 19px;
 }
-/* Styles for user-list and user-info */
 .user-list {
     margin-top: 20px;
-    color: var(--dark); /* Atur jarak atas untuk user-list */
+    color: var(--dark);
 }
 
 .user-info {
@@ -402,64 +460,59 @@ h1 {
 }
 .user-label,
 .user-value {
-    display: inline-block; /* Mengubah elemen menjadi inline-block */
-    margin-right: 20px; /* Menambahkan margin kanan untuk memberi jarak antar elemen */
+    display: inline-block;
+    margin-right: 20px;
 }
 .user-list {
-    width: 100%; /* Menyebarkan tabel di seluruh lebar */
-    border-collapse: collapse; /* Menggabungkan garis tepi sel */
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .user-list th,
 .user-list td {
-    text-align: center; /* Teks di tengah secara horizontal */
-    vertical-align: middle; /* Teks di tengah secara vertikal */
-    padding: 8px; /* Atur sesuai kebutuhan Anda */
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px;
 }
 
-/* Mengatur lebar kolom "No" */
-.user-list th:first-child, /* Kolom "No" di thead */
-.user-list td:first-child { /* Kolom "No" di tbody */
-    width: 50px; /* Atur lebar kolom "No" sesuai kebutuhan Anda */
-    max-width: 50px; /* Maksimum lebar kolom "No" */
-    white-space: nowrap; /* Hindari pemisahan kata */
-    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
-    text-overflow: ellipsis; /* Tambahkan tanda elipsis jika terlalu panjang */
-}
-.user-list th:nth-child(2), /* Kolom "Nama" di thead */
-.user-list td:nth-child(2) { /* Kolom "Nama" di tbody */
-    width: 500px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
-    max-width: 500px; /* Maksimum lebar kolom "Nama" */
-    white-space: nowrap; /* Hindari pemisahan kata */
-    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+.user-list th:first-child,
+.user-list td:first-child {
+    width: 50px;
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
-    text-align: justify; /* Tambahkan tanda elipsis jika terlalu panjang */
 }
-.user-list th:nth-child(3), /* Kolom "Nama" di thead */
-.user-list td:nth-child(3) { /* Kolom "Nama" di tbody */
-    width: 400px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
-    max-width: 400px; /* Maksimum lebar kolom "Nama" */
-    white-space: nowrap; /* Hindari pemisahan kata */
-    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+.user-list th:nth-child(2),
+.user-list td:nth-child(2) {
+    width: 500px;
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
-    text-align: justify;/* Tambahkan tanda elipsis jika terlalu panjang */
+    text-align: justify;
 }
-.user-list th:nth-child(4), /* Kolom "Nama" di thead */
-.user-list td:nth-child(4) { /* Kolom "Nama" di tbody */
-    width: 150px; /* Atur lebar kolom "Nama" sesuai kebutuhan Anda */
-    max-width: 150px; /* Maksimum lebar kolom "Nama" */
-    white-space: nowrap; /* Hindari pemisahan kata */
-    overflow: hidden; /* Sembunyikan teks yang terlalu panjang */
+.user-list th:nth-child(3),
+.user-list td:nth-child(3) {
+    width: 400px;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: ellipsis;
-    text-align: justify;/* Tambahkan tanda elipsis jika terlalu panjang */
+    text-align: justify;
+}
+.user-list th:nth-child(4),
+.user-list td:nth-child(4) {
+    width: 150px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
 }
 
 /* CONTENT */
 
-
-
-/* table data */
-    /* CSS untuk tampilan desktop */
     .table-data table {
 
         width: 100%;
@@ -467,7 +520,6 @@ h1 {
         border-collapse: collapse;
     }
 
-    /* CSS untuk tampilan mobile */
     @media (max-width: 768px) {
         .table-data table {
             display: block;

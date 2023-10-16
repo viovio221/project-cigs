@@ -238,13 +238,42 @@
                                         </ul>
                                     </div>
                                     <div class="card-price">
+                                        @foreach ($events as $evco)
+                                            <td>
+                                                @if ($evco->is_registered)
+                                                    <?php
+                                                    $kode = $evco->id . '/' . 'wayangriders/' . $evco->name . '';
+                                                    require_once 'qrcode/qrlib.php';
+                                                    $filename = 'wayangriders' . $evco->id . '.png';
+                                                    $path = storage_path('app/public/presence_images/' . $filename);
+                                                    QRcode::png("$kode", $path, 2, 2);
+                                                    ?>
+                                                    <img src="{{ asset('storage/presence_images/' . $filename) }}" alt="">
+                                                @endif
+                                            </td>
+                                        @endforeach
+
+                                        @php
+                                            $showDescriptionRoute = route('event.show', $item->id);
+                                        @endphp
 
                                         <button class="btn btn-secondary searchable-element">
-                                            <a href="{{ route('event.show', $item->id) }}" style="color: white;">See
-                                                Description</a>
+                                            <a href="{{ $showDescriptionRoute }}" style="color: white;">See Description</a>
                                         </button>
+
+                                        @if (Auth::check() && Auth::user()->role === 'organizer')
+                                            <button class="btn btn-secondary searchable-element">
+                                                <a href="{{ route('dashboard.qrcode.presence', $item->id) }}" title="Scan QR Code Presence" style="color: white;">
+                                                    <i class='bx bx-scan'></i> Scan Presence
+                                                </a>
+                                            </button>
+                                            <button class="btn btn-secondary searchable-element">
+                                                <a href="#" title="Take a Photo" style="color: white;">
+                                                    <i class='bx bx-photo-album'></i> Take a Picture
+                                                </a>
+                                            </button>
+                                        @endif
                                     </div>
-                                </div>
                             </li>
                         @endforeach
                     </ul> <br><br>
