@@ -414,39 +414,40 @@
                                 <i class='bx bx-search'></i>
                                 <i class='bx bx-filter'></i>
                             </div>
+                            @if (isset($presence) && count($presence) > 0)
                             <table>
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>ID</th>
                                         <th>Event Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($presence))
-                                        @foreach ($presence as $data)
-                                            <tr>
-                                                <th></th>
-                                                <td>{{ $data->id }}</td>
-                                                <td>{{ $data->eventData->event_name }}</td>
-                                                <td><span class="status pending">{{ $data->status }}</span></td>
-                                                <td class="side-menu top">
-                                                    <form action="{{ route('event.destroy', $data->id) }}"
-                                                        method="POST" style="display: inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            style="background: none; border: none; color:red"
-                                                            onclick="return confirm('Are you sure you want to delete this data?')">
-                                                            <i class='bx bx-trash'></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                    @foreach ($presence as $data)
+                                        <tr>
+                                            <th></th>
+                                            <td>{{ $data->eventData->event_name }}</td>
+                                            <td><span class="status pending">{{ $data->status }}</span></td>
+                                            <td class="side-menu top">
+                                                <form action="{{ route('event.destroy', $data->id) }}" method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                        <i class='bx bx-trash'></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <p>No presence data available for this event.</p>
+                        @endif
+
+
                                 </tbody>
                             </table>
                         </div>
