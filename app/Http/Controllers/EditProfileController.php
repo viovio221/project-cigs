@@ -17,7 +17,8 @@ class EditProfileController extends Controller
 
     public function index()
     {
-        return view('editprofile.show');
+        $users=User::all();
+        return view('editprofile.show', compact('users'));
     }
 
     public function edit()
