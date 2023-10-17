@@ -211,7 +211,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/">Landing Page</a>  
                         </li>
                         @if (auth()->user()->role == 'non-member')
                             @if (!auth()->user()->date_birth)
