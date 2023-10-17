@@ -773,3 +773,15 @@ ul.box-info1 li .text1 h3,
 	cursor: pointer;
 	transition: .5s;
 }
+
+#preview {
+    display: block;
+    margin-left: 400px;
+    margin-right: 400px;
+    border: 10px solid white;
+    max-width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 100%;
+}
+
