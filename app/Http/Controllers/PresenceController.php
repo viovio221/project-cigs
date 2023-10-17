@@ -70,7 +70,7 @@ public function simpanGambar(Request $request)
 
     Alert::success('Image saved', 'Success')->persistent(true);
 
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard.qrcode.presence');
 }
 public function destroy($id)
     {

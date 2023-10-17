@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Webcam | Wayang Riders</title>
     <link rel="stylesheet" href="{{ asset('css/qr.css') }}">
 </head>
 <body>
@@ -30,7 +30,7 @@
     <div class="col-sm-6">
         <div id="my_camera"></div>
         <p>
-            <button type="button" class="btn btn-sm btn-info" onclick="take_picture();">Take a Picture</button>
+            <center>  <button type="button" class="btn btn-sm btn-info" onclick="take_picture();">Take a Picture</button></center>
         </p>
     </div>
 </div>
@@ -47,7 +47,7 @@
     <form action="/simpan-gambar" method="post">
         @csrf
         <input type="hidden" name="image" id="image-data" />
-        <button type="submit" class="btn btn-sm btn-info">Save</button>
+      <center> <button type="submit" class="btn btn-sm btn-info">Save</button></center>
     </form>
     </div>
 </div>
