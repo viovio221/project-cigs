@@ -452,13 +452,14 @@
                                             <td>{{ $data->eventData->event_name }}</td>
                                             <td><span class="status pending">{{ $data->status }}</span></td>
                                             <td class="side-menu top">
-                                                <form action="{{ route('event.destroy', $data->id) }}" method="POST" style="display: inline-block;">
+                                                <form action="{{ route('presence.destroy', $data->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                    <button type="submit" style="background: none; border: none; color: red" onclick="return confirm('Are you sure you want to delete this data?')">
                                                         <i class='bx bx-trash'></i>
                                                     </button>
                                                 </form>
+
                                             </td>
                                         </tr>
                                     @endforeach
