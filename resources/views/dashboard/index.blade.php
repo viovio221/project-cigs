@@ -420,6 +420,7 @@
                                         <th style>No</th>
                                         <th style>QR Code</th>
                                         <th style>Event Name</th>
+                                        <th style=>Member</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -437,6 +438,7 @@
                                                     alt="">
                                             </td>
                                             <td>{{ $evco->event_name }}</td>
+                                            <td>{{ $evco->user->name }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
