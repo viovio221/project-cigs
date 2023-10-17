@@ -22,6 +22,7 @@ class PresenceController extends Controller
     public function store(Request $request)
     {
         $eventDataId = $request->input('event_data_id');
+        // dd($eventDataId);
 
         $eventData = EventData::find($eventDataId);
 
@@ -45,10 +46,7 @@ class PresenceController extends Controller
     public function scan($eventId)
 {
     $profile = Profile::all();
-    $event = Event::find($eventId);
-
-    if (!$event) {
-    }
+    $event = Event::findOrFail($eventId);
 
     return view('dashboard.qrcode.presence', compact('event', 'profile'));
 }

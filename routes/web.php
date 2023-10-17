@@ -448,7 +448,7 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
     Route::get('/dashboard/qrcode/presence', [PresenceController::class, 'index'])->name('presence.index');
 });
 Route::post('/storeForEventRegister', [EventDataController::class, 'storeForEventRegister'])->name('storeForEventRegister');
-Route::post('/store', [PresenceController::class, 'store'])->name('store');
+Route::post('/store', [PresenceController::class, 'store'])->name('store.presence');
 Route::get('/dashboard/qrcode/presence/{eventId}', [PresenceController::class, 'scan'])->name('dashboard.qrcode.presence');
 Route::view('/dashboard/qrcode/webcam', 'dashboard.qrcode.webcam')->name(
     'dashboard.qrcode.webcam'
