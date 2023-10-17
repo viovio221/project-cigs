@@ -213,6 +213,25 @@
                         <li>
                             <a class="active" href="/">Landing Page</a>
                         </li>
+                        @if (auth()->user()->role == 'non-member')
+                            @if (!auth()->user()->date_birth)
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        Swal.fire({
+                                            title: 'Complete Your Profile',
+                                            text: 'Please complete your profile!',
+                                            icon: 'warning',
+                                            confirmButtonText: 'Ok'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                window.location.href = "{{ route('editprofile.show') }}";
+                                            }
+                                        });
+                                    });
+                                </script>
+                            @endif
+                        @endif
                     </ul>
                 </div>
             </div>
