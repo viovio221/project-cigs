@@ -18,30 +18,29 @@ class PresenceController extends Controller
         $event = Event::all();
         return view('dashboard.qrcode.presence', compact('event', 'profile'));
     }
-
     public function store(Request $request)
     {
         $eventDataId = $request->input('event_data_id');
-        // dd($eventDataId);
-
         $eventData = EventData::find($eventDataId);
 
         if ($eventData) {
-            $eventData->update(['status' => 'checkin']);
-
-            Presence::create([
-                'status' => 'checkin',
-                'event_data_id' => $eventData->id,
-            ]);
-
-            Alert::success('Thank you for check-in', 'Success');
+            if ($eventData->status === 'checkin') {
+                Alert::warning('You have already checked in for this event.');
+                return redirect()->route('dashboard');
+            } else {
+                $eventData->update(['status' => 'checkin']);
+                Presence::create([
+                    'status' => 'checkin',
+                    'event_data_id' => $eventData->id,
+                ]);
+                Alert::success('Thank you for check-in', 'Success');
+            }
         } else {
             Alert::warning('Event not found', 'Warning');
         }
 
         return redirect()->route('dashboard.qrcode.webcam');
     }
-
 
     public function scan($eventId)
 {
@@ -70,7 +69,7 @@ public function simpanGambar(Request $request)
 
     Alert::success('Image saved', 'Success')->persistent(true);
 
-    return redirect()->route('dashboard.qrcode.presence');
+    return redirect()->route('dashboard');
 }
 public function destroy($id)
     {
