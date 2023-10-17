@@ -72,6 +72,20 @@ public function simpanGambar(Request $request)
 
     return redirect()->route('dashboard');
 }
+public function destroy($id)
+    {
+        try {
+            $presence = Presence::find($id);
 
+            if (!$presence) {
+                return redirect()->back()->with('failed', 'Presence data not found');
+            }
 
+            $presence->delete();
+
+            return redirect()->back()->with('success', 'Presence data deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failed', 'An error occurred while deleting presence data');
+        }
+    }
 }

@@ -459,3 +459,4 @@ Route::get('/dashboard/news', function () {
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
+Route::delete('/presence/{id}', [PresenceController::class, 'destroy'])->name('presence.destroy');
