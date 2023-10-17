@@ -231,12 +231,14 @@
                                                     $us->postal_code &&
                                                     $us->document
                                                 ))
-                                                <a href="/editprofile/show" style="color: red;"><i
-                                                        class='bx bxs-error'></i> Incomplete Profile</a>
+                                                <a href="#" style="color: red;"
+                                                    onclick="showIncompleteProfileAlert()">
+                                                    <i class='bx bxs-error'></i> Incomplete Profile
+                                                </a>
                                             @else
                                                 <a href="#" style="color: blue" class="edit-user"
                                                     data-user-id="{{ $us->id }}"><i
-                                                        class='bx bxs-user-check'></i></a>
+                                                        class='bx bxs-user-check'></i> Completed</a>
                                             @endif
                                         </td>
                                     </tr>
@@ -254,6 +256,17 @@
         </main>
         <!-- MAIN -->
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showIncompleteProfileAlert() {
+            Swal.fire({
+                title: 'Incomplete Profile',
+                text: 'User has incomplete data',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const editButtons = document.querySelectorAll('.edit-user');
