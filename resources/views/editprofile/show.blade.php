@@ -43,11 +43,6 @@
                     <th><i style="font-size:24px" class="fa"></i></th>
                     <th><i style="font-size:24px" class="fa"></i></th>
                 </tr>
-                <form action="{{ route('dashboard') }}">
-                    <div class="mb-3 d-grid">
-                        <button type="submit" class="button btn-secondary"><b>BACK</b></button>
-                    </div>
-                </form>
             </ul>
         </div>
         <div class="About">
@@ -187,9 +182,15 @@
             @endif
             <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
-                    <button type="submit" class="btn btn-primary"><b>Edit Profile</b></button>
+                    <center><button type="submit" class="btn btn-primary"><b>Edit Profile</b></button></center>
                 </div>
             </form>
+                <form action="{{ route('dashboard') }}">
+                <div class="mb-3 d-grid">
+                    <center><button type="submit" class="btn btn-primary"><b>BACK</b></button></center>
+                </div>
+            </form>
+
         </div>
     </div>
     <!-- CONTENT -->
