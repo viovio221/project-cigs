@@ -82,7 +82,9 @@
                 </div>
             @endif
             <div class="scan-container">
-                <h1>Scan Here</h1>
+                <center>
+                    <h1>Scan Here</h1>
+                </center>
                 <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
                     data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }}">
                     <div class="container col-lg-3 py-3">
