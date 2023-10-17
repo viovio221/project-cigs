@@ -100,6 +100,24 @@ td {
 
 .btn {
     display: block;
+    width: 35%;
+    height: 50px;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #FF8C00, #FF8C00, #FF8C00);
+    background-size: 200%;
+    font-size: 0.8rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.button {
+    display: block;
     width: 100%;
     height: 50px;
     border-radius: 5px;
@@ -114,18 +132,6 @@ td {
     margin: 1rem 0;
     cursor: pointer;
     transition: .5s;
-}
-
-.button {
-    display: block;
-    width: 75%;
-    height: 50px;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    background-image: linear-gradient(to right, #FFF, #FFF, #FFF);
-    background-size: 200%;
-    font-size: 1.2rem;
 }
 
 .btn:hover {
