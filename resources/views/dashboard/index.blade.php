@@ -63,7 +63,7 @@
                         <span class="text">Members Data</span>
                     </a>
                 </li>
-                @elseif (Auth::check() && Auth::user()->role === 'non-member')
+            @elseif (Auth::check() && Auth::user()->role === 'non-member')
                 <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
                     <a href="/dashboard/news">
                         <i class='bx bxs-message-dots'></i>
@@ -211,7 +211,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>  
+                            <a class="active" href="/">Landing Page</a>
                         </li>
                         @if (auth()->user()->role == 'non-member')
                             @if (!auth()->user()->date_birth)
@@ -231,7 +231,8 @@
                                     });
                                 </script>
                             @endif
-                        @endif
+
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -254,16 +255,16 @@
 
                 </ul>
             @elseif (Auth::check() && Auth::user()->role === 'non-member')
-            <ul class="box-info" style="align-content: center">
-            <li>
-                <i class='bx bxs-news'></i>
-                <span class="text">
-                    <h3>{{ $newsCount }}</h3>
-                    <p>News Update</p>
-                </span>
-            </li>
-        </ul>
-        @else
+                <ul class="box-info" style="align-content: center">
+                    <li>
+                        <i class='bx bxs-news'></i>
+                        <span class="text">
+                            <h3>{{ $newsCount }}</h3>
+                            <p>News Update</p>
+                        </span>
+                    </li>
+                </ul>
+            @else
                 <ul class="box-info" style="align-content: center">
                     <li>
                         <i class='bx bxs-group'></i>
@@ -455,20 +456,22 @@
                                 <i class='bx bx-filter'></i>
                             </div>
                             @if (isset($presence) && count($presence) > 0)
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Event Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($presence as $data)
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Event Name</th>
+                                            <th>Checkin Participants</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($presence as $data)
                                         <tr>
                                             <th></th>
                                             <td>{{ $data->eventData->event_name }}</td>
+                                            <td>{{ $data->eventData->user->name }}</td>
                                             <td><span class="status pending">{{ $data->status }}</span></td>
                                             <td class="side-menu top">
                                                 <form action="{{ route('presence.destroy', $data->id) }}" method="POST" style="display: inline-block;">
@@ -478,18 +481,17 @@
                                                         <i class='bx bx-trash'></i>
                                                     </button>
                                                 </form>
-
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p>No presence data available for this event.</p>
-                        @endif
+                                    </tbody>
+                                </table>
+                            @else
+                                <p>No presence data available for this event.</p>
+                            @endif
 
 
-                                </tbody>
+                            </tbody>
                             </table>
                         </div>
                     </div>
