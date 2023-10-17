@@ -63,13 +63,6 @@
                         <span class="text">Members Data</span>
                     </a>
                 </li>
-                @elseif (Auth::check() && Auth::user()->role === 'non-member')
-                <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
-                    <a href="/dashboard/news">
-                        <i class='bx bxs-message-dots'></i>
-                        <span class="text">News</span>
-                    </a>
-                </li>
             @endif
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
@@ -234,17 +227,7 @@
                     </li>
 
                 </ul>
-            @elseif (Auth::check() && Auth::user()->role === 'non-member')
-            <ul class="box-info" style="align-content: center">
-            <li>
-                <i class='bx bxs-news'></i>
-                <span class="text">
-                    <h3>{{ $newsCount }}</h3>
-                    <p>News Update</p>
-                </span>
-            </li>
-        </ul>
-        @else
+            @else
                 <ul class="box-info" style="align-content: center">
                     <li>
                         <i class='bx bxs-group'></i>
@@ -344,7 +327,6 @@
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th></th>
                                                 <th style>No</th>
                                                 <th style>QR Code</th>
                                                 <th style>Name</th>
@@ -354,7 +336,6 @@
                                         <tbody>
                                             @foreach ($users as $usr)
                                                 <tr>
-                                                    <th></th>
                                                     <td>{{ $usr->id }}</td>
                                                     <td>
                                                         <?php
@@ -393,7 +374,6 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th style>No</th>
                                         <th style>QR Code</th>
                                         <th style>Event Name</th>
@@ -402,7 +382,6 @@
                                 <tbody>
                                     @foreach ($eventdata as $evco)
                                         <tr>
-                                            <th></th>
                                             <td>{{ $evco->id }}</td>
                                             <td>
                                                 <?php
@@ -435,41 +414,39 @@
                                 <i class='bx bx-search'></i>
                                 <i class='bx bx-filter'></i>
                             </div>
-                            @if (isset($presence) && count($presence) > 0)
                             <table>
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th>ID</th>
                                         <th>Event Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($presence as $data)
-                                        <tr>
-                                            <th></th>
-                                            <td>{{ $data->eventData->event_name }}</td>
-                                            <td><span class="status pending">{{ $data->status }}</span></td>
-                                            <td class="side-menu top">
-                                                <form action="{{ route('presence.destroy', $data->id) }}" method="POST" style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" style="background: none; border: none; color: red" onclick="return confirm('Are you sure you want to delete this data?')">
-                                                        <i class='bx bx-trash'></i>
-                                                    </button>
-                                                </form>
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p>No presence data available for this event.</p>
-                        @endif
-
-
+                                    @if (isset($presence))
+                                        @foreach ($presence as $data)
+                                            <tr>
+                                                <th></th>
+                                                <td>{{ $data->id }}</td>
+                                                <td>{{ $data->eventData->event_name }}</td>
+                                                <td><span class="status pending">{{ $data->status }}</span></td>
+                                                <td class="side-menu top">
+                                                    <form action="{{ route('event.destroy', $data->id) }}"
+                                                        method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            style="background: none; border: none; color:red"
+                                                            onclick="return confirm('Are you sure you want to delete this data?')">
+                                                            <i class='bx bx-trash'></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
