@@ -197,7 +197,7 @@
             <div class="head-title">
                 <div class="left">
                     <h1>Members Data</h1>
-                    <ul class="breadcrumb">
+                     <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard">Dashboard</a>
                         </li>
@@ -205,34 +205,25 @@
                         <li>
                             <a class="active" href="/">Landing Page</a>
                         </li>
-                    </ul>
+                     </ul>
                 </div>
             </div>
-            <div class="container-member">
-                <div class="content-container">
-                    @if (isset($users))
-                        <table class="user-list">
-                            <thead>
-                                <tr>
-                                    <th class="bar">No</th>
-                                    <th class="bar">Name</th>
-                                    <th class="bar">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $usr)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $usr->name }}</td>
-                                        <td>{{ $usr->email }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
-            </div>
-        </main>
+
+                @foreach ($users as $usr)
+                    <tr>
+                      <ul class="box-info" style="align-content: center">
+                        <li>
+                            <i class='bx bxs-group'></i>
+                            <span class="text">
+                                <h3>{{ $usr->name }}</h3>
+                                <h3>{{ $usr->email }}</h3>
+                            </span>
+                         </li>
+                       </ul>
+                    </tr>
+               @endforeach
+        
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/dashboard.js') }}"></script>
         @include('sweetalert::alert')
