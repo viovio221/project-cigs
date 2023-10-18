@@ -26,4 +26,10 @@ class EventData extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function presence()
+    {
+        return $this->hasMany(Presence::class, 'event_data_id');
+    }
 }
+

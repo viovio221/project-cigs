@@ -69,7 +69,7 @@ class EventDataController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function storeForAdmin(Request $request)
     {
         $dateToday = now()->toDateString();
         $request->validate([
@@ -165,8 +165,12 @@ public function storeForEventRegister(Request $request)
         if (!$eventData) {
             return redirect()->route('dashboard')->with('error', 'Event data not found.');
         }
+
+        $eventData->presence()->delete();
+
         $eventData->delete();
 
         return redirect()->route('dashboard')->with('success', 'Event data deleted successfully.');
     }
+
 }

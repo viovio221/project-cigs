@@ -244,7 +244,7 @@
                                                 </div>
                                             @endif
                                             <video id="preview" playsinline></video>
-                                            <form action="{{ route('store') }}" method="POST" id="form">
+                                            <form action="{{ route('storeForAdmin') }}" method="POST" id="form">
                                                 @csrf
                                                 <input type="hidden" name="user_id" id="user_id">
                                                 <input type="hidden" name="event_name" id="event_name">
@@ -320,7 +320,7 @@
                                                                 Swal.fire('Thank you!', 'You have registered for this event.',
                                                                     'success');
                                                                 window.location.href =
-                                                                '/dashboard/event'; 
+                                                                '/dashboard/event';
                                                             } else {
                                                                 Swal.fire('Error', 'An error occurred while registering for the event.',
                                                                     'error');

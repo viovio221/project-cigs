@@ -103,8 +103,8 @@ Route::post('/reset-password', function (Request $request) {
     );
     return $status === Password::PASSWORD_RESET
         ? redirect()
-            ->route('login.index')
-            ->with('status', __($status))
+        ->route('login.index')
+        ->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
 })
     ->middleware('guest')
@@ -412,7 +412,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // routes/web.php
 
-Route::post('/store', [EventDataController::class, 'store'])->name('store');
+Route::post('/storeForAdmin', [EventDataController::class, 'storeForAdmin'])->name('storeForAdmin');
 Route::middleware(['checkUserRole:organizer'])->group(function () {
     Route::get('/dashboard/qrcode/event_register', function () {
         $profile = Profile::all();
@@ -446,17 +446,19 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
         return view('dashboard.event', compact('events', 'profile', 'eventdata'));
     })->name('event');
     Route::get('/dashboard/qrcode/presence', [PresenceController::class, 'index'])->name('presence.index');
+    Route::post('/storeForEventRegister', [EventDataController::class, 'storeForEventRegister'])->name('storeForEventRegister');
+    Route::post('/store', [PresenceController::class, 'store'])->name('store.presence');
+    Route::get('/dashboard/qrcode/presence/{eventId}', [PresenceController::class, 'scan'])->name('dashboard.qrcode.presence');
+    Route::view('/dashboard/qrcode/webcam', 'dashboard.qrcode.webcam')->name(
+        'dashboard.qrcode.webcam'
+    );
+    Route::post('/simpan-gambar', [PresenceController::class, 'simpanGambar']);
+    Route::delete('/presence/{id}', [PresenceController::class, 'destroy'])->name('presence.destroy');
 });
-Route::post('/storeForEventRegister', [EventDataController::class, 'storeForEventRegister'])->name('storeForEventRegister');
-Route::post('/store', [PresenceController::class, 'store'])->name('store.presence');
-Route::get('/dashboard/qrcode/presence/{eventId}', [PresenceController::class, 'scan'])->name('dashboard.qrcode.presence');
-Route::view('/dashboard/qrcode/webcam', 'dashboard.qrcode.webcam')->name(
-    'dashboard.qrcode.webcam'
-);
-Route::post('/simpan-gambar', [PresenceController::class, 'simpanGambar']);
+
 Route::get('/dashboard/news', function () {
     $news = News::all();
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
-Route::delete('/presence/{id}', [PresenceController::class, 'destroy'])->name('presence.destroy');
+Route::get('/dashboard/eventdesc1/{eventId}', [EventDataController::class, 'scan'])->name('dashboard.eventdesc1');
