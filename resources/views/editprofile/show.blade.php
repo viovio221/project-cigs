@@ -16,26 +16,24 @@
 <body>
     <div class="container">
         <div class="box">
-            @foreach ($users as $user)
-                <td>
-                    <?php
-                    $kode = $user->id . '/' . 'wayangriders/' . $user->password . '';
-                    require_once 'qrcode/qrlib.php';
-                    $filename = 'wayangriders' . $user->id . '.png';
-                    $path = storage_path('app/public/qrcode_images/' . $filename);
-                    if (auth()->user() && auth()->user()->id == $user->id) {
-                        QRcode::png("$kode", $path, 2, 2);
-                    }
-                    ?>
-                    @if (auth()->user() && auth()->user()->id == $user->id)
-                        <img src="{{ asset('storage/qrcode_images/' . $filename) }}" alt="QR Code">
-                    @endif
-                </td>
-            @endforeach
-
-
-
-
+            @if (Auth::check() && Auth::user()->role === 'member')
+                @foreach ($users as $user)
+                    <td>
+                        <?php
+                        $kode = $user->id . '/' . 'wayangriders/' . $user->password . '';
+                        require_once 'qrcode/qrlib.php';
+                        $filename = 'wayangriders' . $user->id . '.png';
+                        $path = storage_path('app/public/qrcode_images/' . $filename);
+                        if (auth()->user() && auth()->user()->id == $user->id) {
+                            QRcode::png("$kode", $path, 2, 2);
+                        }
+                        ?>
+                        @if (auth()->user() && auth()->user()->id == $user->id)
+                            <img src="{{ asset('storage/qrcode_images/' . $filename) }}" alt="QR Code">
+                        @endif
+                    </td>
+                @endforeach
+            @endif
             <ul>
                 <br>
                 <tr>
@@ -185,7 +183,7 @@
                     <center><button type="submit" class="btn btn-primary"><b>Edit Profile</b></button></center>
                 </div>
             </form>
-                <form action="{{ route('dashboard') }}">
+            <form action="{{ route('dashboard') }}">
                 <div class="mb-3 d-grid">
                     <center><button type="submit" class="btn btn-primary"><b>BACK</b></button></center>
                 </div>
