@@ -46,8 +46,7 @@
                                 <option value="">Pilih</option>
                                 @foreach ($event as $ev)
                                     <option {{ request('event') == $ev->id ? 'selected' : '' }}
-                                        value="{{ $ev->id }}" data-name="{{ $ev->name }}"
-                                        data-date="{{ $ev->date }}">
+                                        value="{{ $ev->id }}" data-id="{{ $ev->id }}">
                                         {{ $ev->name }}
                                     </option>
                                 @endforeach
@@ -58,7 +57,6 @@
                                 <thead>
                                     <tr>
                                         <th>Members Name</th>
-                                        <th>Event Date</th>
                                         <th>Event Name</th>
                                         <th>Status</th>
                                     </tr>
@@ -68,8 +66,7 @@
                                         @foreach ($eventData as $data)
                                             <tr>
                                                 <td>{{ $data->user->name }}</td>
-                                                <td>{{ $data->event_date }}</td>
-                                                <td>{{ $data->event_name }}</td>
+                                                <td>{{ ucwords($data->event->name) }}</td>
                                                 <td><span class="status pending">{{ $data->status }}</span></td>
                                             </tr>
                                         @endforeach
@@ -85,8 +82,7 @@
                 <center>
                     <h1>Scan Here</h1>
                 </center>
-                <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
-                    data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }}">
+                <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}">
                     <div class="container col-lg-3 py-3">
                         <div class="card bg-white shadow rounded-3 p-3 broder-0">
                             @if (session()->has('failed'))
@@ -108,8 +104,7 @@
                             <form action="{{ route('storeForEventRegister') }}" method="POST" id="form">
                                 @csrf
                                 <input type="hidden" name="user_id" id="user_id">
-                                <input type="hidden" name="event_name" id="event_name">
-                                <input type="hidden" name="event_date" id="event_date">
+                                <input type="hidden" name="event_id" id="event_id">
                             </form>
                         </div>
                     </div>
@@ -134,12 +129,9 @@
                 });
 
                 scanner.addListener('scan', function(c) {
-                    var selectedEventId = document.getElementById('eventDropdown')
-                        .value;
+                    var selectedEventId = document.getElementById('eventDropdown').value;
                     document.getElementById('user_id').value = parseInt(c);
-                    document.getElementById('event_name').value = localStorage.getItem('eventName');
-                    document.getElementById('event_date').value = localStorage.getItem('eventDate');
-                    selectedEventId;
+                    document.getElementById('event_id').value = selectedEventId;
                     document.getElementById('form').submit();
                 });
             </script>
@@ -160,28 +152,30 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $('#eventDropdown').change(function() {
-                var selectedEventId = $(this).val();
-                console.log(selectedEventId);
+        < script >
+            $(document).ready(function() {
+                var selectedEventId = null;
 
-                window.location.href = ('?event=' + selectedEventId)
+                $('#eventDropdown').change(function() {
+                    selectedEventId = $(this).val();
+                });
             });
-        });
+    </script>
+
     </script>
     <script>
         var nameEventOption = document.getElementById('eventDropdown');
         document.addEventListener('DOMContentLoaded', function() {
             nameEventOption.addEventListener('change', function() {
                 var selectedNameEvent = nameEventOption.options[nameEventOption.selectedIndex];
-                var dataNameValue = selectedNameEvent.getAttribute('data-name');
-                var dataDateValue = selectedNameEvent.getAttribute('data-date');
+                var dataIdValue = selectedNameEvent.value;
 
-                var nameDataInput = document.getElementById('event_name');
-                nameDataInput.value = dataNameValue;
 
-                localStorage.setItem('eventName', dataNameValue);
-                localStorage.setItem('eventDate', dataDateValue);
+                var idDataInput = document.getElementById('event_id');
+                idDataInput.value = dataIdValue;
+
+
+                localStorage.setItem('eventId', dataIdValue);
             });
         });
     </script>
