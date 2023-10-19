@@ -222,8 +222,8 @@
                                 </a>
                             </div>
                             @if (Auth::check() && Auth::user()->role === 'admin')
-                                <button class="btn btn-primary" data-event-id="{{ $event->id }}"
-                                    data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
+                                <button class="btn btn-primary" data-event-id="{{ $event->id }}">
+                                    {{-- data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}"> --}}
                                     <div class="container col-lg-3 py-3">
                                         <div class="card bg-white shadow rounded-3 p-3 broder-0">
                                             @if (session()->has('failed'))
@@ -244,11 +244,11 @@
                                                 </div>
                                             @endif
                                             <video id="preview" playsinline></video>
-                                            <form action="{{ route('storeForAdmin') }}" method="POST" id="form">
+                                            <form action="{{ route('storeForAdmin') }}" method="POST"
+                                                id="form">
                                                 @csrf
                                                 <input type="hidden" name="user_id" id="user_id">
-                                                <input type="hidden" name="event_name" id="event_name">
-                                                <input type="hidden" name="event_date" id="event_date">
+                                                <input type="hidden" name="event_id" id="event_id">
                                             </form>
                                         </div>
                                     </div>
@@ -272,11 +272,9 @@
                                         });
 
                                         scanner.addListener('scan', function(c) {
-                                            var eventName = document.querySelector('.btn.btn-primary').getAttribute('data-event-name');
-                                            var eventDate = document.querySelector('.btn.btn-primary').getAttribute('data-event-date');
+                                            var eventId = document.querySelector('.btn.btn-primary').getAttribute('data-event-id');
                                             document.getElementById('user_id').value = parseInt(c); // Mengonversi 'c' menjadi integer
-                                            document.getElementById('event_name').value = eventName;
-                                            document.getElementById('event_date').value = eventDate;
+                                            document.getElementById('event_id').value = eventId;
                                             document.getElementById('form').submit();
                                         })
                                     </script>
@@ -284,8 +282,7 @@
                                         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
                                     </script>
                                 @else
-                                    <button class="btn btn-primary" data-event-id="{{ $event->id }}"
-                                        data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}">
+                                    <button class="btn btn-primary" data-event-id="{{ $event->id }}">
                                         <p class="btn-text"><a href="#" style="color: white;">Register
                                                 Event</a></p>
                                         <span class="square"></span>
@@ -301,17 +298,11 @@
                                                         @else
                                                             const userId = null;
                                                         @endauth
-
-                                                        const eventId = registerButton.getAttribute('data-event-id');
-                                                        const eventName = registerButton.getAttribute('data-event-name');
-                                                        const eventDate = registerButton.getAttribute('data-event-date');
-
-                                                        axios.post('{{ route('event.register') }}', {
-                                                            user_id: userId,
-                                                            event_id: eventId,
-                                                            eventName: eventName,
-                                                            eventDate: eventDate,
-                                                        }).then((response) => {
+                                                        const eventId = registerButton.getAttribute('data-event-id'); axios.post(
+                                                            '{{ route('event.register') }}', {
+                                                                user_id: userId,
+                                                                eventId: eventId, 
+                                                            }).then((response) => {
                                                             if (response.data.message ===
                                                                 'You are already registered for this event.') {
                                                                 Swal.fire('You are already registered for this event.',
@@ -320,7 +311,7 @@
                                                                 Swal.fire('Thank you!', 'You have registered for this event.',
                                                                     'success');
                                                                 window.location.href =
-                                                                '/dashboard/event';
+                                                                    '/dashboard/event';
                                                             } else {
                                                                 Swal.fire('Error', 'An error occurred while registering for the event.',
                                                                     'error');

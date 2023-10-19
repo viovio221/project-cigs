@@ -422,8 +422,8 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
             $eventFind = Event::findOrFail(request()->event);
 
             $eventData = EventData::where(
-                'event_name',
-                $eventFind->name
+                'event_id',
+                $eventFind->id
             )->get();
         } else {
             $eventData = EventData::all();
@@ -435,7 +435,7 @@ Route::middleware(['checkUserRole:organizer'])->group(function () {
         );
     });
 
-    Route::get('/dashboard/qrcode/event_register/{event_name}', [
+    Route::get('/dashboard/qrcode/event_register/{event_id}', [
         EventDataController::class,
         'getEventById',
     ]);
@@ -461,4 +461,11 @@ Route::get('/dashboard/news', function () {
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
 })->name('news');
-Route::get('/dashboard/eventdesc1/{eventId}', [EventDataController::class, 'scan'])->name('dashboard.eventdesc1');
+Route::get('/dashboard/eventdesc1/{eventId}', [EventController::class, 'show'])->name('dashboard.eventdesc1');
+
+
+Route::delete('/eventdata/delete/{id}', [EventDataController::class, 'destroy'])->name('eventdata.delete');
+
+Route::post('/switch-role', [EventDataController::class, 'switchRole'])->name('switch.role')->middleware('auth');
+
+Route::get('/organizer/dashboard', [EventDataController::class, 'index'])->name('organizer.dashboard');

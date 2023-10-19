@@ -35,8 +35,7 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" data-event-id="{{ $event->id }}" data-event-name="{{ $event->name }}"
-                data-event-date="{{ $event->date }}">
+            <button class="btn btn-primary" data-event-id="{{ $event->id }}">
                 <div class="container col-lg-3 py-3">
                     <div class="card bg-white shadow rounded-3 p-3 broder-0">
                         @if (session()->has('failed'))
@@ -108,24 +107,7 @@
         });
     </script>
 
-    {{-- Mendapatkan data event name dan data date event --}}
-    <script>
-        var nameEventOption = document.getElementById('eventDropdown');
-        document.addEventListener('DOMContentLoaded', function() {
-            nameEventOption.addEventListener('change', function() {
-                var selectedNameEvent = nameEventOption.options[nameEventOption.selectedIndex];
-                var dataNameValue = selectedNameEvent.getAttribute('data-name');
-                var dataDateValue = selectedNameEvent.getAttribute('data-date');
-
-                var nameDataInput = document.getElementById('event_name');
-                nameDataInput.value = dataNameValue;
-
-                localStorage.setItem('eventName', dataNameValue);
-                localStorage.setItem('eventDate', dataDateValue);
-            });
-        });
-    </script>
-
+   
     <script>
         $(document).ready(function() {
             var selectedEventId = null;
