@@ -16,7 +16,7 @@ class EventDataController extends Controller
 {
     public function index()
     {
-        $eventdata= EventData::all();
+        $eventdata = EventData::all();
         $presence = Presence::all();
         $users = User::all();
         $profile = Profile::all();
@@ -40,15 +40,15 @@ class EventDataController extends Controller
     {
         $request->validate([
             'user_id' => 'required',
-            'eventName' => 'required',
-            'eventDate' => 'required',
+            'eventId' => 'required',
         ]);
 
         $userId = $request->input('user_id');
-        $eventName = $request->input('eventName');
+        $eventId = $request->input('eventId'); 
+
 
         $existingRegistration = EventData::where('user_id', $userId)
-            ->where('event_name', $eventName)
+            ->where('event_id', $eventId)
             ->first();
 
         if ($existingRegistration) {
@@ -56,8 +56,7 @@ class EventDataController extends Controller
         }
 
         $eventData = new EventData([
-            'event_name' => $eventName,
-            'event_date' => $request->input('eventDate'),
+            'event_id' => $eventId,
             'user_id' => $userId,
             'status' => 'registered'
         ]);
@@ -71,35 +70,24 @@ class EventDataController extends Controller
 
     public function store(Request $request)
     {
-        $dateToday = now()->toDateString();
         $request->validate([
             'user_id' => 'required',
         ]);
 
         $userId = $request->input('user_id');
-        $eventName = $request->input('event_name');
-        $eventDate = $request->input('event_date');
+        $eventId = $request->input('event_id');
 
         $existingRegistration = EventData::where('user_id', $userId)
-            ->where('event_name', $eventName)
+            ->where('event_name', $eventId)
             ->first();
 
         if ($existingRegistration) {
             return redirect()->route('event')->with('warning', 'You have already registered for this event!');
         }
 
-        $attendanceToday = EventData::where('user_id', $userId)
-            ->whereDate('event_date', $dateToday)
-            ->count();
-
-        if ($attendanceToday > 0) {
-            return redirect()->route('event')->with('warning', 'You have already attended this event today.');
-        }
-
         $newRegistration = new EventData([
             'user_id' => $userId,
-            'event_name' => $eventName,
-            'event_date' => $eventDate,
+            'event_id' => $eventId,
         ]);
 
         $newRegistration->save();
@@ -108,55 +96,80 @@ class EventDataController extends Controller
     }
 
 
-//     public function getEventDescription($eventId)
+    //     public function getEventDescription($eventId)
 // {
 //     $event = Event::find($eventId);
 
-//     return view('dashboard.qrcode.event_register', compact('event'));
+    //     return view('dashboard.qrcode.event_register', compact('event'));
 // }
 
 public function storeForEventRegister(Request $request)
 {
-    $dateToday = now()->toDateString();
-
     $request->validate([
         'user_id' => 'required',
-        'event_name' => 'required',
-        'event_date' => 'required',
+        'event_id' => 'required',
     ]);
-    $userId = $request->input('user_id');
-    $eventName = $request->input('event_name');
-    $eventDate = $request->input('event_date');
-    $existingRegistration = EventData::where('user_id', $userId)
-        ->where('event_name', $eventName)
-        ->first();
-    if ($existingRegistration) {
-        return redirect()->route('dashboard')->with('warning', 'You are already registered for this event!');
-    }
-    $attendanceToday = EventData::where('user_id', $userId)
-        ->whereDate('event_date', $dateToday)
-        ->count();
 
-    if ($attendanceToday > 0) {
-        return redirect()->route('dashboard')->with('warning', 'You have already attended an event today.');
+    $userId = $request->input('user_id');
+    $eventId = $request->input('event_id');
+
+    // dd('User ID:', $userId, 'Event ID:', $eventId);
+
+    $existingRegistration = EventData::where('user_id', $userId)
+        ->where('event_id', $eventId)
+        ->first();
+
+    if ($existingRegistration) {
+        return redirect()->route('dashboard')->with('warning', 'You have already registered for this event!');
     }
 
     $newRegistration = new EventData([
         'user_id' => $userId,
-        'event_name' => $eventName,
-        'event_date' => $eventDate,
+        'event_id' => $eventId,
     ]);
 
     $newRegistration->save();
 
-    return redirect()->route('dashboard')->with('success', 'Pendaftaran berhasil.');
+    return redirect()->route('dashboard')->with('success', 'Registration Succesfull.');
 }
+
 
     public function edit($id)
     {
         $eventData = EventData::findOrFail($id);
         return view('event_data.edit', compact('eventData'));
     }
+    public function storeForAdmin(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'event_id' => 'required',
+        ]);
+
+        $userId = $request->input('user_id');
+        $eventId = $request->input('event_id');
+
+        // dd('User ID:', $userId, 'Event ID:', $eventId);
+
+        $existingRegistration = EventData::where('user_id', $userId)
+            ->where('event_id', $eventId)
+            ->first();
+
+        if ($existingRegistration) {
+            return redirect()->route('event')->with('warning', 'You have already registered for this event!');
+        }
+
+        $newRegistration = new EventData([
+            'user_id' => $userId,
+            'event_id' => $eventId,
+        ]);
+
+        $newRegistration->save();
+
+
+        return redirect()->route('event')->with('success', 'Registration successful.');
+    }
+
 
     public function destroy($id)
     {
@@ -169,4 +182,7 @@ public function storeForEventRegister(Request $request)
 
         return redirect()->route('dashboard')->with('success', 'Event data deleted successfully.');
     }
+
+
+
 }
