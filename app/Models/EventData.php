@@ -16,6 +16,7 @@ class EventData extends Model
         'event_date',
         'user_id',
         'status',
+        'event_id',
     ];
 
     public static function createEventData($eventData)
@@ -31,5 +32,10 @@ class EventData extends Model
     {
         return $this->hasMany(Presence::class, 'event_data_id');
     }
+    public function event()
+{
+    return $this->belongsTo(Event::class, 'event_id');
+}
+
 }
 
