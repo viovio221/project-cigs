@@ -8,7 +8,7 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- My CSS -->
-    <link rel="stylesheet" href="{{ asset('css/qr.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/qrpresence.css') }}">
     @foreach ($profile as $item)
         <title>Dashboard | {{ $item->community_name }}</title>
     @endforeach
@@ -50,11 +50,12 @@
                         @if (session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong> {{ session()->get('succes') }}</strong>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
+                                <center><button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button></center>
                             </div>
                         @endif
-                        <video id="preview" playsinline></video>
+                        <h1>Presence Scan</h1>
+                        <center><video id="preview" playsinline style="width: 100%; max-width: 450px;"></video></center>
                         <form action="{{ route('store.presence') }}" method="POST" id="form">
                             @csrf
                             <input type="hidden" name="id" id="id">
