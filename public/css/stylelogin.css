@@ -241,4 +241,7 @@ a:hover{
 	.login-content{
 		justify-content: center;
 	}
+    .input-div > div > input{
+        font-size: 0.7rem;
+}
 }

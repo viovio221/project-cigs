@@ -63,7 +63,6 @@
                         <span class="text">Members Data</span>
                     </a>
                 </li>
-
             @elseif (Auth::check() && Auth::user()->role === 'non-member')
                 <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
                     <a href="/dashboard/news">
@@ -71,8 +70,6 @@
                         <span class="text">News</span>
                     </a>
                 </li>
-
-
             @endif
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <!-- Jika pengguna adalah admin, tampilkan elemen sidebar tambahan -->
@@ -257,7 +254,6 @@
                     </li>
 
                 </ul>
-
             @elseif (Auth::check() && Auth::user()->role === 'non-member')
                 <ul class="box-info" style="align-content: center">
                     <li>
@@ -268,8 +264,6 @@
                         </span>
                     </li>
                 </ul>
-
-
             @else
                 <ul class="box-info" style="align-content: center">
                     <li>
@@ -320,7 +314,6 @@
                                         <tr>
                                             <th></th>
                                             <th>Members Name</th>
-                                            <th>Event Date</th>
                                             <th>Event Name</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -331,9 +324,8 @@
                                             @foreach ($eventData as $data)
                                                 <tr>
                                                     <th></th>
-                                                    <td>{{ $data->user->name }}</td>
-                                                    <td>{{ $data->event_date }}</td>
-                                                    <td>{{ $data->event_name }}</td>
+                                                    <td>{{ ucwords($data->user->name) }}</td>
+                                                    <td>{{ ucwords($data->event->name) }}</td>
                                                     <td><span class="status pending">{{ $data->status }}</span></td>
                                                     <td class="side-menu top">
                                                         <form action="{{ route('event.destroy', $data->id) }}"
@@ -370,6 +362,7 @@
                                     <table>
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th style>No</th>
                                                 <th style>QR Code</th>
                                                 <th style>Name</th>
@@ -379,6 +372,7 @@
                                         <tbody>
                                             @foreach ($users as $usr)
                                                 <tr>
+                                                    <th></th>
                                                     <td>{{ $usr->id }}</td>
                                                     <td>
                                                         <?php
@@ -391,7 +385,7 @@
                                                         <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
                                                             alt="">
                                                     </td>
-                                                    <td>{{ $usr->name }}</td>
+                                                    <td>{{ ucwords($usr->name) }}</td>
                                                     <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
                                                 </tr>
                                             @endforeach
@@ -417,6 +411,7 @@
                             <table>
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th style>No</th>
                                         <th style>QR Code</th>
                                         <th style>Event Name</th>
@@ -426,18 +421,31 @@
                                 <tbody>
                                     @foreach ($eventdata as $evco)
                                         <tr>
+                                            <th></th>
                                             <td>{{ $evco->id }}</td>
                                             <td>
                                                 <?php
-                                                $kode = $evco->id . '/' . 'wayangriders/' . $evco->event_data_id . '';
-                                                $filename = 'wayangriders' . $evco->event_data_id . '.png';
+                                                if (!function_exists('generate_ulid')) {
+                                                    function generate_ulid()
+                                                    {
+                                                        $time = floor(microtime(true) * 1000);
+                                                        $entropy = bin2hex(random_bytes(10));
+                                                        $ulid = sprintf('%s%s', dechex($time), $entropy);
+                                                        return substr($ulid, 0, 26);
+                                                    }
+                                                }
+
+                                                $ulid = generate_ulid();
+                                                $kode = $evco->id . '/' . $ulid . '/' . 'wayangriders/' . $evco->event_data_id;
+                                                require_once 'qrcode/qrlib.php';
+                                                $filename = 'wayangriders' . $ulid . '.png';
                                                 $path = storage_path('app/public/presence_images/' . $filename);
-                                                QRcode::png("$kode", $path, 2, 2);
+                                                QRcode::png($kode, $path, 2, 2);
                                                 ?>
                                                 <img src="{{ asset('storage/presence_images/' . $filename) }}"
                                                     alt="">
                                             </td>
-                                            <td>{{ $evco->event_name }}</td>
+                                            <td>{{ ucwords($evco->event->name) }}</td>
                                             <td>{{ $evco->user->name }}</td>
                                         </tr>
                                     @endforeach
@@ -449,95 +457,45 @@
                 </div>
             @endif
             @if (Auth::check() && Auth::user()->role === 'organizer')
-                <div class="table-data">
-                    <div class="order">
-                        <div class="head">
-                            <h3>New Presence Data</h3>
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>New Event Data</h3>
+                    </div>
+                    <div class="table-data">
+                        <div class="order">
+                            <i class='bx bx-search'></i>
+                            <i class='bx bx-filter'></i>
                         </div>
-                        <div class="table-data">
-                            <div class="order">
-                                <i class='bx bx-search'></i>
-                                <i class='bx bx-filter'></i>
-                            </div>
 
-                            @if (isset($presence) && count($presence) > 0)
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Event Name</th>
-                                            <th>Checkin Participants</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($presence as $data)
-                                        <tr>
-                                            <th></th>
-                                            <td>{{ $data->eventData->event_name }}</td>
-                                            <td>{{ $data->eventData->user->name }}</td>
-                                            <td><span class="status pending">{{ $data->status }}</span></td>
-                                            <td class="side-menu top">
-                                                <form action="{{ route('presence.destroy', $data->id) }}" method="POST" style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" style="background: none; border: none; color: red" onclick="return confirm('Are you sure you want to delete this data?')">
-                                                        <i class='bx bx-trash'></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            @else
-                                <p>No presence data available for this event.</p>
-                            @endif
-
-
-                            </tbody>
-
+                        @if (isset($eventdata) && count($eventdata) > 0)
                             <table>
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>ID</th>
                                         <th>Event Name</th>
+                                        <th>Checkin Participants</th>
                                         <th>Status</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($presence))
-                                        @foreach ($presence as $data)
-                                            <tr>
-                                                <th></th>
-                                                <td>{{ $data->id }}</td>
-                                                <td>{{ $data->eventData->event_name }}</td>
-                                                <td><span class="status pending">{{ $data->status }}</span></td>
-                                                <td class="side-menu top">
-                                                    <form action="{{ route('event.destroy', $data->id) }}"
-                                                        method="POST" style="display: inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            style="background: none; border: none; color:red"
-                                                            onclick="return confirm('Are you sure you want to delete this data?')">
-                                                            <i class='bx bx-trash'></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                    @foreach ($eventdata as $data)
+                                    <tr>
+                                        <th></th>
+                                        <td>{{ ucwords($data->event->name) }}</td>
+                                        <td>{{ ucwords($data->user->name) }}</td>
+                                        <td><span class="status pending">{{ $data->status }}</span></td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
-
                             </table>
-                        </div>
+                        @else
+                            <p>No event data available for this organizer.</p>
+                        @endif
                     </div>
                 </div>
-            @endif
+            </div>
+        @endif
         </main>
         <!-- MAIN -->
     </section>

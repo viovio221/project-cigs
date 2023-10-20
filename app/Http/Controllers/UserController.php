@@ -12,10 +12,10 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
 
-     public function __construct()
-     {
-         $this->middleware('auth', ['except' => 'logout']);
-     }
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => 'logout']);
+    }
     public function index()
     {
         $nonMemberUsers = User::where('role', 'non-member')->get();
@@ -87,22 +87,35 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
-{
-    $user->delete();
+    {
+        $user->delete();
 
-    return redirect()->route('users.index')->with('success', 'User deleted successfully.');
-}
-public function confirmMemberStatus(Request $request, $id)
-{
-    try {
-        $user = User::findOrFail($id);
-        $user->update(['role' => 'member']);
-
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['success' => false, 'error' => $e->getMessage()]);
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
-}
+    public function confirmMemberStatus(Request $request, $id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->update(['role' => 'member']);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()]);
+        }
+    }
+
+    public function updateRole(Request $request)
+    {
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'role' => 'required',
+        ]);
+
+        $user = User::find($validatedData['user_id']);
+        $user->role = $validatedData['role'];
+        $user->save();
+        return redirect()->back();
+    }
 
 
 }
