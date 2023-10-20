@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
     @if ($profiles->count() > 0)
-    <title>Members Data | {{ $profiles[0]->community_name }}</title>
-    @foreach ($profiles as $profile)
-        <p>{{ $profile->community_name }}</p>
-    @endforeach
-@endif
+        <title>Members Data | {{ $profiles[0]->community_name }}</title>
+        @foreach ($profiles as $profile)
+            <p>{{ $profile->community_name }}</p>
+        @endforeach
+    @endif
 
 </head>
 
@@ -157,7 +157,7 @@
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i> </a>
         </nav>
         <!-- NAVBAR -->
 
@@ -207,27 +207,48 @@
                         </thead>
                         <tbody>
                             @php
-                            $number = 1;
+                                $number = 1;
                             @endphp
                             @foreach ($users as $us)
-                            @if ($us->role === 'non-member')
-                            <tr>
-                                <th></th>
-                                <td scope="row">{{ $number }}</td>
-                                <td>{{ $us->name }}</td>
-                                <td>{{ $us->email }}</td>
-                                <td>{{ $us->role }}</td>
-                                <td>{{ $us->created_at }}</td>
-                                <td>
-                                    <a href="#" style="color: blue" class="edit-user" data-user-id="{{ $us->id }}"><i class='bx bxs-user-check'></i></a>
-                                </td>
-                            </tr>
-                            @php
-                            $number++;
-                            @endphp
-                            @endif
+                                @if ($us->role === 'non-member')
+                                    <tr>
+                                        <th></th>
+                                        <td scope="row">{{ $number }}</td>
+                                        <td>{{ $us->name }}</td>
+                                        <td>{{ $us->email }}</td>
+                                        <td>{{ $us->role }}</td>
+                                        <td>{{ $us->created_at }}</td>
+                                        <td>
+                                            @if (
+                                                !(
+                                                    $us->phone_number &&
+                                                    $us->gender &&
+                                                    $us->date_birth &&
+                                                    $us->address &&
+                                                    $us->province &&
+                                                    $us->city &&
+                                                    $us->district &&
+                                                    $us->postal_code &&
+                                                    $us->document
+                                                ))
+                                                <a href="#" style="color: red;"
+                                                    onclick="showIncompleteProfileAlert()">
+                                                    <i class='bx bxs-error'></i> Incomplete Profile
+                                                </a>
+                                            @else
+                                                <a href="#" style="color: blue" class="edit-user"
+                                                    data-user-id="{{ $us->id }}"><i
+                                                        class='bx bxs-user-check'></i> Completed</a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $number++;
+                                    @endphp
+                                @endif
                             @endforeach
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -235,6 +256,17 @@
         </main>
         <!-- MAIN -->
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function showIncompleteProfileAlert() {
+            Swal.fire({
+                title: 'Incomplete Profile',
+                text: 'User has incomplete data',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const editButtons = document.querySelectorAll('.edit-user');
@@ -257,37 +289,39 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             fetch(`/dashboard/membersdata_crud/${userId}/confirm`, {
-                                method: 'POST',
-                                headers: {
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({ status: 'member' })
-                            })
-                            .then((response) => response.json())
-                            .then((data) => {
-                                if (data.success) {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        status: 'member'
+                                    })
+                                })
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    if (data.success) {
+                                        Swal.fire({
+                                            title: 'Status Successfully Changed!',
+                                            text: 'The user\'s status has been changed to member.',
+                                            icon: 'success'
+                                        });
+                                        location.reload();
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Failed to Change Status!',
+                                            text: 'An error occurred while changing the user\'s status.',
+                                            icon: 'error'
+                                        });
+                                    }
+                                })
+                                .catch((error) => {
                                     Swal.fire({
-                                        title: 'Status Successfully Changed!',
-                                        text: 'The user\'s status has been changed to member.',
-                                        icon: 'success'
-                                    });
-                                    location.reload();
-                                } else {
-                                    Swal.fire({
-                                        title: 'Failed to Change Status!',
-                                        text: 'An error occurred while changing the user\'s status.',
+                                        title: 'Failed to Contact the Server!',
+                                        text: 'An error occurred while contacting the server.',
                                         icon: 'error'
                                     });
-                                }
-                            })
-                            .catch((error) => {
-                                Swal.fire({
-                                    title: 'Failed to Contact the Server!',
-                                    text: 'An error occurred while contacting the server.',
-                                    icon: 'error'
                                 });
-                            });
                         }
                     });
                 });

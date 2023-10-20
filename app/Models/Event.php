@@ -23,5 +23,10 @@ class Event extends Model
     {
         return $this->hasMany(Eventuser ::class);
     }
+    public function eventData()
+{
+    return $this->hasMany(EventData::class, 'event_id');
+}
+
 
 }

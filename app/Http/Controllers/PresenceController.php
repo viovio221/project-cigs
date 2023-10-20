@@ -18,34 +18,34 @@ class PresenceController extends Controller
         $event = Event::all();
         return view('dashboard.qrcode.presence', compact('event', 'profile'));
     }
-
     public function store(Request $request)
     {
         $eventDataId = $request->input('event_data_id');
-        $existingPresence = Presence::where('event_data_id', $eventDataId)->first();
+        $eventData = EventData::find($eventDataId);
 
-        if ($existingPresence) {
-            Alert::warning('You have already checked in for this event', 'Warning');
+        if ($eventData) {
+            if ($eventData->status === 'checkin') {
+                Alert::warning('You have already checked in for this event.');
+                return redirect()->route('dashboard');
+            } else {
+                $eventData->update(['status' => 'checkin']);
+                Presence::create([
+                    'status' => 'checkin',
+                    'event_data_id' => $eventData->id,
+                ]);
+                Alert::success('Thank you for check-in', 'Success');
+            }
         } else {
-            $newPresence = new Presence([
-                'status' => 'checkin',
-                'event_data_id' => $eventDataId,
-            ]);
-
-            $newPresence->save();
-
-            Alert::success('Thank you for check-in', 'Success');
+            Alert::warning('Event not found', 'Warning');
         }
 
         return redirect()->route('dashboard.qrcode.webcam');
     }
+
     public function scan($eventId)
 {
     $profile = Profile::all();
-    $event = Event::find($eventId);
-
-    if (!$event) {
-    }
+    $event = Event::findOrFail($eventId);
 
     return view('dashboard.qrcode.presence', compact('event', 'profile'));
 }
@@ -71,6 +71,20 @@ public function simpanGambar(Request $request)
 
     return redirect()->route('dashboard');
 }
+public function destroy($id)
+    {
+        try {
+            $presence = Presence::find($id);
 
+            if (!$presence) {
+                return redirect()->back()->with('failed', 'Presence data not found');
+            }
 
+            $presence->delete();
+
+            return redirect()->back()->with('success', 'Presence data deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failed', 'An error occurred while deleting presence data');
+        }
+    }
 }
