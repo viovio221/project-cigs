@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/membersdata.css') }}">
 
     @foreach ($profile as $item)
     <title>Members Data | {{ $item->community_name }}</title>
@@ -208,6 +208,22 @@
                      </ul>
                 </div>
             </div>
+
+                @foreach ($users as $usr)
+                    <tr>
+                      <ul class="box-info" style="align-content: center">
+                        <li>
+                                <span class="text">
+                                <h3>{{ $usr->name }}</h3><br>
+                                <h1>{{ $usr->email }}</h1>
+                            </span>
+
+                         </li>
+                       </ul>
+                    </tr>
+               @endforeach
+
+
             @foreach ($users as $usr)
             <tr>
                 <td>
@@ -236,6 +252,7 @@
                 </td>
             </tr>
         @endforeach
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             function confirmRoleChange(selectElement) {
