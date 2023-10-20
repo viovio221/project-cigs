@@ -10,6 +10,7 @@ use App\Models\EventData;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EventDataController extends Controller
@@ -44,8 +45,7 @@ class EventDataController extends Controller
         ]);
 
         $userId = $request->input('user_id');
-        $eventId = $request->input('eventId'); 
-
+        $eventId = $request->input('eventId');
 
         $existingRegistration = EventData::where('user_id', $userId)
             ->where('event_id', $eventId)
@@ -62,11 +62,26 @@ class EventDataController extends Controller
         ]);
 
         if ($eventData->save()) {
-            return response()->json(['message' => 'Registration successful']);
+            $user = User::find($userId);
+            $event = Event::find($eventId);
+
+            if ($user && $event) {
+                $message = "Selamat {$user->name}! Anda telah berhasil mendaftar untuk acara {$event->name} yang akan berlangsung pada tanggal {$event->date}. Terima kasih atas partisipasinya!";
+
+                $recipientNumber = $user->phone_number;
+                $response = Http::post('https://wag.cigs.web.id/send-message', [
+                    'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
+                    'sender' => '6282128078893',
+                    'number' => $recipientNumber,
+                    'message' => $message,
+                ]);
+
+                return response()->json(['message' => 'Registration successful']);
         } else {
-            return response()->json(['message' => 'Failed to register for the event'], 500); // 500 is the server error status code
+            return response()->json(['message' => 'Failed to register for the event'], 500); 
         }
     }
+}
 
     public function store(Request $request)
     {
