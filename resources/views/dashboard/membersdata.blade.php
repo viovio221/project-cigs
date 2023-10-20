@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/membersdata.css') }}">
 
     @foreach ($profile as $item)
     <title>Members Data | {{ $item->community_name }}</title>
@@ -213,16 +213,16 @@
                     <tr>
                       <ul class="box-info" style="align-content: center">
                         <li>
-                            <i class='bx bxs-group'></i>
-                            <span class="text">
-                                <h3>{{ $usr->name }}</h3>
-                                <h3>{{ $usr->email }}</h3>
+                                <span class="text">
+                                <h3>{{ $usr->name }}</h3><br>
+                                <h1>{{ $usr->email }}</h1>
                             </span>
+
                          </li>
                        </ul>
                     </tr>
                @endforeach
-        
+
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/dashboard.js') }}"></script>
