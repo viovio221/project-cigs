@@ -327,14 +327,12 @@ body {
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
     background-color: #FFDAB8;
-    font-size: 12px;
 }
 #content .membersdata {
-	width: 100%;
+	width: 100;
 	padding: 20px ;
 	font-family: var(--poppins);
     height: 1000px;
-    font-size: 12px;
 	overflow-y: auto;
     background-color: #FFDAB8;
 }
@@ -346,7 +344,7 @@ body {
 	flex-wrap: wrap;
 }
 #content main .head-title .left h1 {
-	font-size: 24px;
+	font-size: 36px;
 	font-weight: 600;
 	margin-bottom: 10px;
 	color: var(--light);
@@ -369,7 +367,6 @@ body {
 }
 #content main .head-title .btn-download {
 	height: 36px;
-    width: 20px;
 	padding: 0 16px;
 	border-radius: 36px;
 	background: var(--orange);
@@ -392,52 +389,43 @@ body {
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-gap: 24px;
 	margin-top: 36px;
-    font-size: 12px;
 }
 #content main .box-info li {
-	padding: 20px;
-    width: 22%;
-    text-align: center;
+	padding: 24px;
 	background: var(--light);
-	border-radius: 16px;
-	display: column;
+	border-radius: 20px;
+	display: flex;
 	align-items: center;
 	grid-gap: 24px;
-    font-size: 12px;
 }
 #content main .box-info li .bx {
 	width: 80px;
 	height: 80px;
-	font-size: 50px;
-	display: absolute;
-    text-align: center;
-
+	border-radius: 10px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 #content main .box-info li:nth-child(1) .bx {
 	background: var(--light-orange);
 	color: var(--orange);
-    display: flex;
 }
 #content main .box-info li:nth-child(2) .bx {
 	background: var(--light-yellow);
 	color: var(--yellow);
-    display: flex;
 }
 #content main .box-info li:nth-child(3) .bx {
 	background: var(--light-orange);
 	color: var(--orange);
 }
 #content main .box-info li .text h3 {
-	font-size: auto;
+	font-size: 24px;
 	font-weight: 600;
 	color: var(--dark);
-
 }
-#content main .box-info li .text h1 {
-	font-size: 12px;
-	font-weight: 500;
+#content main .box-info li .text p {
 	color: var(--dark);
-    margin-left: 20px;
 }
 #content main .box-info1 li {
 	padding: 24px;
@@ -449,7 +437,7 @@ body {
     border-radius: 20px;
 }
 #content main .box-info1 li .bx {
-	width: 60px;
+	width: 80px;
 	height: 80px;
 	border-radius: 10px;
 	font-size: 36px;
@@ -460,7 +448,7 @@ body {
 
 .btn1{
 	display: block;
-	width: 40px;
+	width: 80px;
 	height: 25px;
 	border-radius: 25px;
 	outline: none;
@@ -477,7 +465,32 @@ body {
 }
 
 
+#content main .table-data {
+	display: flex;
+	flex-wrap: wrap;
+	grid-gap: 24px;
+	margin-top: 24px;
+	width: 100%;
+	color: var(--light);
 
+}
+#content main .table-data > div {
+	border-radius: 20px;
+	background: var(--orange);
+	padding: 24px;
+	overflow-x: auto;
+}
+#content main .table-data .head {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+	margin-bottom: 24px;
+}
+#content main .table-data .head h3 {
+	margin-right: auto;
+	font-size: 24px;
+	font-weight: 600;
+}
 #content main .table-data .head .bx {
 	cursor: pointer;
 }
@@ -571,7 +584,6 @@ body {
     margin: 20px auto; /* Tengahkan container */
     padding: 20px; /* Berikan ruang di sekitar container */
     border-radius: 10px;
-    font-size: 12px;
 
 }
 
@@ -690,89 +702,57 @@ body {
     }
 
     /* CSS untuk tampilan mobile */
-    @media (max-width: 768px) {
-        .table-data table {
-            display: block;
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        .table-data th,
-        .table-data td {
-            display: block;
-            width: 100%;
-            text-align: justify;
-            box-sizing: border-box;
-            border: none;
-            padding: 8px;
-        }
-        .table-data td img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Style for membersdata section */
-.membersdata {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 12px;
-}
-
-/* Style for head-title */
-.head-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    font-size: 12px;
-}
-
-.head-title h1 {
-    font-size: 20px;
-    color: #333;
-    margin-right: 20px;
-    font-size: 12px;
-}
-/* Style for box-info */
-.box-info {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.box-info i {
-    font-size: 12px;
-    color: #ffa500;
-    margin-bottom: 10px;
-    width: 60px;
-}
-
-.box-info .text h3 {
-    font-size: 12px;
-    color: #333;
-    margin-bottom: 10px;
-    width: 80px;
-}
-
-/* Center content inside box-info */
-.box-info .text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 80px;
-    font-size: 12px;
-}
-
+   /* Tampilan Mobile */
+@media (max-width: 768px) {
+    .table-data table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
     }
 
+    .table-data th,
+    .table-data td {
+        display: block;
+        width: 100%;
+        text-align: justify;
+        box-sizing: border-box;
+        border: none;
+        padding: 8px;
+    }
 
+    .table-data td img {
+        max-width: 100%;
+        height: auto;
+    }
 
+    .membersdata {
+        background-color: #fff;
+        width: 100%; /* Ubah lebar ke 100% agar sesuai dengan tampilan mobile */
+        height: 100%;
+        padding: 20px;
+        display: block;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-size: 12px; /* Sesuaikan font size dengan kebutuhan */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
+    .membersdata h3 {
+        font-size: 1.3rem; /* Sesuaikan font size dengan kebutuhan */
+    }
+
+    .box-info {
+        margin-bottom: 10px;
+        width: 100%; /* Ubah lebar ke 100% agar sesuai dengan tampilan mobile */
+        height: auto;
+        padding: 20px;
+        display: block;
+        border-radius: 1px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+}
 
 @media screen and (max-width: 768px) {
 	#sidebar {
@@ -1000,4 +980,3 @@ ul.box-info1 li .text1 h3,
 	cursor: pointer;
 	transition: .5s;
 }
-
