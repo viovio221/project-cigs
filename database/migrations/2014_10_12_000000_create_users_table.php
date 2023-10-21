@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('city', 100)->nullable();
             $table->string('district', 100)->nullable();
             $table->string('postal_code', 5)->nullable();
+            $table->string('otp_code', 6)->nullable();
+            $table->timestamp('otp_expiry_time')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -208,6 +208,7 @@
                      </ul>
                 </div>
             </div>
+<<<<<<< HEAD
 
                 @foreach ($users as $usr)
                     <tr>
@@ -229,6 +230,53 @@
                @endforeach
 
 
+=======
+
+                @foreach ($users as $usr)
+                    <tr>
+                      <ul class="box-info" style="align-content: center">
+                        <li>
+                                <span class="text">
+                                <h3>{{ $usr->name }}</h3><br>
+                                <h1>{{ $usr->email }}</h1>
+                            </span>
+
+                         </li>
+                       </ul>
+                    </tr>
+               @endforeach
+
+
+            @foreach ($users as $usr)
+            <tr>
+                <td>
+                    <ul class="box-info" style="display: flex; align-items: center;">
+                        <li style="display: flex; align-items: center; flex-grow: 1;">
+                            <i class='bx bxs-group'></i>
+                            <span class="text">
+                                <h3>{{ $usr->name }}</h3>
+                                <h3>{{ $usr->email }}</h3>
+                            </span>
+                            <form action="/dashboard/membersdata" method="POST" id="roleForm">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                                    @if (Auth::check() && Auth::user()->role === 'admin')
+                                    <select name="role" onchange="confirmRoleChange(this)">
+                                        <option value="admin" @if($usr->role == 'admin') selected @endif>Admin</option>
+                                    @endif
+                                    @if (Auth::check() && Auth::user()->role === 'admin')
+                                        <option value="member" @if($usr->role == 'member') selected @endif>Member</option>
+                                        <option value="organizer" @if($usr->role == 'organizer') selected @endif>Organizer</option>
+                                    @endif
+                                </select>
+                            </form>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        @endforeach
+
+>>>>>>> d8fa3ead954d5f8c7f3de76ae5922abdbdbb3264
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('js/dashboard.js') }}"></script>
         @include('sweetalert::alert')

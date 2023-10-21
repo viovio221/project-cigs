@@ -38,7 +38,6 @@
                     <div class="order">
                         <div class="head">
                             <h3>New Event's Data</h3>
-                            <button class="btn btn-primary" id="showEventDataButton">Lihat Data Event</button>
                         </div>
                         <div class="select-event">
                             <label for="eventDropdown">Select an Event:</label>
@@ -52,6 +51,7 @@
                                 @endforeach
                             </select>
                         </div><br>
+                        <center><button class="btn1 btn-primary" id="showEventDataButton">Lihat Data Event</button></center>
                         <div id="eventDataContainer" style="display: none;">
                             <table id="eventTable">
                                 <thead>
@@ -75,14 +75,26 @@
                             </table>
                         </div>
                     </div>
+                    <div class="table-data2">
+                        <table>
+                            <tr>
+                                <th>
+                                    <center><h1>Scan Here</h1></center>
+                                    <center><video id="preview" playsinline style="width: 100%; max-width: 450px;"></video></center>
+                                </th>
+                            </tr>
+                        </table>
                 </div>
                 </div>
             @endif
             <div class="scan-container">
+
+                <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
+                    data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }
                 <center>
                     <h1>Scan Here</h1>
                 </center>
-                <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}">
+
                     <div class="container col-lg-3 py-3">
                         <div class="card bg-white shadow rounded-3 p-3 broder-0">
                             @if (session()->has('failed'))
@@ -100,7 +112,7 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <video id="preview" playsinline style="width: 100%; max-width: 450px;"></video>
+                            {{-- <video id="preview" playsinline style="width: 100%; max-width: 450px;"></video> --}}
                             <form action="{{ route('storeForEventRegister') }}" method="POST" id="form">
                                 @csrf
                                 <input type="hidden" name="user_id" id="user_id">

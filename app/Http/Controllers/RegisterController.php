@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use App\Http\Controllers\NotificationController;
+
 
 class RegisterController extends Controller
 {
@@ -24,27 +26,43 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-
-     public function store(Request $request)
+    private function generateOTP()
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'phone_number' => 'required',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        $otpCode = rand(100000, 999999);
 
-        $user = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-        ]);
+        session(['otpCode' => $otpCode]);
 
-        $user->save();
-
-        return redirect('/login')->with('success', 'Registration successful! Please log-in');
+        return $otpCode;
     }
+    public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'phone_number' => 'required',
+        'password' => 'required|min:6|confirmed',
+    ]);
+
+    $otpCode = $this->generateOTP();
+
+    $recipientNumber = $request->phone_number;
+
+    $user = new User([
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone_number' => $request->phone_number,
+        'password' => Hash::make($request->password),
+        'otp_code' => $otpCode,
+        'otp_expiry_time' => now()->addMinutes(5), 
+    ]);
+
+    $user->save();
+
+    $notificationController = new NotificationController();
+    $notificationController->sendOTPviaWhatsApp($recipientNumber, $otpCode);
+
+    return redirect('/login')->with('success', 'Registration successful! Please log-in');
+}
 
     /**
      * Display the specified resource.

@@ -301,7 +301,7 @@
                                                         const eventId = registerButton.getAttribute('data-event-id'); axios.post(
                                                             '{{ route('event.register') }}', {
                                                                 user_id: userId,
-                                                                eventId: eventId, 
+                                                                eventId: eventId,
                                                             }).then((response) => {
                                                             if (response.data.message ===
                                                                 'You are already registered for this event.') {

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -98,24 +99,42 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             $user->update(['role' => 'member']);
 
-            return response()->json(['success' => true]);
+            $recipientNumber = $user->phone_number;
+
+            $message = "Halo, {$user->name} Wayang Riders!\n\n";
+            $message .= "Selamat! Anda telah diterima menjadi anggota komunitas Wayang Riders. Sekarang Anda dapat menikmati semua fitur dan manfaat yang kami tawarkan. Jika Anda memiliki pertanyaan atau memerlukan bantuan, jangan ragu untuk menghubungi tim dukungan kami. Selamat bergabung dengan komunitas motor Wayang Riders yang hebat! 🛵";
+
+            $response = Http::post('https://wag.cigs.web.id/send-message', [
+                'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
+                'sender' => '6282128078893',
+                'number' => $recipientNumber,
+                'message' => $message,
+            ]);
+
+            if ($response->successful()) {
+                return response()->json(['success' => true]);
+            } else {
+                return response()->json(['success' => false, 'error' => 'Gagal mengirim pesan WhatsApp']);
+            }
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 
-    public function updateRole(Request $request)
-    {
-        $validatedData = $request->validate([
-            'user_id' => 'required',
-            'role' => 'required',
-        ]);
 
-        $user = User::find($validatedData['user_id']);
-        $user->role = $validatedData['role'];
-        $user->save();
-        return redirect()->back();
-    }
+public function updateRole(Request $request)
+{
+    $validatedData = $request->validate([
+        'user_id' => 'required',
+        'role' => 'required',
+    ]);
+
+    $user = User::find($validatedData['user_id']);
+    $user->role = $validatedData['role'];
+    $user->save();
+
+    return redirect()->back();
+}
 
 
 }
