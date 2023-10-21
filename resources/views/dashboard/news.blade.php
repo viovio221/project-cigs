@@ -35,12 +35,12 @@
                 </a>
             </li>
             @if (Auth::check() && Auth::user()->role === 'non-member')
-                <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                    <a href="/dashboard/membersdata">
-                        <i class='bx bxs-group'></i>
-                        <span class="text">Members Data</span>
-                    </a>
-                </li>
+            <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">News</span>
+                </a>
+            </li>
             @endif
             @if (Auth::check() && Auth::user()->role === 'member')
                 <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->

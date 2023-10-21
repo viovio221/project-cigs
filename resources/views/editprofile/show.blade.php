@@ -16,31 +16,24 @@
 <body>
     <div class="container">
         <div class="box">
-            @foreach ($users as $user)
-                @if (auth()->user() && auth()->user()->document && auth()->user()->id == $user->id)
-                    <img src="{{ asset('storage/document_images/' . auth()->user()->document->image) }}">
-                @endif
-                <td>
-                    <?php
-                    $kode = $user->id . '/' . 'wayangriders/' . $user->password . '';
-                    require_once 'qrcode/qrlib.php';
-                    $filename = 'wayangriders' . $user->id . '.png';
-                    $path = storage_path('app/public/qrcode_images/' . $filename);
-
-                    // Membuat QR Code hanya jika ID pengguna cocok
-                    if (auth()->user() && auth()->user()->id == $user->id) {
-                        QRcode::png("$kode", $path, 2, 2);
-                    }
-                    ?>
-                    @if (auth()->user() && auth()->user()->id == $user->id)
-                        <img src="{{ asset('storage/qrcode_images/' . $filename) }}" alt="QR Code">
-                    @endif
-                </td>
-            @endforeach
-
-
-
-
+            @if (Auth::check() && Auth::user()->role === 'member')
+                @foreach ($users as $user)
+                    <td>
+                        <?php
+                        $kode = $user->id . '/' . 'wayangriders/' . $user->password . '';
+                        require_once 'qrcode/qrlib.php';
+                        $filename = 'wayangriders' . $user->id . '.png';
+                        $path = storage_path('app/public/qrcode_images/' . $filename);
+                        if (auth()->user() && auth()->user()->id == $user->id) {
+                            QRcode::png("$kode", $path, 2, 2);
+                        }
+                        ?>
+                        @if (auth()->user() && auth()->user()->id == $user->id)
+                            <img src="{{ asset('storage/qrcode_images/' . $filename) }}" alt="QR Code">
+                        @endif
+                    </td>
+                @endforeach
+            @endif
             <ul>
                 <br>
                 <tr>
@@ -48,11 +41,6 @@
                     <th><i style="font-size:24px" class="fa"></i></th>
                     <th><i style="font-size:24px" class="fa"></i></th>
                 </tr>
-                <form action="{{ route('dashboard') }}">
-                    <div class="mb-3 d-grid">
-                        <button type="submit" class="button btn-secondary"><b>BACK</b></button>
-                    </div>
-                </form>
             </ul>
         </div>
         <div class="About">
@@ -192,9 +180,15 @@
             @endif
             <form action="{{ route('editprofile.edit') }}">
                 <div class="mb-3 d-grid">
-                    <button type="submit" class="btn btn-primary"><b>Edit Profile</b></button>
+                    <center><button type="submit" class="btn btn-primary"><b>Edit Profile</b></button></center>
                 </div>
             </form>
+            <form action="{{ route('dashboard') }}">
+                <div class="mb-3 d-grid">
+                    <center><button type="submit" class="btn btn-primary"><b>BACK</b></button></center>
+                </div>
+            </form>
+
         </div>
     </div>
     <!-- CONTENT -->

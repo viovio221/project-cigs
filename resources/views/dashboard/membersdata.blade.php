@@ -213,11 +213,16 @@
                     <tr>
                       <ul class="box-info" style="align-content: center">
                         <li>
-                                <span class="text">
-                                <h3>{{ $usr->name }}</h3><br>
-                                <h1>{{ $usr->email }}</h1>
+                            <i class='bx bxs-group'></i>
+                            <span class="text">
+                                <h3 style="font-size: 15px">{{ $usr->name }}</h3>
                             </span>
-
+                         </li>
+                         <li>
+                            <i class='bx bxs-group'></i>
+                            <span class="text">
+                                <h3 style="font-size: 15px">{{ $usr->email }}</h3>
+                            </span>
                          </li>
                        </ul>
                     </tr>
