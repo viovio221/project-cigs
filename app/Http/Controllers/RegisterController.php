@@ -34,31 +34,36 @@ class RegisterController extends Controller
 
         return $otpCode;
     }
-     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'phone_number' => 'required',
-            'password' => 'required|min:6|confirmed',
-        ]);
- $otpCode = $this->generateOTP();
+    public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'phone_number' => 'required',
+        'password' => 'required|min:6|confirmed',
+    ]);
 
- $recipientNumber = $request->phone_number;
-        $user = new User([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-        ]);
+    $otpCode = $this->generateOTP();
 
-        $user->save();
+    $recipientNumber = $request->phone_number;
 
-        $notificationController = new NotificationController();
+    $user = new User([
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone_number' => $request->phone_number,
+        'password' => Hash::make($request->password),
+        'otp_code' => $otpCode,
+        'otp_expiry_time' => now()->addMinutes(5), 
+    ]);
+
+    $user->save();
+
+    $notificationController = new NotificationController();
     $notificationController->sendOTPviaWhatsApp($recipientNumber, $otpCode);
 
     return redirect('/login')->with('success', 'Registration successful! Please log-in');
 }
+
     /**
      * Display the specified resource.
      */
