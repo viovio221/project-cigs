@@ -89,12 +89,7 @@
             @endif
             <div class="scan-container">
 
-                <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}"
-                    data-event-name="{{ $event->first()->name }}" data-event-date="{{ $event->first()->date }
-                <center>
-                    <h1>Scan Here</h1>
-                </center>
-
+                <button class="btn btn-primary" data-event-id="{{ $event->first()->id }}">
                     <div class="container col-lg-3 py-3">
                         <div class="card bg-white shadow rounded-3 p-3 broder-0">
                             @if (session()->has('failed'))
@@ -112,7 +107,6 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            {{-- <video id="preview" playsinline style="width: 100%; max-width: 450px;"></video> --}}
                             <form action="{{ route('storeForEventRegister') }}" method="POST" id="form">
                                 @csrf
                                 <input type="hidden" name="user_id" id="user_id">
@@ -163,16 +157,17 @@
             }
         });
     </script>
-    <script>
-        < script >
-            $(document).ready(function() {
-                var selectedEventId = null;
+   <script>
+    $(document).ready(function() {
+        $('#eventDropdown').change(function() {
+            var selectedEventId = $(this).val();
+            console.log(selectedEventId);
 
-                $('#eventDropdown').change(function() {
-                    selectedEventId = $(this).val();
-                });
-            });
-    </script>
+            window.location.href = ('?event=' + selectedEventId)
+        });
+    });
+</script>
+
 
     </script>
     <script>
@@ -191,15 +186,7 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            var selectedEventId = null;
 
-            $('#eventDropdown').change(function() {
-                selectedEventId = $(this).val();
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
