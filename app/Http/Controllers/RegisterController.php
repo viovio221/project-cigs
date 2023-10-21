@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use App\Http\Controllers\NotificationController;
+
 
 class RegisterController extends Controller
 {
@@ -24,7 +26,14 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    private function generateOTP()
+    {
+        $otpCode = rand(100000, 999999);
 
+        session(['otpCode' => $otpCode]);
+
+        return $otpCode;
+    }
      public function store(Request $request)
     {
         $request->validate([
@@ -33,7 +42,9 @@ class RegisterController extends Controller
             'phone_number' => 'required',
             'password' => 'required|min:6|confirmed',
         ]);
+ $otpCode = $this->generateOTP();
 
+ $recipientNumber = $request->phone_number;
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
@@ -43,9 +54,11 @@ class RegisterController extends Controller
 
         $user->save();
 
-        return redirect('/login')->with('success', 'Registration successful! Please log-in');
-    }
+        $notificationController = new NotificationController();
+    $notificationController->sendOTPviaWhatsApp($recipientNumber, $otpCode);
 
+    return redirect('/login')->with('success', 'Registration successful! Please log-in');
+}
     /**
      * Display the specified resource.
      */
