@@ -33,6 +33,8 @@ class User extends Authenticatable
         'district',
         'postal_code',
         'date_birth',
+        'otp_code',
+        'otp_expiry_time',
     ];
 
 
