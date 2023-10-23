@@ -66,7 +66,7 @@ class EventDataController extends Controller
             $event = Event::find($eventId);
 
             if ($user && $event) {
-                $message = "Selamat {$user->name}! Anda telah berhasil mendaftar untuk acara {$event->name} yang akan berlangsung pada tanggal {$event->date}. Terima kasih atas partisipasinya!";
+                $message = "Congratulations, {$user->name}! You have successfully registered for the event {$event->name}, which will take place on {$event->date}. Thank you for your participation!";
 
                 $recipientNumber = $user->phone_number;
                 $response = Http::post('https://wag.cigs.web.id/send-message', [
@@ -77,11 +77,11 @@ class EventDataController extends Controller
                 ]);
 
                 return response()->json(['message' => 'Registration successful']);
-        } else {
-            return response()->json(['message' => 'Failed to register for the event'], 500); 
+            } else {
+                return response()->json(['message' => 'Failed to register for the event'], 500);
+            }
         }
     }
-}
 
     public function store(Request $request)
     {
