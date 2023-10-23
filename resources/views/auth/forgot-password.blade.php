@@ -3,8 +3,10 @@
         <title>Forgot Password</title>
         <link rel="stylesheet" href="{{ asset('css/forgot.css') }}">
     </head>
+    <br>
+    <br>
     <body>
-        <div class="main">
+        <center><div class="main">
             <div class="form">
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -25,11 +27,16 @@
                 <form action="{{ route('password.email') }}" method="post">
                 @csrf
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control1" name="email">
+                <br>
+                <br>
                 <input type="submit" value="Request Password Reset" class="btn btn-secondary w-100 mt-3">
                 </form>
+                <form action="{{ route('login.index') }}">
+                <input type="submit" value="Back To Login" class="btn btn-secondary w-100 mt-3">
+                </form>
             </div>
-        </div>
+        </div></center>
     </body>
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

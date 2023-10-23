@@ -1,17 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;700&display=swap');
 .main {
     background-color: orange;
-    padding: 50px;
+    margin-top:140px;
+    padding: 70px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    margin-top:200px;
-    margin-left:400px;
+    display: block;
+    border: 10px orange;
+    max-width: 50%;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
 }
+.form-control1 {
+    border: 0px solid #ccc;
+    background-color: #fff;
+    color: #ff6600;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 10px;
+    width: 50%; /* Membuatnya responsif */
+    box-sizing: border-box; /* Untuk menghindari padding mempengaruhi lebar total */
+    font-size: 16px;
+  }
+  /* Untuk memastikan input tidak terlalu besar pada perangkat berukuran kecil */
+  @media (max-width: 768px) {
+    .form-control1 {
+      font-size: 14px;
+    }
+  }
 
 .form {
-    text-align: center;
+    margin-bottom:50px;
+    height:200px;
     font-family: 'Poppins', sans-serif;
+    align-items: center;
+    justify-content: center;
 }
 
 .alert {
@@ -24,7 +48,6 @@ h2 {
     color:#FFF;
     font-family: 'Poppins', sans-serif;
 }
-
 p {
     margin-bottom: 20px;
     color:#FFF;
