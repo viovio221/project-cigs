@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'fadilahnurhasani41@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'organizer',
-            'phone_number' => '081234567890',
+            'phone_number' => '08872415689',
             'gender' => 'male',
         ]);
 
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'email' => 'wayangriders@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'admin',
-            'phone_number'=>'089687792980',
+            'phone_number'=>'083826272207',
             'gender'=>'male',
         ]);
         User::create([
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'email' => 'devaniamelia2018@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'member',
-            'phone_number' => '089123456789',
+            'phone_number' => '083826272207',
             'gender' => 'female',
         ]);
         User::create([
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             'email' => 'azzamnoya123@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'non-member',
-            'phone_number' => '089123456789',
+            'phone_number' => '085954730522',
             'gender' => 'female',
         ]);
         User::create([
@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             'email' => 'keyzakhalishmurad@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'non-member',
-            'phone_number' => '089123456789',
+            'phone_number' => '082117541335',
             'gender' => 'female',
         ]);
     }
