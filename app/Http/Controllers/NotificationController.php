@@ -57,13 +57,21 @@ class NotificationController extends Controller
             $status = Password::sendResetLink(['email' => $input]);
 
             if ($status === Password::RESET_LINK_SENT) {
-                return redirect()->route('login.index')->with([
-                    'status' => __("Password reset link has been sent. Please check your email.")
-                ]);
+                echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Password reset link has been sent. Please check your email.'
+                    });
+                </script>";
             } else {
-                return back()->with([
-                    'error' => "Email not registered.",
-                ]);
+                echo "<script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Email not registered.'
+                    });
+                </script>";
             }
         } else {
             $user = User::query()
@@ -94,7 +102,6 @@ class NotificationController extends Controller
                     $token = $addToken->token;
                 }
 
-                // $resetLink = route('password.update', ['token' => $token, 'email' => $user->email]);
                 $resetLink = route('password.reset', ['token' => $token, 'phone_number' => $user->phone_number]);
 
                 $apiKey = 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B';
@@ -118,9 +125,18 @@ class NotificationController extends Controller
                     ],
                 ]);
 
-                return json_decode($response->getBody(), true);
+                $responseBody = json_decode($response->getBody(), true);
+
+                echo "<script>
+                    Swal.fire({
+                        icon: '" . ($responseBody['status'] ? 'success' : 'error') . "',
+                        title: '" . ($responseBody['status'] ? 'Success' : 'Error') . "',
+                        text: '" . $responseBody['msg'] . "',
+                    });
+                </script>";
             }
         }
+        return view('auth.forgot-password');
     }
 
     public function processResetPassword(Request $request)
