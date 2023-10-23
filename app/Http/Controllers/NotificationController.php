@@ -24,7 +24,7 @@ class NotificationController extends Controller
         $message .= "To get started, we need to ensure the security of your account. Here is your OTP code for verification:\n\n";
         $message .= "OTP Code: $otpCode\n\n";
         $message .= "Please use this OTP code to complete the registration process of your account. ";
-        $message .= "Click the following link to continue: https://wayang.kakara.my.id/login \n";
+        $message .= "Click the following link to continue: https://wayang.kakara.my.id/login/otp \n";
         $message .= "If you did not register, please disregard this message.\n\n";
         $message .= "Thank you for being a part of Wayang Riders! ";
         $message .= "If you have any questions or need assistance, feel free to reach out to our support team.\n\n";

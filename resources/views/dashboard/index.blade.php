@@ -375,15 +375,7 @@
                                                     <th></th>
                                                     <td>{{ $usr->id }}</td>
                                                     <td>
-                                                        <?php
-                                                        $kode = $usr->id . '/' . 'wayangriders/' . $usr->password . '';
-                                                        require_once 'qrcode/qrlib.php';
-                                                        $filename = 'wayangriders' . $usr->id . '.png';
-                                                        $path = storage_path('app/public/qrcode_images/' . $filename);
-                                                        QRcode::png("$kode", $path, 2, 2);
-                                                        ?>
-                                                        <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
-                                                            alt="">
+                                                        <img src="{{ (new \chillerlan\QRCode\QRCode)->render(json_encode($usr->id)) }}" alt="QR">
                                                     </td>
                                                     <td>{{ ucwords($usr->name) }}</td>
                                                     <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
@@ -424,26 +416,7 @@
                                             <th></th>
                                             <td>{{ $evco->id }}</td>
                                             <td>
-                                                <?php
-                                                if (!function_exists('generate_ulid')) {
-                                                    function generate_ulid()
-                                                    {
-                                                        $time = floor(microtime(true) * 1000);
-                                                        $entropy = bin2hex(random_bytes(10));
-                                                        $ulid = sprintf('%s%s', dechex($time), $entropy);
-                                                        return substr($ulid, 0, 26);
-                                                    }
-                                                }
-
-                                                $ulid = generate_ulid();
-                                                $kode = $evco->id . '/' . $ulid . '/' . 'wayangriders/' . $evco->event_data_id;
-                                                require_once 'qrcode/qrlib.php';
-                                                $filename = 'wayangriders' . $ulid . '.png';
-                                                $path = storage_path('app/public/presence_images/' . $filename);
-                                                QRcode::png($kode, $path, 2, 2);
-                                                ?>
-                                                <img src="{{ asset('storage/presence_images/' . $filename) }}"
-                                                    alt="">
+                                                <img src="{{ (new \chillerlan\QRCode\QRCode)->render(json_encode($evco->id)) }}" alt="QR">
                                             </td>
                                             <td>{{ ucwords($evco->event->name) }}</td>
                                             <td>{{ $evco->user->name }}</td>
