@@ -11,6 +11,7 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
+
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -27,6 +28,18 @@
             <p>Please enter your email or WhatsApp number to request a password reset.</p>
             <form action="{{ route('password.email') }}" method="post" id="form">
                 @csrf
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control1" name="email">
+                <br>
+                <br>
+                <input type="submit" value="Request Password Reset" class="btn btn-secondary w-100 mt-3">
+                </form>
+                <form action="{{ route('login.index') }}">
+                <input type="submit" value="Back To Login" class="btn btn-secondary w-100 mt-3">
+                </form>
+            </div>
+        </div></center>
+    </body>
 
                 <label for="email_or_whatsapp" class="form-label">Email or WhatsApp Number</label>
                 <input type="text" class="form-control" name="email_or_whatsapp" id="email_or_whatsapp" value="{{ old('email_or_whatsapp') }}">
