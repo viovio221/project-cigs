@@ -75,6 +75,6 @@ public function document()
 public function events()
 {
 
-return $this->BelongsToMany(Event::class, 'event_data', 'user_id', 'event_name', 'id', 'name');
+return $this->BelongsToMany(Event::class, 'event_data', 'user_id', 'event_id');
 }
 }
