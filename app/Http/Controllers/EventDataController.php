@@ -66,7 +66,7 @@ class EventDataController extends Controller
             $event = Event::find($eventId);
 
             if ($user && $event) {
-                $message = "Selamat {$user->name}! Anda telah berhasil mendaftar untuk acara {$event->name} yang akan berlangsung pada tanggal {$event->date}. Terima kasih atas partisipasinya!";
+                $message = "Congratulations, {$user->name}! You have successfully registered for the event {$event->name}, which will take place on {$event->date}. Thank you for your participation!";
 
                 $recipientNumber = $user->phone_number;
                 $response = Http::post('https://wag.cigs.web.id/send-message', [
@@ -77,11 +77,11 @@ class EventDataController extends Controller
                 ]);
 
                 return response()->json(['message' => 'Registration successful']);
-        } else {
-            return response()->json(['message' => 'Failed to register for the event'], 500); 
+            } else {
+                return response()->json(['message' => 'Failed to register for the event'], 500);
+            }
         }
     }
-}
 
     public function store(Request $request)
     {
@@ -128,8 +128,6 @@ public function storeForEventRegister(Request $request)
     $userId = $request->input('user_id');
     $eventId = $request->input('event_id');
 
-    // dd('User ID:', $userId, 'Event ID:', $eventId);
-
     $existingRegistration = EventData::where('user_id', $userId)
         ->where('event_id', $eventId)
         ->first();
@@ -143,9 +141,31 @@ public function storeForEventRegister(Request $request)
         'event_id' => $eventId,
     ]);
 
-    $newRegistration->save();
+    if ($newRegistration->save()) {
+        $user = User::find($userId);
+        $event = Event::find($eventId);
 
-    return redirect()->route('dashboard')->with('success', 'Registration Succesfull.');
+        if ($user && $event) {
+            $message = "Congratulations, {$user->name}! You have successfully registered for the event {$event->name}, which will take place on {$event->date}. Thank you for your participation!";
+
+            $recipientNumber = $user->phone_number;
+
+            $response = Http::post('https://wag.cigs.web.id/send-message', [
+                'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
+                'sender' => '6282128078893',
+                'number' => $recipientNumber,
+                'message' => $message,
+            ]);
+
+            if ($response->successful()) {
+                return redirect()->route('dashboard')->with('success', 'Registration Successful');
+            } else {
+                return redirect()->route('dashboard')->with('error', 'Failed to send WhatsApp message');
+            }
+        }
+    } else {
+        return redirect()->route('dashboard')->with('error', 'Failed to register for the event');
+    }
 }
 
 

@@ -35,9 +35,9 @@
                     Change Password
                 </div>
                 <div class="form">
-                    <input type="text" name="token" value="{{ request()->token }}">
-                    <input type="text" name="email" value="{{ request()->email }}">
-                    <input type="text" name="phone_number" value="{{ request()->phone_number }}">
+                    <input type="hidden" name="token" value="{{ request()->token }}">
+                    <input type="hidden" name="email" value="{{ request()->email }}">
+                    <input type="hidden" name="phone_number" value="{{ request()->phone_number }}">
                     <div class="inputfield">
                         <label for="password">New Password</label>
                         <div class="password-container">
