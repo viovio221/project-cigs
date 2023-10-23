@@ -101,8 +101,8 @@ class UserController extends Controller
 
             $recipientNumber = $user->phone_number;
 
-            $message = "Halo, {$user->name} Wayang Riders!\n\n";
-            $message .= "Selamat! Anda telah diterima menjadi anggota komunitas Wayang Riders. Sekarang Anda dapat menikmati semua fitur dan manfaat yang kami tawarkan. Jika Anda memiliki pertanyaan atau memerlukan bantuan, jangan ragu untuk menghubungi tim dukungan kami. Selamat bergabung dengan komunitas motor Wayang Riders yang hebat! 🛵";
+            $message = "Hello, {$user->name} Wayang Riders!\n\n";
+            $message .= "Congratulations! You have been accepted as a member of the Wayang Riders community. Now, you can enjoy all the features and benefits we offer. If you have any questions or need assistance, don't hesitate to contact our support team. Welcome to the wonderful world of Wayang Riders motorcycle community! 🛵";
 
             $response = Http::post('https://wag.cigs.web.id/send-message', [
                 'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
@@ -114,7 +114,7 @@ class UserController extends Controller
             if ($response->successful()) {
                 return response()->json(['success' => true]);
             } else {
-                return response()->json(['success' => false, 'error' => 'Gagal mengirim pesan WhatsApp']);
+                return response()->json(['success' => false, 'error' => 'Failed to send WhatsApp message']);
             }
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
