@@ -32,6 +32,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\EventDataController;
 use App\Http\Controllers\CommentPostController;
 use App\Http\Controllers\EditProfileController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,54 +62,17 @@ Route::post('/submit-message', function (Request $request) {
     return redirect('/')->with('success', 'Pesan berhasil dikirim!');
 });
 
-// forgot password
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
-})
-    ->middleware('guest')
-    ->name('password.request');
-Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
-    $status = Password::sendResetLink($request->only('email'));
-    return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
-})
-    ->middleware('guest')
-    ->name('password.email');
+})->middleware('guest')->name('password.request');
 
-//reset password
+Route::post('/forgot-password', [NotificationController::class, 'forgotPassword'])->name('password.email');
+
 Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
-})
-    ->middleware('guest')
-    ->name('password.reset');
-Route::post('/reset-password', function (Request $request) {
-    $request->validate([
-        'token' => 'required',
-        'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
-    ]);
-    $status = Password::reset(
-        $request->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user, $password) {
-            $user
-                ->forceFill([
-                    'password' => Hash::make($password),
-                ])
-                ->setRememberToken(Str::random(60));
-            $user->save();
-            event(new PasswordReset($user));
-        }
-    );
-    return $status === Password::PASSWORD_RESET
-        ? redirect()
-        ->route('login.index')
-        ->with('status', __($status))
-        : back()->withErrors(['email' => [__($status)]]);
-})
-    ->middleware('guest')
-    ->name('password.update');
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [NotificationController::class, 'processResetPassword'])->name('password.update');
 
 //logout
 Route::get('/logout', function () {
@@ -379,10 +343,7 @@ Route::get('/dashboard/membersdata', function () {
     ->name('users')
     ->middleware('auth');
 
-Route::post('/dashboard/membersdata_crud/{id}/confirm', [
-    UserController::class,
-    'confirmMemberStatus',
-])->name('users.confirm');
+
 Route::post('/event/register', [EventDataController::class, 'registerEvent'])
     ->name('event.register')
     ->middleware('auth');
@@ -469,3 +430,10 @@ Route::delete('/eventdata/delete/{id}', [EventDataController::class, 'destroy'])
 Route::post('/switch-role', [EventDataController::class, 'switchRole'])->name('switch.role')->middleware('auth');
 
 Route::get('/organizer/dashboard', [EventDataController::class, 'index'])->name('organizer.dashboard');
+// Route::post('/dashboard/membersdata_crud/{userId}/confirm', 'NotificationController@confirmMember');
+
+
+Route::post('/dashboard/membersdata_crud/{id}/confirm', [
+    UserController::class,
+    'confirmMemberStatus',
+])->name('users.confirm');

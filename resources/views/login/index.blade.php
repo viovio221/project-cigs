@@ -20,7 +20,7 @@
 @endforeach
         <div class="login-content">
             <form action="{{ route('login.handleLogin') }}" method="POST">
-                @csrf 
+                @csrf
                 <img src="{{ asset('images/orangeprofile1.png') }}" alt="">
                 <h2 class="title">Welcome</h2>
                 <div class="input-div one">
@@ -43,7 +43,7 @@
                         <input type="password" class="input @error('password') is-invalid @enderror" name="password" placeholder="Input your password">
                     </div>
                 </div>
-                <div class="input-div pass">
+                {{-- <div class="input-div pass">
                     <div class="i">
                         <i class="fa-solid fa-key"></i>
                      </div>
@@ -51,7 +51,7 @@
                     <input type="text" class="input @error('otp') is-invalid @enderror" name="otp" placeholder="Please, verification your code OTP">
                 </div>
                 </div>
-                <div id="otp-expiry" class="otp-expiry">Kode OTP Anda akan kadaluarsa dalam <span id="countdown">5:00</span> menit</div>
+                <div id="otp-expiry" class="otp-expiry">Kode OTP Anda akan kadaluarsa dalam <span id="countdown">5:00</span> menit</div> --}}
                 @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror

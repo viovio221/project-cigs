@@ -31,20 +31,11 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('web')->attempt($credentials)) {
-            $user = Auth::guard('web')->user();
-            $enteredOTP = $request->otp;
-            $otpExpiryTime = $user->otp_expiry_time;
-
-            if ($otpExpiryTime && now() <= $otpExpiryTime && $enteredOTP == $user->otp_code) {
-                return redirect()->route('dashboard');
-            } else {
-                return back()->withErrors(['otp' => 'Invalid OTP code.'])->withInput();
-            }
+            return redirect()->route('dashboard');
         } else {
             return back()->withErrors(['email' => 'The username and password entered do not match'])->withInput();
         }
     }
-
 
 
     public function logout()
