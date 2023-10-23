@@ -14,6 +14,7 @@ use Database\Seeders\EventsSeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OtpController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
@@ -54,6 +55,11 @@ Route::get('/register', [LoginController::class, 'show'])->name('login.show');
 Route::get('/register', [RegisterController::class, 'index'])->name(
     'login.register'
 );
+
+
+Route::get('/login/otp', [OtpController::class, 'index'])->name('login.otp');
+Route::post('/login/otp', [OtpController::class, 'store'])->name('login.store');
+
 Route::post('/submit-message', function (Request $request) {
     $message = new Message();
     $message->message = $request->input('message');
