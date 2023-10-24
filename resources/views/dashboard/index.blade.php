@@ -371,16 +371,24 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($users as $usr)
-                                                <tr>
-                                                    <th></th>
-                                                    <td>{{ $usr->id }}</td>
-                                                    <td>
-                                                        <img src="{{ (new \chillerlan\QRCode\QRCode)->render(json_encode($usr->id)) }}" alt="QR">
-                                                    </td>
-                                                    <td>{{ ucwords($usr->name) }}</td>
-                                                    <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
-                                                </tr>
-                                            @endforeach
+                                            <tr>
+                                                <th></th>
+                                                <td>{{ $usr->id }}</td>
+                                                <td>
+                                                    <?php
+                                                    $kode = $usr->id . '/' . 'wayangriders/' . $usr->password . '';
+                                                    require_once 'qrcode/qrlib.php';
+                                                    $filename = 'wayangriders' . $usr->id . '.png';
+                                                    $path = storage_path('app/public/qrcode_images/' . $filename);
+                                                    QRcode::png("$kode", $path, 2, 2);
+                                                    ?>
+                                                    <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
+                                                        alt="">
+                                                </td>
+                                                <td>{{ ucwords($usr->name) }}</td>
+                                                <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -412,16 +420,24 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($eventdata as $evco)
-                                        <tr>
-                                            <th></th>
-                                            <td>{{ $evco->id }}</td>
-                                            <td>
-                                                <img src="{{ (new \chillerlan\QRCode\QRCode)->render(json_encode($evco->id)) }}" alt="QR">
-                                            </td>
-                                            <td>{{ ucwords($evco->event->name) }}</td>
-                                            <td>{{ $evco->user->name }}</td>
-                                        </tr>
-                                    @endforeach
+                                    <tr>
+                                        <th></th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <?php
+                                            $kode = $evco->id . '/' . 'wayangriders/' . $evco->password . '';
+                                            require_once 'qrcode/qrlib.php';
+                                            $filename = 'wayangriders' . $evco->id . '.png';
+                                            $path = storage_path('app/public/presence_images/' . $filename);
+                                            QRcode::png("$kode", $path, 2, 2);
+                                            ?>
+                                            <img src="{{ asset('storage/presence_images/' . $filename) }}"
+                                                alt="">
+                                        </td>
+                                        <td>{{ ucwords($evco->event->name) }}</td>
+                                        <td>{{ $evco->user->name }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
 
                             </table>

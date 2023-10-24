@@ -18,14 +18,20 @@ class PresenceController extends Controller
         $event = Event::all();
         return view('dashboard.qrcode.presence', compact('event', 'profile'));
     }
+
     public function store(Request $request)
     {
-        $eventDataId = $request->input('event_data_id');
-        $eventData = EventData::find($eventDataId);
+        $eventDataId = $request->input('id');
+        $eventId = $request->input('event_data_id');
+
+        $eventData = EventData::query()->where('id', $eventDataId)
+            ->where('event_id', $eventId)
+            ->first();
 
         if ($eventData) {
             if ($eventData->status === 'checkin') {
                 Alert::warning('You have already checked in for this event.');
+
                 return redirect()->route('dashboard');
             } else {
                 $eventData->update(['status' => 'checkin']);
@@ -34,44 +40,45 @@ class PresenceController extends Controller
                     'event_data_id' => $eventData->id,
                 ]);
                 Alert::success('Thank you for check-in', 'Success');
+
+                return redirect()->route('dashboard.qrcode.webcam');
             }
         } else {
             Alert::warning('Event not found', 'Warning');
+
+            return redirect()->back()->with('failed', 'Event data not found');
         }
-
-        return redirect()->route('dashboard.qrcode.webcam');
     }
-
     public function scan($eventId)
-{
-    $profile = Profile::all();
-    $event = Event::findOrFail($eventId);
+    {
+        $profile = Profile::all();
+        $event = Event::findOrFail($eventId);
 
-    return view('dashboard.qrcode.presence', compact('event', 'profile'));
-}
-public function uploadImage(Request $request)
-{
-    $imageData = $request->input('image');
+        return view('dashboard.qrcode.presence', compact('event', 'profile'));
+    }
+    public function uploadImage(Request $request)
+    {
+        $imageData = $request->input('image');
 
-    $presence = new Presence();
-    $presence->images = $imageData;
-    $presence->save();
+        $presence = new Presence();
+        $presence->images = $imageData;
+        $presence->save();
 
-    return response()->json(['success' => true]);
-}
-public function simpanGambar(Request $request)
-{
-    $imageData = $request->input('image');
+        return response()->json(['success' => true]);
+    }
+    public function simpanGambar(Request $request)
+    {
+        $imageData = $request->input('image');
 
-    $presenceImage = new PresenceImage();
-    $presenceImage->image_path = $imageData;
-    $presenceImage->save();
+        $presenceImage = new PresenceImage();
+        $presenceImage->image_path = $imageData;
+        $presenceImage->save();
 
-    Alert::success('Image saved', 'Success')->persistent(true);
+        Alert::success('Image saved', 'Success')->persistent(true);
 
-    return redirect()->route('dashboard');
-}
-public function destroy($id)
+        return redirect()->route('dashboard');
+    }
+    public function destroy($id)
     {
         try {
             $presence = Presence::find($id);
