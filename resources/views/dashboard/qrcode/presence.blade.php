@@ -83,6 +83,7 @@
                     });
 
                     scanner.addListener('scan', function(c) {
+                        console.log(parseInt(c));
                         var eventDataId = document.querySelector('.btn.btn-primary').getAttribute(
                             'data-event-id'); // Ambil 'event_data_id' dari tombol
 
@@ -108,7 +109,7 @@
         });
     </script>
 
-   
+
     <script>
         $(document).ready(function() {
             var selectedEventId = null;
