@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Event;
 use App\Models\Profile;
 use App\Models\Presence;
 use App\Models\EventData;
 use Illuminate\Http\Request;
 use App\Models\PresenceImage;
+use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PresenceController extends Controller
@@ -20,35 +22,60 @@ class PresenceController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $eventDataId = $request->input('id');
-        $eventId = $request->input('event_data_id');
+{
+    $eventDataId = $request->input('id');
+    $eventId = $request->input('event_data_id');
 
-        $eventData = EventData::query()->where('id', $eventDataId)
-            ->where('event_id', $eventId)
-            ->first();
+    $eventData = EventData::query()->where('id', $eventDataId)
+        ->where('event_id', $eventId)
+        ->first();
 
-        if ($eventData) {
-            if ($eventData->status === 'checkin') {
-                Alert::warning('You have already checked in for this event.');
+    if ($eventData) {
+        if ($eventData->status === 'checkin') {
+            Alert::warning('You have already checked in for this event.');
 
-                return redirect()->route('dashboard');
-            } else {
-                $eventData->update(['status' => 'checkin']);
-                Presence::create([
-                    'status' => 'checkin',
-                    'event_data_id' => $eventData->id,
-                ]);
-                Alert::success('Thank you for check-in', 'Success');
-
-                return redirect()->route('dashboard.qrcode.webcam');
-            }
+            return redirect()->route('dashboard');
         } else {
-            Alert::warning('Event not found', 'Warning');
+            $eventData->update(['status' => 'checkin']);
+            Presence::create([
+                'status' => 'checkin',
+                'event_data_id' => $eventData->id,
+            ]);
 
-            return redirect()->back()->with('failed', 'Event data not found');
+            $user = User::find($eventData->user_id); 
+
+            if ($user) {
+                $event = Event::find($eventId);
+
+                if ($event) {
+                    $message = "Congratulations, {$user->name}! You've successfully checked in for the thrilling '{$event->name}' event, scheduled for {$event->date}. Your participation is greatly appreciated, and we're delighted to have you with us. Enjoy the event, engage with fellow attendees, and gain insights from our exceptional speakers. Have a great journey!";
+
+                    $recipientNumber = $user->phone_number;
+
+                    $response = Http::post('https://wag.cigs.web.id/send-message', [
+                        'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
+                        'sender' => '6282128078893',
+                        'number' => $recipientNumber,
+                        'message' => $message,
+                    ]);
+
+                    if ($response->successful()) {
+                        Alert::success('Thank you for check-in', 'Success');
+                    } else {
+                        Alert::error('Failed to send WhatsApp notification', 'Error');
+                    }
+
+                    return redirect()->route('dashboard.qrcode.webcam');
+                }
+            }
         }
+    } else {
+        Alert::warning('Event data not found', 'Warning');
+
+        return redirect()->back()->with('failed', 'Event data not found');
     }
+}
+
     public function scan($eventId)
     {
         $profile = Profile::all();
