@@ -4,21 +4,22 @@
     padding: 70px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: block;
-    border: 10px orange;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 50%;
     border-radius: 20px;
-    align-items: center;
-    justify-content: center;
+    margin-top: 50px;
 }
 
 .form {
-    margin-bottom:50px;
-    height:200px;
+    margin-bottom: 50px;
+    height: 200px;
     font-family: 'Poppins', sans-serif;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
 }
+
 
 .alert {
     margin-bottom: 20px;

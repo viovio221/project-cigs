@@ -39,7 +39,7 @@ class RegisterController extends Controller
     $request->validate([
         'name' => 'required',
         'email' => 'required|email|unique:users,email',
-        'phone_number' => 'required',
+        'phone_number' => 'required|unique:users,phone_number',
         'password' => 'required|min:6|confirmed',
     ]);
 
@@ -53,7 +53,7 @@ class RegisterController extends Controller
         'phone_number' => $request->phone_number,
         'password' => Hash::make($request->password),
         'otp_code' => $otpCode,
-        'otp_expiry_time' => now()->addMinutes(5), 
+        'otp_expiry_time' => now()->addMinutes(5),
     ]);
 
     $user->save();
