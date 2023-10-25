@@ -314,6 +314,43 @@
                     <label class="form-label">Current Video</label>
                     <video src="{{ '/storage/' . $profiles->video2 }}" alt="Profiles Video" width="100">
                     </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold">Sender</label>
+                        <textarea class="form-control @error('sender') is-invalid @enderror" name="sender" rows="5">{{ $profiles->sender }}</textarea>
+                        @error('sender')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label class="font-weight-bold">End Point</label>
+                        <textarea class="form-control @error('endpoint') is-invalid @enderror" name="endpoint" rows="5">{{ $profiles->endpoint }}</textarea>
+                        @error('endpoint')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold">API Key</label>
+                        <textarea class="form-control @error('api_key') is-invalid @enderror" name="api_key" rows="5">{{ $profiles->api_key }}</textarea>
+                        @error('api_key')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold">API Token</label>
+                        <textarea class="form-control @error('api_token') is-invalid @enderror" name="api_token" rows="5">{{ $profiles->api_token }}</textarea>
+                        @error('api_token')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 <button type="submit" class="btn btn-primary">Save Changes</button>
             </form>
         </div>
