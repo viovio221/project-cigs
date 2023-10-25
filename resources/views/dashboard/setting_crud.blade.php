@@ -13,8 +13,9 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
     @foreach ($profiles as $item)
-    <title>Setting CRUD | {{ $item->community_name }}</title>
-    @endforeach   </head>
+        <title>Setting CRUD | {{ $item->community_name }}</title>
+    @endforeach
+</head>
 
 <body>
 
@@ -152,7 +153,7 @@
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i> </a>
         </nav>
         <!-- NAVBAR -->
 
@@ -192,14 +193,13 @@
                     <table>
                         <thead>
                             <tr>
-                                <td></td>
+                                <th></th>
                                 <th>Image</th>
                                 <th>Video</th>
                                 <th>Video 1</th>
                                 <th>Video 2</th>
                                 <th>History</th>
                                 <th>C. Bio</th>
-                                <th>C. Structure</th>
                                 <th>Slogan</th>
                                 <th>Name</th>
                                 <th>Action</th>
@@ -209,27 +209,28 @@
                             @if (isset($profiles))
                                 @foreach ($profiles as $no => $pf)
                                     <tr>
-                                        <td></td>
+                                        <th></th>
                                         <td>
-                                            <img src="{{ asset('/storage/' . $pf->image) }}"
-                                                alt="profiles" width="100">
+                                            <img src="{{ asset('/storage/' . $pf->image) }}" alt="profiles"
+                                                width="100">
                                         </td>
 
                                         <td>
-                                            <video src="{{ '/storage/' . $pf->video }}" width="100" autoplay muted loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video }}" width="100" autoplay muted
+                                                loop controls></video>
                                         </td>
                                         <td>
-                                            <video src="{{ '/storage/' . $pf->video1 }}" width="100" autoplay muted loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video1 }}" width="100" autoplay muted
+                                                loop controls></video>
                                         </td>
                                         <td>
-                                            <video src="{{ '/storage/' . $pf->video2 }}" width="100" autoplay muted loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video2 }}" width="100" autoplay
+                                                muted loop controls></video>
                                         </td>
                                         <td class="description">{{ $pf->history }}</td>
                                         <td class="description">{{ $pf->community_bio }}</td>
-                                        <td class="description">{{ $pf->community_structure }}</td>
                                         <td class="name">{{ $pf->slogan }}</td>
                                         <td class="name">{{ $pf->community_name }}</td>
-
                                         <td>
                                             <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
                                                     class='bx bx-edit'></i></a>
@@ -238,7 +239,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                                    style="background: none; border: none; color:red"
+                                                    onclick="return confirm('Are you sure you want to delete this data?')"><i
                                                         class='bx bx-trash'></i></button>
                                             </form>
                                         </td>
@@ -249,6 +251,66 @@
                     </table>
                 </div>
             </div>
+
+            <!-- Tabel Baru -->
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3><a href="#" class="btn btn-outline-primary">Setting</a>
+                        </h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Sender</th>
+                                <th>End Point</th>
+                                <th>API Key</th>
+                                <th>API Token</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (isset($profiles))
+                                @foreach ($profiles as $no => $pf)
+                                    <tr>
+                                        <th></th>
+                                        <td class="name">{{ $pf->sender }}</td>
+                                        <td class="name">{{ $pf->endpoint }}</td>
+                                        <td class="name">{{ $pf->api_key }}</td>
+                                        <td class="name">{{ $pf->api_token }}</td>
+                                        <td>
+                                            <a href="{{ route('profiles.edit', $pf->id) }}" style="color: blue"><i
+                                                    class='bx bx-edit'></i></a>
+                                            <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background: none; border: none; color:red"
+                                                    onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                                        class='bx bx-trash'></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- ... -->
 
         </main>
         <!-- MAIN -->
