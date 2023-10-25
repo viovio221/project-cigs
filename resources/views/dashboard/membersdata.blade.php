@@ -178,7 +178,8 @@
                 <i class='bx bxs-edit-alt'></i>
             </a>
             <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
+
 
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
                 <a href="/dashboard/review" class="notification">
@@ -289,6 +290,7 @@
 });
 </script>
 
+<script src="{{ asset('js/dashboard.js') }}"></script>
 
 
 </body>
