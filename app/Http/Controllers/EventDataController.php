@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
+use GuzzleHttp\Client;
+
 
 class EventDataController extends Controller
 {
@@ -39,6 +41,10 @@ class EventDataController extends Controller
 
     public function registerEvent(Request $request)
     {
+        $profile = Profile::first();
+        $apiKey = $profile->api_key;
+        $sender = $profile->sender;
+
         $request->validate([
             'user_id' => 'required',
             'eventId' => 'required',
@@ -69,12 +75,17 @@ class EventDataController extends Controller
                 $message = "Congratulations, {$user->name}! You have successfully registered for the event {$event->name}, which will take place on {$event->date}. Thank you for your participation!";
 
                 $recipientNumber = $user->phone_number;
-                $response = Http::post('https://wag.cigs.web.id/send-message', [
-                    'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
-                    'sender' => '6282128078893',
+
+                $client = new Client();
+
+            $response = $client->post($profile->endpoint, [
+                'form_params' => [
+                    'api_key' => $apiKey,
+                    'sender' => $sender,
                     'number' => $recipientNumber,
                     'message' => $message,
-                ]);
+                ],
+            ]);
 
                 return response()->json(['message' => 'Registration successful']);
             } else {
@@ -120,6 +131,9 @@ class EventDataController extends Controller
 
 public function storeForEventRegister(Request $request)
 {
+    $profile = Profile::first();
+    $apiKey = $profile->api_key;
+    $sender = $profile->sender;
     $request->validate([
         'user_id' => 'required',
         'event_id' => 'required',
@@ -150,22 +164,26 @@ public function storeForEventRegister(Request $request)
 
             $recipientNumber = $user->phone_number;
 
-            $response = Http::post('https://wag.cigs.web.id/send-message', [
-                'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
-                'sender' => '6282128078893',
-                'number' => $recipientNumber,
-                'message' => $message,
+            $client = new Client();
+
+            $response = $client->post($profile->endpoint, [
+                'form_params' => [
+                    'api_key' => $apiKey,
+                    'sender' => $sender,
+                    'number' => $recipientNumber,
+                    'message' => $message,
+                ],
             ]);
 
-            if ($response->successful()) {
+            if ($response->getStatusCode() == 200) {
                 return redirect()->route('dashboard')->with('success', 'Registration Successful');
             } else {
                 return redirect()->route('dashboard')->with('error', 'Failed to send WhatsApp message');
             }
         }
-    } else {
-        return redirect()->route('dashboard')->with('error', 'Failed to register for the event');
     }
+
+    return redirect()->route('dashboard')->with('error', 'Failed to register for the event');
 }
 
 
