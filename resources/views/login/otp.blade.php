@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="main">
+    <center><div class="main">
         <div class="form">
             <h2>OTP CODE</h2>
             <p>Please enter your OTP code for registration</p>
@@ -31,7 +31,7 @@
 
             <div class="otp-expiry" id="otp-expiry">Your OTP code will expire in <span id="countdown">5:00</span> minutes</div>
         </div>
-    </div>
+    </div></center>
    <!-- Bagian lain dari kode HTML Anda -->
 
 <script>
