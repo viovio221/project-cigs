@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use GuzzleHttp\Client;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -97,6 +98,10 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
+            $profile = Profile::first();
+            $apiKey = $profile->api_key;
+            $sender = $profile->sender;
+
             $user->update(['role' => 'member']);
 
             $recipientNumber = $user->phone_number;
@@ -104,14 +109,18 @@ class UserController extends Controller
             $message = "Hello, {$user->name} Wayang Riders!\n\n";
             $message .= "Congratulations! You have been accepted as a member of the Wayang Riders community. Now, you can enjoy all the features and benefits we offer. If you have any questions or need assistance, don't hesitate to contact our support team. Welcome to the wonderful world of Wayang Riders motorcycle community! 🛵";
 
-            $response = Http::post('https://wag.cigs.web.id/send-message', [
-                'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
-                'sender' => '6282128078893',
-                'number' => $recipientNumber,
-                'message' => $message,
+            $client = new Client();
+
+            $response = $client->post($profile->endpoint, [
+                'form_params' => [
+                    'api_key' => $apiKey,
+                    'sender' => $sender,
+                    'number' => $recipientNumber,
+                    'message' => $message,
+                ],
             ]);
 
-            if ($response->successful()) {
+            if ($response->getStatusCode() == 200) {
                 return response()->json(['success' => true]);
             } else {
                 return response()->json(['success' => false, 'error' => 'Failed to send WhatsApp message']);

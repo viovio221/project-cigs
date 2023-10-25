@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Event;
+use GuzzleHttp\Client;
 use App\Models\Profile;
 use App\Models\Presence;
 use App\Models\EventData;
@@ -21,19 +22,22 @@ class PresenceController extends Controller
         return view('dashboard.qrcode.presence', compact('event', 'profile'));
     }
 
-    public function store(Request $request)
+  public function store(Request $request)
 {
+    $profile = Profile::first();
+    $apiKey = $profile->api_key;
+    $sender = $profile->sender;
+
     $eventDataId = $request->input('id');
     $eventId = $request->input('event_data_id');
 
-    $eventData = EventData::query()->where('id', $eventDataId)
+    $eventData = EventData::where('id', $eventDataId)
         ->where('event_id', $eventId)
         ->first();
 
     if ($eventData) {
         if ($eventData->status === 'checkin') {
             Alert::warning('You have already checked in for this event.');
-
             return redirect()->route('dashboard');
         } else {
             $eventData->update(['status' => 'checkin']);
@@ -42,7 +46,7 @@ class PresenceController extends Controller
                 'event_data_id' => $eventData->id,
             ]);
 
-            $user = User::find($eventData->user_id); 
+            $user = User::find($eventData->user_id);
 
             if ($user) {
                 $event = Event::find($eventId);
@@ -52,14 +56,18 @@ class PresenceController extends Controller
 
                     $recipientNumber = $user->phone_number;
 
-                    $response = Http::post('https://wag.cigs.web.id/send-message', [
-                        'api_key' => 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
-                        'sender' => '6282128078893',
-                        'number' => $recipientNumber,
-                        'message' => $message,
+                    $client = new Client();
+
+                    $response = $client->post($profile->endpoint, [
+                        'form_params' => [
+                            'api_key' => $apiKey,
+                            'sender' => $sender,
+                            'number' => $recipientNumber,
+                            'message' => $message,
+                        ],
                     ]);
 
-                    if ($response->successful()) {
+                    if ($response->getStatusCode() == 200) {
                         Alert::success('Thank you for check-in', 'Success');
                     } else {
                         Alert::error('Failed to send WhatsApp notification', 'Error');
@@ -71,10 +79,10 @@ class PresenceController extends Controller
         }
     } else {
         Alert::warning('Event data not found', 'Warning');
-
         return redirect()->back()->with('failed', 'Event data not found');
     }
 }
+
 
     public function scan($eventId)
     {
