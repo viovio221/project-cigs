@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="{{ asset('/css/membersdata.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
 
     @foreach ($profile as $item)
     <title>Members Data | {{ $item->community_name }}</title>
@@ -208,78 +208,89 @@
                      </ul>
                 </div>
             </div>
-<<<<<<< HEAD
-
-                @foreach ($users as $usr)
-                    <tr>
-                      <ul class="box-info" style="align-content: center">
-                        <li>
-                            <i class='bx bxs-group'></i>
-                            <span class="text">
-                                <h3 style="font-size: 15px">{{ $usr->name }}</h3>
-                            </span>
-                         </li>
-                         <li>
-                            <i class='bx bxs-group'></i>
-                            <span class="text">
-                                <h3 style="font-size: 15px">{{ $usr->email }}</h3>
-                            </span>
-                         </li>
-                       </ul>
-                    </tr>
-               @endforeach
-
-
-=======
-
-                @foreach ($users as $usr)
-                    <tr>
-                      <ul class="box-info" style="align-content: center">
-                        <li>
-                                <span class="text">
-                                <h3>{{ $usr->name }}</h3><br>
-                                <h1>{{ $usr->email }}</h1>
-                            </span>
-
-                         </li>
-                       </ul>
-                    </tr>
-               @endforeach
-
-
             @foreach ($users as $usr)
             <tr>
-                <td>
-                    <ul class="box-info" style="display: flex; align-items: center;">
-                        <li style="display: flex; align-items: center; flex-grow: 1;">
-                            <i class='bx bxs-group'></i>
-                            <span class="text">
-                                <h3>{{ $usr->name }}</h3>
-                                <h3>{{ $usr->email }}</h3>
-                            </span>
-                            <form action="/dashboard/membersdata" method="POST" id="roleForm">
-                                @csrf
-                                <input type="hidden" name="user_id" value="{{ $usr->id }}">
-                                    @if (Auth::check() && Auth::user()->role === 'admin')
-                                    <select name="role" onchange="confirmRoleChange(this)">
-                                        <option value="admin" @if($usr->role == 'admin') selected @endif>Admin</option>
-                                    @endif
-                                    @if (Auth::check() && Auth::user()->role === 'admin')
-                                        <option value="member" @if($usr->role == 'member') selected @endif>Member</option>
-                                        <option value="organizer" @if($usr->role == 'organizer') selected @endif>Organizer</option>
-                                    @endif
-                                </select>
-                            </form>
+              <ul class="box-info" style="align-content: center">
+                <li>
+                    <i class='bx bxs-group'></i>
+                    <span class="text">
+                        <h3 style="font-size: 15px">{{ $usr->name }}</h3>
+                    </span>
+                    <form action="/dashboard/membersdata" method="POST" id="roleForm">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                            @if (Auth::check() && Auth::user()->role === 'admin')
+                            <select name="role" onchange="confirmRoleChange(this)">
+                                <option value="admin" @if($usr->role == 'admin') selected @endif>Admin</option>
+                            @endif
+                            @if (Auth::check() && Auth::user()->role === 'admin')
+                                <option value="member" @if($usr->role == 'member') selected @endif>Member</option>
+                                <option value="organizer" @if($usr->role == 'organizer') selected @endif>Organizer</option>
+                            @endif
+                        </select>
+                    </form>
+                 </li>
+                 <li>
+                    <i class='bx bxs-group'></i>
+                    <span class="text">
+                        <h3 style="font-size: 15px">{{ $usr->email }}</h3>
+                    </span>
+                 </li>
+               </ul>
+            </tr>
+
                         </li>
                     </ul>
                 </td>
             </tr>
         @endforeach
-
->>>>>>> d8fa3ead954d5f8c7f3de76ae5922abdbdbb3264
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{{ asset('js/dashboard.js') }}"></script>
-        @include('sweetalert::alert')
+        <script>
+            function confirmRoleChange(selectElement) {
+                Swal.fire({
+                    title: 'Confirm Role Change',
+                    text: 'Do you want to change this user\'s role?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        selectElement.form.submit();
+                    } else {
+                        // Reset the selection if the user cancels
+                        const selectedRole = "{{ $usr->role }}";
+                        for (let option of selectElement.options) {
+                            if (option.value === selectedRole) {
+                                option.selected = true;
+                                break;
+                            }
+                        }
+                    }
+                });
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+        const roleForm = document.getElementById('roleForm');
+        roleForm.addEventListener('submit', function (event) {
+            // Prevent the form from being submitted normally
+            event.preventDefault();
+            // Simulate a successful role change
+            Swal.fire({
+                title: 'Status Successfully Changed!',
+                text: 'The user\'s role has been changed successfully.',
+                icon: 'success'
+            }).then(() => {
+                // Redirect to dashboard.index after the success message is acknowledged
+                window.location.href = "/dashboard/index";
+            });
+        });
+});
+</script>
+
+
+
 </body>
 
 </html>

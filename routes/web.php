@@ -443,3 +443,4 @@ Route::post('/dashboard/membersdata_crud/{id}/confirm', [
     UserController::class,
     'confirmMemberStatus',
 ])->name('users.confirm');
+Route::post('/dashboard/membersdata', [UserController::class,'updateRole'])->name('dashboard.membersdata.updateRole');
