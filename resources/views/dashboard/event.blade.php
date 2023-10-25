@@ -238,19 +238,24 @@
                                         </ul>
                                     </div>
                                     <div class="card-price">
-                                        @foreach ($events as $evco)
-                                            <td>
-                                                @if ($evco->is_registered)
-                                                    <?php
-                                                    $kode = $evco->id . '/' . 'wayangriders/' . $evco->name . '';
+                                        @foreach ($eventdata as $evco)
+                                            @if ($evco->event_id == $item->id)
+                                                <?php
+                                                $kode = $evco->id . '/' . 'wayangriders/' . $evco->password . '';
+                                                $filename = 'wayangriders' . $evco->id . '.png';
+                                                $path = storage_path('app/public/qrcode_images/' . $filename);
+                                                if (auth()->user() && auth()->user()->id == $evco->user->id) {
                                                     require_once 'qrcode/qrlib.php';
-                                                    $filename = 'wayangriders' . $evco->id . '.png';
-                                                    $path = storage_path('app/public/presence_images/' . $filename);
                                                     QRcode::png("$kode", $path, 2, 2);
-                                                    ?>
-                                                    <img src="{{ asset('storage/presence_images/' . $filename) }}" alt="">
+                                                }
+                                                ?>
+                                                @if (auth()->user() && auth()->user()->id == $evco->user->id)
+                                                <center>
+                                                    <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
+                                                        alt="QR Code" style="width: 50%">
+                                                    </center>
                                                 @endif
-                                            </td>
+                                            @endif
                                         @endforeach
 
                                         @php
@@ -258,12 +263,14 @@
                                         @endphp
 
                                         <button class="btn btn-secondary searchable-element">
-                                            <a href="{{ $showDescriptionRoute }}" style="color: white;">See Description</a>
+                                            <a href="{{ $showDescriptionRoute }}" style="color: white;">See
+                                                Description</a>
                                         </button>
 
                                         @if (Auth::check() && Auth::user()->role === 'organizer')
                                             <button class="btn btn-secondary searchable-element">
-                                                <a href="{{ route('dashboard.qrcode.presence', $item->id) }}" title="Scan QR Code Presence" style="color: white;">
+                                                <a href="{{ route('dashboard.qrcode.presence', $item->id) }}"
+                                                    title="Scan QR Code Presence" style="color: white;">
                                                     <i class='bx bx-scan'></i> Scan Presence
                                                 </a>
                                             </button>
