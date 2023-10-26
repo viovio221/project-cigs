@@ -149,7 +149,7 @@
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
+                <i class='bx bx-calendar-star'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -176,7 +176,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Setting</a>
+                        <h3><a class="btn btn-outline-primary">Setting</a>
                         </h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -187,8 +187,6 @@
                                 </ul>
                             </div>
                         @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
                     </div>
                     <table>
                         <thead>
@@ -216,16 +214,13 @@
                                         </td>
 
                                         <td>
-                                            <video src="{{ '/storage/' . $pf->video }}" width="100" autoplay muted
-                                                loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video }}" width="100" ></video>
                                         </td>
                                         <td>
-                                            <video src="{{ '/storage/' . $pf->video1 }}" width="100" autoplay muted
-                                                loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video1 }}" width="100" ></video>
                                         </td>
                                         <td>
-                                            <video src="{{ '/storage/' . $pf->video2 }}" width="100" autoplay
-                                                muted loop controls></video>
+                                            <video src="{{ '/storage/' . $pf->video2 }}" width="100" ></video>
                                         </td>
                                         <td class="description">{{ $pf->history }}</td>
                                         <td class="description">{{ $pf->community_bio }}</td>
@@ -234,15 +229,6 @@
                                         <td>
                                             <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
                                                     class='bx bx-edit'></i></a>
-                                            <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
-                                                style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    style="background: none; border: none; color:red"
-                                                    onclick="return confirm('Are you sure you want to delete this data?')"><i
-                                                        class='bx bx-trash'></i></button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -256,7 +242,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Setting</a>
+                        <h3><a class="btn btn-outline-primary">Setting</a>
                         </h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -267,43 +253,29 @@
                                 </ul>
                             </div>
                         @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
                     </div>
                     <table>
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Sender</th>
-                                <th>End Point</th>
-                                <th>API Key</th>
-                                <th>API Token</th>
+                                <th>WhatsApp Sender</th>
+                                <th>WhatsApp End Point</th>
+                                <th>WhatsApp API</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (isset($profiles))
                                 @foreach ($profiles as $no => $pf)
-                                    <tr>
-                                        <th></th>
-                                        <td class="name">{{ $pf->sender }}</td>
-                                        <td class="name">{{ $pf->endpoint }}</td>
-                                        <td class="name">{{ $pf->api_key }}</td>
-                                        <td class="name">{{ $pf->api_token }}</td>
-                                        <td>
-                                            <a href="{{ route('profiles.edit', $pf->id) }}" style="color: blue"><i
-                                                    class='bx bx-edit'></i></a>
-                                            <form action="{{ route('profiles.destroy', $pf->id) }}" method="POST"
-                                                style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    style="background: none; border: none; color:red"
-                                                    onclick="return confirm('Are you sure you want to delete this data?')"><i
-                                                        class='bx bx-trash'></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <th></th>
+                                    <td class="name">{{ $pf->sender }}</td>
+                                    <td class="name">{{ $pf->endpoint }}</td>
+                                    <td class="name">{{ $pf->api_key }}</td>
+                                    <td style="text-align: center;">
+                                        <a href="{{ route('profiles.edit', $pf->id) }}" style="color: blue"><i class='bx bx-edit'></i></a>
+                                    </td>
+                                </tr>
                                 @endforeach
                             @endif
                         </tbody>

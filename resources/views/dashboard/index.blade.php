@@ -188,7 +188,7 @@
 
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
                 <a href="/dashboard/review" class="notification" title="event's review here">
-                    <i class='bx bxs-bell'></i>
+                    <i class='bx bx-calendar-star'></i>
                 </a>
             @endif
 
