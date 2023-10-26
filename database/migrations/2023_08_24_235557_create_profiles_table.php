@@ -19,6 +19,10 @@ class CreateProfilesTable extends Migration
             $table->text('community_structure')->nullable();
             $table->string('slogan', 100)->nullable();
             $table->string('community_name', 100)->nullable();
+            $table->string('endpoint')->nullable();
+            $table->string('sender')->nullable();
+            $table->string('api_key')->nullable();
+            $table->string('api_token')->nullable();
             $table->timestamp('updated_at')->useCurrent();
         });
     }
