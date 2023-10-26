@@ -108,7 +108,7 @@ class EventDataController extends Controller
             ->first();
 
         if ($existingRegistration) {
-            return redirect()->route('event')->with('warning', 'You have already registered for this event!');
+            return back()->with('warning', 'You have already registered for this event!');
         }
 
         $newRegistration = new EventData([
@@ -118,7 +118,7 @@ class EventDataController extends Controller
 
         $newRegistration->save();
 
-        return redirect()->route('event')->with('success', 'Registration successful.');
+        return back()->with('success', 'Registration successful.');
     }
 
 
@@ -147,7 +147,7 @@ public function storeForEventRegister(Request $request)
         ->first();
 
     if ($existingRegistration) {
-        return redirect()->route('dashboard')->with('warning', 'You have already registered for this event!');
+        return back()->with('warning', 'You have already registered for this event!');
     }
 
     $newRegistration = new EventData([
@@ -176,14 +176,14 @@ public function storeForEventRegister(Request $request)
             ]);
 
             if ($response->getStatusCode() == 200) {
-                return redirect()->route('dashboard')->with('success', 'Registration Successful');
+                return redirect()->route('dashboard.qrcode.event_register')->with('success', 'Registration Successful');
             } else {
-                return redirect()->route('dashboard')->with('error', 'Failed to send WhatsApp message');
+                return redirect()->route('dashboard.qrcode.event_register')->with('error', 'Failed to send WhatsApp message');
             }
         }
     }
 
-    return redirect()->route('dashboard')->with('error', 'Failed to register for the event');
+    return redirect()->route('dashboard.qrcode.event_register')->with('error', 'Failed to register for the event');
 }
 
 
@@ -211,7 +211,7 @@ public function storeForEventRegister(Request $request)
             ->first();
 
         if ($existingRegistration) {
-            return redirect()->route('event')->with('warning', 'You have already registered for this event!');
+            return back()->with('warning', 'You have already registered for this event!');
         }
 
         $user = User::find($userId);
@@ -239,7 +239,7 @@ public function storeForEventRegister(Request $request)
 
             $newRegistration->save();
 
-            return redirect()->route('event')->with('success', 'Registration successful.');
+            return back()->with('success', 'Registration successful.');
         } catch (\Exception $e) {
             Alert::error('No connection', 'Please try again')->persistent(true);
             return redirect()->back();

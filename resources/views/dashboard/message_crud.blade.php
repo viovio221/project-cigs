@@ -138,16 +138,16 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                    <input type="search" id="searchBox" placeholder="Search...">
+                    <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <a href="/dashboard/message" class="notification">
+            <a href="/dashboard/message" class="notification" title="message here">
                 <i class='bx bxs-edit-alt'></i>
             </a>
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="/dashboard/review" class="notification">
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
+            <a href="/dashboard/review" class="notification" title="event's review here">
                 <i class='bx bxs-bell'></i>
             </a>
 
@@ -158,7 +158,7 @@
         <!-- NAVBAR -->
 
         <!-- MAIN -->
-        <main class="membersdata">
+        <main class="membersdata" id="membersdata">
             <div class="head-title">
                 <div class="left">
                     <h1>Data CRUD Riders</h1>
@@ -173,7 +173,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="table-data">
+            <div class="table-data ">
                 <div class="order">
                     <div class="head">
                         <h3><a class="btn btn-outline-primary">Add
@@ -190,7 +190,7 @@
                         @endif
                     </div>
                     <table>
-                        <thead>
+                        <thead class="searchable-element">
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">User</th>
@@ -232,6 +232,65 @@
         </main>
         <!-- MAIN -->
     </section>
+    <script>
+        const searchBox = document.getElementById('searchBox');
+        const searchSubmit = document.getElementById('searchSubmit');
+        let alertShown = false;
+
+        searchSubmit.addEventListener('click', (e) => {
+            e.preventDefault();
+            const searchTerm = searchBox.value.toLowerCase();
+
+            if (searchTerm === '') {
+                return;
+            }
+
+            removeHighlights();
+
+            const textElements = document.querySelectorAll('.searchable-element');
+
+            let found = false;
+            let firstMatchId = null;
+
+            textElements.forEach((element) => {
+                const text = element.innerText.toLowerCase();
+                const regex = new RegExp(searchTerm, 'gi');
+
+                if (regex.test(text)) {
+                    found = true;
+                    const highlightedText = element.innerHTML.replace(
+                        regex,
+                        '<span class="highlight">$&</span>'
+                    );
+                    element.innerHTML = highlightedText;
+
+                    if (!firstMatchId) {
+                        firstMatchId = element.getAttribute('id');
+                    }
+                }
+            });
+
+            if (found) {
+                if (firstMatchId) {
+                    window.location.href = `#${firstMatchId}`;
+                }
+            } else {
+                if (!alertShown) {
+                    Swal.fire('Sorry!', 'No results for this search!', 'info');
+                    alertShown = true;
+                } else {
+                    alertShown = false;
+                }
+            }
+        });
+
+        function removeHighlights() {
+            const highlightedElements = document.querySelectorAll('.highlight');
+            highlightedElements.forEach((element) => {
+                element.outerHTML = element.innerHTML;
+            });
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CONTENT -->
     <script src="{{ asset('js/dashboard.js') }}"></script>

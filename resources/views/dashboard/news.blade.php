@@ -209,7 +209,7 @@
             <ul class="box-info1" style="align-content: center">
                 {{-- @if (isset($news)) --}}
                 @foreach ($news as $nw)
-                    <li class="news-item searchable-element">
+                    <li class="news-item">
                         <td>
                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news" width="100">
                         </td>

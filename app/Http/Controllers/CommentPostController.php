@@ -31,9 +31,9 @@ class CommentPostController extends Controller
             'content' => 'required|string',
             'rating' => 'required|integer',
         ], [
-            'username.required' => 'Username is required.',
-            'event_id.required' => 'Event ID is required.',
-            'event_id.exists' => 'Invalid Event ID.',
+            'username.required' => 'Name is required.',
+            'event_id.required' => 'Event is required.',
+            'event_id.exists' => 'Invalid Event.',
             'content.required' => 'Content is required.',
             'content.string' => 'Content must be a text.',
             'rating.required' => 'Rating is required.',
