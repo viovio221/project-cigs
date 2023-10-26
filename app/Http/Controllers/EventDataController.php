@@ -194,6 +194,10 @@ public function storeForEventRegister(Request $request)
     }
     public function storeForAdmin(Request $request)
     {
+        $profile = Profile::first();
+        $apiKey = $profile->api_key;
+        $sender = $profile->sender;
+
         $request->validate([
             'user_id' => 'required',
             'event_id' => 'required',
@@ -201,8 +205,6 @@ public function storeForEventRegister(Request $request)
 
         $userId = $request->input('user_id');
         $eventId = $request->input('event_id');
-
-        // dd('User ID:', $userId, 'Event ID:', $eventId);
 
         $existingRegistration = EventData::where('user_id', $userId)
             ->where('event_id', $eventId)
@@ -212,15 +214,36 @@ public function storeForEventRegister(Request $request)
             return redirect()->route('event')->with('warning', 'You have already registered for this event!');
         }
 
-        $newRegistration = new EventData([
-            'user_id' => $userId,
-            'event_id' => $eventId,
-        ]);
+        $user = User::find($userId);
+        $event = Event::find($eventId);
 
-        $newRegistration->save();
+        $recipientNumber =  $user->phone_number;
+        $message = "Congratulations, {$user->name}! You have successfully registered for the event {$event->name}, which will take place on {$event->date}. Thank you for your participation!";
 
+        $client = new Client();
 
-        return redirect()->route('event')->with('success', 'Registration successful.');
+        try {
+            $response = $client->post($profile->endpoint, [
+                'form_params' => [
+                    'api_key' => $apiKey,
+                    'sender' => $sender,
+                    'number' => $recipientNumber,
+                    'message' => $message,
+                ],
+            ]);
+
+            $newRegistration = new EventData([
+                'user_id' => $userId,
+                'event_id' => $eventId,
+            ]);
+
+            $newRegistration->save();
+
+            return redirect()->route('event')->with('success', 'Registration successful.');
+        } catch (\Exception $e) {
+            Alert::error('No connection', 'Please try again')->persistent(true);
+            return redirect()->back();
+        }
     }
 
 
