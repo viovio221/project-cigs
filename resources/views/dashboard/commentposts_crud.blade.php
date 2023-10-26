@@ -175,8 +175,6 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Add
-                                Comment Posts</a></h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>

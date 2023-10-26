@@ -34,6 +34,18 @@
                             <span class="text">Dashboard</span>
                         </a>
                     </li>
+                    <li class="{{ Request::is('dashboard/qrcode/event_register*') ? 'active' : '' }}">
+                        <a href="dashboard/qrcode/event_register">
+                            <i class='bx bxs-calendar-check'></i>
+                            <span class="text">Scan Event Register</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                        <a href="/dashboard/event">
+                            <i class='bx bxs-book-open'></i>
+                            <span class="text">Scan Presence</span>
+                        </a>
+                    </li>
                 @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'member' || Auth::user()->role === 'non-member')
                     <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}">
@@ -191,9 +203,11 @@
                     <i class='bx bxs-bell'></i>
                 </a>
             @endif
-
+            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member'))
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
                 <i class='bx bxs-user-circle'></i> </a>
+                @endif
+
         </nav>
 
         <!-- NAVBAR -->
@@ -207,11 +221,11 @@
                     @endif
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a class="active" href="/" title="Back to Landing Page">Landing Page</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/dashboard" title="Dashboard here..">Dashboard</a>
                         </li>
                         @if (auth()->user()->role == 'non-member')
                             @if (!auth()->user()->date_birth)
@@ -225,7 +239,7 @@
                                             confirmButtonText: 'Ok'
                                         }).then((result) => {
                                             if (result.isConfirmed) {
-                                                window.location.href = "{{ route('editprofile.show') }}";
+                                                window.location.href = "{{ route('editprofile.edit') }}";
                                             }
                                         });
                                     });
@@ -371,24 +385,24 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($users as $usr)
-                                            <tr>
-                                                <th></th>
-                                                <td>{{ $usr->id }}</td>
-                                                <td>
-                                                    <?php
-                                                    $kode = $usr->id . '/' . 'wayangriders/' . $usr->password . '';
-                                                    require_once 'qrcode/qrlib.php';
-                                                    $filename = 'wayangriders' . $usr->id . '.png';
-                                                    $path = storage_path('app/public/qrcode_images/' . $filename);
-                                                    QRcode::png("$kode", $path, 2, 2);
-                                                    ?>
-                                                    <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
-                                                        alt="">
-                                                </td>
-                                                <td>{{ ucwords($usr->name) }}</td>
-                                                <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
-                                            </tr>
-                                        @endforeach
+                                                <tr>
+                                                    <th></th>
+                                                    <td>{{ $usr->id }}</td>
+                                                    <td>
+                                                        <?php
+                                                        $kode = $usr->id . '/' . 'wayangriders/' . $usr->password . '';
+                                                        require_once 'qrcode/qrlib.php';
+                                                        $filename = 'wayangriders' . $usr->id . '.png';
+                                                        $path = storage_path('app/public/qrcode_images/' . $filename);
+                                                        QRcode::png("$kode", $path, 2, 2);
+                                                        ?>
+                                                        <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
+                                                            alt="">
+                                                    </td>
+                                                    <td>{{ ucwords($usr->name) }}</td>
+                                                    <td>{{ str_repeat('*', strlen($usr->password)) }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -420,24 +434,24 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($eventdata as $evco)
-                                    <tr>
-                                        <th></th>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            <?php
-                                            $kode = $evco->id . '/' . 'wayangriders/' . $evco->password . '';
-                                            require_once 'qrcode/qrlib.php';
-                                            $filename = 'wayangriders' . $evco->id . '.png';
-                                            $path = storage_path('app/public/presence_images/' . $filename);
-                                            QRcode::png("$kode", $path, 2, 2);
-                                            ?>
-                                            <img src="{{ asset('storage/presence_images/' . $filename) }}"
-                                                alt="">
-                                        </td>
-                                        <td>{{ ucwords($evco->event->name) }}</td>
-                                        <td>{{ $evco->user->name }}</td>
-                                    </tr>
-                                @endforeach
+                                        <tr>
+                                            <th></th>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                <?php
+                                                $kode = $evco->id . '/' . 'wayangriders/' . $evco->password . '';
+                                                require_once 'qrcode/qrlib.php';
+                                                $filename = 'wayangriders' . $evco->id . '.png';
+                                                $path = storage_path('app/public/presence_images/' . $filename);
+                                                QRcode::png("$kode", $path, 2, 2);
+                                                ?>
+                                                <img src="{{ asset('storage/presence_images/' . $filename) }}"
+                                                    alt="">
+                                            </td>
+                                            <td>{{ ucwords($evco->event->name) }}</td>
+                                            <td>{{ $evco->user->name }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
 
                             </table>
@@ -446,45 +460,45 @@
                 </div>
             @endif
             @if (Auth::check() && Auth::user()->role === 'organizer')
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>New Event Data</h3>
-                    </div>
-                    <div class="table-data">
-                        <div class="order">
-                            <i class='bx bx-search'></i>
-                            <i class='bx bx-filter'></i>
+                <div class="table-data">
+                    <div class="order">
+                        <div class="head">
+                            <h3>New Event Data</h3>
                         </div>
+                        <div class="table-data">
+                            <div class="order">
+                                <i class='bx bx-search'></i>
+                                <i class='bx bx-filter'></i>
+                            </div>
 
-                        @if (isset($eventdata) && count($eventdata) > 0)
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Event Name</th>
-                                        <th>Checkin Participants</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($eventdata as $data)
-                                    <tr>
-                                        <th></th>
-                                        <td>{{ ucwords($data->event->name) }}</td>
-                                        <td>{{ ucwords($data->user->name) }}</td>
-                                        <td><span class="status pending">{{ $data->status }}</span></td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p>No event data available for this organizer.</p>
-                        @endif
+                            @if (isset($eventdata) && count($eventdata) > 0)
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Event Name</th>
+                                            <th>Checkin Participants</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($eventdata as $data)
+                                            <tr>
+                                                <th></th>
+                                                <td>{{ ucwords($data->event->name) }}</td>
+                                                <td>{{ ucwords($data->user->name) }}</td>
+                                                <td><span class="status pending">{{ $data->status }}</span></td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p>No event data available for this organizer.</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @endif
         </main>
         <!-- MAIN -->
     </section>

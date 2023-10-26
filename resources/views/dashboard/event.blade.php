@@ -47,6 +47,29 @@
                     </a>
                 </li>
             @endif
+            @if (Auth::check())
+                @if (Auth::user()->role === 'organizer')
+                    <li class="{{ Request::is('dashboard/qrcode/event_register*') ? 'active' : '' }}">
+                        <a href="/dashboard/qrcode/event_register">
+                            <i class='bx bxs-calendar-check'></i>
+                            <span class="text">Scan Event Register</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                        <a href="/dashboard/event">
+                            <i class='bx bxs-book-open'></i>
+                            <span class="text">Scan Presence</span>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'member' || Auth::user()->role === 'non-member')
+                    <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard') }}">
+                            <i class='bx bxs-dashboard'></i>
+                            <span class="text">Dashboard</span>
+                        </a>
+                    </li>
+                @endif
+            @endif
             @if (Auth::check() && Auth::user()->role === 'member')
                 <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
                 <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
@@ -178,17 +201,21 @@
                 </div>
             </form>
 
-            <a href="/dashboard/message" class="notification">
+            <a href="/dashboard/message" class="notification" title="message here">
                 <i class='bx bxs-edit-alt'></i>
             </a>
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
-            </a>
-
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
+            @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
+                <a href="/dashboard/review" class="notification" title="event's review here">
+                    <i class='bx bxs-bell'></i>
+                </a>
+            @endif
+            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member'))
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
                 <i class='bx bxs-user-circle'></i> </a>
+                @endif
+
         </nav>
         <!-- NAVBAR -->
 

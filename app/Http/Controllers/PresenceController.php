@@ -38,7 +38,7 @@ class PresenceController extends Controller
     if ($eventData) {
         if ($eventData->status === 'checkin') {
             Alert::warning('You have already checked in for this event.');
-            return redirect()->route('dashboard');
+            return back();
         } else {
             $eventData->update(['status' => 'checkin']);
             Presence::create([
@@ -111,7 +111,7 @@ class PresenceController extends Controller
 
         Alert::success('Image saved', 'Success')->persistent(true);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard.qrcode.presence');
     }
     public function destroy($id)
     {
