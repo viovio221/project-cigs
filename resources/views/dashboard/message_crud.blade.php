@@ -152,7 +152,8 @@
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bx-calendar-star'></i>
+            </a>
         </nav>
         <!-- NAVBAR -->
 
@@ -175,7 +176,8 @@
             <div class="table-data ">
                 <div class="order">
                     <div class="head">
-
+                        <h3><a class="btn btn-outline-primary">Add
+                                Message</a></h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -186,7 +188,6 @@
                                 'index'])->name('dashboard.message_crud');
                             </div>
                         @endif
-
                     </div>
                     <table>
                         <thead class="searchable-element">

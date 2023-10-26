@@ -28,8 +28,9 @@
                     </div>
                 </div>
                 @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <div class="alert alert-danger" style="color: red;">{{ $message }}</div>
+            @enderror
+
 
                 <div class="input-div pass">
                     <div class="i">
@@ -40,7 +41,7 @@
                     </div>
                 </div>
                 @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger" style="color: red;">{{ $message }}</div>
                 @enderror
                 <br>
                 <button type="submit" class="btn btn-warning">Login</button>
