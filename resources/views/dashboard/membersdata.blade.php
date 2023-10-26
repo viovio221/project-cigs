@@ -211,33 +211,51 @@
             </div>
             @foreach ($users as $usr)
             <tr>
-              <ul class="box-info" style="align-content: center">
-                <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3 style="font-size: 15px">{{ $usr->name }}</h3>
-                    </span>
-                    <form action="/dashboard/membersdata" method="POST" id="roleForm">
-                        @csrf
-                        <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                <ul class="box-info" style="align-content: center">
+                    <li>
+                        <i class='bx bxs-group'></i>
+                        <span class="text">
+                            <h3 style="font-size: 15px">{{ $usr->name }}</h3>
+                        </span>
+                        <form action="/dashboard/membersdata" method="POST" id="roleForm">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $usr->id }}">
                             @if (Auth::check() && Auth::user()->role === 'admin')
                             <select name="role" onchange="confirmRoleChange(this)">
                                 <option value="admin" @if($usr->role == 'admin') selected @endif>Admin</option>
-                            @endif
-                            @if (Auth::check() && Auth::user()->role === 'admin')
+                                @if ($usr->id === Auth::user()->id && $usr->role === 'member')
+                                <option value="member" selected>Member</option>
+                                @else
                                 <option value="member" @if($usr->role == 'member') selected @endif>Member</option>
+                                @endif
                                 <option value="organizer" @if($usr->role == 'organizer') selected @endif>Organizer</option>
+                            </select>
+
                             @endif
-                        </select>
-                    </form>
-                 </li>
-                 <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3 style="font-size: 15px">{{ $usr->email }}</h3>
-                    </span>
-                 </li>
-               </ul>
+                        </form>
+                        @if ($usr->id === Auth::user()->id && $usr->role === 'member')
+                        <form action="/dashboard/membersdata" method="POST" id="adminForm">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                            <button type="submit" name="role" value="admin">Change to Admin</button>
+                        </form>
+                        @endif
+                        @if ($usr->id === Auth::user()->id && $usr->role === 'organizer')
+                        <form action="/dashboard/membersdata" method="POST" id="adminForm">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                            <button type="submit" name="role" value="admin">Change to Admin</button>
+                        </form>
+                        @endif
+                    </li>
+                    <li>
+                        <i class='bx bxs-group'></i>
+                        <span class="text">
+                            <h3 style="font-size: 15px">{{ $usr->email }}</h3>
+                        </span>
+                    </li>
+                </ul>
+
             </tr>
 
                         </li>
