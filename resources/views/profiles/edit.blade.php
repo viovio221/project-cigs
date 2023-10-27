@@ -221,6 +221,7 @@
                         </div>
                     @enderror
                 </div>
+                <br>
                 <div class="form-group">
                     <label class="font-weight-bold">Community</label>
                     <textarea class="form-control @error('community_bio') is-invalid @enderror" name="community_bio" rows="5">{{ $profiles->community_bio }}</textarea>
@@ -239,10 +240,14 @@
                         </div>
                     @enderror
                 </div>
+                <br>
                 <div class="mb-3">
                     <label class="form-label">Current Image</label>
+                    <br>
+                    <br>
                     <img src="{{ asset('/storage/' . $profiles->image) }}" alt="Profiles Image" width="100">
                 </div>
+                <br>
 
                 {{-- <div class="mb-3">
                     <label class="form-label">Current Image</label>
@@ -257,6 +262,7 @@
                         </div>
                     @enderror
                 </div>
+                <br>
                 <div class="form-group">
                     <label class="font-weight-bold">Slogan</label>
                     <textarea class="form-control @error('slogan') is-invalid @enderror" name="slogan" rows="5">{{ $profiles->slogan }}</textarea>
@@ -351,7 +357,7 @@
                             </div>
                         @enderror
                     </div>
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <center><button type="submit" class="btn btn-primary">Save Changes</button></center>
             </form>
         </div>
                             <!-- ... -->
