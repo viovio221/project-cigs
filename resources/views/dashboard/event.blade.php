@@ -208,13 +208,14 @@
             <label for="switch-mode" class="switch-mode" title="switch mode"></label>
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
                 <a href="/dashboard/review" class="notification" title="event's review here">
-                    <i class='bx bxs-bell'></i>
+                    <i class='bx bx-calendar-star'></i>
                 </a>
             @endif
-            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member'))
+            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member' || Auth::user()->role === 'admin'))
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
                 <i class='bx bxs-user-circle'></i> </a>
-                @endif
+        @endif
+
 
         </nav>
         <!-- NAVBAR -->
