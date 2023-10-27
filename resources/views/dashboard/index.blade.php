@@ -268,7 +268,7 @@
                     </li>
 
                 </ul>
-            @elseif (Auth::check() && Auth::user()->role === 'non-member')
+            @elseif (Auth::check() && Auth::user()->role === 'non-member' )
                 <ul class="box-info" style="align-content: center">
                     <li>
                         <i class='bx bxs-news'></i>
@@ -278,6 +278,34 @@
                         </span>
                     </li>
                 </ul>
+                @elseif (Auth::check() && Auth::user()->role === 'member' )
+                <ul class="box-info" style="align-content: center">
+                    <li>
+                        <i class='bx bxs-group'></i>
+                        <span class="text">
+                            <h3>{{ $memberCount }}</h3>
+                            <p>Member Club</p>
+                        </span>
+                    </li>
+                </ul>
+                    <ul class="box-info" style="align-content: center">
+                        <li>
+                            <i class='bx bxs-book-open'></i>
+                            <span class="text">
+                                <h3>{{ $eventCount }}</h3>
+                                <p>New Event</p>
+                            </span>
+                        </li>
+                    </ul>
+                    <ul class="box-info" style="align-content: center">
+                        <li>
+                            <i class='bx bxs-news'></i>
+                            <span class="text">
+                                <h3>{{ $newsCount }}</h3>
+                                <p>News Update</p>
+                            </span>
+                        </li>
+                    </ul>
             @else
                 <ul class="box-info" style="align-content: center">
                     <li>

@@ -61,7 +61,7 @@
                             <span class="text">Scan Presence</span>
                         </a>
                     </li>
-                @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'member' || Auth::user()->role === 'non-member')
+                @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'non-member')
                     <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}">
                             <i class='bx bxs-dashboard'></i>
