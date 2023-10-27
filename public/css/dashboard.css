@@ -390,6 +390,9 @@ body {
 	grid-gap: 24px;
 	margin-top: 36px;
 }
+.icon{
+    font-size:30px;
+}
 #content main .box-info li {
 	padding: 24px;
 	background: var(--light);
