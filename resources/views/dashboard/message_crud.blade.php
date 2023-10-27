@@ -176,8 +176,7 @@
             <div class="table-data ">
                 <div class="order">
                     <div class="head">
-                        <h3><a class="btn btn-outline-primary">Add
-                                Message</a></h3>
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
