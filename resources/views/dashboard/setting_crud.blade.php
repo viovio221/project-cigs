@@ -161,14 +161,14 @@
         <main class="membersdata">
             <div class="head-title">
                 <div class="left">
-                    <h1>Data CRUD Riders</h1>
+                    <h1>Setting CRUD Riders</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard/index">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/dashboard/setting_crud">Setting Update</a>
                         </li>
                     </ul>
                 </div>
@@ -178,6 +178,10 @@
                     <div class="head">
                         <h3><a class="btn btn-outline-primary">Setting</a>
                         </h3>
+                        @foreach ($profiles as $no => $pf)
+                        <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
+                            class='bx bx-edit'></i></a>
+                            @endforeach
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -190,99 +194,69 @@
                     </div>
                     <table>
                         <thead>
+                            @if (isset($profiles))
+                                @foreach ($profiles as $no => $pf)
                             <tr>
-                                <th></th>
                                 <th>Image</th>
-                                <th>Video</th>
-                                <th>Video 1</th>
-                                <th>Video 2</th>
-                                <th>History</th>
-                                <th>C. Bio</th>
-                                <th>Slogan</th>
-                                <th>Name</th>
-                                <th>Action</th>
+                                <td>
+                                    <img src="{{ asset('/storage/' . $pf->image) }}" alt="profiles"
+                                        width="100">
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @if (isset($profiles))
-                                @foreach ($profiles as $no => $pf)
-                                    <tr>
-                                        <th></th>
-                                        <td>
-                                            <img src="{{ asset('/storage/' . $pf->image) }}" alt="profiles"
-                                                width="100">
-                                        </td>
-
-                                        <td>
-                                            <video src="{{ '/storage/' . $pf->video }}" width="100" ></video>
-                                        </td>
-                                        <td>
-                                            <video src="{{ '/storage/' . $pf->video1 }}" width="100" ></video>
-                                        </td>
-                                        <td>
-                                            <video src="{{ '/storage/' . $pf->video2 }}" width="100" ></video>
-                                        </td>
-                                        <td class="description">{{ $pf->history }}</td>
-                                        <td class="description">{{ $pf->community_bio }}</td>
-                                        <td class="name">{{ $pf->slogan }}</td>
-                                        <td class="name">{{ $pf->community_name }}</td>
-                                        <td>
-                                            <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
-                                                    class='bx bx-edit'></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Tabel Baru -->
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3><a class="btn btn-outline-primary">Setting</a>
-                        </h3>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                    </div>
-                    <table>
-                        <thead>
                             <tr>
-                                <th></th>
+                                <th>Video</th>
+                                <td>
+                                    <video src="{{ '/storage/' . $pf->video }}" width="100" ></video>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Video 1</th>
+                                <td>
+                                    <video src="{{ '/storage/' . $pf->video1 }}" width="100" ></video>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Video 2</th>
+                                <td>
+                                    <video src="{{ '/storage/' . $pf->video2 }}" width="100" ></video>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>History</th>
+                                <td class="description">{{ $pf->history }}</td>
+                            </tr>
+                            <tr>
+                                <th>C. Bio</th>
+                                <td class="description">{{ $pf->community_bio }}</td>
+                            </tr>
+                            <tr>
+                                <th>Slogan</th>
+                                <td class="description">{{ $pf->slogan }}</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td class="description">{{ $pf->community_name }}</td>
+                            </tr>
+
+                            <tr>
                                 <th>WhatsApp Sender</th>
+                                <td class="description">{{ $pf->sender }}</td>
+                            </tr>
+                            <tr>
                                 <th>WhatsApp End Point</th>
+                                <td class="description">{{ $pf->endpoint }}</td>
+                            </tr>
+                            <tr>
                                 <th>WhatsApp API</th>
-                                <th>Action</th>
+                                <td class="description">{{ $pf->api_key }}</td>
                             </tr>
                         </thead>
-                        <tbody>
-                            @if (isset($profiles))
-                                @foreach ($profiles as $no => $pf)
-                                <tr>
-                                    <th></th>
-                                    <td class="name">{{ $pf->sender }}</td>
-                                    <td class="name">{{ $pf->endpoint }}</td>
-                                    <td class="name">{{ $pf->api_key }}</td>
-                                    <td style="text-align: center;">
-                                        <a href="{{ route('profiles.edit', $pf->id) }}" style="color: blue"><i class='bx bx-edit'></i></a>
-                                    </td>
-                                </tr>
                                 @endforeach
                             @endif
                         </tbody>
                     </table>
                 </div>
             </div>
-            <!-- ... -->
 
         </main>
         <!-- MAIN -->
