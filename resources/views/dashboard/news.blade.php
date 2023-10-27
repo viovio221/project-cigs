@@ -199,7 +199,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/dashboard/news">News</a>
                         </li>
                     </ul>
                 </div>
@@ -231,7 +231,6 @@
     <script src="{{ asset('js/dashboard.js') }}"></script>
     @include('sweetalert::alert')
     <!-- CONTENT -->
-    <script src="{{ asset('js/dashboard.js') }}"></script>
     <script>
         const searchBox = document.getElementById('searchBox');
      const searchSubmit = document.getElementById('searchSubmit');
