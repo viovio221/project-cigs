@@ -208,8 +208,6 @@
                      </ul>
                 </div>
             </div>
-
-
                 @foreach ($users as $usr)
                     <tr>
                       <ul class="box-info" style="align-content: center">

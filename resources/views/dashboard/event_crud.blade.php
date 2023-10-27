@@ -175,7 +175,6 @@
                         <form action="{{ route('events.create') }}">
                                 <center><button type="submit" class="btn1 btn-primary"><b>Add Event</b></button></center>
                         </form>
-
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -185,6 +184,8 @@
                                 </ul>
                             </div>
                         @endif
+                        <i class=''></i>
+                        <i class=''></i>
                     </div>
                     <br>
                     <table>
@@ -213,15 +214,16 @@
                                         <td class="location searchable-element">{{ $event->location }}</td>
                                         <td class="description-event searchable-element">{!! $event->description !!}</td>
                                         <td class="side-menu top">
-                                            <a href="{{ route('events.show', $event->id) }}" style="color: green"><i
-                                                    class='bx bx-info-circle'></i></a>
+
+                                            <a href="{{ route('events.show', $event->id) }}" style="color: green"><span class="icon"><i
+                                                    class='bx bx-info-circle'></i></span></a>
                                             <a href="{{ route('events.edit', ['event' => $event->id]) }}"
-                                                method="post" style="color: blue"><i class='bx bx-edit'></i></a>
+                                                method="post" style="color: blue"><span class="icon"><i class='bx bx-edit'></i></span></a>
                                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" style="background: none; border: none; color: red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')">
-                                                        <i class='bx bx-trash'></i>
+                                                        <span class="icon">  <i class='bx bx-trash'></i></span>
                                                     </button>
                                                 </form>
 

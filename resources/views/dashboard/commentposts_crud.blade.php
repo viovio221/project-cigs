@@ -186,6 +186,8 @@
                                 </ul>
                             </div>
                         @endif
+                        <i class=''></i>
+                        <i class=''></i>
                     </div>
                     <table>
                         <thead>
