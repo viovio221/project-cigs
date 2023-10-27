@@ -222,11 +222,12 @@
                     </div>
 
                     <div class="blog-content">
-                        <h3 class="blog-title  searchable-element">
-                            <a href="tittle">
+                        <h3 class="blog-title searchable-element">
+                            <a href="tittle" style="pointer-events: none; cursor: default;">
                                 {{ $nw->title }}
                             </a>
                         </h3>
+
                         <div class="blog-text  searchable-element">
                             {!! $nw->description !!}
                         </div>

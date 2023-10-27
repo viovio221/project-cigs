@@ -145,7 +145,7 @@
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
+                <i class='bx bx-calendar-star'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -187,6 +187,7 @@
                         <i class=''></i>
                         <i class=''></i>
                     </div>
+                    <br>
                     <table>
                         <thead>
                             <tr>
@@ -217,14 +218,14 @@
                                                     class='bx bx-info-circle'></i></a>
                                             <a href="{{ route('events.edit', ['event' => $event->id]) }}"
                                                 method="post" style="color: blue"><i class='bx bx-edit'></i></a>
-                                            <form action="{{ route('events.destroy', $event->id) }}" method="POST"
-                                                style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')"><i
-                                                        class='bx bx-trash'></i></button>
-                                            </form>
+                                                <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" style="background: none; border: none; color: red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                        <i class='bx bx-trash'></i>
+                                                    </button>
+                                                </form>
+
                                         </td>
                                     </tr>
                                 @endforeach

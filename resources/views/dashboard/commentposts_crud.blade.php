@@ -148,7 +148,7 @@
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
+                <i class='bx bx-calendar-star'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -175,7 +175,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Add
+                        <h3><a class="btn btn-outline-primary">Add
                                 Comment Posts</a></h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
