@@ -159,14 +159,14 @@
         <main class="membersdata">
             <div class="head-title">
                 <div class="left">
-                    <h1>Data CRUD Riders</h1>
+                    <h1>Property CRUD Riders</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard/index">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/dashboard/property_crud">Property CRUD</a>
                         </li>
                     </ul>
                 </div>
@@ -174,8 +174,6 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a class="btn btn-outline-primary">Property</a>
-                        </h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -188,51 +186,54 @@
                     </div>
                     <table>
                         <thead>
+                            @if (isset($properties))
+                            @foreach ($properties as $pr)
                             <tr>
-                                <th></th>
-                                <th>No</th>
                                 <th>H. Event</th>
+                                <td>{{ $pr->headline_ev }}</td> </tr>
+                                <tr>
                                 <th>T. Event</th>
+                                <td>{{ $pr->text_ev }}</td></tr>
+                                <tr>
                                 <th>H. Message</th>
+                                <td>{{ $pr->headline_mg }}</td></tr>
+                                <tr>
                                 <th>T. Message</th>
+                                <td>{{ $pr->text_mg }}</td></tr>
+                                <tr>
                                 <th>Phone Number</th>
+                                <td>{{ $pr->phone_number }}</td></tr>
+                                <tr>
                                 <th>IG</th>
+                                <td>{{ $pr->instagram }}</td></tr>
+                                <tr>
                                 <th>FB</th>
+                                <td>{{ $pr->facebook }}</td></tr>
+                                <tr>
                                 <th>TWT</th>
+                                <td>{{ $pr->twitter }}</td>
+                            </tr>
+                            <tr>
                                 <th>EM</th>
+                                <td>{{ $pr->email }}</td></tr>
+                                <tr>
                                 <th>Action</th>
+                                <td>
+                                    <a href="{{ url('/dashboard/property/'.$pr->id.'/edit') }}" style="color: blue"><span class="icon"><i
+                                            class='bx bx-edit'></i></span></a>
+                                    <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
+                                        style="display: inline-block;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            style="background: none; border: none; color:red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')">
+                                            <span class="icon"> <i class='bx bx-trash'></i></span>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (isset($properties))
-                                @foreach ($properties as $pr)
-                                    <tr>
-                                        <th></th>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $pr->headline_ev }}</td>
-                                        <td>{{ $pr->text_ev }}</td>
-                                        <td>{{ $pr->headline_mg }}</td>
-                                        <td>{{ $pr->text_mg }}</td>
-                                        <td>{{ $pr->phone_number }}</td>
-                                        <td>{{ $pr->instagram }}</td>
-                                        <td>{{ $pr->facebook }}</td>
-                                        <td>{{ $pr->twitter }}</td>
-                                        <td>{{ $pr->email }}</td>
-                                        <td>
-
-                                            <a href="{{ url('/dashboard/property/'.$pr->id.'/edit') }}" style="color: blue"><span class="icon"><i
-                                                    class='bx bx-edit'></i></span></a>
-                                            <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
-                                                style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    style="background: none; border: none; color:red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')">
-                                                    <span class="icon"> <i class='bx bx-trash'></i></span>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
                                 @endforeach
                             @endif
                         </tbody>
