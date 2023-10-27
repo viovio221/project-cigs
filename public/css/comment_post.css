@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;700&display=swap');
+
 .container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: orange;
     border-radius: 12px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
 }
 .card-body {
     padding: 20px;
@@ -11,6 +15,8 @@
     margin: 0 auto;
     border-radius: 12px;
     background-color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
 }
 .card-title {
     font-size: 24px;
@@ -24,5 +30,8 @@
 
 .btn {
     margin-top: 10px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
     margin-right: 10px;
 }
+
