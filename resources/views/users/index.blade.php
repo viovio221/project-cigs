@@ -107,16 +107,32 @@
                 </a>
             </li>
         </ul>
+        <div class="modal" id="userDetailModal">
+            <div class="modal-content">
+                <span class="close" id="closeUserDetailModal">&times;</span>
+                <h2>User Details</h2>
+                <div id="userDetailContent">
+                </div>
+                <div class="mt-5">
+                    <p>Name: <b class="detail-name"></b></p>
+                    <p>Role: <b class="detail-role"></b></p>
+                    <p>Gender: <b class="detail-gender"></b></p>
+                    <p>Date Birth: <b class="detail-date_birth"></b></p>
+                    <p>Phone Number: <b class="detail-phone_number"></b></p>
+                    <p>Email: <b class="detail-email"></b></p>
+                    <p>Address: <span class="detail-address"></span></p>
+
+
+                </div>
+            </div>
+        </div>
+
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const logoutButton = document.querySelector('.logout');
-
-                // Tambahkan event click ke elemen logout
                 logoutButton.addEventListener('click', function(e) {
                     e.preventDefault(); // Mencegah tindakan logout asli
-
-                    // Tampilkan pesan konfirmasi SweetAlert2
                     Swal.fire({
                         title: 'Are you sure to logout?',
                         text: "You won't be able to revert this!",
@@ -268,6 +284,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const editButtons = document.querySelectorAll('.edit-user');
+            const userDetailModal = document.getElementById('userDetailModal');
+            const closeUserDetailModal = document.getElementById('closeUserDetailModal');
+            const userDetailContent = document.getElementById('userDetailContent');
 
             editButtons.forEach((button) => {
                 button.addEventListener('click', function(e) {
@@ -283,7 +302,9 @@
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Yes',
-                        cancelButtonText: 'No'
+                        cancelButtonText: 'No',
+                        showDenyButton: true,
+                        denyButtonText: 'Detail User'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             fetch(`/dashboard/membersdata_crud/${userId}/confirm`, {
@@ -320,12 +341,60 @@
                                         icon: 'error'
                                     });
                                 });
+                        } else if (result.isDenied) {
+                            userDetailContent.innerHTML =
+                                'Loading...';
+                            fetch(`/dashboard/user-details/${userId}`)
+                                .then((response) => response.text())
+                                .then((data) => {
+                                    console.log();
+                                    const detailElements = document
+                                        .querySelectorAll(
+                                            '[class^="detail-"]');
+
+                                    detailElements.forEach((element) => {
+                                        const classes = element.className
+                                            .split(
+                                                ' ');
+                                        const detailClass = classes.find((
+                                                className) => className
+                                            .startsWith('detail-'));
+
+                                        if (detailClass) {
+                                            const classAfterDetail =
+                                                detailClass
+                                                .substr(7);
+                                            element.innerHTML = JSON.parse(data)
+                                                .data[classAfterDetail]
+                                        }
+                                    });
+
+                                    userDetailContent.innerHTML =
+                                        '';
+                                    userDetailModal.style.display =
+                                        'block';
+                                })
+                                .catch((error) => {
+                                    console.error('Error fetching user details:',
+                                        error);
+                                });
                         }
                     });
                 });
             });
+
+            closeUserDetailModal.addEventListener('click', function() {
+                userDetailModal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target === userDetailModal) {
+                    userDetailModal.style.display = 'none';
+                }
+            });
         });
     </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CONTENT -->
