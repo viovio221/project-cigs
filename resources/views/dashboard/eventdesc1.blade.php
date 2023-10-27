@@ -366,7 +366,7 @@
 
                 if (searchTerm === '') {
                     return;
-                }
+                }   
 
                 removeHighlights();
 

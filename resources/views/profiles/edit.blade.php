@@ -245,6 +245,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+
                 </div>
                 <br>
                 </div><br>
@@ -403,8 +404,6 @@
             </form>
         </div>
         <!-- ... -->
-
-
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const registerButtons = document.querySelectorAll('.btn.btn-primary');
