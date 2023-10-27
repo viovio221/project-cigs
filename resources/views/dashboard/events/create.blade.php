@@ -179,7 +179,7 @@
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
+                <i class='bx bx-calendar-star'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -221,14 +221,12 @@
                         </div>
                     @enderror
                 </div>
-                {{-- <div class="mb-3">
-                    <label for="users_id" class="form-label">User ID:</label>
-                    <input type="number" name="users_id" class="form-control" required>
-                </div> --}}
+
                 <div class="mb-3">
                     <label for="date" class="form-label">Date:</label>
                     <input type="date" name="date" class="form-control  @error('date') is-invalid @enderror"
-                        required>
+                        required
+                        min="{{ date('Y-m-d') }}">
                     @error('date')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
