@@ -367,7 +367,7 @@
 
                 if (searchTerm === '') {
                     return;
-                }
+                }   
 
                 removeHighlights();
 
