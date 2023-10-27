@@ -179,8 +179,8 @@
                         <h3><a class="btn btn-outline-primary">Setting</a>
                         </h3>
                         @foreach ($profiles as $no => $pf)
-                        <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><i
-                            class='bx bx-edit'></i></a>
+                        <a href="{{ route('profiles.edit', $pf->id) }} " style="color: blue"><span class="icon"><i
+                            class='bx bx-edit'></i></span></a>
                             @endforeach
                         @if ($errors->any())
                             <div class="alert alert-danger">
