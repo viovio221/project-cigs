@@ -980,24 +980,3 @@ ul.box-info1 li .text1 h3,
 	cursor: pointer;
 	transition: .5s;
 }
-/* CSS untuk elemen <select> */
-select {
-    width: 110px; /* Atur lebar sesuai kebutuhan */
-    height: 45px; /* Atur tinggi sesuai kebutuhan */
-    margin-top: 2px; /* Atur margin atas */
-    padding: 2px; /* Atur padding sesuai kebutuhan */
-    font-size: 14px; /* Atur ukuran font sesuai kebutuhan */
-    border: 3px solid white; /* Atur border sesuai kebutuhan */
-    border-radius: 18px; /* Atur border radius sesuai kebutuhan */
-    background-color:  #ffa500; /* Atur warna latar belakang sesuai kebutuhan */
-    color: white; /* Atur warna teks sesuai kebutuhan */
-    display: flex;
-}
-
-/* CSS untuk opsi terpilih */
-select option[selected] {
-    background-color:  #ffa500; /* Atur warna latar belakang sesuai kebutuhan */
-    color: white; /* Atur warna teks sesuai kebutuhan */
-    font-size: 12px;
-}
-

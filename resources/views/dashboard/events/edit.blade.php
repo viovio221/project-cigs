@@ -177,7 +177,7 @@
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bx-calendar-star'></i>
+                <i class='bx bxs-bell'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -189,7 +189,7 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Edit Events</h1>
+                    <h1>Add Events</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard">Dashboard</a>
@@ -221,13 +221,15 @@
                         </div>
                     @enderror
                 </div>
+                {{-- <div class="mb-3">
+                <label for="users_id" class="form-label">User ID:</label>
+                <input type="number" name="users_id" class="form-control" value="{{ $event->users_id }}" required>
+            </div> --}}
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
                     <input type="date" name="date" class="form-control  @error('date') is-invalid @enderror"
-                        value="{{ $event->date }}" required
-                        min="{{ $event->created_at->toDateString() }}">
+                        value="{{ $event->date }}" required>
                 </div>
-
                 <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
                     <input type="text" name="location"

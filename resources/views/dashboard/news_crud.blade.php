@@ -187,6 +187,8 @@
                                 </ul>
                             </div>
                         @endif
+                        <i class='bx bx-search'></i>
+                        <i class='bx bx-filter'></i>
                     </div>
                     <table>
                         <thead>

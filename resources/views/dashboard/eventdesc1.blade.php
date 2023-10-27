@@ -171,7 +171,7 @@
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bx-calendar-star'></i>
+                <i class='bx bxs-bell'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -204,24 +204,23 @@
                                 width="100">
                         </div>
                     </div>
-                    <div class="blog-content" style="pointer-events: none;">
-                        <h3 class="blog-title searchable-element">
+                    <div class="blog-content">
+                        <h3 class="blog-title  searchable-element">
                             <a href="#">
                                 {{ $event->name }}
                             </a>
                         </h3>
-                        <div class="blog-text searchable-element">
+                        <div class="blog-text  searchable-element">
                             {!! $event->description !!}
                             <p>Lokasi: {{ $event->location }}</p>
                         </div>
-                        <div class="wrapper searchable-element">
+                        <div class="wrapper  searchable-element">
                             <div class="blog-publish-date">
                                 <i class='bx bx-calendar'></i>
+                                <a href="#">
                                     {{ $event->date }}
                                 </a>
                             </div>
-                        </div>
-
                             @if (Auth::check() && Auth::user()->role === 'admin')
                                 <button class="btn btn-primary" data-event-id="{{ $event->id }}">
                                     {{-- data-event-name="{{ $event->name }}" data-event-date="{{ $event->date }}"> --}}

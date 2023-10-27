@@ -82,6 +82,9 @@
                     </div>
                     <input type="submit" value="Submit" class="btn" />
                 </form>
+                    <form action="{{ route('dashboard') }}">
+                        <input type="submit" value="Back" class="btn" />
+                    </form>
             </div>
         </div>
     </div>
