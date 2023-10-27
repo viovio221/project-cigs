@@ -20,6 +20,7 @@ class UserController extends Controller
     }
     public function index()
     {
+
         $nonMemberUsers = User::where('role', 'non-member')->get();
         $profiles = Profile::all();
         $users = User::paginate(20);
@@ -144,6 +145,13 @@ public function updateRole(Request $request)
 
     return redirect()->back();
 }
+public function getUserDetails($userId) {
+    $user = User::find($userId);
 
+    return response()->json([
+        'data' => $user,
+    ]);
+
+}
 
 }

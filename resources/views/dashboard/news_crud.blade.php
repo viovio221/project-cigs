@@ -216,7 +216,7 @@
                                         <td class="side-menu top">
                                             <a href="{{ route('news.showReadmore', $nw->id) }}" style="color: green"><span class="icon"><i
                                                 class='bx bx-info-circle'></i></span></a>
-                                            <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
+                                            <a href="{{ url('/dashboard/news/'.$nw->id.'/edit') }}"
                                                 style="color:blue"><span class="icon"><i class='bx bx-edit'></i></span></a>
                                                 <form action="{{ route('news.destroy', $nw->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf

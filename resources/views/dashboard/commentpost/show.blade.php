@@ -14,33 +14,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> --}}
     <!-- Custom CSS link -->
     <link rel="stylesheet" href="{{ asset('css/comment_post.css') }}">
 
 </head>
 
+{{-- <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    @foreach ($profile as $item)
+        <title>Dashboard | {{ $item->community_name }}</title>
+    @endforeach
+</head> --}}
+
 <body>
-   <!-- SIDEBAR -->
-<section id="sidebar">
+ <!-- SIDEBAR -->
+ <section id="sidebar">
     <a href="#" class="brand">
         <i class="fa-solid fa-motorcycle"></i>
-        <span class="text">Wayang Riders</span>
+        @foreach ($profiles as $item)
+            <span class="text">{{ $item->community_name }}</span>
+        @endforeach
     </a>
     <ul class="side-menu top">
-        <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-            <a href="{{ route('dashboard') }}">
-                <i class='bx bxs-dashboard'></i>
-                <span class="text">Dashboard</span>
-            </a>
-        </li>
-        @if (Auth::check() && Auth::user()->role === 'non-member')
-            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                <a href="/dashboard/membersdata">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Members Data</span>
-                </a>
-            </li>
+        @if (Auth::check())
+            @if (Auth::user()->role === 'organizer')
+                <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('dashboard/qrcode/event_register*') ? 'active' : '' }}">
+                    <a href="dashboard/qrcode/event_register">
+                        <i class='bx bxs-calendar-check'></i>
+                        <span class="text">Scan Event Register</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
+                    <a href="/dashboard/event">
+                        <i class='bx bxs-book-open'></i>
+                        <span class="text">Scan Presence</span>
+                    </a>
+                </li>
+            @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'member' || Auth::user()->role === 'non-member')
+                <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+            @endif
         @endif
         @if (Auth::check() && Auth::user()->role === 'member')
             <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
@@ -60,6 +91,13 @@
                 <a href="/dashboard/membersdata">
                     <i class='bx bxs-group'></i>
                     <span class="text">Members Data</span>
+                </a>
+            </li>
+        @elseif (Auth::check() && Auth::user()->role === 'non-member')
+            <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+                <a href="/dashboard/news">
+                    <i class='bx bxs-message-dots'></i>
+                    <span class="text">News</span>
                 </a>
             </li>
         @endif
@@ -124,8 +162,8 @@
                     <i class='bx bx-chevrons-right'></i> <span class="text">Confirm User</span>
                 </a>
             </li>
+        @endif
     </ul>
-    @endif
     <ul class="side-menu">
         <li>
             <a href="#" class="logout">
@@ -134,33 +172,32 @@
             </a>
         </li>
     </ul>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const logoutButton = document.querySelector('.logout');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButton = document.querySelector('.logout');
 
-                // Tambahkan event click ke elemen logout
-                logoutButton.addEventListener('click', function(e) {
-                    e.preventDefault(); // Mencegah tindakan logout asli
+            logoutButton.addEventListener('click', function(e) {
+                e.preventDefault();
 
-                    // Tampilkan pesan konfirmasi SweetAlert2
-                    Swal.fire({
-                        title: 'Are you sure to logout?',
-                        text: "You won't be able to revert this!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#ffa500',
-                        cancelButtonColor: '#DB504A',
-                        confirmButtonText: 'Yes, logout'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = '{{ route('logout') }}';
-                        }
-                    });
+                Swal.fire({
+                    title: 'Are you sure to logout?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ffa500',
+                    cancelButtonColor: '#DB504A',
+                    confirmButtonText: 'Yes, logout'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '{{ route('logout') }}';
+                    }
                 });
             });
-        </script>
-    </section>
-    <!-- SIDEBAR -->
+        });
+    </script>
+
+</section>
+<!-- SIDEBAR -->
 
     <!-- CONTENT -->
     <section id="content">
@@ -210,7 +247,7 @@
         <br>
 
         <div class="container mt-5">
-            <h1>Detail Comment Post</h1>
+            <center><h1>Detail Comment Post</h1></center>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ $comment_post->username }}</h5>
@@ -221,7 +258,7 @@
             </div>
             <form action="{{ route('dashboard.commentposts_crud') }}">
                 <div class="mb-3 d-grid">
-                    <center><button type="submit" class="btn btn-warning" style="border-radius:20px"><b style="color: white">BACK</b></button></center>
+                    <center><button type="submit" class="btn1 btn-warning" style="border-radius:20px"><b style="color: white">BACK</b></button></center>
                 </div>
             </form>
         </div>
