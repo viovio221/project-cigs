@@ -233,7 +233,6 @@
                         </div>
                     @enderror
                 </div>
-
                 <div class="mb-3">
                     <label for="location" class="form-label">Location:</label>
                     <input type="text" name="location"
