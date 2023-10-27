@@ -219,7 +219,7 @@
                                         <td>{{ $pr->twitter }}</td>
                                         <td>{{ $pr->email }}</td>
                                         <td>
-                                            <a href="{{ route('property.edit', $pr->id) }} " style="color: blue"><i
+                                            <a href="{{ url('/dashboard/property/'.$pr->id.'/edit') }}" style="color: blue"><i
                                                     class='bx bx-edit'></i></a>
                                             <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
                                                 style="display: inline-block;">

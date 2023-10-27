@@ -215,8 +215,8 @@
                                         <td>{{ $nw->created_at }}</td>
                                         <td class="side-menu top">
                                             <a href="{{ route('news.showReadmore', $nw->id) }}" style="color: green"><i class='bx bx-info-circle'></i></a>
-                                            <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
-                                                style="color:blue"><i class='bx bx-edit'></i></a>
+                                            <a href="{{ url('/dashboard/news/'.$nw->id.'/edit') }}" style="color: blue"><i
+                                                class='bx bx-edit'></i></a>
                                                 <form action="{{ route('news.destroy', $nw->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')

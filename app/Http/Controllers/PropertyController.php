@@ -19,7 +19,7 @@ class PropertyController extends Controller
         {
             $profiles = Profile::all();
             $properties = Property::findOrFail($id);
-            return view('property.edit', compact('properties', 'profiles'));
+            return view('dashboard.property.edit', compact('properties', 'profiles'));
         }
 
         public function update(Request $request, $id)
