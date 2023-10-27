@@ -19,13 +19,14 @@
 
   /* Form group styling */
   .form-group {
-    margin-bottom: 1rem; /* Jarak antara setiap grup input */
+    margin-bottom: 3rem; /* Jarak antara setiap grup input */
   }
 
   /* Label styling */
   .form-label {
     font-weight: bold; /* Tebal teks label */
     margin-right:80%;
+    margin-bottom: 3rem; /* Jarak antara setiap grup input */
   }
 
   /* Input styling */
@@ -34,6 +35,7 @@
     padding: 0.5rem; /* Ruang di dalam input */
     border: 1px solid #ccc; /* Garis tepi input */
     border-radius: 5px; /* Bentuk sudut input */
+    margin-bottom: 10px; /* Jarak antara setiap grup input */
   }
 
   /* Invalid feedback styling */

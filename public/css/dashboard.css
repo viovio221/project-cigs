@@ -955,3 +955,19 @@ ul.box-info1 li .text1 h3,
 	cursor: pointer;
 	transition: .5s;
 }
+.btn1 {
+    background-color: #fff;
+    color: #fff;
+    font-weight: 650;
+    height:50px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn1:hover {
+    background-color: #fff;
+    color: #ff4500;
+}

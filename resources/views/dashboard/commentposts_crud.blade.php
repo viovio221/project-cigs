@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="/dashboard/commentposts_crud">
+                <a href="/dashboard/event">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Events</span>
                 </a>
@@ -186,8 +186,8 @@
                                 </ul>
                             </div>
                         @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
+                        <i class=''></i>
+                        <i class=''></i>
                     </div>
                     <table>
                         <thead>

@@ -172,7 +172,9 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="{{ route('events.create') }}" class="btn btn-outline-primary">Add Event</a></h3>
+                        <form action="{{ route('events.create') }}">
+                                <center><button type="submit" class="btn1 btn-primary"><b>Add Event</b></button></center>
+                        </form>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -182,8 +184,8 @@
                                 </ul>
                             </div>
                         @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
+                        <i class=''></i>
+                        <i class=''></i>
                     </div>
                     <table>
                         <thead>
