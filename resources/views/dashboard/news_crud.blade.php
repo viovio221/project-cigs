@@ -214,14 +214,15 @@
                                         <td class="description">{!! $nw->description !!}</td>
                                         <td>{{ $nw->created_at }}</td>
                                         <td class="side-menu top">
-                                            <a href="{{ route('news.showReadmore', $nw->id) }}" style="color: green"><i class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('news.showReadmore', $nw->id) }}" style="color: green"><span class="icon"><i
+                                                class='bx bx-info-circle'></i></span></a>
                                             <a href="{{ route('news.edit', ['news' => $nw->id]) }}"
-                                                style="color:blue"><i class='bx bx-edit'></i></a>
+                                                style="color:blue"><span class="icon"><i class='bx bx-edit'></i></span></a>
                                                 <form action="{{ route('news.destroy', $nw->id) }}" method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" style="background: none; border: none; color: red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')">
-                                                        <i class='bx bx-trash'></i>
+                                                    <span class="icon"><i class='bx bx-trash'></i></span>
                                                     </button>
                                                 </form>
 

@@ -219,15 +219,16 @@
                                         <td>{{ $pr->twitter }}</td>
                                         <td>{{ $pr->email }}</td>
                                         <td>
-                                            <a href="{{ route('property.edit', $pr->id) }} " style="color: blue"><i
-                                                    class='bx bx-edit'></i></a>
+                                            <a href="{{ route('property.edit', $pr->id) }} " style="color: blue"><span class="icon"><i
+                                                    class='bx bx-edit'></i></span></a>
                                             <form action="{{ route('property.destroy', $pr->id) }}" method="POST"
                                                 style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')"><i
-                                                        class='bx bx-trash'></i></button>
+                                                    style="background: none; border: none; color:red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                    <span class="icon"> <i class='bx bx-trash'></i></span>
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
