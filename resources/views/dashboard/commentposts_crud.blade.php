@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a href="/dashboard/commentposts_crud">
+                <a href="/dashboard/event">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">Events</span>
                 </a>
