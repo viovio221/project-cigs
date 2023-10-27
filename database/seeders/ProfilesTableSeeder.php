@@ -22,6 +22,9 @@ class ProfilesTableSeeder extends Seeder
                 'video2'=>'video2.mp4',
                 'slogan'=>'Ride Together, Thrive Together',
                 'community_name' => 'Wayang Riders',
+                'sender'=>'6282128078893',
+                'endpoint'=>'https://wag.cigs.web.id/send-message',
+                'api_key'=>'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B',
             ],
         ];
 

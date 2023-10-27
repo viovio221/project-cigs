@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
 
     @foreach ($profile as $item)
-    <title>Members Data | {{ $item->community_name }}</title>
+        <title>Members Data | {{ $item->community_name }}</title>
     @endforeach
 </head>
 
@@ -182,13 +182,14 @@
 
 
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
-                <a href="/dashboard/review" class="notification">
-                    <i class='bx bxs-bell'></i>
+                <a href="/dashboard/review" class="notification" id="notificationLink">
+                    <i class='bx bx-calendar-star'></i>
                 </a>
             @endif
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i>
+            </a>
 
         </nav>
         <!-- NAVBAR -->
@@ -198,7 +199,7 @@
             <div class="head-title">
                 <div class="left">
                     <h1>Members Data</h1>
-                     <ul class="breadcrumb">
+                    <ul class="breadcrumb">
                         <li>
                             <a href="/dashboard">Dashboard</a>
                         </li>
@@ -206,91 +207,148 @@
                         <li>
                             <a class="active" href="/">Landing Page</a>
                         </li>
-                     </ul>
+                    </ul>
                 </div>
             </div>
             @foreach ($users as $usr)
-            <tr>
-              <ul class="box-info" style="align-content: center">
-                <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3 style="font-size: 15px">{{ $usr->name }}</h3>
-                    </span>
-                    <form action="/dashboard/membersdata" method="POST" id="roleForm">
-                        @csrf
-                        <input type="hidden" name="user_id" value="{{ $usr->id }}">
-                            @if (Auth::check() && Auth::user()->role === 'admin')
-                            <select name="role" onchange="confirmRoleChange(this)">
-                                <option value="admin" @if($usr->role == 'admin') selected @endif>Admin</option>
+                <tr>
+                    <ul class="box-info" style="align-content: center">
+                        <li>
+                            <i class='bx bxs-group'></i>
+                            <span class="text">
+                                <h3 style="font-size: 15px">{{ $usr->name }}</h3>
+                            </span>
+                            <form action="/dashboard/membersdata" method="POST" id="roleForm">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                                @if (Auth::check() && Auth::user()->role === 'admin')
+                                    <select name="role" onchange="confirmRoleChange(this)">
+                                        <option value="admin" @if ($usr->role == 'admin') selected @endif>Admin
+                                        </option>
+                                        @if ($usr->id === Auth::user()->id && $usr->role === 'member')
+                                            <option value="member" selected>Member</option>
+                                        @else
+                                            <option value="member" @if ($usr->role == 'member') selected @endif>
+                                                Member</option>
+                                        @endif
+                                        @if ($usr->id === Auth::user()->id && $usr->role === 'organizer')
+                                            <option value="organizer" selected>Organizer</option>
+                                        @else
+                                            <option value="organizer"
+                                                @if ($usr->role == 'organizer') selected @endif>Organizer</option>
+                                        @endif
+                                        @if ($usr->id === Auth::user()->id && $usr->role === 'non-member')
+                                            <option value="non-member" selected>Non-Member</option>
+                                        @else
+                                            <option value="non-member"
+                                                @if ($usr->role == 'non-member') selected @endif>Non-Member</option>
+                                        @endif
+                                    </select>
+                                @endif
+                            </form>
+                            @if ($usr->id === Auth::user()->id && $usr->role === 'member')
+                                <form action="/dashboard/membersdata" method="POST" id="adminForm">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                                    <button type="submit" name="role" value="admin">Change to Admin</button>
+                                </form>
                             @endif
-                            @if (Auth::check() && Auth::user()->role === 'admin')
-                                <option value="member" @if($usr->role == 'member') selected @endif>Member</option>
-                                <option value="organizer" @if($usr->role == 'organizer') selected @endif>Organizer</option>
+                            @if ($usr->id === Auth::user()->id && $usr->role === 'organizer')
+                                <form action="/dashboard/membersdata" method="POST" id="adminForm">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ $usr->id }}">
+                                    <button type="submit" name="role" value="admin">Change to Admin</button>
+                                </form>
                             @endif
-                        </select>
-                    </form>
-                 </li>
-                 <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3 style="font-size: 15px">{{ $usr->email }}</h3>
-                    </span>
-                 </li>
-               </ul>
-            </tr>
-
+                        </li>
+                        <li>
+                            <i class='bx bxs-group'></i>
+                            <span class="text">
+                                <h3 style="font-size: 15px">{{ $usr->email }}</h3>
+                            </span>
                         </li>
                     </ul>
+
+                </tr>
+
+                </li>
+                </ul>
                 </td>
-            </tr>
-        @endforeach
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            function confirmRoleChange(selectElement) {
-                Swal.fire({
-                    title: 'Confirm Role Change',
-                    text: 'Do you want to change this user\'s role?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        selectElement.form.submit();
-                    } else {
-                        // Reset the selection if the user cancels
-                        const selectedRole = "{{ $usr->role }}";
-                        for (let option of selectElement.options) {
-                            if (option.value === selectedRole) {
-                                option.selected = true;
-                                break;
+                </tr>
+            @endforeach
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                function confirmRoleChange(selectElement) {
+                    Swal.fire({
+                        title: 'Confirm Role Change',
+                        text: 'Do you want to change this user\'s role?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            selectElement.form.submit();
+                        } else {
+                            // Reset the selection if the user cancels
+                            const selectedRole = "{{ $usr->role }}";
+                            for (let option of selectElement.options) {
+                                if (option.value === selectedRole) {
+                                    option.selected = true;
+                                    break;
+                                }
                             }
                         }
-                    }
+                    });
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    const roleForm = document.getElementById('roleForm');
+                    roleForm.addEventListener('submit', function(event) {
+                        // Prevent the form from being submitted normally
+                        event.preventDefault();
+                        // Simulate a successful role change
+                        Swal.fire({
+                            title: 'Status Successfully Changed!',
+                            text: 'The user\'s role has been changed successfully.',
+                            icon: 'success'
+                        }).then(() => {
+                            // Redirect to dashboard.index after the success message is acknowledged
+                            window.location.href = "/dashboard/index";
+                        });
+                    });
                 });
-            }
-            document.addEventListener('DOMContentLoaded', function () {
-        const roleForm = document.getElementById('roleForm');
-        roleForm.addEventListener('submit', function (event) {
-            // Prevent the form from being submitted normally
-            event.preventDefault();
-            // Simulate a successful role change
-            Swal.fire({
-                title: 'Status Successfully Changed!',
-                text: 'The user\'s role has been changed successfully.',
-                icon: 'success'
-            }).then(() => {
-                // Redirect to dashboard.index after the success message is acknowledged
-                window.location.href = "/dashboard/index";
-            });
-        });
-});
-</script>
+            </script>
 
-<script src="{{ asset('js/dashboard.js') }}"></script>
+            <script src="{{ asset('js/dashboard.js') }}"></script>
+            <script>
+                // Simulasi informasi pengguna yang masuk
+                const loggedInUser = {
+                    id: 123, // Ganti dengan ID pengguna yang masuk
+                };
+
+                // Fungsi untuk mendapatkan jumlah komentar post dari server
+                function getCommentCount(userId) {
+                    // Anda perlu mengganti URL dengan endpoint yang sesuai di sisi server Anda
+                    fetch(`/getCommentCount?userId=${userId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            updateNotificationCount(data.commentCount);
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                function updateNotificationCount(count) {
+                    const notificationCountElement = document.getElementById('notificationCount');
+                    notificationCountElement.innerText = count;
+                    notificationCountElement.style.display = 'block';
+                }
+
+                // Panggil fungsi untuk mendapatkan jumlah komentar saat halaman dimuat
+                getCommentCount(loggedInUser.id);
+            </script>
+
 
 
 </body>

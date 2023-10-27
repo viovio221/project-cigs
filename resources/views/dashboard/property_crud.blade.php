@@ -147,7 +147,7 @@
             <input type="checkbox" id="switch-mode" hidden style="display: none;">
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
+                <i class='bx bx-calendar-star'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -174,7 +174,7 @@
             <div class="table-data">
                 <div class="order">
                     <div class="head">
-                        <h3><a href="#" class="btn btn-outline-primary">Add Property</a>
+                        <h3><a class="btn btn-outline-primary">Property</a>
                         </h3>
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -185,8 +185,6 @@
                                 </ul>
                             </div>
                         @endif
-                        <i class='bx bx-search'></i>
-                        <i class='bx bx-filter'></i>
                     </div>
                     <table>
                         <thead>
@@ -228,7 +226,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                                    style="background: none; border: none; color:red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this data?')"><i
                                                         class='bx bx-trash'></i></button>
                                             </form>
                                         </td>

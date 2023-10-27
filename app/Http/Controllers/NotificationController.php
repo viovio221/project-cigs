@@ -3,19 +3,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use GuzzleHttp\Client;
-use Illuminate\Auth\Events\PasswordReset;
+use App\Models\Profile;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\WhatsappPasswordReset;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\PasswordReset;
 
 class NotificationController extends Controller
 {
     public function sendOTPviaWhatsApp($recipientNumber, $otpCode)
     {
-        $apiKey = 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B';
-        $sender = '6282128078893';
+        $profile = Profile::first();
+
+        $apiKey = $profile->api_key;
+        $sender = $profile->sender;
         $number = $recipientNumber;
 
         $message = "Hello, Wayang Riders!\n\n";
@@ -32,7 +35,7 @@ class NotificationController extends Controller
 
         $client = new Client();
 
-        $response = $client->post('https://wag.cigs.web.id/send-message', [
+        $response = $client->post($profile->endpoint, [
             'form_params' => [
                 'api_key' => $apiKey,
                 'sender' => $sender,
@@ -40,12 +43,13 @@ class NotificationController extends Controller
                 'message' => $message,
             ],
         ]);
-
         return json_decode($response->getBody(), true);
     }
 
     public function forgotPassword(Request $request)
     {
+        $profile = Profile::first();
+
         $request->validate([
             'email_or_whatsapp' => 'required',
         ], [
@@ -104,8 +108,8 @@ class NotificationController extends Controller
 
                 $resetLink = route('password.reset', ['token' => $token, 'phone_number' => $user->phone_number]);
 
-                $apiKey = 'ZMNgdCuH1Vi0OCQ6Recg8ZB9UPy68B';
-                $sender = '6282128078893';
+                $apiKey = $profile->api_key;
+                $sender = $profile->sender;
                 $number = $userPhoneNumber;
 
                 $message = "Hello, $user->name Wayang Riders!\n\n";
@@ -116,7 +120,7 @@ class NotificationController extends Controller
 
                 $client = new Client();
 
-                $response = $client->post('https://wag.cigs.web.id/send-message', [
+                $response = $client->post($profile->endpoint, [
                     'form_params' => [
                         'api_key' => $apiKey,
                         'sender' => $sender,
@@ -124,7 +128,6 @@ class NotificationController extends Controller
                         'message' => $message,
                     ],
                 ]);
-
                 $responseBody = json_decode($response->getBody(), true);
 
                 echo "<script>

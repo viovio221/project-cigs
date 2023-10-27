@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Http\Controllers\NotificationController;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class RegisterController extends Controller
@@ -35,34 +36,38 @@ class RegisterController extends Controller
         return $otpCode;
     }
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:users,email',
-        'phone_number' => 'required|unique:users,phone_number',
-        'password' => 'required|min:6|confirmed',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone_number' => 'required|unique:users,phone_number',
+            'password' => 'required|min:6|confirmed',
+        ]);
 
-    $otpCode = $this->generateOTP();
+        $otpCode = $this->generateOTP();
 
-    $recipientNumber = $request->phone_number;
+        $recipientNumber = $request->phone_number;
 
-    $user = new User([
-        'name' => $request->name,
-        'email' => $request->email,
-        'phone_number' => $request->phone_number,
-        'password' => Hash::make($request->password),
-        'otp_code' => $otpCode,
-        'otp_expiry_time' => now()->addMinutes(5),
-    ]);
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => Hash::make($request->password),
+            'otp_code' => $otpCode,
+            'otp_expiry_time' => now()->addMinutes(5),
+        ]);
 
-    $user->save();
+        $notificationController = new NotificationController();
 
-    $notificationController = new NotificationController();
-    $notificationController->sendOTPviaWhatsApp($recipientNumber, $otpCode);
-
-    return redirect('/login')->with('success', 'Registration successful! Please log-in');
-}
+        try {
+            $notificationController->sendOTPviaWhatsApp($recipientNumber, $otpCode);
+            $user->save();
+            return redirect('/login')->with('success', 'Registration successful! Please log-in');
+        } catch (\Exception $e) {
+            Alert::error('No connection', 'Please try again')->persistent(true);
+            return redirect()->back();
+        }
+    }
 
     /**
      * Display the specified resource.

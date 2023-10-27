@@ -180,7 +180,7 @@
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
             <a href="/dashboard/review" class="notification">
-                <i class='bx bxs-bell'></i>
+                <i class='bx bx-calendar-star'></i>
             </a>
 
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
@@ -209,7 +209,7 @@
             <ul class="box-info1" style="align-content: center">
                 {{-- @if (isset($news)) --}}
                 @foreach ($news as $nw)
-                    <li class="news-item searchable-element">
+                    <li class="news-item">
                         <td>
                             <img src="{{ asset('storage/new_images/' . $nw->image) }}" alt="news" width="100">
                         </td>

@@ -16,5 +16,14 @@ class Profile extends Model
         'community_structure',
         'slogan',
         'community_name',
+        'endpoint',
+        'api_key',
+        'sender',
     ];
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

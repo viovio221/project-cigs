@@ -186,8 +186,6 @@
                                 'index'])->name('dashboard.message_crud');
                             </div>
                         @endif
-                        <i class=''></i>
-                        <i class=''></i>
                     </div>
                     <table>
                         <thead>
