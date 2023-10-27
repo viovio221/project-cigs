@@ -64,15 +64,15 @@
                     </div>
 
                     <div class="input-container">
-                        <span>Event Name</span>
-                        <label for="event_id">Event Name</label>
-                        <select name="event_id" class="input-o">
-                            <option value="">Pilih</option>
-                            @foreach ($events as $ev)
-                                <option {{ old('event_id') == $ev->id ? 'selected' : '' }} value="{{ $ev->id }}">
-                                    {{ $ev->name }}</option>
-                            @endforeach
-                        </select>
+                        @if ($eventsNotCommented->isNotEmpty())
+                            <span>Event Name</span>
+                            <label for="event_id">Event Name</label>
+                            <select name="event_id" class="input-o">
+                                <option value="">Pilih</option>
+                                @foreach ($eventsNotCommented as $event)
+                                    <option value="{{ $event->id }}">{{ $event->name }}</option>
+                                @endforeach
+                            </select>
                     </div>
 
                     <div class="input-container">
@@ -81,6 +81,9 @@
                         <textarea name="content" class="input"></textarea>
                     </div>
                     <input type="submit" value="Submit" class="btn" />
+                    @else
+                    <p style="color: white">You have already commented on all events. There are no events left to comment on.</p>
+                    @endif
                 </form>
                     <form action="{{ route('dashboard') }}">
                         <input type="submit" value="Back" class="btn" />

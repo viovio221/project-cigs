@@ -17,11 +17,24 @@ class CommentPostController extends Controller
     }
 
     public function review(Request $request)
-    {
-        $profiles = Profile::all();
-        $event = auth()->user()->events;
-        return view('dashboard.review.event_review', ['events' => $event, 'profiles'=> $profiles]);
-    }
+{
+    $profiles = Profile::all();
+    $user = auth()->user();
+    $events = $user->events;
+
+    $eventsCommented = CommentPost::whereIn('event_id', $events->pluck('id')->toArray())
+        ->where('username', $user->name)
+        ->get();
+
+    $eventsNotCommented = $events->filter(function ($event) use ($eventsCommented) {
+        return !$eventsCommented->contains('event_id', $event->id);
+    });
+
+    return view('dashboard.review.event_review', [
+        'eventsNotCommented' => $eventsNotCommented,
+        'profiles' => $profiles,
+    ]);
+}
 
     public function store(Request $request)
     {
