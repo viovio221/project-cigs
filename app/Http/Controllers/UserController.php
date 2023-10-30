@@ -147,7 +147,7 @@ public function updateRole(Request $request)
 }
 public function getUserDetails($userId) {
     $user = User::find($userId);
-
+  
     return response()->json([
         'data' => $user,
     ]);
