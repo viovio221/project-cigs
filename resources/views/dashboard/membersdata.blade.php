@@ -174,15 +174,15 @@
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <a href="/dashboard/message" class="notification">
+            <a href="/dashboard/message" class="notification" title="message here">
                 <i class='bx bxs-edit-alt'></i>
             </a>
             <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
 
             @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
-                <a href="/dashboard/review" class="notification">
-                    <i class='bx bxs-bell'></i>
+                <a href="/dashboard/review" class="notification" title="event's review here">
+                    <i class='bx bx-calendar-star'></i>
                 </a>
             @endif
 
@@ -203,7 +203,7 @@
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="/">Landing Page</a>
+                            <a class="active" href="/dashboard/membersdata">Members Data</a>
                         </li>
                      </ul>
                 </div>

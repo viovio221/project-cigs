@@ -174,12 +174,12 @@
                     <button type="submit" id="searchSubmit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <a href="/dashboard/message" class="notification">
+            <a href="/dashboard/message" class="notification" title="message here">
                 <i class='bx bxs-edit-alt'></i>
             </a>
             <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="/dashboard/review" class="notification">
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
+            <a href="/dashboard/review" class="notification" title="event's review here">
                 <i class='bx bx-calendar-star'></i>
             </a>
 
