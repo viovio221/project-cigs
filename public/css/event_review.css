@@ -163,13 +163,33 @@ textarea.input {
   cursor: pointer;
   transition: 0.3s;
   margin: 0;
-  width: 100%;
+  width: 80%;
 }
 
 .btn:hover {
   background-color: transparent;
   color:var(--bg-color-1);
 }
+.btn1 {
+    padding: 0.6rem 1.3rem;
+    background-color:var(--bg-color-1);
+    border: 2px solid var(--bg-color-1);
+    font-size: 0.95rem;
+    color:var(--orange);
+    line-height: 1;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0;
+    width: 100%;
+  }
+
+  .btn1:hover {
+    background-color: transparent;
+    color:var(--bg-color-1);
+  }
+
 
 .input-container span {
   position: absolute;
