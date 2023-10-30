@@ -61,13 +61,6 @@
                             <span class="text">Scan Presence</span>
                         </a>
                     </li>
-                @elseif (Auth::user()->role === 'admin' || Auth::user()->role === 'non-member')
-                    <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                        <a href="{{ route('dashboard') }}">
-                            <i class='bx bxs-dashboard'></i>
-                            <span class="text">Dashboard</span>
-                        </a>
-                    </li>
                 @endif
             @endif
             @if (Auth::check() && Auth::user()->role === 'member')
@@ -355,7 +348,7 @@
                             btn.addEventListener("click", () => {
                                 sliderNav(i);
                             });
-                        });  
+                        });
                     </script>
             </section>
             <!-- CONTENT -->
