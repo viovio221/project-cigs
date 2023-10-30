@@ -226,16 +226,17 @@
 
                                         <td class="side-menu top">
                                             <a href="{{ route('comment_posts.show', $cp->id) }}"
-                                                style="color: green"><i class='bx bx-info-circle'></i></a>
+                                                style="color: green"><i class='bx bx-info-circle'><span class="icon"></i></a>
                                             {{-- <a href="{{ route('comment_posts.edit', $cp->id) }}" method="post"
-                                                style="color: blue"><i class='bx bx-edit'></i></a> --}}
+                                                style="color: blue"><i class='bx bx-edit'></i</span>></a> --}}
                                             <form action="{{ route('comment_posts.destroy', $cp->id) }}"
                                                 method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')"><i
-                                                        class='bx bx-trash'></i></button>
+                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                    <span class="icon"><i class='bx bx-trash'></i></span>
+                                                    </button>
                                             </form>
                                         </td>
                                     </tr>
