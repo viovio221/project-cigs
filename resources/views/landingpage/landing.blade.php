@@ -183,8 +183,8 @@
     {{-- ends --}}
     {{-- footer --}}
     <section class="footer">
-        <div class="box-container searchable-element" id="communities">
-            <div class="box">
+        <div class="box-container" id="communities">
+            <div class="box  searchable-element">
                 <h3>Our Communities</h3>
                 <ul>
                     @php
@@ -198,7 +198,7 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="box searchable-element" id="social-media">
+            <div class="box" id="social-media">
                 <h3>Follow Us</h3>
                 @foreach ($properties as $item)
                     <a href="#" style="text-transform: none;"><i
