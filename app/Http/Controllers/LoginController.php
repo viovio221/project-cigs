@@ -63,7 +63,7 @@ class LoginController extends Controller
 
             return redirect()->route('dashboard');
         } else {
-            return back()->withErrors(['otp' => 'Invalid OTP code.'])->withInput();
+            return back()->withErrors(['otp' => 'The password you entered is incorrect.'])->withInput();
         }
     }
 
