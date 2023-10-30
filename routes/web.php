@@ -445,3 +445,5 @@ Route::post('/dashboard/membersdata_crud/{id}/confirm', [
 ])->name('users.confirm');
 Route::post('/dashboard/membersdata', [UserController::class,'updateRole'])->name('dashboard.membersdata.updateRole');
 Route::get('/dashboard/user-details/{userId}', [UserController::class, 'getUserDetails'])->name('user.details');
+Route::get('/dashboard/news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit');
+Route::get('/dashboard/property/{id}/edit', [PropertyController::class, 'edit'])->name('property.edit');
