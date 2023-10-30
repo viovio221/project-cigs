@@ -109,9 +109,9 @@ class PresenceController extends Controller
         $presenceImage->image_path = $imageData;
         $presenceImage->save();
 
-        Alert::success('Image saved', 'Success')->persistent(true);
+        Alert::success('Thank you for attending our event, may you have a pleasant journey!', 'Success')->persistent(true);
 
-        return redirect()->route('dashboard.qrcode.presence');
+        return redirect()->route('dashboard');
     }
     public function destroy($id)
     {
