@@ -214,8 +214,6 @@
                                 <th scope="col">No</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -230,8 +228,6 @@
                                         <td scope="row">{{ $number }}</td>
                                         <td>{{ $us->name }}</td>
                                         <td>{{ $us->email }}</td>
-                                        <td>{{ $us->role }}</td>
-                                        <td>{{ $us->created_at }}</td>
                                         <td>
                                             @if (
                                                 !(
@@ -252,7 +248,7 @@
                                             @else
                                                 <a href="#" style="color: blue" class="edit-user"
                                                     data-user-id="{{ $us->id }}"><i
-                                                        class='bx bxs-user-check'></i> Completed</a>
+                                                        class='bx bxs-user-check'></i> Confirm</a>
                                             @endif
                                         </td>
                                     </tr>

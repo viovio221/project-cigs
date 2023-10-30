@@ -32,16 +32,13 @@
                 <span class="text">Dashboard</span>
             </a>
         </li>
-        @if (Auth::check() && Auth::user()->role === 'non-member')
-            <li class="{{ Request::is('dashboard/membersdata*') ? 'active' : '' }}">
-                <a href="/dashboard/membersdata">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">Members Data</span>
-                </a>
-            </li>
-        @endif
+        <li class="{{ Request::is('dashboard/news*') ? 'active' : '' }}">
+            <a href="/dashboard/news">
+                <i class='bx bxs-message-dots'></i>
+                <span class="text">News</span>
+            </a>
+        </li>
         @if (Auth::check() && Auth::user()->role === 'member')
-            <!-- Jika pengguna adalah member, tampilkan elemen sidebar tambahan -->
             <li class="{{ Request::is('dashboard/event*') ? 'active' : '' }}">
                 <a href="/dashboard/event">
                     <i class='bx bxs-shopping-bag-alt'></i>
@@ -136,11 +133,9 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const logoutButton = document.querySelector('.logout');
 
-                // Tambahkan event click ke elemen logout
                 logoutButton.addEventListener('click', function(e) {
-                    e.preventDefault(); // Mencegah tindakan logout asli
+                    e.preventDefault();
 
-                    // Tampilkan pesan konfirmasi SweetAlert2
                     Swal.fire({
                         title: 'Are you sure to logout?',
                         text: "You won't be able to revert this!",

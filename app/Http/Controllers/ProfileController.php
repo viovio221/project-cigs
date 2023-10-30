@@ -77,12 +77,15 @@ class ProfileController extends Controller
         'history' => 'required',
         'community_bio' => 'required',
         'image' => 'nullable|image',
-        'video' => 'nullable|mimetypes:video/*', // Perbaikan di sini
-        'video1' => 'nullable|mimetypes:video/*', // Perbaikan di sini
-        'video2' => 'nullable|mimetypes:video/*', // Perbaikan di sini
+        'video' => 'nullable|mimetypes:video/*',
+        'video1' => 'nullable|mimetypes:video/*',
+        'video2' => 'nullable|mimetypes:video/*',
         'community_structure' => 'required',
         'slogan' => 'required',
         'community_name' => 'required',
+        'sender' => 'required',
+        'endpoint' => 'required',
+        'api_key' => 'required',
     ]);
 
     $profiles = Profile::findOrFail($id);
