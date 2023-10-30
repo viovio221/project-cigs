@@ -33,12 +33,11 @@
                         <a href="https://www.instagram.com/wayang_riders/">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="/dashboard">
-                            <i class="fas fa-angle-double-left"></i>
-                        </a>
                     </div>
-                    <br>
-                    <p></p>
+                    <a href="/dashboard">
+                        <i class="fas fa-angle-double-left"></i>
+                        <h4>Back To Dashboard</h4>
+                    </a>
                 </div>
             </div>
             <div class="right">

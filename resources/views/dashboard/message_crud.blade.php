@@ -207,17 +207,18 @@
                                         <td class="message">{{ $mg->message }}</td>
                                         <td>{{ $mg->created_at }}</td>
                                         <td class="side-menu top">
-                                            <a href="{{ route('message.show', $mg->id) }}" style="color: green"><i
-                                                    class='bx bx-info-circle'></i></a>
+                                            <a href="{{ route('message.show', $mg->id) }}" style="color: green"><span class="icon"><i
+                                                    class='bx bx-info-circle'></i></span></a>
                                             <a href="{{ route('message.edit', ['message' => $mg->id]) }}"
-                                                method="post" style="color: blue"><i class='bx bx-edit'></i></a>
+                                                method="post" style="color: blue"><span class="icon"><i class='bx bx-edit'></i></span></a>
                                             <form action="{{ route('message.destroy', $mg->id) }}" method="POST"
                                                 style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')"><i
-                                                        class='bx bx-trash'></i></button>
+                                                    style="background: none; border: none; color:red" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                    <span class="icon">  <i class='bx bx-trash'></i></span>
+                                                    </button>
                                             </form>
                                         </td>
                                     </tr>
