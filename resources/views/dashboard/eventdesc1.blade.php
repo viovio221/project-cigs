@@ -282,56 +282,60 @@
                                         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
                                     </script>
                                 @else
-                                    <button class="btn btn-primary" data-event-id="{{ $event->id }}">
-                                        <p class="btn-text"><a href="#" style="color: white;">Register
-                                                Event</a></p>
-                                        <span class="square"></span>
-                                    </button>
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            const registerButtons = document.querySelectorAll('.btn.btn-primary');
+                                    @if ($eventData?->status == "registered")
 
-                                            registerButtons.forEach(registerButton => {
-                                                    registerButton.addEventListener('click', function() {
-                                                            @auth
-                                                            const userId = '{{ auth()->user()->id }}';
-                                                        @else
-                                                            const userId = null;
-                                                        @endauth
-                                                        const eventId = registerButton.getAttribute('data-event-id');
-                                                        if (navigator.onLine) {
-                                                            axios.post(
-                                                                '{{ route('event.register') }}', {
-                                                                    user_id: userId,
-                                                                    eventId: eventId,
-                                                                }).then((response) => {
-                                                                if (response.data.message ===
-                                                                    'You are already registered for this event.') {
-                                                                    Swal.fire('You are already registered for this event.',
-                                                                        'You cannot register again for the same event.', 'info');
-                                                                } else if (response.data.message === 'Registration successful') {
-                                                                    Swal.fire('Thank you!', 'You have registered for this event.',
-                                                                        'success');
-                                                                    window.location.href =
-                                                                        '/dashboard/event';
-                                                                } else {
+                                    @else
+                                        <button class="btn btn-primary" data-event-id="{{ $event->id }}">
+                                            <p class="btn-text"><a href="#" style="color: white;">Register
+                                                    Event</a></p>
+                                            <span class="square"></span>
+                                        </button>
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                const registerButtons = document.querySelectorAll('.btn.btn-primary');
+
+                                                registerButtons.forEach(registerButton => {
+                                                        registerButton.addEventListener('click', function() {
+                                                                @auth
+                                                                const userId = '{{ auth()->user()->id }}';
+                                                            @else
+                                                                const userId = null;
+                                                            @endauth
+                                                            const eventId = registerButton.getAttribute('data-event-id');
+                                                            if (navigator.onLine) {
+                                                                axios.post(
+                                                                    '{{ route('event.register') }}', {
+                                                                        user_id: userId,
+                                                                        eventId: eventId,
+                                                                    }).then((response) => {
+                                                                    if (response.data.message ===
+                                                                        'You are already registered for this event.') {
+                                                                        Swal.fire('You are already registered for this event.',
+                                                                            'You cannot register again for the same event.', 'info');
+                                                                    } else if (response.data.message === 'Registration successful') {
+                                                                        Swal.fire('Thank you!', 'You have registered for this event.',
+                                                                            'success');
+                                                                        window.location.href =
+                                                                            '/dashboard/event';
+                                                                    } else {
+                                                                        Swal.fire('Error',
+                                                                            'An error occurred while registering for the event.',
+                                                                            'error');
+                                                                    }
+                                                                }).catch((error) => {
                                                                     Swal.fire('Error',
                                                                         'An error occurred while registering for the event.',
                                                                         'error');
-                                                                }
-                                                            }).catch((error) => {
-                                                                Swal.fire('Error',
-                                                                    'An error occurred while registering for the event.',
+                                                                });
+                                                            } else {
+                                                                Swal.fire('Error', 'No connection! Unable to register for the event.',
                                                                     'error');
-                                                            });
-                                                        } else {
-                                                            Swal.fire('Error', 'No connection! Unable to register for the event.',
-                                                                'error');
-                                                        }
-                                                    });
+                                                            }
+                                                        });
+                                                });
                                             });
-                                        });
-                                    </script>
+                                        </script>
+                                    @endif
                                     <div class="blog-comment">
                                         <i class='bx bx-comment-dots'></i>
                                         <a href="/dashboard/review">3 Review</a>
@@ -366,7 +370,7 @@
 
                 if (searchTerm === '') {
                     return;
-                }   
+                }
 
                 removeHighlights();
 
