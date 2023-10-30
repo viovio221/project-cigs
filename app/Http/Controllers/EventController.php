@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Message;
 use App\Models\CommentPost;
+use App\Models\EventData;
 use App\Models\News;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -51,9 +53,14 @@ class EventController extends Controller
 
     public function show($id)
 {
+    $authUserId = Auth::user()->id;
+    // dd($authUserId);
+    $eventData = EventData::query()->where('event_id', $id)
+        ->where('user_id', $authUserId)
+        ->first();
     $profiles = Profile::all();
     $event = Event::findOrFail($id);
-    return view('dashboard.eventdesc1', compact('event', 'profiles'));
+    return view('dashboard.eventdesc1', compact('event', 'profiles', 'eventData'));
 }
 
 

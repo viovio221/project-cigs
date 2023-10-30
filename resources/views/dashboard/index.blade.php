@@ -444,7 +444,7 @@
                     <div class="order">
                         <div class="head">
                             <h3>Presence Barcode's Data</h3>
-                        </div>
+                        </div>    
                         <div class="table-data">
                             <div class="order">
                                 <i class='bx bx-search'></i>

@@ -355,7 +355,7 @@
                             btn.addEventListener("click", () => {
                                 sliderNav(i);
                             });
-                        });
+                        });  
                     </script>
             </section>
             <!-- CONTENT -->
