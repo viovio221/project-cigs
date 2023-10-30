@@ -176,9 +176,9 @@ public function storeForEventRegister(Request $request)
             ]);
 
             if ($response->getStatusCode() == 200) {
-                return redirect()->route('dashboard.qrcode.event_register')->with('success', 'Registration Successful');
+                return redirect()->route('dashboard')->with('success', 'Registration Successful');
             } else {
-                return redirect()->route('dashboard.qrcode.event_register')->with('error', 'Failed to send WhatsApp message');
+                return redirect()->route('dashboard')->with('error', 'Failed to send WhatsApp message');
             }
         }
     }
