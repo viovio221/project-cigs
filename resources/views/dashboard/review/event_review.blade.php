@@ -80,15 +80,17 @@
                         <label for="content">Content</label>
                         <textarea name="content" class="input"></textarea>
                     </div>
-                    <input type="submit" value="Submit" class="btn" />
+
                     @else
                     <p style="color: white">You have already commented on all events. There are no events left to comment on.</p>
                     @endif
+                    <br>
+                    <center><input type="submit" value="Submit" class="btn" /></center>
                 </form>
                     <form action="{{ route('dashboard') }}">
-                        <input type="submit" value="Back" class="btn" />
+                        <input type="submit" value="Back To Dashboard" class="btn1" />
                     </form>
-            </div>
+                </div>
         </div>
     </div>
 
