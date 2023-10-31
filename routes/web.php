@@ -427,7 +427,7 @@ Route::get('/dashboard/news', function () {
     $news = News::all();
     $profile = Profile::all();
     return view('dashboard.news', compact('news', 'profile'));
-})->name('news');
+})->name('news')->middleware('auth');
 Route::get('/dashboard/eventdesc1/{eventId}', [EventController::class, 'show'])->name('dashboard.eventdesc1');
 
 

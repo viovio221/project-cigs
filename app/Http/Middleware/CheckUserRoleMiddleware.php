@@ -35,6 +35,6 @@ class CheckUserRoleMiddleware
             }
         }
 
-        return redirect()->route('dashboard');  
+        return redirect()->route('dashboard');
     }
 }
