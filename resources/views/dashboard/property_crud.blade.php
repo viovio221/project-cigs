@@ -135,23 +135,28 @@
         <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
+            <form action="#" class="search-form" hidden>
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" placeholder="Search..." class="search-input">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <a href="/dashboard/message" class="notification">
+            <a href="/dashboard/message" class="notification" title="message here">
                 <i class='bx bxs-edit-alt'></i>
             </a>
-            <input type="checkbox" id="switch-mode" hidden style="display: none;">
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="/dashboard/review" class="notification">
-                <i class='bx bx-calendar-star'></i>
-            </a>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode" title="switch mode"></label>
 
+            @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
+                <a href="/dashboard/review" class="notification" title="event's review here">
+                    <i class='bx bx-calendar-star'></i>
+                </a>
+            @endif
+            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member'))
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
                 <i class='bx bxs-user-circle'></i> </a>
+                @endif
+
         </nav>
         <!-- NAVBAR -->
 

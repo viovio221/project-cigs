@@ -179,12 +179,17 @@
             </a>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode" title="switch mode"></label>
-            <a href="/dashboard/review" class="notification" title="event's review here">
-                <i class='bx bx-calendar-star'></i>
-            </a>
 
+            @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::user()->role === 'member'))
+                <a href="/dashboard/review" class="notification" title="event's review here">
+                    <i class='bx bx-calendar-star'></i>
+                </a>
+            @endif
+            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member'))
             <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i>       </a>
+                <i class='bx bxs-user-circle'></i> </a>
+                @endif
+
         </nav>
         <!-- NAVBAR -->
 
