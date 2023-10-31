@@ -204,10 +204,11 @@
                     <i class='bx bx-calendar-star'></i>
                 </a>
             @endif
-            @if (Auth::check() && (Auth::user()->role === 'member' || Auth::user()->role === 'non-member' || Auth::user()->role === 'admin'))
-            <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
-                <i class='bx bxs-user-circle'></i> </a>
-        @endif
+            @if (Auth::check() &&
+                    (Auth::user()->role === 'member' || Auth::user()->role === 'non-member' || Auth::user()->role === 'admin'))
+                <a href="{{ route('editprofile.show') }}" class="notification" title="edit profile here">
+                    <i class='bx bxs-user-circle'></i> </a>
+            @endif
 
 
         </nav>
@@ -269,39 +270,44 @@
                                                     require_once 'qrcode/qrlib.php';
                                                     QRcode::png("$kode", $path, 2, 2);
                                                 }
+                                                $eventData = App\Models\EventData::where('user_id', auth()->user()->id)
+                                                    ->where('event_id', $evco->event_id)
+                                                    ->first();
+                                                $checkedIn = $eventData && $eventData->status === 'checkin';
                                                 ?>
-                                                @if (auth()->user() && auth()->user()->id == $evco->user->id)
-                                                <center>
-                                                    <img src="{{ asset('storage/qrcode_images/' . $filename) }}"
-                                                        alt="QR Code" style="width: 50%">
+                                                @if (auth()->user() && auth()->user()->id == $evco->user->id && !$checkedIn)
+                                                    <center>
+                                                        <img src="{{ asset('storage/qrcode_images/' . $filename) }}" alt="QR Code" style="width: 50%">
                                                     </center>
+                                                @elseif ($checkedIn)
+                                                    <!-- Kode untuk menampilkan pesan bahwa pengguna sudah check-in -->
+                                                    <p>User has already checked in for this event.</p>
                                                 @endif
                                             @endif
                                         @endforeach
+                                    @php
+                                        $showDescriptionRoute = route('event.show', $item->id);
+                                    @endphp
 
-                                        @php
-                                            $showDescriptionRoute = route('event.show', $item->id);
-                                        @endphp
+                                    <button class="btn btn-secondary searchable-element">
+                                        <a href="{{ $showDescriptionRoute }}" style="color: white;">See
+                                            Description</a>
+                                    </button>
 
+                                    @if (Auth::check() && Auth::user()->role === 'organizer')
                                         <button class="btn btn-secondary searchable-element">
-                                            <a href="{{ $showDescriptionRoute }}" style="color: white;">See
-                                                Description</a>
+                                            <a href="{{ route('dashboard.qrcode.presence', $item->id) }}"
+                                                title="Scan QR Code Presence" style="color: white;">
+                                                <i class='bx bx-scan'></i> Scan Presence
+                                            </a>
                                         </button>
-
-                                        @if (Auth::check() && Auth::user()->role === 'organizer')
-                                            <button class="btn btn-secondary searchable-element">
-                                                <a href="{{ route('dashboard.qrcode.presence', $item->id) }}"
-                                                    title="Scan QR Code Presence" style="color: white;">
-                                                    <i class='bx bx-scan'></i> Scan Presence
-                                                </a>
-                                            </button>
-                                            {{-- <button class="btn btn-secondary searchable-element">
+                                        {{-- <button class="btn btn-secondary searchable-element">
                                                 <a href="#" title="Take a Photo" style="color: white;">
                                                     <i class='bx bx-photo-album'></i> Take a Picture
                                                 </a>
                                             </button> --}}
-                                        @endif
-                                    </div>
+                                    @endif
+                                </div>
                             </li>
                         @endforeach
                     </ul> <br><br>
@@ -395,7 +401,7 @@
 
                     if (found) {
                         if (firstMatchId) {
-                            window.location.href = `#${firstMatchId}`;
+                            window.location.href = #${firstMatchId};
                         }
                     } else {
                         if (!alertShown) {
