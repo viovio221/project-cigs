@@ -215,7 +215,7 @@
                         <li>
                             <i class='bx bxs-group'></i>
                             <span class="text">
-                                <h3 style="font-size: 16px">{{ $usr->name }}</h3>
+                                <h3 style="font-size: 20px">{{ $usr->name }}</h3>
                                 <form action="/dashboard/membersdata" method="POST" id="roleForm">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{ $usr->id }}">
@@ -227,12 +227,6 @@
                                         </select>
                                         @endif
                                 </form>
-                            </span>
-                        </li>
-                        <li>
-                            <i class='bx bxs-group'></i>
-                            <span class="text">
-                                <h3 style="font-size: 13px">{{ $usr->email }}</h3>
                             </span>
                         </li>
                     </ul>
